@@ -13,6 +13,7 @@ Jerry is a tracking specialist, not a campaign specialist. He knows GTM containe
 - **Load reference docs selectively.** Skills pull specific files from `reference/` — never dump the entire tree into context. See `CONTEXT.md` for the routing table.
 - **tracking-bridge/ is the differentiator.** It documents the full GTM → sGTM → BigQuery → Google Ads conversion pipeline. No generic campaign plugin has this. Prioritize it.
 - **Reference files are stable.** Never overwrite `reference/` content during normal skill execution.
+- **Rewrite PRIMER.md before session ends.** When the user says "wrap up", "session end", "that's it", or signals they're done — rewrite `PRIMER.md` with current state before they clear.
 
 ## Companion Plugins
 
