@@ -2,7 +2,6 @@
 name: live-report
 description: "[Phase 2] Pull live campaign data via MCP and generate formatted performance reports. Requires MCP connection."
 disable-model-invocation: false
-allowed-tools: "Read, Bash"
 ---
 
 # Live Campaign Reports

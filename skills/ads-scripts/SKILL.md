@@ -2,7 +2,6 @@
 name: ads-scripts
 description: Google Ads Scripts library — browse, customize, and generate automation scripts for bidding, reporting, and cleanup. Use for Google Ads automation.
 disable-model-invocation: false
-allowed-tools: "Read, Grep, Glob"
 ---
 
 # Google Ads Scripts

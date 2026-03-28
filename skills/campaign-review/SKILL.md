@@ -2,7 +2,6 @@
 name: campaign-review
 description: Audit a campaign against best practices — structure, keywords, ads, bids, conversions, budget. Use when reviewing an existing Google Ads campaign.
 disable-model-invocation: false
-allowed-tools: "Read, Grep"
 ---
 
 # Campaign Review

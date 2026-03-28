@@ -2,7 +2,6 @@
 name: connect-mcp
 description: "[Phase 2] Configure MCP connections to Google Ads API — OAuth setup, server selection, connection verification. Use when setting up live API access."
 disable-model-invocation: true
-allowed-tools: "Read, Edit, Bash"
 ---
 
 # Connect Google Ads MCP Server
