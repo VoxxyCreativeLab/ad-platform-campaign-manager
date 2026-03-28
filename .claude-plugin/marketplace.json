@@ -1,0 +1,76 @@
+{
+  "name": "ad-platform-campaign-manager",
+  "displayName": "Ad Platform Campaign Manager",
+  "description": "Complete campaign management toolkit for tracking specialists. Guided campaign setup, keyword strategy, conversion tracking (GTM/sGTM/BQ bridge), reporting pipelines, optimization audits, and Google Ads Scripts. Phase 1: knowledge and guidance. Phase 2: live MCP API access.",
+  "version": "1.0.0",
+  "author": "Voxxy Creative Lab",
+  "categories": [
+    "advertising",
+    "google-ads",
+    "campaign-management",
+    "analytics",
+    "tracking"
+  ],
+  "skills": [
+    {
+      "name": "campaign-setup",
+      "command": "/ad-platform-campaign-manager:campaign-setup",
+      "description": "Guided campaign builder — walks through type selection, structure, ad groups, and keyword strategy with best practices"
+    },
+    {
+      "name": "keyword-strategy",
+      "command": "/ad-platform-campaign-manager:keyword-strategy",
+      "description": "Keyword research, match type strategy, negative keyword planning, and structured keyword list generation"
+    },
+    {
+      "name": "conversion-tracking",
+      "command": "/ad-platform-campaign-manager:conversion-tracking",
+      "description": "Google Ads conversion tracking via GTM/sGTM — conversion actions, enhanced conversions, offline imports, value-based bidding"
+    },
+    {
+      "name": "reporting-pipeline",
+      "command": "/ad-platform-campaign-manager:reporting-pipeline",
+      "description": "Google Ads to BigQuery reporting pipelines — GAQL queries, BQ schemas, dbt models, Looker Studio dashboards"
+    },
+    {
+      "name": "campaign-review",
+      "command": "/ad-platform-campaign-manager:campaign-review",
+      "description": "Audit a campaign against best practices — structure, keywords, ads, bids, conversions, budget"
+    },
+    {
+      "name": "pmax-guide",
+      "command": "/ad-platform-campaign-manager:pmax-guide",
+      "description": "Performance Max guidance — asset groups, audience signals, feed optimization, PMax metrics interpretation"
+    },
+    {
+      "name": "budget-optimizer",
+      "command": "/ad-platform-campaign-manager:budget-optimizer",
+      "description": "Budget allocation, bid strategy selection, spend forecasting, and target CPA/ROAS calculation"
+    },
+    {
+      "name": "ads-scripts",
+      "command": "/ad-platform-campaign-manager:ads-scripts",
+      "description": "Google Ads Scripts library — browse, customize, and generate automation scripts for bidding, reporting, and cleanup"
+    },
+    {
+      "name": "connect-mcp",
+      "command": "/ad-platform-campaign-manager:connect-mcp",
+      "description": "[Phase 2] Configure MCP connections to Google Ads API — OAuth setup, server selection, connection verification"
+    },
+    {
+      "name": "live-report",
+      "command": "/ad-platform-campaign-manager:live-report",
+      "description": "[Phase 2] Pull live campaign data via MCP and generate formatted performance reports"
+    }
+  ],
+  "agents": [
+    {
+      "name": "campaign-reviewer",
+      "description": "Full campaign audit: structure, keywords, ads, bids, conversions, budget. Produces scored report with prioritized recommendations."
+    },
+    {
+      "name": "tracking-auditor",
+      "description": "Audits conversion tracking pipeline: Google Ads conversion actions vs GTM/sGTM implementation vs BigQuery data flow."
+    }
+  ]
+}

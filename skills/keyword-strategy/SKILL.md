@@ -1,0 +1,97 @@
+---
+name: keyword-strategy
+description: Keyword research, match type strategy, negative keyword planning, and structured keyword list generation. Use when planning keywords for a Google Ads campaign.
+argument-hint: "[business-description]"
+disable-model-invocation: false
+---
+
+# Keyword Strategy
+
+You are helping develop a keyword strategy for a Google Ads campaign. Generate comprehensive, actionable keyword plans.
+
+If `$ARGUMENTS` provides a business description, use it as the starting point. Otherwise, ask the user about their business, products/services, and target audience.
+
+## Reference Material
+
+- **Match type strategy:** [match-types.md](../../reference/platforms/google-ads/match-types.md)
+- **Negative keyword lists:** [negative-keyword-lists.md](../../reference/platforms/google-ads/audit/negative-keyword-lists.md)
+- **Account structure (for ad group theming):** [account-structure.md](../../reference/platforms/google-ads/account-structure.md)
+
+## Process
+
+### 1. Understand the Business
+- What products/services are offered?
+- Who is the target audience?
+- What geographic area?
+- What language(s)?
+- Who are the main competitors?
+- What is the approximate budget?
+
+### 2. Generate Keyword Ideas
+
+Organize keywords by intent:
+
+**High Intent (Bottom of Funnel):**
+- Buy/purchase keywords: "buy [product]", "[product] price", "order [product]"
+- Service keywords: "[service] near me", "hire [professional]", "[service] quote"
+- Brand + product: "[brand] [product]"
+
+**Medium Intent (Middle of Funnel):**
+- Comparison keywords: "best [product]", "[product] vs [competitor]", "[product] reviews"
+- Feature keywords: "[product] with [feature]", "[material] [product]"
+
+**Low Intent (Top of Funnel — use cautiously with limited budgets):**
+- Informational: "how to [related task]", "what is [concept]"
+- Problem-aware: "[problem] solutions", "fix [issue]"
+
+### 3. Group into Ad Group Themes
+
+Each ad group should contain 10-15 tightly themed keywords. Group by:
+- Product/service category
+- User intent (buy vs research)
+- Geographic modifier
+- Audience segment
+
+### 4. Assign Match Types
+
+For each keyword, recommend a match type. Follow the strategy in the match types reference:
+- **New campaign, limited data:** Phrase + exact match
+- **30+ conversions/month:** Add broad match with smart bidding
+- **Mature campaign:** Broad + smart bidding for discovery, exact for top terms
+
+### 5. Generate Negative Keywords
+
+Provide a curated negative keyword list:
+- **Universal negatives** appropriate for the business (jobs, free, how to, etc.)
+- **Industry-specific negatives** based on common irrelevant searches
+- **Cross-ad-group negatives** to prevent internal competition
+
+### 6. Output Format
+
+Present the keyword plan as a structured table:
+
+```
+AD GROUP: [Theme Name]
+Match Type | Keyword                  | Est. Intent | Notes
+Broad      | running shoes            | High        | Core term
+Phrase      | "best running shoes"     | Medium      | Comparison
+Exact       | [buy running shoes]      | High        | Purchase intent
+```
+
+Then a separate negative keyword list:
+
+```
+NEGATIVE KEYWORDS (Account Level)
+Type    | Keyword
+Broad   | jobs
+Phrase  | "how to"
+Exact   | [free]
+```
+
+### 7. Expansion Recommendations
+
+Suggest additional keyword opportunities:
+- Long-tail variations to explore
+- Seasonal keywords to add/pause
+- Competitor terms to consider
+- Questions people ask (People Also Ask / FAQ keywords)

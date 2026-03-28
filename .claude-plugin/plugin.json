@@ -1,0 +1,22 @@
+{
+  "name": "ad-platform-campaign-manager",
+  "version": "1.0.0",
+  "description": "Ad platform campaign management toolkit — guided campaign setup, keyword strategy, conversion tracking, reporting pipelines, optimization, and Google Ads Scripts. Built for tracking specialists managing client accounts.",
+  "author": {
+    "name": "Voxxy Creative Lab",
+    "url": "https://github.com/VoxxyCreativeLab"
+  },
+  "license": "MIT",
+  "keywords": [
+    "google-ads",
+    "campaign-management",
+    "ppc",
+    "conversion-tracking",
+    "bigquery",
+    "gtm",
+    "sgtm",
+    "reporting",
+    "pmax",
+    "ads-scripts"
+  ]
+}
