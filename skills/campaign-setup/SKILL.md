@@ -2,7 +2,7 @@
 name: campaign-setup
 description: Guided campaign builder — walks through type selection, structure, ad groups, and keyword strategy with best practices. Use when starting a new Google Ads campaign.
 argument-hint: "[campaign-type]"
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 # Guided Campaign Setup
