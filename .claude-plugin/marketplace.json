@@ -2,8 +2,7 @@
   "name": "ad-platform-campaign-manager",
   "description": "Complete campaign management toolkit for tracking specialists — campaign setup, keyword strategy, conversion tracking, reporting pipelines, optimization audits, and Google Ads Scripts.",
   "owner": {
-    "name": "Voxxy Creative Lab",
-    "email": ""
+    "name": "Voxxy Creative Lab"
   },
   "plugins": [
     {

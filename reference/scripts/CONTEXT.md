@@ -1,3 +1,11 @@
+---
+title: "Scripts — Context"
+tags:
+  - mwp
+  - layer-2
+  - context
+---
+
 # Scripts — Context
 
 Google Ads Scripts catalog and reference. `catalog.md` indexes all available scripts by category. Subdirectories (`bidding/`, `monitoring/`, `reporting/`, `cleanup/`) are placeholders for actual script files as they get generated or curated.

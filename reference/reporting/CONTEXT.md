@@ -1,3 +1,11 @@
+---
+title: "Reporting — Context"
+tags:
+  - mwp
+  - layer-2
+  - context
+---
+
 # Reporting — Context
 
 5 files for building Google Ads → BigQuery → dbt → Looker Studio pipelines. Designed to leverage the user's existing BigQuery expertise.

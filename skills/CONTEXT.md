@@ -15,7 +15,7 @@ tags:
 
 ## Conventions
 
-- `SKILL.md` has YAML frontmatter: `name`, `description`, `disable-model-invocation`, optional `allowed-tools`, `argument-hint`
+- `SKILL.md` has YAML frontmatter: `name`, `description`, `disable-model-invocation`, optional `argument-hint`
 - Wizard skills (`disable-model-invocation: true`) walk the user through steps interactively
 - Reference skills (`disable-model-invocation: false`) respond to questions using loaded reference material
 - Skills load from `../reference/` on demand — they do NOT contain duplicate domain knowledge

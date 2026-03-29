@@ -1,3 +1,11 @@
+---
+title: "MCP — Context"
+tags:
+  - mwp
+  - layer-2
+  - context
+---
+
 # MCP — Context
 
 3 files for connecting Claude Code to Google Ads via MCP servers. Phase 2 dependency — all Phase 1 skills work without any API connection.

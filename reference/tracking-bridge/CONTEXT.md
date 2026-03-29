@@ -1,3 +1,11 @@
+---
+title: "Tracking Bridge — Context"
+tags:
+  - mwp
+  - layer-2
+  - context
+---
+
 # Tracking Bridge — Context
 
 6 files documenting the full data pipeline from tracking infrastructure to Google Ads. This is the plugin's **differentiator** — unique to a tracking specialist's workflow.

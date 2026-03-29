@@ -1,3 +1,11 @@
+---
+title: "Google Ads — Context"
+tags:
+  - mwp
+  - layer-2
+  - context
+---
+
 # Google Ads — Context
 
 21 reference files: 10 core fundamentals, 4 PMax, 3 audit, plus `gaql-reference.md` and `ads-scripts-api.md`.
