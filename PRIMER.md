@@ -1,3 +1,10 @@
+---
+title: Primer — Session Handoff
+date: 2026-03-28
+tags:
+  - mwp
+---
+
 # Primer — Session Handoff
 
 > This file rewrites itself at the end of every session. Read it first.

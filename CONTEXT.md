@@ -1,3 +1,10 @@
+---
+title: "Ad Platform Campaign Manager — Task Router"
+tags:
+  - mwp
+  - layer-1
+---
+
 # Context — Task Routing
 
 ## What to Load
@@ -23,6 +30,30 @@ These files are stable reference material — never overwrite during normal use:
 - `reference/tracking-bridge/` — GTM/sGTM/BQ ↔ Google Ads pipeline docs
 - `reference/reporting/` — GAQL, BigQuery, dbt, Looker Studio patterns
 - `reference/mcp/` — MCP server setup and comparison
+
+---
+
+## Pipeline Map
+
+```
+reference/ ──────────────→ skills/    (skills load reference docs on demand)
+     │
+     └─────────────────→ agents/    (agents load reference docs on demand)
+```
+
+**Note:** This is a dependency graph, not a sequential pipeline. Skills and agents both consume reference content independently.
+
+---
+
+## Inter-Stage Dependencies
+
+| Stage | Reads From | Writes To |
+|---|---|---|
+| reference/ | External sources (Google Ads docs, tracking architecture) | `reference/` subdirectories |
+| skills/ | `reference/` (via relative paths in SKILL.md) | Guidance output (interactive, not file-based) |
+| agents/ | `reference/` (via agent definitions) | Scored audit reports (runtime output) |
+
+---
 
 ## Phase Map
 

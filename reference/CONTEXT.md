@@ -1,3 +1,14 @@
+---
+title: "Stage 01 — Reference"
+tags:
+  - mwp
+  - layer-2
+  - stage
+---
+
+%% STAGE 01 — REFERENCE (Knowledge Base) %%
+%% Output from this stage lives in this folder's subdirectories. See existing files below. %%
+
 # Reference — Context
 
 Stable domain knowledge loaded by skills and agents on demand. **Never overwrite** during normal skill execution. Only `google-ads/` is populated; `meta-ads/`, `linkedin-ads/`, `tiktok-ads/` are Phase 3 placeholders.

@@ -1,3 +1,11 @@
+---
+title: sGTM to Google Ads — Server-Side Conversion Tracking
+date: 2026-03-28
+tags:
+  - reference
+  - tracking-bridge
+---
+
 # sGTM to Google Ads — Server-Side Conversion Tracking
 
 ## Architecture

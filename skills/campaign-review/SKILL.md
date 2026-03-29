@@ -10,13 +10,13 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 
 ## Reference Material
 
-- **Full audit checklist:** [audit-checklist.md](../../reference/platforms/google-ads/audit/audit-checklist.md)
-- **Common mistakes:** [common-mistakes.md](../../reference/platforms/google-ads/audit/common-mistakes.md)
-- **Negative keyword lists:** [negative-keyword-lists.md](../../reference/platforms/google-ads/audit/negative-keyword-lists.md)
-- **Quality Score guide:** [quality-score.md](../../reference/platforms/google-ads/quality-score.md)
-- **Bid strategy reference:** [bidding-strategies.md](../../reference/platforms/google-ads/bidding-strategies.md)
-- **Account structure patterns:** [account-structure.md](../../reference/platforms/google-ads/account-structure.md)
-- **Conversion actions:** [conversion-actions.md](../../reference/platforms/google-ads/conversion-actions.md)
+- **Full audit checklist:** [[../../reference/platforms/google-ads/audit/audit-checklist|audit-checklist.md]]
+- **Common mistakes:** [[../../reference/platforms/google-ads/audit/common-mistakes|common-mistakes.md]]
+- **Negative keyword lists:** [[../../reference/platforms/google-ads/audit/negative-keyword-lists|negative-keyword-lists.md]]
+- **Quality Score guide:** [[../../reference/platforms/google-ads/quality-score|quality-score.md]]
+- **Bid strategy reference:** [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]]
+- **Account structure patterns:** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
+- **Conversion actions:** [[../../reference/platforms/google-ads/conversion-actions|conversion-actions.md]]
 
 ## How to Review
 

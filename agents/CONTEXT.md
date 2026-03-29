@@ -1,3 +1,14 @@
+---
+title: "Stage 03 — Agents"
+tags:
+  - mwp
+  - layer-2
+  - stage
+---
+
+%% STAGE 03 — AGENTS (Autonomous Audit Tools) %%
+%% Output from this stage lives in this folder's root. Agent .md files ARE the outputs. %%
+
 # Agents — Context
 
 2 autonomous audit agents that perform multi-step analysis. Defined as `.md` files with YAML frontmatter (`name`, `description`, `tools`, `model`). Both use `model: sonnet` and have `Read, Grep, Glob, Bash` tools.

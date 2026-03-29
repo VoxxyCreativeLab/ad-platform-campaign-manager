@@ -1,3 +1,11 @@
+---
+title: Google Ads Quality Score
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+---
+
 # Google Ads Quality Score
 
 ## What Is Quality Score?

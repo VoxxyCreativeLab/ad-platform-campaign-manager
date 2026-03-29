@@ -1,3 +1,12 @@
+---
+title: Negative Keyword Lists by Category
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+  - audit
+---
+
 # Negative Keyword Lists by Category
 
 Pre-built negative keyword lists to prevent wasted spend. Add these as shared negative keyword lists at the account level, then apply to relevant campaigns.

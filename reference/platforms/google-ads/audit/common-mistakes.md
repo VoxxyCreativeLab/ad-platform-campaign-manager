@@ -1,3 +1,12 @@
+---
+title: Top 25 Google Ads Mistakes & Fixes
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+  - audit
+---
+
 # Top 25 Google Ads Mistakes & Fixes
 
 ## Structure & Setup

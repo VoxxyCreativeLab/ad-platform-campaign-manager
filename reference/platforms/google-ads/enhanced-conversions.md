@@ -1,3 +1,11 @@
+---
+title: Enhanced Conversions
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+---
+
 # Enhanced Conversions
 
 ## What Are Enhanced Conversions?
@@ -83,7 +91,7 @@ For offline conversions enhanced with customer data:
 1. Collect GCLID at conversion time
 2. Match with CRM data (email, phone)
 3. Upload via Google Ads API with hashed customer data
-4. See [../tracking-bridge/bq-to-gads.md](../tracking-bridge/bq-to-gads.md) for BigQuery pipeline
+4. See [[../tracking-bridge/bq-to-gads|bq-to-gads.md]] for BigQuery pipeline
 
 ## Enhanced Conversions for Leads
 

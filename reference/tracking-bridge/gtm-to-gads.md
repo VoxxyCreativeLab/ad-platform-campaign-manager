@@ -1,3 +1,11 @@
+---
+title: GTM to Google Ads — Client-Side Conversion Tracking
+date: 2026-03-28
+tags:
+  - reference
+  - tracking-bridge
+---
+
 # GTM to Google Ads — Client-Side Conversion Tracking
 
 ## Architecture

@@ -10,12 +10,12 @@ You are helping design and build Google Ads reporting pipelines. The user is a B
 
 ## Reference Material
 
-- **GAQL query templates:** [gaql-query-templates.md](../../reference/reporting/gaql-query-templates.md)
-- **BigQuery table schemas:** [bigquery-table-schemas.md](../../reference/reporting/bigquery-table-schemas.md)
-- **dbt model patterns:** [dbt-model-patterns.md](../../reference/reporting/dbt-model-patterns.md)
-- **Looker Studio templates:** [looker-studio-templates.md](../../reference/reporting/looker-studio-templates.md)
-- **Cross-platform data model:** [cross-platform-data-model.md](../../reference/reporting/cross-platform-data-model.md)
-- **GAQL language reference:** [gaql-reference.md](../../reference/platforms/google-ads/gaql-reference.md)
+- **GAQL query templates:** [[../../reference/reporting/gaql-query-templates|gaql-query-templates.md]]
+- **BigQuery table schemas:** [[../../reference/reporting/bigquery-table-schemas|bigquery-table-schemas.md]]
+- **dbt model patterns:** [[../../reference/reporting/dbt-model-patterns|dbt-model-patterns.md]]
+- **Looker Studio templates:** [[../../reference/reporting/looker-studio-templates|looker-studio-templates.md]]
+- **Cross-platform data model:** [[../../reference/reporting/cross-platform-data-model|cross-platform-data-model.md]]
+- **GAQL language reference:** [[../../reference/platforms/google-ads/gaql-reference|gaql-reference.md]]
 
 ## Common Tasks
 

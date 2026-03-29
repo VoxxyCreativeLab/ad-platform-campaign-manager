@@ -1,3 +1,11 @@
+---
+title: GAQL Query Templates
+date: 2026-03-28
+tags:
+  - reference
+  - reporting
+---
+
 # GAQL Query Templates
 
 Ready-to-use queries for common Google Ads reports. Adapt date ranges and filters as needed.

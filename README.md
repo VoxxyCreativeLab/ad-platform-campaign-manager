@@ -1,3 +1,11 @@
+---
+title: Ad Platform Campaign Manager
+date: 2026-03-28
+tags:
+  - mwp
+  - readme
+---
+
 # Ad Platform Campaign Manager
 
 Claude Code plugin for ad platform campaign management. Built for tracking specialists (GTM/sGTM/BigQuery) who manage client ad accounts.

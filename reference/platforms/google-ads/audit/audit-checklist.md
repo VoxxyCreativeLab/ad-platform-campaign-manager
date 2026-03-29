@@ -1,3 +1,12 @@
+---
+title: Google Ads Campaign Audit Checklist
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+  - audit
+---
+
 # Google Ads Campaign Audit Checklist
 
 ## Account Level

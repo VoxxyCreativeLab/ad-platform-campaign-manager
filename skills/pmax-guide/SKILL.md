@@ -10,12 +10,12 @@ You are helping with Performance Max (PMax) campaign setup, optimization, or ana
 
 ## Reference Material
 
-- **Asset requirements:** [asset-requirements.md](../../reference/platforms/google-ads/pmax/asset-requirements.md)
-- **Audience signals:** [audience-signals.md](../../reference/platforms/google-ads/pmax/audience-signals.md)
-- **Feed optimization:** [feed-optimization.md](../../reference/platforms/google-ads/pmax/feed-optimization.md)
-- **PMax metrics & reporting:** [pmax-metrics.md](../../reference/platforms/google-ads/pmax/pmax-metrics.md)
-- **Campaign types overview:** [campaign-types.md](../../reference/platforms/google-ads/campaign-types.md) (PMax section)
-- **Bidding strategies:** [bidding-strategies.md](../../reference/platforms/google-ads/bidding-strategies.md)
+- **Asset requirements:** [[../../reference/platforms/google-ads/pmax/asset-requirements|asset-requirements.md]]
+- **Audience signals:** [[../../reference/platforms/google-ads/pmax/audience-signals|audience-signals.md]]
+- **Feed optimization:** [[../../reference/platforms/google-ads/pmax/feed-optimization|feed-optimization.md]]
+- **PMax metrics & reporting:** [[../../reference/platforms/google-ads/pmax/pmax-metrics|pmax-metrics.md]]
+- **Campaign types overview:** [[../../reference/platforms/google-ads/campaign-types|campaign-types.md]] (PMax section)
+- **Bidding strategies:** [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]]
 
 ## Common Tasks
 

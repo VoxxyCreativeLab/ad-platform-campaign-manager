@@ -1,3 +1,11 @@
+---
+title: Google Ads Extensions (Assets)
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+---
+
 # Google Ads Extensions (Assets)
 
 Google renamed "extensions" to "assets" but the functionality is the same. Extensions expand your ad with additional information and improve CTR.

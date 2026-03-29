@@ -10,8 +10,8 @@ You are helping the user browse, customize, or generate Google Ads Scripts (Java
 
 ## Reference Material
 
-- **Scripts catalog:** [catalog.md](../../reference/scripts/catalog.md)
-- **Scripts API reference:** [ads-scripts-api.md](../../reference/platforms/google-ads/ads-scripts-api.md)
+- **Scripts catalog:** [[../../reference/scripts/catalog|catalog.md]]
+- **Scripts API reference:** [[../../reference/platforms/google-ads/ads-scripts-api|ads-scripts-api.md]]
 
 ## Common Tasks
 

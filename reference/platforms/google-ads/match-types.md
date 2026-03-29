@@ -1,3 +1,11 @@
+---
+title: Google Ads Keyword Match Types
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+---
+
 # Google Ads Keyword Match Types
 
 ## The Three Match Types

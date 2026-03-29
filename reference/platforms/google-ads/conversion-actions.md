@@ -1,3 +1,11 @@
+---
+title: Google Ads Conversion Actions
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+---
+
 # Google Ads Conversion Actions
 
 ## What Is a Conversion Action?
@@ -33,7 +41,7 @@ Actions that happen offline, imported back to Google Ads.
 ### Enhanced Conversions
 First-party data (hashed email, phone, address) sent alongside the conversion to improve attribution accuracy in a cookieless world.
 
-See [enhanced-conversions.md](enhanced-conversions.md) for setup details.
+See [[enhanced-conversions]] for setup details.
 
 ## Configuration Settings
 

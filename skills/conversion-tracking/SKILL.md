@@ -12,14 +12,14 @@ You are helping set up or troubleshoot Google Ads conversion tracking. The user 
 
 Consult these reference documents based on the user's needs:
 
-- **Conversion action types and configuration:** [conversion-actions.md](../../reference/platforms/google-ads/conversion-actions.md)
-- **Enhanced conversions setup:** [enhanced-conversions.md](../../reference/platforms/google-ads/enhanced-conversions.md)
-- **Client-side GTM → Google Ads:** [gtm-to-gads.md](../../reference/tracking-bridge/gtm-to-gads.md)
-- **Server-side sGTM → Google Ads:** [sgtm-to-gads.md](../../reference/tracking-bridge/sgtm-to-gads.md)
-- **BigQuery → Google Ads (offline conversions):** [bq-to-gads.md](../../reference/tracking-bridge/bq-to-gads.md)
-- **Full data flow diagrams:** [data-flow-diagrams.md](../../reference/tracking-bridge/data-flow-diagrams.md)
-- **Profit-based bidding via sGTM:** [profit-based-bidding.md](../../reference/tracking-bridge/profit-based-bidding.md)
-- **ML-predicted value bidding:** [value-based-bidding.md](../../reference/tracking-bridge/value-based-bidding.md)
+- **Conversion action types and configuration:** [[../../reference/platforms/google-ads/conversion-actions|conversion-actions.md]]
+- **Enhanced conversions setup:** [[../../reference/platforms/google-ads/enhanced-conversions|enhanced-conversions.md]]
+- **Client-side GTM → Google Ads:** [[../../reference/tracking-bridge/gtm-to-gads|gtm-to-gads.md]]
+- **Server-side sGTM → Google Ads:** [[../../reference/tracking-bridge/sgtm-to-gads|sgtm-to-gads.md]]
+- **BigQuery → Google Ads (offline conversions):** [[../../reference/tracking-bridge/bq-to-gads|bq-to-gads.md]]
+- **Full data flow diagrams:** [[../../reference/tracking-bridge/data-flow-diagrams|data-flow-diagrams.md]]
+- **Profit-based bidding via sGTM:** [[../../reference/tracking-bridge/profit-based-bidding|profit-based-bidding.md]]
+- **ML-predicted value bidding:** [[../../reference/tracking-bridge/value-based-bidding|value-based-bidding.md]]
 
 ## Common Tasks
 

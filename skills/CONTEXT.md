@@ -1,3 +1,14 @@
+---
+title: "Stage 02 — Skills"
+tags:
+  - mwp
+  - layer-2
+  - stage
+---
+
+%% STAGE 02 — SKILLS (Interactive Guidance Tools) %%
+%% Output from this stage lives in this folder's subdirectories. Each skill is a self-contained SKILL.md. %%
+
 # Skills — Context
 
 10 invocable skills, each in its own folder with a `SKILL.md` file. Phase 1 (8 skills) requires no API. Phase 2 (2 skills) requires MCP connection.

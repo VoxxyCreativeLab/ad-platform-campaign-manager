@@ -1,3 +1,11 @@
+---
+title: Google Ads Scripts Catalog
+date: 2026-03-28
+tags:
+  - reference
+  - scripts
+---
+
 # Google Ads Scripts Catalog
 
 Categorized index of useful Google Ads Scripts. Each script can be customized via `/ad-platform-campaign-manager:ads-scripts`.

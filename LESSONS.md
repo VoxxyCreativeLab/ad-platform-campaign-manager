@@ -1,3 +1,10 @@
+---
+title: Lessons Learned
+date: 2026-03-28
+tags:
+  - mwp
+---
+
 # Lessons Learned
 
 Campaign management lessons captured over time. Grows as Jerry manages client accounts. Each entry includes the date, context, and takeaway.

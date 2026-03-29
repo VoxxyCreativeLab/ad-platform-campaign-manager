@@ -1,3 +1,11 @@
+---
+title: Tracking Data Flow Diagrams
+date: 2026-03-28
+tags:
+  - reference
+  - tracking-bridge
+---
+
 # Tracking Data Flow Diagrams
 
 ## Full-Stack Conversion Tracking Architecture

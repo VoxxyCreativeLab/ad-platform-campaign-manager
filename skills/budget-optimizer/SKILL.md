@@ -10,10 +10,10 @@ You are helping with budget allocation, bid strategy selection, and spend optimi
 
 ## Reference Material
 
-- **Bidding strategies:** [bidding-strategies.md](../../reference/platforms/google-ads/bidding-strategies.md)
-- **Campaign types:** [campaign-types.md](../../reference/platforms/google-ads/campaign-types.md)
-- **Account structure:** [account-structure.md](../../reference/platforms/google-ads/account-structure.md)
-- **Common mistakes:** [common-mistakes.md](../../reference/platforms/google-ads/audit/common-mistakes.md)
+- **Bidding strategies:** [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]]
+- **Campaign types:** [[../../reference/platforms/google-ads/campaign-types|campaign-types.md]]
+- **Account structure:** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
+- **Common mistakes:** [[../../reference/platforms/google-ads/audit/common-mistakes|common-mistakes.md]]
 
 ## Common Tasks
 

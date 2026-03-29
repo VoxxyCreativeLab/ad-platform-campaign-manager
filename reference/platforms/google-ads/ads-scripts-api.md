@@ -1,3 +1,11 @@
+---
+title: Google Ads Scripts — API Quick Reference
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+---
+
 # Google Ads Scripts — API Quick Reference
 
 ## What Are Google Ads Scripts?

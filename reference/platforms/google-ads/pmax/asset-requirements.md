@@ -1,3 +1,12 @@
+---
+title: PMax Asset Requirements
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+  - pmax
+---
+
 # PMax Asset Requirements
 
 ## Text Assets

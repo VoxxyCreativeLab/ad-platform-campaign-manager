@@ -1,3 +1,11 @@
+---
+title: Value-Based Bidding with ML Predictions
+date: 2026-03-28
+tags:
+  - reference
+  - tracking-bridge
+---
+
 # Value-Based Bidding with ML Predictions
 
 Based on the Google gps-phoebe pattern (github.com/google-marketing-solutions/gps-phoebe).

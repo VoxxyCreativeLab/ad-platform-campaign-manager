@@ -1,3 +1,11 @@
+---
+title: Google Ads Bidding Strategies
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+---
+
 # Google Ads Bidding Strategies
 
 ## Decision Tree

@@ -17,9 +17,9 @@ Before running reports, verify:
 
 ## Reference Material
 
-- **GAQL query templates:** [gaql-query-templates.md](../../reference/reporting/gaql-query-templates.md)
-- **Report formats:** [looker-studio-templates.md](../../reference/reporting/looker-studio-templates.md)
-- **GAQL reference:** [gaql-reference.md](../../reference/platforms/google-ads/gaql-reference.md)
+- **GAQL query templates:** [[../../reference/reporting/gaql-query-templates|gaql-query-templates.md]]
+- **Report formats:** [[../../reference/reporting/looker-studio-templates|looker-studio-templates.md]]
+- **GAQL reference:** [[../../reference/platforms/google-ads/gaql-reference|gaql-reference.md]]
 
 ## Available Reports
 

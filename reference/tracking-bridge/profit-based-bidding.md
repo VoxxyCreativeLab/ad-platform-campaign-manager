@@ -1,3 +1,11 @@
+---
+title: Profit-Based Bidding via sGTM
+date: 2026-03-28
+tags:
+  - reference
+  - tracking-bridge
+---
+
 # Profit-Based Bidding via sGTM
 
 Based on the Google gps_soteria pattern (github.com/google-marketing-solutions/gps_soteria).

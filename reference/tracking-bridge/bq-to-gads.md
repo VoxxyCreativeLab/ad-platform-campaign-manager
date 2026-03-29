@@ -1,3 +1,11 @@
+---
+title: BigQuery to Google Ads — Offline Conversions & Audience Pipelines
+date: 2026-03-28
+tags:
+  - reference
+  - tracking-bridge
+---
+
 # BigQuery to Google Ads — Offline Conversions & Audience Pipelines
 
 ## Use Cases

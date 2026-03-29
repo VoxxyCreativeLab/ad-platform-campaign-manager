@@ -1,3 +1,11 @@
+---
+title: Claude Code MCP Settings Templates
+date: 2026-03-28
+tags:
+  - reference
+  - mcp
+---
+
 # Claude Code MCP Settings Templates
 
 ## Configuration Location

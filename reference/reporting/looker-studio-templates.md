@@ -1,3 +1,11 @@
+---
+title: Looker Studio Dashboard Templates
+date: 2026-03-28
+tags:
+  - reference
+  - reporting
+---
+
 # Looker Studio Dashboard Templates
 
 ## Dashboard Structure

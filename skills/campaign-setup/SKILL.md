@@ -22,7 +22,7 @@ Ask the user:
 
 ## Step 2: Select Campaign Type
 
-Based on the goal, recommend a campaign type. Consult [campaign-types.md](../../reference/platforms/google-ads/campaign-types.md) for the decision tree.
+Based on the goal, recommend a campaign type. Consult [[../../reference/platforms/google-ads/campaign-types|campaign-types.md]] for the decision tree.
 
 Present the recommendation with reasoning:
 - Why this type matches their goal
@@ -31,19 +31,19 @@ Present the recommendation with reasoning:
 
 ## Step 3: Design Campaign Structure
 
-Based on the selected type, design the full campaign structure. Consult [account-structure.md](../../reference/platforms/google-ads/account-structure.md) for patterns.
+Based on the selected type, design the full campaign structure. Consult [[../../reference/platforms/google-ads/account-structure|account-structure.md]] for patterns.
 
 **For Search campaigns:**
 - Propose campaign name following the naming convention: `[Type] | [Goal] | [Targeting] | [Region]`
 - Design ad groups (one theme per ad group)
 - For each ad group: suggest 10-15 keywords with recommended match types
-- Consult [match-types.md](../../reference/platforms/google-ads/match-types.md) for match type strategy
+- Consult [[../../reference/platforms/google-ads/match-types|match-types.md]] for match type strategy
 
 **For PMax campaigns:**
 - Propose asset group structure
-- Define audience signals per asset group (consult [audience-signals.md](../../reference/platforms/google-ads/pmax/audience-signals.md))
-- List required creative assets (consult [asset-requirements.md](../../reference/platforms/google-ads/pmax/asset-requirements.md))
-- If Shopping: discuss feed optimization (consult [feed-optimization.md](../../reference/platforms/google-ads/pmax/feed-optimization.md))
+- Define audience signals per asset group (consult [[../../reference/platforms/google-ads/pmax/audience-signals|audience-signals.md]])
+- List required creative assets (consult [[../../reference/platforms/google-ads/pmax/asset-requirements|asset-requirements.md]])
+- If Shopping: discuss feed optimization (consult [[../../reference/platforms/google-ads/pmax/feed-optimization|feed-optimization.md]])
 
 **For Display/Demand Gen/Video:**
 - Propose targeting strategy (audiences, placements)
@@ -65,7 +65,7 @@ Generate text assets:
 
 ## Step 5: Recommend Bid Strategy
 
-Based on campaign type and available data, recommend a bidding strategy. Consult [bidding-strategies.md](../../reference/platforms/google-ads/bidding-strategies.md).
+Based on campaign type and available data, recommend a bidding strategy. Consult [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]].
 
 - New account with no data → Manual CPC or Maximize Clicks
 - Some conversion data → Maximize Conversions
@@ -74,7 +74,7 @@ Based on campaign type and available data, recommend a bidding strategy. Consult
 
 ## Step 6: Configure Extensions/Assets
 
-Recommend and draft extensions. Consult [ad-extensions.md](../../reference/platforms/google-ads/ad-extensions.md).
+Recommend and draft extensions. Consult [[../../reference/platforms/google-ads/ad-extensions|ad-extensions.md]].
 
 Minimum set:
 - 4 sitelinks (with headlines and descriptions)

@@ -1,3 +1,11 @@
+---
+title: Google Ads MCP Server Comparison
+date: 2026-03-28
+tags:
+  - reference
+  - mcp
+---
+
 # Google Ads MCP Server Comparison
 
 ## Available MCP Servers

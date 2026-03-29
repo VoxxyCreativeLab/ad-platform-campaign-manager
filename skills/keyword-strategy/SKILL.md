@@ -13,9 +13,9 @@ If `$ARGUMENTS` provides a business description, use it as the starting point. O
 
 ## Reference Material
 
-- **Match type strategy:** [match-types.md](../../reference/platforms/google-ads/match-types.md)
-- **Negative keyword lists:** [negative-keyword-lists.md](../../reference/platforms/google-ads/audit/negative-keyword-lists.md)
-- **Account structure (for ad group theming):** [account-structure.md](../../reference/platforms/google-ads/account-structure.md)
+- **Match type strategy:** [[../../reference/platforms/google-ads/match-types|match-types.md]]
+- **Negative keyword lists:** [[../../reference/platforms/google-ads/audit/negative-keyword-lists|negative-keyword-lists.md]]
+- **Account structure (for ad group theming):** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
 
 ## Process
 

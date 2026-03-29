@@ -1,3 +1,11 @@
+---
+title: Cross-Platform Ad Data Model
+date: 2026-03-28
+tags:
+  - reference
+  - reporting
+---
+
 # Cross-Platform Ad Data Model
 
 Unified schema for reporting across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads. Design the BigQuery/dbt layer with this model from day one so adding platforms later is seamless.

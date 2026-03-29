@@ -1,3 +1,12 @@
+---
+title: PMax Metrics & Reporting
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+  - pmax
+---
+
 # PMax Metrics & Reporting
 
 ## Understanding PMax Reporting Limitations

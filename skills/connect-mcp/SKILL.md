@@ -19,9 +19,9 @@ If you don't have these, this skill will guide you through obtaining them.
 
 ## Reference Material
 
-- **MCP server comparison:** [mcp-comparison.md](../../reference/mcp/mcp-comparison.md)
-- **OAuth setup guide:** [oauth-setup-guide.md](../../reference/mcp/oauth-setup-guide.md)
-- **Claude settings template:** [claude-settings-template.md](../../reference/mcp/claude-settings-template.md)
+- **MCP server comparison:** [[../../reference/mcp/mcp-comparison|mcp-comparison.md]]
+- **OAuth setup guide:** [[../../reference/mcp/oauth-setup-guide|oauth-setup-guide.md]]
+- **Claude settings template:** [[../../reference/mcp/claude-settings-template|claude-settings-template.md]]
 
 ## Setup Steps
 

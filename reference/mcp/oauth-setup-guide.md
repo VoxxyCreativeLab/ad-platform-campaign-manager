@@ -1,3 +1,11 @@
+---
+title: Google Ads API OAuth Setup Guide
+date: 2026-03-28
+tags:
+  - reference
+  - mcp
+---
+
 # Google Ads API OAuth Setup Guide
 
 ## Prerequisites
@@ -75,7 +83,7 @@ You'll need these for MCP configuration:
 
 ## Step 6: Configure MCP Server
 
-See [claude-settings-template.md](claude-settings-template.md) for the Claude Code settings.json configuration.
+See [[claude-settings-template]] for the Claude Code settings.json configuration.
 
 ## Security Notes
 

@@ -1,3 +1,11 @@
+---
+title: dbt Model Patterns for Ad Reporting
+date: 2026-03-28
+tags:
+  - reference
+  - reporting
+---
+
 # dbt Model Patterns for Ad Reporting
 
 Based on patterns from fivetran/dbt_ad_reporting (cross-platform ad reporting models).

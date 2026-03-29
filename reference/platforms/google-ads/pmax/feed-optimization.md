@@ -1,3 +1,12 @@
+---
+title: PMax Feed Optimization (Google Merchant Center)
+date: 2026-03-28
+tags:
+  - reference
+  - google-ads
+  - pmax
+---
+
 # PMax Feed Optimization (Google Merchant Center)
 
 ## Why Feed Quality Matters

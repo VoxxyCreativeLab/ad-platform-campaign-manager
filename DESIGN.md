@@ -1,3 +1,10 @@
+---
+title: Design Decisions
+date: 2026-03-28
+tags:
+  - mwp
+---
+
 # Design Decisions
 
 Architecture rationale for ad-platform-campaign-manager. Documents the *why* behind structural choices.
