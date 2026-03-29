@@ -9,51 +9,82 @@ tags:
 
 %% LAYER 3 — STABLE REFERENCE %%
 %% Defines what "done" means for outputs in this project. %%
-%% Claude uses this to self-evaluate before writing to output/. %%
-%% Recommended for ALL project types — domain-agnostic by design. %%
-%% Fill in all sections. The more specific, the better the output quality. %%
+%% Stage-specific criteria: reference = accuracy, skills = actionability, agents = coverage. %%
 
-## Definition of Done
+---
 
-%% HOW TO FILL THIS: List the conditions every stage output must meet before it is considered complete.
-   Think: completeness (all required sections filled), accuracy (factually correct), format (matches style-guide),
-   and fitness (does it actually achieve the stage's goal). Use a checklist — Claude checks each item. %%
+## Definition of Done (General)
 
 A stage output is "done" when:
 - [ ] All required sections are populated with real content (no placeholder brackets remaining)
-- [ ] Output matches the format defined in [[style-guide]] (if used in this project)
-- [ ] No factual claims are made without a source or basis noted
-- [ ] [Domain-specific condition — e.g. "All GTM tags call gtmOnSuccess/gtmOnFailure" / "All code passes linting" / "Word count is within target range"]
-- [ ] [Add further conditions as needed]
+- [ ] Sources cited for factual claims (Google Ads documentation, tracking architecture docs)
+- [ ] Obsidian-flavored markdown used (YAML frontmatter, wikilinks, callouts)
+- [ ] Cross-references to related files are present where relevant
+- [ ] Content has been reviewed for accuracy against current Google Ads behavior
 
-## Quality Signals (What Good Looks Like)
+---
 
-%% HOW TO FILL THIS: Give 2-3 concrete examples of high-quality output for THIS project.
-   This is the most powerful section — a real example calibrates Claude better than any rule.
-   Example: "A good research summary for this project has a clear thesis, 3 supporting points with sources, and ends with a recommendation." %%
+## Stage-Specific Quality Criteria
 
-- [Quality signal 1 — describe what a strong output looks like for this project]
-- [Quality signal 2]
-- [Quality signal 3 — optional, add more if needed]
+### Stage 01 — Reference (Accuracy & Completeness)
+
+A reference file meets quality when:
+- [ ] Factually accurate against current Google Ads documentation
+- [ ] Covers common scenarios, not just the happy path (includes edge cases, gotchas)
+- [ ] Includes decision trees or comparison tables where multiple options exist
+- [ ] Cross-references related reference files via `[[wikilinks]]`
+- [ ] Structured for selective loading — a skill should be able to load this file without pulling in the entire topic
+
+> [!tip] Quality signal
+> A good reference file lets someone unfamiliar with the topic make the right choice by following its decision tree, without needing to read Google's own documentation.
+
+### Stage 02 — Skills (Clarity & Actionability)
+
+A skill's output meets quality when:
+- [ ] Walks the user through steps in logical order (no jumping between topics)
+- [ ] Teaches campaign concepts while building — the user is not a campaign expert
+- [ ] Loads only the reference files needed for the specific task (selective, not exhaustive)
+- [ ] Produces output the user can directly use in the Google Ads interface (copy-paste ready)
+- [ ] Ad copy follows Google Ads specs: character limits respected, no repetition, sentence case
+- [ ] Keyword recommendations include match type rationale, not just a list of keywords
+- [ ] Recommendations are tailored to the user's specific campaign, client, and budget — not generic
+
+> [!tip] Quality signal
+> A good skill output can be taken directly into the Google Ads interface and implemented without modification. Campaign plans include exact ad copy, keyword lists with match types, and bid strategy recommendations with reasoning.
+
+### Stage 03 — Agents (Coverage & Scoring)
+
+An agent's output meets quality when:
+- [ ] Covers all relevant checklist items from the reference audit docs
+- [ ] Every finding has a severity tag: `Critical`, `Warning`, or `Info`
+- [ ] Produces a clear score (X/Y passing) so progress is measurable
+- [ ] Action plan is prioritized — critical items first, quick wins highlighted
+- [ ] Clear pass/fail per check item (no ambiguous "partially met")
+- [ ] Tracking auditor checks every layer (Google Ads → GTM → sGTM → BigQuery)
+
+> [!tip] Quality signal
+> A good audit report lets the user fix the most impactful issues first. It distinguishes "this is costing you money" (Critical) from "this could be better" (Info).
+
+---
 
 ## Rejection Criteria (What Gets Sent Back)
 
-%% HOW TO FILL THIS: Name the failure modes specific to your project.
-   What would make you reject an output and ask for a redo? Be honest and direct.
-   Example: "Output sent back if it reads like a template, uses passive voice throughout, or doesn't answer the brief." %%
-
 Output is not acceptable and must be revised if:
-- [ ] It contains unfilled placeholder text (`[brackets]` or generic filler)
-- [ ] It does not address the input from the previous stage
-- [ ] [Domain-specific rejection — e.g. "GTM tag does not fire in preview mode" / "Design uses colors outside the design tokens" / "Copy is over the word limit"]
-- [ ] [Add further rejection criteria as needed]
+- [ ] It reads like a generic template (not tailored to the user's specific campaign or client)
+- [ ] Ad copy exceeds character limits or contains repetitive headlines
+- [ ] Recommendations contradict best practices documented in `reference/`
+- [ ] Audit report misses items from `reference/platforms/google-ads/audit/audit-checklist.md`
+- [ ] Keyword lists lack match type rationale (just keywords without strategy)
+- [ ] Tracking audit skips layers or does not quantify data discrepancies
+- [ ] Output contains placeholder text or unfilled brackets
 
-## Stage-Specific Overrides
+---
 
-%% HOW TO FILL THIS: If a particular stage has stricter or different quality criteria than the defaults above,
-   document them here. Leave the table empty if all stages share the same standards. %%
+## Quality Signals (What Good Looks Like)
 
-| Stage | Additional or overriding criteria |
-|---|---|
-| [stage-name] | [e.g. "Must include a summary table at the top"] |
-| [stage-name] | [e.g. "Must be under 300 words — this is a brief, not a full document"] |
+- Campaign plan is copy-paste ready for the Google Ads interface
+- Keyword lists include match type rationale and negative keyword recommendations
+- Audit reports distinguish "critical" (costing money) from "nice-to-have" (optimization opportunity)
+- Tracking audits include a per-layer data discrepancy table with actual numbers
+- Ad copy has variety: different angles, CTAs, value propositions across headlines
+- Budget recommendations include specific numbers and formulas, not just "increase budget"
