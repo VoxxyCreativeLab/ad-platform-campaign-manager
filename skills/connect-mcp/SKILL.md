@@ -51,7 +51,16 @@ Test the connection:
 1. Restart Claude Code
 2. Try a simple query: "List my Google Ads campaigns"
 3. Verify data matches the Google Ads interface
-4. Troubleshoot common issues (auth errors, API access, uvx installation)
+
+### Troubleshooting
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| `UNAUTHENTICATED` or `invalid_grant` | Refresh token expired or revoked | Re-run the OAuth flow to generate a new refresh token; ensure the consent screen is set to "Internal" or the app is verified |
+| `DEVELOPER_TOKEN_NOT_APPROVED` | Developer token is still in test mode | Apply for Basic or Standard access in the Google Ads API Center; test tokens only work on accounts listed in the API Center |
+| `uvx: command not found` | uv/uvx not installed or not on PATH | Install via `curl -LsSf https://astral.sh/uv/install.sh \| sh` and restart the terminal |
+| MCP server starts but returns no data | Customer ID is wrong or the account has no campaigns | Verify the `customer_id` in settings matches the account (no dashes); check the Google Ads interface for at least one campaign |
+| `PERMISSION_DENIED` on MCC sub-account | OAuth was authorized for the MCC but the customer ID points to a sub-account | Add `login_customer_id` set to the MCC ID alongside the sub-account `customer_id` |
 
 ## Security Reminders
 

@@ -1,6 +1,6 @@
 ---
 name: reporting-pipeline
-description: Google Ads to BigQuery reporting pipelines — GAQL queries, BQ schemas, dbt models, Looker Studio dashboards. Bridges Google Ads data with your BigQuery infrastructure.
+description: Google Ads to BigQuery reporting pipelines — GAQL queries, BQ schemas, dbt models, Looker Studio dashboards. Use when building or designing a reporting pipeline from Google Ads to BigQuery.
 disable-model-invocation: false
 ---
 
@@ -69,3 +69,14 @@ When the user is planning for multi-platform reporting:
 | MCP (Phase 2) | Ad-hoc queries from Claude | Low |
 | dbt | Data transformation layer | Medium |
 | Looker Studio | Visualization | Low |
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| GAQL query returns `Unrecognized field` | Field name is wrong or not available on the queried resource | Check the GAQL reference — field names are resource-specific (e.g., `metrics.cost_micros` not `metrics.cost`); use `segments.*` carefully as some combinations are incompatible |
+| BigQuery `Permission denied` on Data Transfer | Service account lacks `bigquery.admin` role or the Data Transfer Service API is not enabled | Grant `BigQuery Admin` role to the transfer service account; enable the BigQuery Data Transfer API in GCP Console |
+| dbt model compilation fails | Ref to a missing model or schema mismatch between staging and source table | Run `dbt ls` to verify model graph; check that source table column names match the staging model's `SELECT` |
+| Looker Studio shows "no data" | Data source connection expired or the BQ view/table has no rows for the selected date range | Reconnect the data source; verify the date partition filter matches available data; check BQ directly with a `SELECT COUNT(*)` |
+| Cost values look 1,000,000× too high | Google Ads API returns cost in micros (1 unit = 1/1,000,000 currency unit) | Divide `cost_micros` by 1,000,000 in your dbt model or BQ view: `cost_micros / 1000000 AS cost` |
+| Data is stale (yesterday's data missing) | Data Transfer runs on a schedule (typically overnight); gaarf needs to be triggered | Check transfer run status in BQ Console; for gaarf, verify the Cloud Scheduler or cron job is active |

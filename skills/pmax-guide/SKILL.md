@@ -59,3 +59,14 @@ Walk through product feed improvements:
 - Brand exclusion lists prevent cannibalizing brand Search campaigns
 - Allow 2-4 weeks before making asset changes (learning period)
 - PMax works best with good conversion tracking — check with `/ad-platform-campaign-manager:conversion-tracking`
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| PMax spending but few or no conversions | Insufficient conversion volume for optimization (needs 30+/month) or wrong conversion action set as primary | Verify primary conversion action is correct; if volume is too low, consider pausing PMax and building history with Search first |
+| Asset ratings all "Low" | Assets don't match audience expectations or too few variations provided | Replace low-rated assets with new variations; ensure 15+ headlines, 5+ descriptions, and a mix of image ratios; allow 2 weeks before re-evaluating |
+| PMax cannibalizing brand Search campaigns | PMax serves brand terms by default and captures conversions that Search would have won | Add brand exclusion lists to PMax; compare incrementality by pausing PMax for 2 weeks and measuring total conversions |
+| Search term categories show irrelevant traffic | Audience signals are too broad or product feed titles are vague | Narrow audience signals; improve feed titles with specific product attributes; add negative keywords at account level |
+| Campaign stuck in "Learning" for 3+ weeks | Too many changes or not enough conversion data | Stop making edits for 2 weeks; if volume is too low, increase budget or consolidate asset groups to concentrate conversions |
+| Auto-generated video looks poor | No custom video was provided — Google assembles one from images | Upload at least one custom video (even a simple slideshow); auto-generated videos consistently underperform |

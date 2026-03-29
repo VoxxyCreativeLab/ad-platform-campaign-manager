@@ -77,3 +77,13 @@ Help estimate required budget:
 3. **Budget and bid strategy are connected** — Maximize Conversions needs enough daily budget to find opportunities
 4. **Allow learning time** — don't cut budget during the learning period
 5. **Review weekly, adjust monthly** — daily changes create noise
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| No conversion data to set CPA/ROAS targets | New account or campaign with fewer than 15 conversions | Start with Maximize Clicks or Manual CPC; switch to Maximize Conversions after 15+ conversions, then add a target after 30+ |
+| Spend drops sharply after setting a target | Target CPA too low or target ROAS too high | Raise CPA by 20% (or lower ROAS by 20%) and wait 2 weeks; never set aspirational targets |
+| Campaign "Limited by budget" but CPA is bad | Budget is being spent on low-quality clicks | Don't increase budget — fix keywords, negatives, or ad relevance first, then reassess |
+| Smart bidding won't exit learning period | Too few conversions per week (need 10+ per campaign) or frequent changes resetting learning | Consolidate campaigns to increase conversion volume; stop making changes for 2 weeks |
+| Shared budget starving one campaign | Higher-priority campaign consumes the pool | Move the high-priority campaign to its own dedicated budget |

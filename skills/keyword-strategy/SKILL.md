@@ -88,6 +88,16 @@ Phrase  | "how to"
 Exact   | [free]
 ```
 
+### Edge Cases
+
+| Situation | Adjustment |
+|-----------|------------|
+| Very niche business with few keywords | Focus on exact and phrase match only; expand via long-tail variations and related services rather than broad terms |
+| Monthly budget under €500 | Stick to high-intent keywords only (bottom of funnel); skip informational/top-of-funnel terms entirely; use exact match to control spend |
+| Broad match producing irrelevant traffic | Add the irrelevant terms as negative keywords; if persistent, downgrade to phrase match until enough conversion data exists for smart bidding |
+| Multiple locations with different languages | Create separate ad groups (or campaigns) per language; don't mix languages in one ad group |
+| Client already has a keyword list | Audit existing list first — check for conflicts, missing negatives, and match type alignment before generating new keywords |
+
 ### 7. Expansion Recommendations
 
 Suggest additional keyword opportunities:

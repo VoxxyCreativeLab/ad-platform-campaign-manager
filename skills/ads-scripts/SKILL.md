@@ -80,6 +80,16 @@ function main() {
 6. **Use descriptive variable names** — scripts should be self-documenting
 7. **Include error handling** — wrap risky operations appropriately
 
+## Troubleshooting
+
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| Script runs but does nothing | Selector returns zero results — campaign/ad group names, date range, or status filters don't match any entities | Log the iterator count before the loop: `Logger.log('Found: ' + iterator.totalNumEntities())` and widen filters |
+| `exceeded maximum execution time` | Script hits the 30-minute limit (single account) or 60-minute limit (MCC) | Add `.withLimit()` to selectors, process in batches, or split into multiple scripts |
+| `Cannot read property of undefined` | Accessing a metric or field that doesn't exist for the entity type | Check the AdsApp API reference for available methods on that entity |
+| Sheets output is empty | `SPREADSHEET_URL` is blank or the script lacks edit permission on the Sheet | Verify the URL is set in CONFIG and the script's Google account has editor access |
+| Script works in Preview but fails when scheduled | Preview runs as the signed-in user; scheduled runs use the script owner's permissions | Ensure the script owner has access to all referenced Sheets, emails, and account entities |
+
 ## Open-Source Script Resources
 
 For reference implementations, point users to:

@@ -92,6 +92,17 @@ Verify conversion tracking is ready:
 
 If not, recommend using `/ad-platform-campaign-manager:conversion-tracking` to set up.
 
+## Common Blockers
+
+Before proceeding to the campaign plan, check for these blockers:
+
+| Blocker | Impact | Resolution |
+|---------|--------|------------|
+| No creative assets for PMax/Display/Demand Gen | Cannot launch — these types require images and video | Recommend starting with Search (text-only) while assets are produced, or provide asset specs so the client can prepare them |
+| Monthly budget under €300 for Search | Too thin to gather meaningful data across multiple ad groups | Limit to 1-2 tightly themed ad groups with exact/phrase match only; avoid broad match |
+| No conversion tracking in place | Smart bidding won't work; campaign will optimize for clicks only | Set up tracking first via `/ad-platform-campaign-manager:conversion-tracking` before launching |
+| Client wants PMax but has fewer than 30 conversions/month | PMax needs conversion volume to optimize | Start with Search to build conversion history, then migrate to PMax after reaching 30+/month |
+
 ## Step 8: Output Campaign Plan
 
 Output a structured campaign plan document that includes:
