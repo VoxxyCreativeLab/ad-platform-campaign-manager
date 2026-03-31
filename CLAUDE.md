@@ -26,6 +26,8 @@ Jerry is a tracking specialist, not a campaign specialist. He knows GTM containe
 
 - **gtm-template-builder-plugin** — for building GTM custom templates (client-side tags)
 - **project-structure-and-scaffolding-plugin** — for MWP project scaffolding
+- **superpowers** — cross-domain: agentic methodology (brainstorming, TDD, debugging, code review, parallel agents)
+- **frontend-design** — cross-domain: production-grade frontend design quality (typography, color, animations, spatial composition)
 
 > [!info] Ecosystem
 > See [[_config/ecosystem|_config/ecosystem.md]] for the full list of available plugins, CLIs, and MCPs.
