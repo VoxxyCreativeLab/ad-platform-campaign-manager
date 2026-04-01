@@ -1,6 +1,6 @@
 ---
 title: Google Ads Quality Score
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -14,6 +14,9 @@ A 1-10 rating (10 = best) assigned to each keyword, estimating the quality and r
 
 ## Three Components
 
+> [!tip] Component weighting
+> Expected CTR and Landing Page Experience each carry roughly **2x the impact** of Ad Relevance on Quality Score. When prioritizing improvements, focus on CTR and landing page first.
+
 ### 1. Expected Click-Through Rate (CTR)
 How likely your ad is to be clicked when shown. Based on historical performance of the keyword.
 
@@ -22,7 +25,7 @@ How likely your ad is to be clicked when shown. Based on historical performance 
 - Using the keyword in headlines
 - Including a strong call-to-action
 - Testing multiple RSA headline variations
-- Using ad extensions (sitelinks, callouts, structured snippets)
+- Using ad assets (sitelinks, callouts, structured snippets)
 
 ### 2. Ad Relevance
 How closely your ad matches the intent behind the search query.
@@ -58,7 +61,9 @@ How relevant, useful, and easy-to-navigate your landing page is for users who cl
 
 ## Quality Score vs Ad Rank
 
-**Ad Rank** = Bid × Quality Score × Expected impact of extensions
+**Ad Rank** = Bid × Quality Score × Expected impact of assets × Contextual factors
+
+Contextual factors include search context (query meaning and intent), user signals (location, device, time of day, previous search behavior), and auction dynamics. Google evaluates these in real time, so the same keyword can produce different Ad Ranks at different moments.
 
 Quality Score is one input; you can't buy your way to top positions with a low Quality Score. Conversely, a high Quality Score lets you pay less for the same position.
 
@@ -67,7 +72,7 @@ Quality Score is one input; you can't buy your way to top positions with a low Q
 When a keyword has a low Quality Score:
 
 1. Check which component is "Below average":
-   - Below average CTR → improve ad copy and extensions
+   - Below average CTR → improve ad copy and assets
    - Below average ad relevance → tighten ad group theming
    - Below average landing page → improve page speed and content relevance
 2. Focus on the weakest component first
@@ -79,5 +84,5 @@ When a keyword has a low Quality Score:
 - Putting too many unrelated keywords in one ad group (kills ad relevance)
 - Sending all traffic to the homepage instead of relevant landing pages
 - Ignoring mobile experience
-- Not using ad extensions (easy CTR boost)
+- Not using ad assets (easy CTR boost)
 - Pausing and reactivating keywords frequently (loses historical data)

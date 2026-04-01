@@ -1,6 +1,6 @@
 ---
 title: Google Ads Account Structure
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -16,7 +16,7 @@ Google Ads Account (MCC or standalone)
     └── Ad Group (keyword theme, audience segment)
         ├── Keywords (search terms to trigger ads)
         ├── Ads (RSAs, responsive display ads, video ads)
-        └── Extensions/Assets (sitelinks, callouts, structured snippets)
+        └── Assets (sitelinks, callouts, structured snippets)
 ```
 
 ## Naming Conventions
@@ -103,3 +103,12 @@ Campaign: Display | Remarketing | NL
 - [ ] Negative keyword lists at account level
 - [ ] Location targeting: "Presence" (not "Presence or interest")
 - [ ] Language targeting matches audience
+
+## PMax Negative Keywords
+
+PMax campaigns support campaign-level negative keywords (up to 10,000 per campaign). You can also apply shared negative keyword lists across multiple PMax campaigns for consistency. This is critical for preventing PMax from cannibalizing your Search campaigns on branded terms.
+
+## AI Max for Search
+
+> [!info] AI Max is not a new campaign type
+> AI Max is a Search campaign feature layer (opt-in per campaign). It enables broader matching, auto-generated creative variations, and expanded URL targeting within existing Search campaigns. Think of it as "PMax-like automation layered onto Search" — your campaign structure stays the same.

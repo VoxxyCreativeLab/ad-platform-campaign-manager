@@ -1,6 +1,6 @@
 ---
 title: Google Ads Conversion Actions
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -57,6 +57,7 @@ See [[enhanced-conversions]] for setup details.
 ### Attribution Model
 - **Data-driven (default, recommended):** Uses Google's AI to assign credit across touchpoints
 - **Last click:** All credit to the last-clicked ad
+- **External attribution:** Use your own attribution model and import pre-attributed conversion data via the Google Ads API
 - Data-driven is strongly recommended — it gives Google the fullest picture for smart bidding
 
 ### Value
@@ -67,10 +68,17 @@ See [[enhanced-conversions]] for setup details.
 ### Category
 Categorize conversions for reporting:
 - Purchase/Sale
-- Lead (sign-up, subscribe, contact)
+- Lead (sign-up, contact)
+- Subscribe
+- Book appointment
+- Request quote
+- Get directions
 - Page view
 - Add to cart
 - Begin checkout
+- Contact
+- Submit lead form
+- Sign-up
 - Other
 
 ## Primary vs Secondary Conversions
@@ -93,7 +101,7 @@ Categorize conversions for reporting:
    ├── Option A: GTM (web container) — Google Ads Conversion Tracking tag
    ├── Option B: sGTM (server container) — Google Ads Conversion Tracking tag
    └── Option C: Google tag (gtag.js) — direct on-page snippet
-4. Verify in Google Ads → Tools → Conversions → check status
+4. Verify in Google Ads → Goals → Conversions → check status
 5. Test with Google Tag Assistant
 ```
 
@@ -109,3 +117,8 @@ For implementation details, see `/ad-platform-campaign-manager:conversion-tracki
 - [ ] Enhanced conversions enabled where possible
 - [ ] Conversion actions assigned to correct campaigns
 - [ ] Tag implemented and verified (status: "Recording conversions")
+
+## Google Ads Data Manager
+
+> [!info] Google Ads Data Manager API
+> GA since October 2025, Google Ads Data Manager is the primary interface for complex conversion data management. It supports direct CRM connections (Salesforce, HubSpot), offline conversion imports, and customer list uploads through a unified UI under **Goals → Data Manager**. For API-based integrations and bulk data operations, this is now the recommended path.

@@ -1,6 +1,6 @@
 ---
 title: GAQL — Google Ads Query Language Reference
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -16,7 +16,7 @@ FROM resource_name
 WHERE condition1 AND condition2
 ORDER BY field ASC|DESC
 LIMIT n
-PARAMETERS include_drafts=true
+PARAMETERS include_drafts=true, omit_unselected_resource_names=true
 ```
 
 ## Common Resources
@@ -44,7 +44,7 @@ PARAMETERS include_drafts=true
 campaign.id
 campaign.name
 campaign.status                    -- ENABLED, PAUSED, REMOVED
-campaign.advertising_channel_type  -- SEARCH, DISPLAY, VIDEO, SHOPPING, PERFORMANCE_MAX
+campaign.advertising_channel_type  -- SEARCH, DISPLAY, VIDEO, SHOPPING, PERFORMANCE_MAX, DEMAND_GEN
 campaign.bidding_strategy_type     -- TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, etc.
 campaign_budget.amount_micros      -- Budget in micros (divide by 1,000,000)
 ```
@@ -203,3 +203,5 @@ ORDER BY metrics.cost_micros DESC
 - Some segments can't be combined — check API docs
 - `DURING` is used for date range literals; `BETWEEN` for custom dates
 - GAQL is read-only — use mutations for changes
+- **PMax channel-level reporting:** API v23 (January 2026) added `performance_max_placement_view` and channel-level breakdown resources for PMax campaigns, enabling reporting by channel (Search, Display, YouTube, Discover, Maps, Gmail)
+- Use `omit_unselected_resource_names=true` in PARAMETERS to reduce response payload size — only returns resource names for fields you explicitly SELECT

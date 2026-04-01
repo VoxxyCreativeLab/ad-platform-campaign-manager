@@ -1,6 +1,6 @@
 ---
 title: Google Ads Extensions (Assets)
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -10,7 +10,7 @@ tags:
 
 Google renamed "extensions" to "assets" but the functionality is the same. Extensions expand your ad with additional information and improve CTR.
 
-## Extension Types
+## Asset Types
 
 ### Sitelink Assets
 Additional links below your ad pointing to specific pages.
@@ -31,7 +31,7 @@ Short text highlights (no links). Show benefits/features.
 ### Structured Snippet Assets
 Predefined headers with a list of values. Showcase product/service categories.
 
-- **Headers:** Amenities, Brands, Courses, Destinations, Featured hotels, Insurance coverage, Models, Neighborhoods, Service catalog, Shows, Styles, Types
+- **Headers:** Amenities, Brands, Courses, Degree programs, Destinations, Featured hotels, Insurance coverage, Models, Neighborhoods, Service catalog, Shows, Styles, Types
 - **Min 3 values** per header
 - Example: Header "Types" → "Search Ads, Display Ads, Video Ads, PMax"
 
@@ -41,6 +41,9 @@ Phone number displayed with your ad. Click-to-call on mobile.
 - Show only during business hours (set a schedule)
 - Use a trackable number for conversion attribution
 - Works best for service businesses
+
+> [!warning] Call-only ads deprecated
+> No new call-only ads can be created since February 2026. Full removal is scheduled for February 2027. Use call assets within RSAs instead.
 
 ### Location Assets
 Show business address, map, distance. Linked via Google Business Profile.
@@ -86,8 +89,9 @@ Displays your verified business name and logo.
 - Requires advertiser verification
 - Enhances brand recognition
 - Automatically applied once verified
+- **PMax Brand Guidelines:** Since 2025, logo and business name are managed at the campaign level in PMax (migrated from asset group level). Configure under campaign settings → Brand Guidelines.
 
-## Extension Strategy
+## Asset Strategy
 
 1. **Always add:** Sitelinks, callouts, structured snippets (minimum viable extensions)
 2. **Add if relevant:** Call (services), location (physical stores), image (visual products)

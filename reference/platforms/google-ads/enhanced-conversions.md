@@ -1,6 +1,6 @@
 ---
 title: Enhanced Conversions
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -19,6 +19,24 @@ Enhanced conversions supplement your existing conversion tags by sending hashed 
 3. Your conversion tag fires AND sends hashed PII (SHA-256)
 4. Google matches the hashed data to the signed-in Google user
 5. The conversion is attributed more accurately, even across devices
+
+## Account-Level Enhanced Conversions
+
+> [!warning] Major 2025 change
+> Since October 2025, Google has auto-upgraded accounts to **account-level enhanced conversions**. This is configured once at the account level (not per conversion action).
+
+Navigate to **Goals --> Settings --> Enhanced conversions** to manage the account-level setting.
+
+Once enabled at the account level, all eligible conversion actions in the account benefit from enhanced conversion matching automatically. You no longer need to toggle enhanced conversions on individual conversion actions.
+
+### Detection Methods
+
+- **Manual configuration:** Explicitly map user data fields via GTM, sGTM, or the Google tag (dataLayer variables, CSS selectors, JavaScript variables)
+- **Automatic detection:** Google inspects your page for recognizable data patterns (email fields, phone inputs, form submissions) and extracts user-provided data automatically without explicit dataLayer configuration. This works for simple form setups but manual mapping gives more control and reliability.
+
+### Google Ads Data Manager for CRM Setups
+
+For API and CRM-based enhanced conversion workflows, Google Ads Data Manager provides direct connections to Salesforce, HubSpot, and other CRMs without custom code. Configure under **Goals --> Data Manager** to set up automated first-party data pipelines.
 
 ## Data Fields
 
@@ -41,7 +59,7 @@ Enhanced conversions supplement your existing conversion tags by sending hashed 
 ### Option 1: GTM (Web Container) — Recommended
 
 1. **Enable enhanced conversions** in Google Ads:
-   - Tools → Conversions → select conversion action → Enhanced conversions → Turn on
+   - Goals → Settings → Enhanced conversions → Turn on (account-level), or Goals → Conversions → select conversion action for legacy per-action setup
    - Choose "Google Tag Manager" as implementation method
 
 2. **Configure in GTM:**
@@ -120,8 +138,8 @@ A variant for lead generation where the actual conversion (sale) happens offline
 ## Verification
 
 After setup, verify in Google Ads:
-1. Tools → Conversions → select conversion action
-2. Check "Enhanced conversions" status: "Recording" = working
+1. Goals → Settings → Enhanced conversions (account-level status)
+2. Goals → Conversions → select conversion action → check "Enhanced conversions" status: "Recording" = working
 3. Allow 48-72 hours for data to appear
 4. Monitor the "Diagnostics" tab for warnings or errors
 5. Use Google Tag Assistant to verify data is being sent correctly
