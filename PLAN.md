@@ -25,7 +25,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 |-------|------|--------|-------|
 | 1 | Knowledge & Guidance | ✅ Done | 10 skills, 37 reference files, 2 agents, config complete |
 | 2 | Content Completion & MCP Prep | 🔄 In progress | Fill script files, repos catalog, update MCP refs, add campaign-cleanup skill |
-| 3 | MCP API Integration | ⬜ Not started | Try Explorer Access (2,880 ops/day, no application) before formal dev token |
+| 3 | MCP API Integration | 🔄 In progress | Custom `voxxy/google-ads-mcp-server` built — 9 read + 11 write tools, three-gate safety architecture |
 | 4 | Multi-Platform | ⬜ Not started | Populate meta-ads/, linkedin-ads/, tiktok-ads/ |
 
 ## Stages & Status
@@ -51,7 +51,8 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Seeded `LESSONS.md` with master plugin development lessons
 - ✅ Added 4 campaign type docs (Shopping, Video, DSA, Demand Gen) — Finding #2
 - ✅ **Fact-check sweep** — all 17 reference docs updated to 2025-2026 accuracy
-**Blockers:** None for Phase 2. Phase 3 needs Google Ads API credentials (try Explorer Access first).
+- 🔄 **Phase 3 started** — custom `voxxy/google-ads-mcp-server` built with three-gate safety architecture (session passphrase + validate_only dry-run + confirm); MCP reference docs updated
+**Blockers:** None for Phase 2. Phase 3 needs Google Ads API credentials configured (try Explorer Access first).
 
 ---
 
@@ -66,6 +67,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - 2026-03-31 — Explorer Access (Feb 2026) may bypass developer token approval backlog
 - 2026-03-31 — PMax scripts get their own `scripts/pmax/` subdirectory
 - 2026-03-31 — Master plugin is always `project-structure-and-scaffolding-plugin`
+- 2026-04-01 — Custom `voxxy/google-ads-mcp-server` built locally — preferred over community alternatives due to three-gate safety architecture and audit logging
 
 ---
 

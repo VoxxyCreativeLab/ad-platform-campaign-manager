@@ -12,6 +12,59 @@ tags:
 
 Claude Code MCP servers are configured in your settings.json.
 
+## voxxy/google-ads-mcp-server (Custom — Read + Write + Safety)
+
+> [!tip] Recommended
+> This is the preferred server for this plugin. Writes require a session passphrase, a validate_only dry-run, and an explicit confirmation. Budget ±50% and bid +30% caps are enforced. All operations are logged to a JSON audit file.
+
+```json
+{
+  "mcpServers": {
+    "google-ads-custom": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--project",
+        "../google-ads-mcp-server",
+        "python",
+        "-m",
+        "google_ads_mcp.server"
+      ],
+      "env": {
+        "GOOGLE_ADS_DEVELOPER_TOKEN": "YOUR_DEVELOPER_TOKEN",
+        "GOOGLE_ADS_CLIENT_ID": "YOUR_CLIENT_ID",
+        "GOOGLE_ADS_CLIENT_SECRET": "YOUR_CLIENT_SECRET",
+        "GOOGLE_ADS_REFRESH_TOKEN": "YOUR_REFRESH_TOKEN",
+        "GOOGLE_ADS_LOGIN_CUSTOMER_ID": "YOUR_MCC_ID",
+        "GOOGLE_ADS_CUSTOMER_ID": "YOUR_CUSTOMER_ID"
+      }
+    }
+  }
+}
+```
+
+**Read tools (9):**
+- `list_accounts` — all accessible accounts under MCC
+- `list_campaigns` — campaigns with status and budget
+- `list_ad_groups` — ad groups for a campaign
+- `get_campaign_metrics` — performance data (impressions, clicks, cost, conversions)
+- `list_keywords` — keywords with match type and metrics
+- `list_ads` — ads with performance
+- `run_gaql_query` — arbitrary GAQL query
+- `get_account_summary` — account-level rollup
+- `list_budgets` — all campaign budgets
+
+**Write tools (11, all gated):**
+- `unlock_write_session` — set session passphrase to enable writes
+- `pause_campaign` / `enable_campaign` — change campaign status
+- `pause_ad_group` / `enable_ad_group` — change ad group status
+- `update_campaign_budget` — change daily budget (±50% cap per operation)
+- `update_keyword_bid` — change keyword CPC bid (+30% cap per operation)
+- `pause_keyword` / `enable_keyword` — change keyword status
+- `pause_ad` / `enable_ad` — change ad status
+
+---
+
 ## cohnen/mcp-google-ads (Community — Full Access)
 
 ```json
@@ -109,6 +162,25 @@ Instead of configuring MCP servers globally in settings.json, you can create a `
 ```json
 {
   "mcpServers": {
+    "google-ads-custom": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--project",
+        "../google-ads-mcp-server",
+        "python",
+        "-m",
+        "google_ads_mcp.server"
+      ],
+      "env": {
+        "GOOGLE_ADS_DEVELOPER_TOKEN": "${GOOGLE_ADS_DEVELOPER_TOKEN}",
+        "GOOGLE_ADS_CLIENT_ID": "${GOOGLE_ADS_CLIENT_ID}",
+        "GOOGLE_ADS_CLIENT_SECRET": "${GOOGLE_ADS_CLIENT_SECRET}",
+        "GOOGLE_ADS_REFRESH_TOKEN": "${GOOGLE_ADS_REFRESH_TOKEN}",
+        "GOOGLE_ADS_LOGIN_CUSTOMER_ID": "${GOOGLE_ADS_LOGIN_CUSTOMER_ID}",
+        "GOOGLE_ADS_CUSTOMER_ID": "1234567890"
+      }
+    },
     "google-ads-official": {
       "command": "uvx",
       "args": ["google-ads-mcp-server"],

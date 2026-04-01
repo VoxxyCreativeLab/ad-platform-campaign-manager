@@ -10,6 +10,20 @@ tags:
 
 ## Available MCP Servers
 
+### voxxy/google-ads-mcp-server (Custom — Read + Write + Safety)
+- **Location:** Local — `../google-ads-mcp-server/`
+- **Language:** Python
+- **Access:** Read + Write with three-gate safety architecture
+- **Features:**
+  - 9 read tools (accounts, campaigns, ad groups, metrics, keywords, ads, GAQL)
+  - 11 write tools with draft-then-confirm (pause/enable, budgets, bids)
+  - Session passphrase lock — writes locked by default
+  - validate_only dry-run before every mutation
+  - Budget ±50% / bid +30% caps, stale-state detection, REMOVE blocked
+  - JSON audit log of all operations
+- **Auth:** OAuth2 via google-ads.yaml or environment variables
+- **Best for:** Safe campaign management from Claude Code with full audit trail
+
 ### googleads/google-ads-mcp (Official — Canonical)
 - **Stars:** Active
 - **URL:** github.com/googleads/google-ads-mcp
@@ -84,20 +98,21 @@ Before using any MCP server, you need a Google Ads API developer token. Availabl
 
 ## Comparison Matrix
 
-| Feature | googleads/google-ads-mcp | cohnen/mcp-google-ads | grantweston/complete | ads-mcp |
-|---------|------------------------|-----------------------|---------------------|---------|
-| Read campaigns | Yes | Yes | Yes | Yes |
-| Modify campaigns | No | Yes | Yes | Yes |
-| Keyword management | No | Yes | Yes | Yes |
-| Ad management | No | Yes | Yes | Yes |
-| Budget changes | No | Yes | Yes | Yes |
-| Search terms | Yes | Yes | Yes | Yes |
-| GAQL support | Yes | Yes | Yes | Partial |
-| Multi-platform | No | No | No | Yes |
-| Official Google | Yes | No | No | No |
-| Active maintenance | Yes | Yes | Active | Moderate |
-| Safety (read-only) | Yes | No (write access) | No (write access) | No |
-| Tool count | ~10 | ~15 | 29 | 100+ |
+| Feature | voxxy/google-ads-mcp-server | googleads/google-ads-mcp | cohnen/mcp-google-ads | grantweston/complete | ads-mcp |
+|---------|-----------------------------|--------------------------|-----------------------|---------------------|---------|
+| Read campaigns | Yes | Yes | Yes | Yes | Yes |
+| Modify campaigns | Yes (gated) | No | Yes | Yes | Yes |
+| Keyword management | Yes (gated) | No | Yes | Yes | Yes |
+| Ad management | Yes (gated) | No | Yes | Yes | Yes |
+| Budget changes | Yes (gated) | No | Yes | Yes | Yes |
+| Search terms | Yes | Yes | Yes | Yes | Yes |
+| GAQL support | Yes | Yes | Yes | Yes | Partial |
+| Multi-platform | No | No | No | No | Yes |
+| Official Google | No | Yes | No | No | No |
+| Active maintenance | Yes | Yes | Yes | Active | Moderate |
+| Safety architecture | Three-gate | Read-only | None | None | None |
+| Audit log | Yes | No | No | No | No |
+| Tool count | 20 (9R+11W) | ~10 | ~15 | 29 | 100+ |
 
 ## Recommended Setup
 
@@ -106,16 +121,21 @@ Before using any MCP server, you need a Google Ads API developer token. Availabl
 2. Explorer Access (2,880 ops/day) requires no application and works immediately
 3. If you need more, apply for Basic (15,000/day) or Standard (100,000/day) access
 
-### Phase 2A: Start Safe (Read-Only)
-1. Install `googleads/google-ads-mcp` (official, read-only)
-2. Use for diagnostics, analysis, and reporting
-3. No risk of accidental changes
+### Phase 2A: Start Safe — Custom Server (Recommended)
+1. Use `voxxy/google-ads-mcp-server` (local, read + write with safety gates)
+2. Writes require session passphrase + validate_only dry-run + explicit confirm
+3. Budget and bid caps prevent runaway mutations
+4. Full JSON audit trail of every operation
 
-### Phase 2B: Full Management (Read + Write)
-1. Add `cohnen/mcp-google-ads` for write operations
-2. Use for campaign creation, keyword management, bid changes
-3. Keep both installed — use official for analysis, community for actions
-4. Alternative: `grantweston/google-ads-mcp-complete` if you need all 29 tools
+### Phase 2B: Read-Only Fallback
+1. If the custom server is unavailable, fall back to `googleads/google-ads-mcp` (official, read-only)
+2. Use for diagnostics, analysis, and reporting only
+3. No write access — safe but limited
+
+### Phase 2C: Community Alternatives
+1. `cohnen/mcp-google-ads` — full write access, no safety architecture
+2. `grantweston/google-ads-mcp-complete` — 29 tools, no safety architecture
+3. Use these only if the custom server cannot be set up — they carry higher mutation risk
 
 ### Phase 3: Multi-Platform
 1. Evaluate `ads-mcp` when adding Meta/LinkedIn/TikTok
