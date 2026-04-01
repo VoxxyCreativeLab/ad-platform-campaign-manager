@@ -1,13 +1,13 @@
 ---
-title: Top 25 Google Ads Mistakes & Fixes
-date: 2026-03-28
+title: Top 32 Google Ads Mistakes & Fixes
+date: 2026-04-01
 tags:
   - reference
   - google-ads
   - audit
 ---
 
-# Top 25 Google Ads Mistakes & Fixes
+# Top 32 Google Ads Mistakes & Fixes
 
 ## Structure & Setup
 
@@ -67,7 +67,7 @@ tags:
 **Problem:** Users can't find what they searched for → they bounce.
 **Fix:** Create or use specific landing pages matching ad messaging and keywords.
 
-### 14. Not using ad extensions
+### 14. Not using ad assets
 **Problem:** Ads take up less space, lower CTR, no additional info shown.
 **Fix:** Add sitelinks, callouts, and structured snippets at minimum.
 
@@ -118,3 +118,33 @@ tags:
 ### 25. Focusing on vanity metrics (impressions, clicks)
 **Problem:** High clicks ≠ business results.
 **Fix:** Optimize for conversions, CPA, and ROAS. Clicks and impressions are supporting metrics.
+
+## PMax-Specific Mistakes
+
+### 26. Not providing custom video assets
+**Problem:** Google auto-generates videos from images and text — quality is poor and conversion rates suffer.
+**Fix:** Upload at least one custom video per asset group in landscape, square, and vertical orientations.
+
+### 27. Not using campaign-level negative keywords
+**Problem:** PMax serves ads on irrelevant queries, wasting budget on non-converting traffic.
+**Fix:** Add campaign-level negative keywords (up to 10,000 supported). Review search terms report regularly.
+
+### 28. Not reviewing PMax search terms
+**Problem:** You don't know what queries PMax is matching against your campaigns.
+**Fix:** Review the search terms report — full query visibility has been available since March 2025.
+
+### 29. Reducing PMax budget by more than 20% at once
+**Problem:** Large budget cuts reset the learning period, causing weeks of suboptimal performance.
+**Fix:** Reduce budget incrementally (max 20% at a time) and wait for stabilization between changes.
+
+### 30. Setting Target ROAS too far above actual performance
+**Problem:** Google severely restricts spend to meet unrealistic targets — campaigns stop delivering.
+**Fix:** Set Target ROAS within 20% of actual ROAS, then gradually increase over time.
+
+### 31. Not using audience exclusions
+**Problem:** PMax spends budget re-targeting existing customers who would convert anyway.
+**Fix:** Configure audience exclusions to exclude existing customer lists where appropriate.
+
+### 32. Same audience signal across all asset groups
+**Problem:** No differentiation between asset groups — Google treats them the same, defeating the purpose of separate groups.
+**Fix:** Assign distinct audience signals per asset group aligned with the product/theme of that group.

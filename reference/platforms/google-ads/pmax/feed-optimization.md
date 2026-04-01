@@ -1,6 +1,6 @@
 ---
 title: PMax Feed Optimization (Google Merchant Center)
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -8,6 +8,12 @@ tags:
 ---
 
 # PMax Feed Optimization (Google Merchant Center)
+
+> [!info] Merchant Center Next
+> Google Merchant Center Next is now the default interface. All references below apply to the new Merchant Center Next experience. Legacy Merchant Center features have been migrated.
+
+> [!warning] Content API Sunset
+> The Content API for Shopping sunsets **August 18, 2026**, replaced by Merchant API v1. Migrate any integrations before that deadline.
 
 ## Why Feed Quality Matters
 
@@ -23,7 +29,7 @@ For Shopping/PMax campaigns with a product feed, feed quality directly impacts:
 ### Required
 | Attribute | Description | Tips |
 |-----------|-------------|------|
-| `id` | Unique product identifier | Consistent, never reused |
+| `id` | Unique product identifier | Consistent, never reused. Since March 2026: use separate IDs for online vs in-store when product attributes differ |
 | `title` | Product name | Include brand, key features, color, size |
 | `description` | Product description | Natural language, include keywords |
 | `link` | Product page URL | Must be the canonical product URL |
@@ -102,6 +108,6 @@ Use supplemental feeds to override or add attributes without modifying the prima
 - [ ] High-quality images (min 100x100, recommended 800x800+)
 - [ ] Prices match website (automatic price mismatch = disapproval)
 - [ ] Availability matches website
-- [ ] Feed updates at least daily
+- [ ] Feed updates daily minimum; high-volume stores should target 15-60 minute sync
 - [ ] Custom labels set for campaign segmentation
 - [ ] No duplicate products

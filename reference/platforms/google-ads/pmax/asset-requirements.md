@@ -1,6 +1,6 @@
 ---
 title: PMax Asset Requirements
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -15,10 +15,14 @@ tags:
 |-------|-----|-----|-----------------|
 | Headlines | 3 | 15 | 30 chars each |
 | Long headlines | 1 | 5 | 90 chars each |
-| Descriptions | 2 | 5 | 90 chars each (first can be 60) |
+| Descriptions | 2 | 5 | 90 chars each; at least 1 description must be shorter than 60 characters |
 | Business name | 1 | 1 | 25 chars |
 | Call to action | Auto | — | Selected from list or "Automated" |
 | Display URL path | 0 | 2 | 15 chars each |
+| Search themes | 0 | 50 | Per asset group; helps guide PMax targeting (doubled from 25, August 2025) |
+
+> [!info] Campaign-Level Brand Guidelines (2025)
+> PMax now supports campaign-level brand guidelines: logo, business name, and brand colors. These apply across all asset groups in the campaign and ensure consistent branding on auto-generated creatives.
 
 ### Text Best Practices
 - **Headlines:** Include keywords, value props, brand name, CTAs. Don't repeat across headlines.
@@ -50,6 +54,7 @@ tags:
 
 | Requirement | Spec |
 |-------------|------|
+| Count | 0-5 videos per asset group |
 | Min duration | 10 seconds |
 | Recommended | 15-30 seconds |
 | Orientation | Landscape (16:9), Square (1:1), or Vertical (9:16) |

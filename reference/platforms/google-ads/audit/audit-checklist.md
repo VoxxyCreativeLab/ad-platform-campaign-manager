@@ -1,6 +1,6 @@
 ---
 title: Google Ads Campaign Audit Checklist
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -19,6 +19,7 @@ tags:
 - [ ] Enhanced conversions enabled
 - [ ] Conversion values set (dynamic preferred)
 - [ ] No duplicate conversions (check for double-firing tags)
+- [ ] Consent Mode v2 implemented (required in EEA; `ad_storage`, `ad_user_data`, `ad_personalization`, `analytics_storage` signals firing correctly)
 
 ### Account Settings
 - [ ] Auto-tagging enabled
@@ -54,6 +55,7 @@ tags:
 - [ ] No campaigns limited by budget on high-performing keywords
 - [ ] Shared budgets used intentionally (not accidentally)
 - [ ] Budget pacing checked (spend vs. budget)
+- [ ] AI Max for Search: if enabled, review auto-generated assets and expanded matching; ensure brand controls are configured
 
 ## Ad Group Level
 
@@ -98,14 +100,14 @@ tags:
 - [ ] No broken landing page URLs (404s)
 - [ ] HTTPS enabled
 
-## Extensions/Assets
+## Assets (formerly Extensions)
 - [ ] Sitelinks: min 4 (linking to distinct pages)
 - [ ] Callouts: min 4 (unique benefits/features)
 - [ ] Structured snippets: at least 1 relevant header
-- [ ] Call extension (if phone inquiries matter)
-- [ ] Location extension (if physical stores)
-- [ ] Image extensions (if visual products)
-- [ ] Extensions reviewed for performance quarterly
+- [ ] Call asset (if phone inquiries matter)
+- [ ] Location asset (if physical stores)
+- [ ] Image assets (if visual products)
+- [ ] Assets reviewed for performance quarterly
 
 ## PMax Specific (if applicable)
 - [ ] Each asset group has theme-appropriate audience signals
@@ -113,8 +115,16 @@ tags:
 - [ ] At least one custom video provided (not relying on auto-generated)
 - [ ] "Low" performing assets identified and scheduled for replacement
 - [ ] Brand exclusion list applied (to protect brand Search campaigns)
+- [ ] Brand exclusion scope understood (applies to Search and Shopping channels only)
 - [ ] Product feed optimized (titles, images, GTINs)
 - [ ] Listing groups filtered appropriately per asset group
+- [ ] Campaign-level negative keywords configured (up to 10,000 supported)
+- [ ] Search terms report reviewed (full query visibility available since March 2025)
+- [ ] Channel performance report reviewed (identify underperforming channels)
+- [ ] Audience exclusions configured (exclude existing customers where appropriate)
+- [ ] Demographic exclusions reviewed (age, gender, household income)
+- [ ] Search themes per asset group reviewed (up to 50 per asset group)
+
 
 ## Scoring Guide
 
