@@ -1,6 +1,6 @@
 ---
 title: PMax Audience Signals
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -50,14 +50,66 @@ Google's pre-built audience categories.
 **Best for:** Broad targeting when you don't have first-party data.
 
 ### Demographics
-Basic demographic targeting.
+Basic demographic targeting — available as **soft signals** and **hard exclusions**.
+
+**Demographic signals (soft):** hints to Google, not hard limits.
 
 - Age ranges (18-24, 25-34, 35-44, 45-54, 55-64, 65+, Unknown)
 - Gender (Male, Female, Unknown)
 - Parental status
 - Household income (top 10%, 11-20%, 21-30%, etc.)
 
-**Best for:** Products with clear demographic skew.
+**Demographic hard exclusions (since late 2025):** permanently block specific groups.
+
+- Hard-exclude specific **age brackets** and **genders** at campaign level
+- These are NOT signals — Google will NOT show ads to excluded demographics, period
+- Use for products with legal age restrictions, strong demographic mismatches, or regulatory requirements
+
+> [!warning] Signals vs Exclusions
+> Demographic signals are hints — Google may still show ads outside your selected demographics if it predicts conversions. Demographic hard exclusions are absolute blocks. Know the difference.
+
+**Best for:** Products with clear demographic skew. Use signals for optimization, exclusions for compliance.
+
+### Search Themes
+
+Search themes are keyword-like inputs per asset group that tell Google which search topics are relevant. Unlike audience signals (which describe people), search themes describe **what people search for**.
+
+- Up to **50 search themes per asset group** (doubled from 25 in August 2025)
+- Work alongside audience signals — themes guide Search and Shopping inventory, signals guide Display/YouTube/Discover
+- Think of them as broad match keywords scoped to PMax: enter topics, not exact queries
+- Especially useful for new campaigns or asset groups where Google has no conversion data yet
+
+**Best for:** Directing PMax's Search and Shopping inventory. Essential complement to audience signals.
+
+## Audience Exclusions
+
+> [!info] Exclusions Are Not Signals
+> Audience exclusions are **hard blocks** — Google will never show ads to excluded audiences. This is fundamentally different from audience signals, which are optimization hints Google can ignore.
+
+### Customer Match Exclusions (2025)
+
+Upload Customer Match lists and **exclude them at campaign level**:
+
+- Upload hashed email/phone lists of existing customers, past purchasers, or low-value segments
+- Excluded users will not see your PMax ads on any channel
+- Enables **pure prospecting PMax campaigns** — spend 100% of budget on new customers
+
+### Website Visitor Exclusions (2025)
+
+Exclude Website Visitor remarketing segments:
+
+- Exclude "All website visitors" to run purely prospecting campaigns
+- Exclude "Past purchasers (30 days)" to avoid remarketing to recent buyers
+- Combine with Customer Match exclusions for comprehensive existing-customer filtering
+
+### Use Cases
+
+| Exclusion | Purpose |
+|-----------|---------|
+| All past purchasers | Pure new customer acquisition |
+| Recent converters (7-30 days) | Avoid remarketing immediately after purchase |
+| Low-LTV customers | Focus budget on higher-value segments |
+| Internal staff emails | Prevent employee ad exposure |
 
 ## Audience Signal Strategy
 

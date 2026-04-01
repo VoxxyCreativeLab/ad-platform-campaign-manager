@@ -1,6 +1,6 @@
 ---
 title: Dynamic Search Ads (DSA)
-date: 2026-03-31
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -9,6 +9,28 @@ tags:
 # Dynamic Search Ads (DSA)
 
 Auto-generated Search ads where Google creates headlines from your website content and matches queries to relevant landing pages. Supplements keyword-based Search campaigns by capturing queries you haven't explicitly targeted.
+
+## AI Max for Search — DSA's Successor
+
+> [!warning] Deprecation Risk
+> No official DSA sunset date has been announced yet, but industry consensus predicts a Q2 2026 announcement with a 12-18 month migration window. AI Max for Search overlaps significantly with DSA functionality. **Recommend starting AI Max testing now.**
+
+AI Max for Search is DSA's confirmed successor. Key differences:
+
+| Factor | DSA | AI Max for Search |
+|--------|-----|-------------------|
+| Technology | Site crawling (Googlebot-like) | Gemini models — deeper understanding of page content and user intent |
+| Activation | Standalone campaign type | Campaign-level toggle on existing Search campaigns |
+| Keyword interaction | Separate from keyword campaigns | Works as an optimization layer on top of existing keywords |
+| Control | Page feeds, URL rules | Inherits campaign structure, final URL expansion settings |
+| Headline generation | From page titles/content | Gemini-generated, more contextual |
+
+### Migration Recommendation
+
+1. **Now:** enable AI Max on a test Search campaign that has DSA-like goals
+2. **Compare:** run DSA and AI Max side-by-side for 4-6 weeks, comparing query coverage and CPA
+3. **Transition:** gradually shift budget from DSA to AI Max-enabled Search campaigns
+4. **Retain DSA knowledge:** DSA best practices (page feeds, exclusions, search term mining) remain relevant for understanding how AI Max selects landing pages
 
 ## When to Use
 
@@ -82,7 +104,6 @@ DSA Campaign
 | Maximize Conversions | Starting out — let Google learn which pages convert |
 | Target CPA | Once you have 15+ conversions/month and a CPA target |
 | Manual CPC | When you want full bid control (less common for DSA) |
-| Enhanced CPC | Transitional — manual with Google's adjustment |
 
 ## Best Practices
 

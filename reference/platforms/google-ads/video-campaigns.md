@@ -1,6 +1,6 @@
 ---
 title: Video Campaigns
-date: 2026-03-31
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -14,9 +14,8 @@ YouTube and Google Video Partner advertising for awareness, consideration, and d
 
 - **Brand awareness:** reach large audiences on YouTube with sight/sound/motion
 - **Consideration:** drive views and engagement for mid-funnel audiences
-- **Direct action:** convert viewers into leads or customers (Video Action campaigns)
 - **YouTube Shorts:** reach mobile-first audiences with vertical video
-- **Not for:** bottom-funnel intent capture (use Search), product catalog ads (use Shopping)
+- **Not for:** bottom-funnel intent capture (use Search), product catalog ads (use Shopping), conversion-focused video (use [[demand-gen|Demand Gen]])
 
 ## How It Works
 
@@ -24,10 +23,13 @@ YouTube and Google Video Partner advertising for awareness, consideration, and d
 
 | Subtype | Goal | Bidding | Primary Format |
 |---------|------|---------|----------------|
-| Video Reach | Maximize impressions | CPM, Target CPM | Bumper (6s), non-skippable in-stream (15s) |
+| Video Reach — Efficient reach | Maximize reach efficiently | CPM, Target CPM | Mix of bumper (6s), skippable in-stream, in-feed, and Shorts |
+| Video Reach — Non-skippable reach | Maximum attention/completion | CPM, Target CPM | Bumper (6s) + 15s non-skippable in-stream |
+| Video Reach — Target frequency | Repeated exposure to same users | Target CPM | Skippable + non-skippable in-stream with frequency goal |
 | Video Views | Maximize views | CPV (cost-per-view) | Skippable in-stream, in-feed |
-| Video Action | Drive conversions | Target CPA, Maximize Conversions | Skippable in-stream with CTA |
-| Demand Gen (video) | Mid-funnel engagement | Target CPA, Maximize Conversions | In-feed, Shorts, Discover |
+
+> [!info] Conversion-Focused Video
+> For conversion-focused video advertising (formerly Video Action Campaigns), use **Demand Gen campaigns** — see [[demand-gen]]. Video Action Campaigns were migrated to Demand Gen and are no longer available as a Video campaign subtype.
 
 ### Ad Format Specs
 
@@ -37,7 +39,7 @@ YouTube and Google Video Partner advertising for awareness, consideration, and d
 | Non-skippable in-stream | 15 seconds | No skip | Before/during/after videos | Yes (300x60) |
 | Bumper | 6 seconds | No skip | Before/during/after videos | Yes (300x60) |
 | In-feed | No limit | N/A — click to play | YouTube search, home, watch next | No |
-| Shorts | 60 seconds max | Swipe to skip | YouTube Shorts feed | No |
+| Shorts | 60 seconds max | Non-skippable | YouTube Shorts feed (between organic content) | No |
 
 ### Targeting Options
 
@@ -76,7 +78,7 @@ YouTube and Google Video Partner advertising for awareness, consideration, and d
 - **Audience sequencing:** show different ads based on prior engagement (awareness → consideration → action)
 - **Separate campaigns by goal:** don't mix awareness and conversion objectives in one campaign
 - **Exclude placements:** kids content, irrelevant channels, competitor channels (optional)
-- **Schedule:** run Video Action campaigns during business hours if you need same-day follow-up
+- **Schedule:** run conversion-focused video campaigns (via Demand Gen) during business hours if you need same-day follow-up
 
 ### Budget Guidelines
 
@@ -84,7 +86,6 @@ YouTube and Google Video Partner advertising for awareness, consideration, and d
 |---------------|-------------------------|
 | Video Reach (CPM) | €20+ for meaningful reach |
 | Video Views (CPV) | €10+ (typical CPV: €0.02-0.10) |
-| Video Action (CPA) | 10-15x target CPA minimum |
 
 ## Tracking Implications
 
@@ -114,7 +115,7 @@ YouTube and Google Video Partner advertising for awareness, consideration, and d
 
 - Standard YouTube ad impressions/views do NOT pass through GTM/sGTM tag firing
 - Video ad clicks DO trigger a landing page visit → standard tag firing applies
-- For Video Action campaigns: tracking is the same as Search (click → land → convert)
+- For conversion-focused video (now via Demand Gen): tracking is the same as Search (click → land → convert)
 - For awareness/views campaigns: attribution relies on Google's own measurement, not your GTM setup
 
 ### Brand Lift Studies
@@ -127,6 +128,7 @@ YouTube and Google Video Partner advertising for awareness, consideration, and d
 ## Related
 
 - [[campaign-types]] — campaign type comparison and decision tree
+- [[demand-gen]] — conversion-focused video advertising (successor to Video Action)
 - [[conversion-actions]] — conversion action types and setup
 - [[enhanced-conversions]] — cross-device matching for video viewers
 - [[bidding-strategies]] — bid strategy selection guide

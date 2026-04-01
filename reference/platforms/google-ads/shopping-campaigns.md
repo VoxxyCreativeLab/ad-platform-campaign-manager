@@ -1,6 +1,6 @@
 ---
 title: Shopping Campaigns
-date: 2026-03-31
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -23,9 +23,9 @@ Product-feed-driven campaigns that display product images, prices, and merchant 
 | Factor | Standard Shopping | PMax with Feed |
 |--------|-------------------|----------------|
 | Control | High — manual bids, negatives, product groups | Low — Google AI manages everything |
-| Reporting | Granular — product, query, device level | Limited — asset group level only |
+| Reporting | Granular — product, query, device level | Improved — full search terms, channel-level breakdowns |
 | Reach | Shopping tab + Search only | All Google channels (Search, Display, YouTube, Gmail, Discover) |
-| Negatives | Supported | Account-level only (no campaign negatives) |
+| Negatives | Supported | Campaign-level (up to 10,000) + shared lists |
 | Best for | Experienced advertisers wanting control | Maximizing reach with minimal management |
 
 > [!info] Smart Shopping → PMax Migration
@@ -113,9 +113,17 @@ This funnels queries through priority levels — high priority catches everythin
 - Exclude products that aren't profitable to advertise (low price, low margin)
 - Review "Products" tab regularly — fix disapproved items promptly
 
+### Audience Exclusions
+
+Since August 2025, Shopping campaigns support **audience exclusions**. Upload Customer Match lists or remarketing segments and exclude them at campaign level. Use this to:
+
+- Prevent ads showing to recent purchasers (avoid "buy again" waste)
+- Separate prospecting vs remarketing Shopping campaigns
+- Exclude low-value customer segments
+
 ### Negative Keywords
 
-- Shopping campaigns support negative keywords (unlike PMax)
+- Shopping campaigns support negative keywords
 - Add brand negatives to force queries through the priority funnel
 - Exclude irrelevant queries: "free", "cheap" (if premium brand), "DIY", "repair"
 - Mine the search terms report weekly for new negatives
@@ -165,6 +173,48 @@ This funnels queries through priority levels — high priority catches everythin
 - Always track actual transaction value in the conversion tag, not feed price
 - Regular reconciliation: compare Google Ads reported revenue vs backend revenue
 - Acceptable discrepancy: < 5%. Above that, investigate tag implementation
+
+## Free Listings
+
+The same Merchant Center product feed powers **free/organic product listings** across multiple Google surfaces:
+
+| Surface | Where |
+|---------|-------|
+| Shopping tab | Free product listings alongside paid Shopping ads |
+| Google Search | Rich product results in organic search |
+| Google Images | Product listings in image search |
+| Google Discover | Product cards in the Discover feed |
+
+### Why This Matters for Tracking
+
+- Free listings generate clicks at **zero cost** — incremental traffic from your existing feed
+- **Attribution distinction:** paid Shopping clicks vs free listing clicks must be separated in reporting
+- In Google Ads: free listing performance is visible under "Listing groups" → filter by "Free" vs "Paid"
+- In GA4: free listing clicks appear with different `utm_medium` values — ensure your attribution model distinguishes them
+- Monitor both channels: a product performing well on free listings may not need the same paid bid
+
+### Setup
+
+No additional setup required — if your Merchant Center feed is active and products are approved, free listings are enabled by default. Opt in/out via Merchant Center → Growth → Manage programs.
+
+## Merchant Center Transitions
+
+> [!warning] API Migration Deadline
+> Content API for Shopping sunsets **August 18, 2026** — replaced by the Merchant API. If your feed management relies on the Content API, plan your migration now.
+
+### Key Changes
+
+| Change | Date | Impact |
+|--------|------|--------|
+| Merchant Center Next is default | Now | New UI is the default interface; classic MC still accessible but being phased out |
+| Content API sunset | August 18, 2026 | All integrations using Content API must migrate to Merchant API |
+| Multi-channel product ID split | March 2026 | Products sold across multiple channels (online + local) require separate product IDs per channel |
+
+### Tracking Implications
+
+- **Merchant API:** if you have custom feed management scripts or sGTM integrations that call the Content API, migrate to the Merchant API before the deadline
+- **Product ID split:** if you sell products both online and in local inventory, ensure your tracking matches the new per-channel product IDs — mismatched IDs break conversion attribution
+- **Merchant Center Next:** the new interface reorganizes reporting; update any documentation or SOPs that reference classic MC navigation
 
 ## Related
 

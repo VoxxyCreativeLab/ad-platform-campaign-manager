@@ -1,6 +1,6 @@
 ---
 title: Google Ads Keyword Match Types
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -37,6 +37,28 @@ Matches searches with the same meaning/intent. Allows close variants (plurals, m
 
 **When to use:** High-value terms, brand terms, top performers.
 
+## AI Max for Search
+
+> [!warning] AI Max Overrides Match Types
+> AI Max for Search is a campaign-level toggle (globally available mid-2025) that, when enabled, **overrides your match type settings entirely**. Google expands targeting beyond your keyword lists using broad match + keywordless (DSA-like) targeting powered by Gemini.
+
+### What AI Max Does
+
+- Treats all keywords as broad match regardless of their configured match type
+- Adds keywordless query matching (similar to DSA) using your landing page content
+- Uses Gemini models to understand intent and expand beyond explicit keyword lists
+- Applies at the campaign level — either on or off for the entire campaign
+
+### When Match Type Strategy Still Matters
+
+The match type strategy by maturity framework below is **still valid for non-AI-Max campaigns**. If you haven't enabled AI Max, your match type settings behave as documented. However, Google has been pushing **broad match + smart bidding** as the default recommended approach for all advertisers, and AI Max takes this philosophy further by removing keyword-level control entirely.
+
+### Recommendation
+
+- For new campaigns: start with the maturity framework below. Enable AI Max once you have sufficient conversion data and trust smart bidding.
+- For mature campaigns already running broad match + smart bidding: AI Max is a natural next step. Monitor search terms closely during the transition.
+- Always maintain strong negative keyword lists — AI Max makes them more important, not less.
+
 ## Strategy by Campaign Maturity
 
 | Stage | Approach |
@@ -57,8 +79,18 @@ Prevent ads from showing for irrelevant searches.
 
 **Important:** Negative keywords do NOT include close variants. Add singular + plural forms.
 
+### PMax Negative Keywords
+
+Performance Max campaigns now support negative keywords — a major change from PMax's original launch:
+
+- **Campaign-level negatives (March 2025):** up to 10,000 negative keywords per PMax campaign, managed directly in the Google Ads UI
+- **Shared negative keyword lists (August 2025):** PMax campaigns can use account-level shared negative keyword lists, just like Search and Shopping campaigns
+
+This closes one of PMax's biggest control gaps. Apply your standard negative keyword lists to PMax campaigns to prevent wasted spend on irrelevant queries.
+
 ### Best Practices
 1. Review search terms weekly
 2. Build shared negative keyword lists at account level
 3. Common negatives: "jobs", "careers", "free", "how to", "what is"
 4. Use cross-campaign negatives to prevent ad group competition
+5. Apply shared negative keyword lists to PMax campaigns — they support them now
