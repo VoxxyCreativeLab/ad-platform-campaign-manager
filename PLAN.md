@@ -8,14 +8,14 @@ tags:
 
 # Plan — Ad Platform Campaign Manager
 
-**Last updated:** 2026-03-29
-**Current milestone:** Phase 1 — Knowledge & Guidance
+**Last updated:** 2026-03-31
+**Current milestone:** Phase 2 — Content Completion & MCP Prep
 
 ---
 
 ## Project Overview
 
-Claude Code plugin providing campaign management guidance for Google Ads. Phase 1 delivers knowledge-based skills (no API). Phase 2 adds live API integration via MCP. Phase 3 expands to multi-platform (Meta, LinkedIn, TikTok).
+Claude Code plugin providing campaign management guidance for Google Ads. Phase 1 delivered knowledge-based skills (no API). Phase 2 fills remaining content gaps and prepares MCP configuration. Phase 3 connects live API via MCP. Phase 4 expands to multi-platform.
 
 ---
 
@@ -23,16 +23,17 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 | Phase | Name | Status | Notes |
 |-------|------|--------|-------|
-| 1 | Knowledge & Guidance | ✅ Done | 8 skills, 37 reference files, 2 agents, config complete |
-| 2 | MCP API Integration | ⬜ Not started | Blocked until Google Ads API credentials obtained |
-| 3 | Multi-Platform | ⬜ Not started | Populate meta-ads/, linkedin-ads/, tiktok-ads/ |
+| 1 | Knowledge & Guidance | ✅ Done | 10 skills, 37 reference files, 2 agents, config complete |
+| 2 | Content Completion & MCP Prep | 🔄 In progress | Fill script files, repos catalog, update MCP refs, add campaign-cleanup skill |
+| 3 | MCP API Integration | ⬜ Not started | Try Explorer Access (2,880 ops/day, no application) before formal dev token |
+| 4 | Multi-Platform | ⬜ Not started | Populate meta-ads/, linkedin-ads/, tiktok-ads/ |
 
 ## Stages & Status
 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
-| 01 | Reference | ✅ Done | 37 files across 6 subdirectories |
-| 02 | Skills | ✅ Done | 10 skills (8 Phase 1 + 2 Phase 2 defined) |
+| 01 | Reference | 🔄 Expanding | 37 → 55+ files — adding 17 script docs, repos catalog |
+| 02 | Skills | 🔄 Expanding | 10 → 11 skills — adding campaign-cleanup |
 | 03 | Agents | ✅ Done | 2 agents (campaign-reviewer, tracking-auditor) |
 
 **Status key:** ⬜ Not started · 🔄 In progress · ✅ Done · ⚠️ Blocked
@@ -41,31 +42,45 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Current Focus
 
-**Active phase:** Phase 1 complete — awaiting Phase 2 unblock
-**What's done:** All 8 Phase 1 skills active. 37 reference files, 2 agents, config (conventions + quality criteria) complete. Phase 2 skills (`connect-mcp`, `live-report`) fully defined but not testable yet.
-**Blockers:** Phase 2 blocked on Google Ads API credentials
+**Active phase:** Phase 2 — Content Completion & MCP Prep
+**What's happening:**
+- Populating `reference/scripts/` subdirectories with 17 script documentation files
+- Creating `reference/repos/open-source-repos.md` — curated repo catalog
+- Updating MCP references — official repo moved to `googleads/google-ads-mcp`, added Explorer Access tier
+- Adding `campaign-cleanup` skill for messy account triage
+- Seeding `LESSONS.md` with master plugin development lessons
+**Blockers:** None for Phase 2. Phase 3 needs Google Ads API credentials (try Explorer Access first).
 
 ---
 
 ## Decisions Made
 
-- 2026-03-28 — Google Ads only for Phase 1; multi-platform deferred to Phase 3
+- 2026-03-28 — Google Ads only for Phase 1; multi-platform deferred to Phase 4
 - 2026-03-28 — tracking-bridge/ is the differentiator vs generic campaign tools
 - 2026-03-28 — Skills load reference docs selectively (never dump full tree into context)
 - 2026-03-28 — MWP overlay mode chosen (plugin directory structure is convention-locked)
+- 2026-03-31 — MCP confirmed as right approach (no official Google Ads CLI exists)
+- 2026-03-31 — Official MCP repo moved to `googleads/google-ads-mcp` (read-only, Google policy)
+- 2026-03-31 — Explorer Access (Feb 2026) may bypass developer token approval backlog
+- 2026-03-31 — PMax scripts get their own `scripts/pmax/` subdirectory
+- 2026-03-31 — Master plugin is always `project-structure-and-scaffolding-plugin`
 
 ---
 
 ## Next Steps
 
-1. **Test skills** — invoke each `/ad-platform-campaign-manager:*` skill and verify it loads correctly with reference docs
-2. **Real client work** — use `campaign-setup` and `conversion-tracking` on a live Google Ads account
-3. **Obtain API credentials** — Google Ads developer token + OAuth client ID/secret + refresh token to unblock Phase 2
-4. **Test Phase 2 skills** — once credentials are obtained, test `connect-mcp` and `live-report` with live data
+1. **Complete Phase 2** — finish all 10 content completion steps
+2. **Test skills** — invoke each `/ad-platform-campaign-manager:*` skill and verify it loads correctly
+3. **Try Explorer Access** — go to Google Ads → Tools → API Center, check for automatic 2,880 ops/day tier
+4. **Install read-only MCP** — `googleads/google-ads-mcp` as first live API connection
+5. **Test connect-mcp and live-report** — once API access is confirmed
+6. **Real client work** — use skills on a live Google Ads account
 
 ---
 
 ## Notes / Open Questions
 
-- Phase 2 skills (`connect-mcp`, `live-report`) are fully defined but not testable without API credentials
-- Platform placeholder directories (meta-ads/, linkedin-ads/, tiktok-ads/) contain only .gitkeep
+- Explorer Access (Feb 2026) provides 2,880 ops/day with no formal application — try this before standard developer token process
+- Phase 2 skills (`connect-mcp`, `live-report`) are fully defined, updated with Explorer Access path
+- Platform placeholder directories (meta-ads/, linkedin-ads/, tiktok-ads/) remain .gitkeep only (Phase 4)
+- `campaign-cleanup` skill addresses common pattern: messy accounts need triage before optimization

@@ -19,6 +19,7 @@ tags:
 | PMax work | `skills/pmax-guide/SKILL.md` | `reference/platforms/google-ads/pmax/*`, `bidding-strategies.md` | Tracking-bridge (unless conversion setup), scripts |
 | Budget / bids | `skills/budget-optimizer/SKILL.md` | `reference/platforms/google-ads/bidding-strategies.md`, `campaign-types.md` | Tracking-bridge, reporting, pmax, scripts |
 | Ads Scripts | `skills/ads-scripts/SKILL.md` | `reference/scripts/catalog.md`, `reference/platforms/google-ads/ads-scripts-api.md` | Everything else |
+| Account cleanup | `skills/campaign-cleanup/SKILL.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `negative-keyword-lists.md`, `account-structure.md` | Tracking-bridge, reporting, scripts, mcp |
 | Live reports | `skills/live-report/SKILL.md` | `reference/reporting/gaql-query-templates.md`, `gaql-reference.md` | Everything except reporting |
 | MCP setup | `skills/connect-mcp/SKILL.md` | `reference/mcp/*` | Everything else |
 | Full campaign audit (agent) | `agents/campaign-reviewer.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md` | Tracking-bridge, reporting, mcp |
@@ -59,9 +60,11 @@ reference/ ──────────────→ skills/    (skills load
 ## Phase Map
 
 ```
-Phase 1 (current): Knowledge & guidance skills — no API required
-    ↓ (when client Google Ads access is available)
-Phase 2: MCP API integration — connect-mcp + live-report skills
+Phase 1 (done): Knowledge & guidance skills — no API required
+    ↓
+Phase 2 (current): Content completion & MCP prep — fill scripts, repos, update refs
+    ↓ (try Explorer Access for 2,880 ops/day — no application needed)
+Phase 3: MCP API integration — connect-mcp + live-report skills
     ↓ (when expanding to other platforms)
-Phase 3: Multi-platform — populate meta-ads/, linkedin-ads/, tiktok-ads/
+Phase 4: Multi-platform — populate meta-ads/, linkedin-ads/, tiktok-ads/
 ```

@@ -19,13 +19,21 @@ tags:
 1. Log in to your Google Ads account (or MCC)
 2. Go to Tools → API Center
 3. If you don't have a developer token, apply for one
-4. Note: You'll start with a "Test account" token (limited access)
-5. Apply for "Standard access" once you're ready for production
 
 **Developer token levels:**
-- **Test account:** Can only access test accounts, unlimited API calls
-- **Basic access:** Up to 15,000 operations/day
-- **Standard access:** Up to 100,000 operations/day (most common)
+
+| Tier | Operations/Day | Application | Notes |
+|------|---------------|-------------|-------|
+| **Explorer Access** | 2,880 | **Automatic — no application** | New (Feb 2026). Try this first. |
+| Test Account | Unlimited | No | Only works on test accounts, not real data |
+| Basic Access | 15,000 | Yes — formal review | Can take days to weeks |
+| Standard Access | 100,000 | Yes — formal review | Most common for production |
+
+> [!tip] Start with Explorer Access
+> Google introduced Explorer Access in February 2026. It provides 2,880 operations/day with **no formal application**. For interactive use with Claude (running queries, pulling reports, making occasional changes), this is plenty. You can always upgrade later.
+
+> [!note] Cloud-Managed Access (Pilot)
+> Google is piloting a **cloud-managed access** tier that eliminates developer tokens entirely if you have a Google Cloud organization. Check the Google Ads API documentation for current availability.
 
 ## Step 2: Create GCP Project & OAuth Credentials
 

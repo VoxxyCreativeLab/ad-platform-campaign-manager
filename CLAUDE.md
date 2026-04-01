@@ -81,6 +81,7 @@ ad-platform-campaign-manager/
 | Work with PMax | `/ad-platform-campaign-manager:pmax-guide` |
 | Optimize budget/bids | `/ad-platform-campaign-manager:budget-optimizer` |
 | Browse Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` |
+| Clean up messy account | `/ad-platform-campaign-manager:campaign-cleanup` |
 | Understand task routing | [[CONTEXT]] |
 | Adjust conventions | [[_config/conventions|_config/conventions.md]] |
 | See what's in progress | [[PLAN]] |

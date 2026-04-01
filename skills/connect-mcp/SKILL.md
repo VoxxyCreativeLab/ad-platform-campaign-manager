@@ -13,7 +13,7 @@ disable-model-invocation: true
 Before starting, you need:
 1. A Google Ads account (or MCC account)
 2. A Google Cloud Platform project
-3. Google Ads API developer token
+3. Google Ads API developer token (Explorer Access works — no application needed)
 
 If you don't have these, this skill will guide you through obtaining them.
 
@@ -25,10 +25,20 @@ If you don't have these, this skill will guide you through obtaining them.
 
 ## Setup Steps
 
+### Step 0: Get API Access (Explorer Access — fastest path)
+
+Before anything else, check your API access level:
+1. Go to Google Ads → Tools → API Center
+2. Look for **Explorer Access** (2,880 ops/day, automatic — no application required)
+3. If Explorer Access is available, you can proceed immediately
+4. If you need more capacity later, apply for Basic (15,000/day) or Standard (100,000/day)
+
+> [!tip] Explorer Access is enough for interactive Claude usage — running queries, pulling reports, making occasional changes.
+
 ### Step 1: Choose MCP Server
 
 Present the comparison from the reference and help the user choose:
-- **Read-only analysis:** google-marketing-solutions/google_ads_mcp (official, safe)
+- **Read-only analysis:** googleads/google-ads-mcp (official, safe)
 - **Full management:** cohnen/mcp-google-ads (community, read+write)
 - **Both:** Install both for maximum capability
 
@@ -44,6 +54,10 @@ Walk through the OAuth setup guide:
 ### Step 3: Configure Claude Code
 
 Help the user add the MCP server to their Claude Code settings using the templates from the reference.
+
+Two configuration options:
+- **Global** (settings.json) — applies to all projects
+- **Project-level** (.mcp.json in project root) — per-client configuration, useful when managing multiple Google Ads accounts
 
 ### Step 4: Verify Connection
 

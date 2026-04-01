@@ -22,6 +22,7 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | PMax Guide | `/ad-platform-campaign-manager:pmax-guide` | Performance Max campaign guidance |
 | Budget Optimizer | `/ad-platform-campaign-manager:budget-optimizer` | Budget allocation and bid strategy |
 | Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` | Google Ads Scripts library |
+| Campaign Cleanup | `/ad-platform-campaign-manager:campaign-cleanup` | Account triage for messy/neglected accounts |
 
 ## Phase 2 — API Integration (requires Google Ads API credentials)
 

@@ -1,6 +1,6 @@
 ---
 title: Primer — Session Handoff
-date: 2026-03-29
+date: 2026-03-31
 tags:
   - mwp
 ---
@@ -15,36 +15,42 @@ tags:
 
 ## Last Completed
 
-- **Full skill review (`/review-skill all`)** — all 10 skills audited against Anthropic best practices and MWP quality criteria
-  - 9 of 10 scored 90+/100; `campaign-review` hit 100/100
-  - `live-report` scored 87/100 (lowest) — fixed to 95+
-- **4 auto-fixes applied:**
-  - Added "Use when..." trigger patterns to `conversion-tracking`, `live-report`, `reporting-pipeline` descriptions
-  - Added `live-report` routing row to root `CONTEXT.md` (was missing)
-- **Troubleshooting sections added to 7 skills** — `ads-scripts`, `budget-optimizer`, `campaign-setup`, `connect-mcp`, `keyword-strategy`, `pmax-guide`, `reporting-pipeline` now all have error handling tables
-- **Functional test-run** — ran `campaign-setup`, `pmax-guide`, and `budget-optimizer` end-to-end on a test scenario (plant ecom, Sweden, €80/day, 1000 SKUs, full sGTM)
-- **Validation against manual audit** — compared skill output (from minimal input) against a thorough screenshot-based account audit of the same client:
-  - Strategic alignment: ~85% (campaign type, bid strategy, audience signals, brand exclusions all correct)
-  - Tactical alignment: ~60% (feed-only PMax via GMC, keep Shopping alive were missed)
-  - Diagnostic alignment: ~30% (dirty conversion data, legacy tags, structural misconfiguration require live data)
-  - Key insight: audience signals predicted by the skill (House Plants, Lawn Care, Landscape Design) matched Google's own discovered converting audiences
+- **Phase 2: Content Completion & MCP Prep** — all 10 steps implemented:
+  - Updated 3 MCP reference files with new official repo (`googleads/google-ads-mcp`), Explorer Access tier (2,880 ops/day, no application), `.mcp.json` project-level config
+  - Created 17 Google Ads Script documentation files across 5 subdirectories (`bidding/` 3, `monitoring/` 4, `reporting/` 3, `cleanup/` 4, `pmax/` 3) — all with full working code, config tables, setup instructions
+  - Created `reference/repos/open-source-repos.md` — curated catalog of 9 repos (scripts, MCP servers, tracking infrastructure, CLIs)
+  - Updated `_config/ecosystem.md` with Google Ads MCP servers, CLIs (`adsctl`, `gaql-cli`), external tools
+  - Updated `skills/connect-mcp/SKILL.md` with Explorer Access as Step 0, new official repo, project-level config
+  - Created new `campaign-cleanup` skill for messy account triage (9 routing locations updated)
+  - Seeded `LESSONS.md` with 5 plugin development lessons from master plugin
+  - Updated `PLAN.md` to 4-phase structure
+
+## Current State
+
+- **84 markdown files** total (was 67)
+- **57 reference files** (was 39 — added 17 scripts + 1 repos catalog)
+- **11 skills** (was 10 — added `campaign-cleanup`)
+- **2 agents** (unchanged)
+- **0 stale placeholder directories** in scripts/ (all populated with real content)
 
 ## Next Steps
 
-1. **Phase 2 prep** — obtain Google Ads API developer token + OAuth credentials for MCP integration (closes the diagnostic gap found in testing)
-2. **Feed-only PMax via GMC** — document the Merchant Center campaign creation method in `pmax-guide` (the skill currently doesn't cover this)
-3. **Real client work** — skills are validated and ready for production use
-4. **Consider adding a `/campaign-cleanup` skill** — the test revealed a common pattern (messy existing account → stop the bleeding → rebuild) that isn't covered by any current skill
+1. **Try Explorer Access** — go to Google Ads → Tools → API Center, check for automatic 2,880 ops/day tier to unblock Phase 3
+2. **Install read-only MCP** — `googleads/google-ads-mcp` as first live API connection
+3. **Test connect-mcp skill** — end-to-end with real credentials
+4. **Test campaign-cleanup skill** — on a real messy client account
+5. **Feed-only PMax via GMC** — document in `pmax-guide` (gap found in previous testing)
+6. **Real client work** — skills are validated and ready for production use
 
 ## Open Blockers
 
-- **Phase 2 (MCP integration):** blocked on Google Ads API credentials (developer token, OAuth client ID/secret, refresh token)
-- **Multi-platform (Phase 3):** not started — Meta/LinkedIn/TikTok reference folders are empty placeholders
+- **Phase 3 (MCP integration):** needs Google Ads API credentials — try Explorer Access first (no application needed), fall back to Basic/Standard developer token if needed
+- **Multi-platform (Phase 4):** not started — Meta/LinkedIn/TikTok reference folders are empty placeholders
 
 ## Session Notes
 
-- All 10 skills now have error handling/troubleshooting sections
-- All 10 skills listed in all 3 routing locations (skills/CONTEXT.md, root CONTEXT.md, README.md)
-- All 48 file references verified as existing — zero broken links
-- The biggest quality gap is diagnostic: skills produce solid strategic plans from minimal input but can't detect conversion tracking pollution, structural misconfiguration, or inflated ROAS without live account data
-- `tracking-bridge/` remains the plugin's unique differentiator vs generic campaign tools
+- MCP confirmed as right approach (no official Google Ads CLI exists)
+- Official MCP server moved to `googleads/google-ads-mcp` (read-only, Google policy) — community `cohnen/mcp-google-ads` for write ops
+- `tracking-bridge/` remains the plugin's unique differentiator
+- Master plugin is `project-structure-and-scaffolding-plugin` — follow its LESSONS.md for save/commit/push patterns
+- After push: must run marketplace clone sync (git pull → uninstall → install → reload VSCode)

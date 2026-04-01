@@ -46,7 +46,10 @@ Claude Code MCP servers are configured in your settings.json.
 - `get_search_terms` — search terms report
 - And more...
 
-## google-marketing-solutions/google_ads_mcp (Official — Read Only)
+## googleads/google-ads-mcp (Official — Read Only)
+
+> [!note] Repo Change
+> The official server moved from `google-marketing-solutions/google_ads_mcp` to `googleads/google-ads-mcp`. The old repo still works but the new one is canonical.
 
 ```json
 {
@@ -98,6 +101,43 @@ Then reference in settings.json:
 }
 ```
 The MCP server will read from system environment variables automatically.
+
+## Project-Level Configuration (.mcp.json)
+
+Instead of configuring MCP servers globally in settings.json, you can create a `.mcp.json` file in your project root. This is useful when different projects use different Google Ads accounts.
+
+```json
+{
+  "mcpServers": {
+    "google-ads-official": {
+      "command": "uvx",
+      "args": ["google-ads-mcp-server"],
+      "env": {
+        "GOOGLE_ADS_DEVELOPER_TOKEN": "${GOOGLE_ADS_DEVELOPER_TOKEN}",
+        "GOOGLE_ADS_CLIENT_ID": "${GOOGLE_ADS_CLIENT_ID}",
+        "GOOGLE_ADS_CLIENT_SECRET": "${GOOGLE_ADS_CLIENT_SECRET}",
+        "GOOGLE_ADS_REFRESH_TOKEN": "${GOOGLE_ADS_REFRESH_TOKEN}",
+        "GOOGLE_ADS_CUSTOMER_ID": "1234567890"
+      }
+    },
+    "google-ads": {
+      "command": "uvx",
+      "args": ["mcp-google-ads"],
+      "env": {
+        "GOOGLE_ADS_DEVELOPER_TOKEN": "${GOOGLE_ADS_DEVELOPER_TOKEN}",
+        "GOOGLE_ADS_CLIENT_ID": "${GOOGLE_ADS_CLIENT_ID}",
+        "GOOGLE_ADS_CLIENT_SECRET": "${GOOGLE_ADS_CLIENT_SECRET}",
+        "GOOGLE_ADS_REFRESH_TOKEN": "${GOOGLE_ADS_REFRESH_TOKEN}",
+        "GOOGLE_ADS_LOGIN_CUSTOMER_ID": "${GOOGLE_ADS_LOGIN_CUSTOMER_ID}",
+        "GOOGLE_ADS_CUSTOMER_ID": "1234567890"
+      }
+    }
+  }
+}
+```
+
+> [!tip] Per-Client Setup
+> For each client project directory, create a `.mcp.json` with that client's `CUSTOMER_ID`. Keep sensitive credentials in environment variables — only the account-specific customer ID goes in the file.
 
 ## Verifying Connection
 

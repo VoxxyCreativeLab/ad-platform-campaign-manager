@@ -11,7 +11,7 @@ tags:
 
 # Skills — Context
 
-10 invocable skills, each in its own folder with a `SKILL.md` file. Phase 1 (8 skills) requires no API. Phase 2 (2 skills) requires MCP connection.
+11 invocable skills, each in its own folder with a `SKILL.md` file. Phase 1 (9 skills) requires no API. Phase 2 (2 skills) requires MCP connection.
 
 ## Conventions
 
@@ -34,6 +34,8 @@ campaign-review ─────→ audit/*, quality-score, bidding-strategies
 pmax-guide ──────────→ pmax/*, bidding-strategies
 budget-optimizer ────→ bidding-strategies, campaign-types
 ads-scripts ─────────→ scripts/catalog, ads-scripts-api
+campaign-cleanup ────→ audit/*, common-mistakes, negative-keyword-lists,
+                       account-structure
 connect-mcp ─────────→ mcp/*
 live-report ─────────→ reporting/gaql-query-templates, gaql-reference
 ```
@@ -44,6 +46,7 @@ Skills may recommend other skills to the user:
 
 - `campaign-setup` → recommends `conversion-tracking` for tracking setup
 - `campaign-review` → recommends `conversion-tracking` if tracking is missing
+- `campaign-cleanup` → recommends `conversion-tracking`, `campaign-setup`, `keyword-strategy`, `budget-optimizer`
 - `pmax-guide` → recommends `conversion-tracking` for PMax conversion requirements
 - `live-report` → requires `connect-mcp` for MCP setup
 - `reporting-pipeline` → complements `live-report` (design vs live data)

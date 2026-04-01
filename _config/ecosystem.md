@@ -81,6 +81,8 @@ tags:
 | `n8n` | N8N | Start local N8N instance, import/export workflows |
 | `vercel` | Next.js, landing pages | Deploy to Vercel from terminal |
 | `wrangler` | Edge / Cloudflare | Deploy to Cloudflare Workers/Pages |
+| `adsctl` | Google Ads | kubectl-style CLI — GAQL REPL, campaign editing, multi-account |
+| `gaql-cli` | Google Ads | GAQL-focused REPL with autocomplete (by GetYourGuide) |
 
 ---
 
@@ -89,6 +91,8 @@ tags:
 | MCP | Domain | What it enables | Status |
 |-----|--------|----------------|--------|
 | Notion MCP | All | Read/write Notion pages, databases, comments | ✅ Active |
+| googleads/google-ads-mcp | Google Ads | Read-only — diagnostics, analytics, GAQL, anomaly detection | 🔲 Awaiting credentials |
+| cohnen/mcp-google-ads | Google Ads | Read + Write — full CRUD, keywords, budget, GAQL | 🔲 Awaiting credentials |
 | GitHub MCP | All | Read/write GitHub repos, issues, PRs | 🔲 Not configured |
 | Browser MCP | QA, testing, scraping | Automate browser actions | 🔲 Not configured |
 | Database MCP | Software, finance, N8N | Query databases directly | 🔲 Not configured |
@@ -102,6 +106,9 @@ tags:
 |------|--------|---------|
 | Google Tag Manager UI | GTM | Template upload, container management, preview |
 | GTM Template Gallery | GTM | Community template submission |
+| Google Ads UI | Google Ads | Campaign management, Scripts editor, API Center |
+| Google Ads API Center | Google Ads | Developer token management, access level requests |
+| Google Merchant Center | Google Ads / PMax | Product feeds for Shopping and PMax campaigns |
 | WordPress Admin | WordPress | Content, plugins, theme management |
 | Vercel Dashboard | Next.js | Deployment monitoring |
 | N8N Cloud / Self-hosted | N8N | Workflow execution and management |

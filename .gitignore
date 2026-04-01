@@ -10,5 +10,6 @@ desktop.ini
 *.swo
 
 # Cloned reference repos (local only)
-reference/repos/
+reference/repos/*/
 !reference/repos/.gitkeep
+!reference/repos/*.md
