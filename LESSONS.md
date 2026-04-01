@@ -16,6 +16,7 @@ Campaign management and plugin development lessons captured over time. Each entr
 - **2026-03-31** — `disable-model-invocation: true` in skill frontmatter hides the skill from model discovery entirely. Use for Phase 2+ skills that aren't ready yet. Set to `false` to make them visible.
 - **2026-03-31** — VSCode extension requires a full window reload (`Ctrl+Shift+P` → `Developer: Reload Window`) after plugin install. Opening new tabs or restarting terminals is not enough.
 - **2026-03-31** — Skill names must be globally unique across ALL installed plugins. Prefix with plugin name to prevent collisions.
+- **2026-03-31** — Claude (the AI) MUST run the marketplace clone sync as part of every commit+push workflow, NOT just remind the user to do it manually. The sync commands (`git pull` marketplace clone → `claude plugin uninstall` → `claude plugin install`) must be executed by Claude immediately after `git push`, in the same workflow. Telling the user "don't forget to sync" is not acceptable — the user asked Claude to handle the full process. If Claude cannot execute the sync commands (e.g. plan mode), it must flag this as a blocker before pushing.
 
 ## Campaign Strategy
 
