@@ -32,7 +32,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
-| 01 | Reference | 🔄 Expanding | 37 → 55+ files — adding 17 script docs, repos catalog |
+| 01 | Reference | 🔄 Expanding | 37 → 59+ files — added 17 script docs, repos catalog, 4 campaign type docs |
 | 02 | Skills | 🔄 Expanding | 10 → 11 skills — adding campaign-cleanup |
 | 03 | Agents | ✅ Done | 2 agents (campaign-reviewer, tracking-auditor) |
 
@@ -75,6 +75,48 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 4. **Install read-only MCP** — `googleads/google-ads-mcp` as first live API connection
 5. **Test connect-mcp and live-report** — once API access is confirmed
 6. **Real client work** — use skills on a live Google Ads account
+
+---
+
+## Audit Findings (2026-03-31)
+
+Full plugin audit identified 4 weaknesses. Tackling one at a time — each gets its own brainstorm → spec → plan → implementation cycle.
+
+| # | Weakness | Impact | Status |
+|---|----------|--------|--------|
+| 1 | **No API access** — guidance-only, Phase 2 skills hidden | Can teach but can't validate or automate | ⬜ Not started |
+| 2 | **Missing campaign types** — Shopping, Video/YouTube, DSA, Demand Gen undocumented | Plugin can't guide setup/review for these types | ✅ Done |
+| 3 | **Workflow dead-ends** — campaign-setup has no post-launch monitoring, live-report has no actionable insights, keyword-strategy has no brainstorming scaffold | User gets a plan but no follow-through | ⬜ Not started |
+| 4 | **Skills tell rather than ask** — instructional instead of Socratic, less interactive than agents | Tracking specialist needs guided discovery, not info dumps | ⬜ Not started |
+
+### Finding 1: No API Access
+
+- Everything is knowledge + guidance. Cannot pull live data, make changes, or verify.
+- `connect-mcp` and `live-report` skills are hidden (`disable-model-invocation: true`).
+- **Blocker:** Google Ads API credentials not yet obtained.
+- **Possible mitigation:** CSV upload workflows, manual data entry patterns, workaround designs.
+
+### Finding 2: Missing Campaign Types
+
+- **Shopping campaigns:** No standalone reference. Critical for e-commerce clients.
+- **Video/YouTube:** Mentioned in `campaign-types.md` but no dedicated doc.
+- **Dynamic Search Ads (DSA):** Not documented.
+- **Demand Gen:** Google's newest format (2024), only briefly mentioned.
+- **Fix:** Create 4 new reference files under `reference/platforms/google-ads/`.
+
+### Finding 3: Workflow Dead-Ends
+
+- `campaign-setup` ends at "here's your plan" — no Day 1 / Week 1 / Month 1 monitoring.
+- `live-report` lists 6 report types but no guidance on what to DO with results.
+- `keyword-strategy` says "brainstorm keywords" but doesn't scaffold the brainstorming process.
+- **Fix:** Add post-launch monitoring skill or section; add actionable insight guidance to existing skills.
+
+### Finding 4: Instructional vs Socratic Skills
+
+- Many skills tell (instructional) rather than ask (Socratic/guided discovery).
+- `campaign-review` skill is less interactive than the `campaign-reviewer` agent.
+- `campaign-setup` asks questions in Step 1 but then jumps to templates.
+- **Fix:** Redesign skill interaction patterns — add decision-tree questions throughout, not just at the start.
 
 ---
 

@@ -13,6 +13,8 @@ tags:
 ```
 What is your primary goal?
 ├── Drive sales/leads from search intent → SEARCH
+├── Sell physical products with images/prices → SHOPPING (needs Merchant Center)
+├── Capture long-tail queries from website content → DSA
 ├── Maximize conversions across all Google channels → PERFORMANCE MAX
 ├── Build brand awareness with visual ads → DISPLAY
 ├── Drive action through visual storytelling → DEMAND GEN
@@ -97,6 +99,8 @@ What is your primary goal?
   - Reaching users in "discovery" mindset
 - **Typical bid strategies:** Maximize Conversions, Target CPA
 
+See [[demand-gen]] for full details including asset requirements, audience strategy, and tracking implications.
+
 ## Video Campaigns
 
 **Best for:** YouTube advertising for awareness, consideration, or action.
@@ -107,14 +111,50 @@ What is your primary goal?
   - **Video action:** Drive conversions (in-stream with CTAs)
 - **Where ads show:** YouTube, Google video partners
 
+See [[video-campaigns]] for full details including format specs, targeting options, and tracking implications (VTC, cross-device, sGTM).
+
+## Shopping Campaigns
+
+**Best for:** E-commerce product ads with images, prices, and merchant info in search results.
+
+- **Ad format:** Product listing ads (from Merchant Center feed)
+- **Targeting:** Product groups (brand, category, item ID, custom labels)
+- **Where ads show:** Google Search, Shopping tab
+- **When to use:**
+  - E-commerce with a product catalog
+  - When product images/prices drive clicks
+  - When you want product-level ROAS tracking
+  - Google Merchant Center account required
+- **Typical bid strategies:** Manual CPC, Target ROAS, Maximize Conversion Value
+
+See [[shopping-campaigns]] for full details including feed requirements, priority strategies, and tracking implications.
+
+## Dynamic Search Ads (DSA)
+
+**Best for:** Supplementing keyword campaigns by auto-generating ads from your website content.
+
+- **Ad format:** Text ads with auto-generated headlines from page content
+- **Targeting:** Website pages (page feeds, URL rules, categories)
+- **Where ads show:** Google Search
+- **When to use:**
+  - Large product catalogs or content sites
+  - Capturing long-tail queries your keyword list misses
+  - Keyword gap discovery (mine search terms for new keywords)
+  - Quick campaign launches without extensive keyword research
+- **Typical bid strategies:** Maximize Conversions, Target CPA
+
+See [[dsa]] for full details including page feed setup, exclusion best practices, and tracking implications (landing page coverage audit).
+
 ## Campaign Type Comparison
 
-| Feature | Search | PMax | Display | Demand Gen | Video |
-|---------|--------|------|---------|------------|-------|
-| Intent level | High | Mixed | Low-Med | Medium | Low-Med |
-| Control | High | Low | Medium | Medium | Medium |
-| Reporting depth | High | Limited | Medium | Medium | Medium |
-| Creative needs | Text only | All formats | Images+text | Images+video | Video |
-| Min budget | Low | Medium | Low | Medium | Medium |
-| Beginner-friendly | Yes | Yes* | Remarketing | No | No |
-| Conv. data needed | Some | 30+/month | Some | Some | Some |
+| Feature | Search | PMax | Shopping | Display | Demand Gen | Video | DSA |
+|---------|--------|------|----------|---------|------------|-------|----|
+| Intent level | High | Mixed | High | Low-Med | Medium | Low-Med | High |
+| Control | High | Low | High | Medium | Medium | Medium | Medium |
+| Reporting depth | High | Limited | High | Medium | Medium | Medium | High |
+| Creative needs | Text only | All formats | Product feed | Images+text | Images+video | Video | Auto+text |
+| Min budget | Low | Medium | Low | Low | Medium | Medium | Low |
+| Beginner-friendly | Yes | Yes* | Medium | Remarketing | No | No | Yes |
+| Conv. data needed | Some | 30+/month | Some | Some | Some | Some | Some |
+
+*\* PMax is easy to set up but hard to diagnose when underperforming — limited reporting transparency.*

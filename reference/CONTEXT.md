@@ -20,7 +20,11 @@ To add a new platform: populate `platforms/[platform-name]/`, update `reporting/
 ### Google Ads Fundamentals
 | File | Content |
 |------|---------|
-| `platforms/google-ads/campaign-types.md` | Decision tree + all campaign types (Search, PMax, Display, Demand Gen, Video) |
+| `platforms/google-ads/campaign-types.md` | Decision tree + all campaign types overview |
+| `platforms/google-ads/shopping-campaigns.md` | Shopping campaigns: feed requirements, product groups, priority strategies |
+| `platforms/google-ads/video-campaigns.md` | Video/YouTube campaigns: subtypes, format specs, VTC tracking |
+| `platforms/google-ads/dsa.md` | Dynamic Search Ads: page feeds, exclusions, landing page coverage |
+| `platforms/google-ads/demand-gen.md` | Demand Gen campaigns: asset specs, lookalike segments, attribution |
 | `platforms/google-ads/account-structure.md` | Hierarchy, naming conventions, structure patterns |
 | `platforms/google-ads/match-types.md` | Broad/phrase/exact, strategy by maturity, negatives |
 | `platforms/google-ads/quality-score.md` | Components, impact, diagnostics, improvement |
