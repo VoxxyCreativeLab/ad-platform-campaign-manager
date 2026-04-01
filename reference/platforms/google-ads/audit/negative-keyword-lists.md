@@ -1,6 +1,6 @@
 ---
 title: Negative Keyword Lists by Category
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -10,6 +10,9 @@ tags:
 # Negative Keyword Lists by Category
 
 Pre-built negative keyword lists to prevent wasted spend. Add these as shared negative keyword lists at the account level, then apply to relevant campaigns.
+
+> [!tip] PMax Support
+> Since August 2025, shared negative keyword lists can be applied to Performance Max campaigns. Previously this required a Google rep — it's now self-service in the Google Ads UI.
 
 ## Universal Negatives (Apply to Most Campaigns)
 

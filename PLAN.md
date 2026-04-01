@@ -8,7 +8,7 @@ tags:
 
 # Plan — Ad Platform Campaign Manager
 
-**Last updated:** 2026-03-31
+**Last updated:** 2026-04-01
 **Current milestone:** Phase 2 — Content Completion & MCP Prep
 
 ---
@@ -44,11 +44,13 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 **Active phase:** Phase 2 — Content Completion & MCP Prep
 **What's happening:**
-- Populating `reference/scripts/` subdirectories with 17 script documentation files
-- Creating `reference/repos/open-source-repos.md` — curated repo catalog
-- Updating MCP references — official repo moved to `googleads/google-ads-mcp`, added Explorer Access tier
-- Adding `campaign-cleanup` skill for messy account triage
-- Seeding `LESSONS.md` with master plugin development lessons
+- ✅ Populated `reference/scripts/` with 17 script docs
+- ✅ Created `reference/repos/open-source-repos.md` — curated repo catalog
+- ✅ Updated MCP references — official repo moved to `googleads/google-ads-mcp`, added Explorer Access tier
+- ✅ Added `campaign-cleanup` skill for messy account triage
+- ✅ Seeded `LESSONS.md` with master plugin development lessons
+- ✅ Added 4 campaign type docs (Shopping, Video, DSA, Demand Gen) — Finding #2
+- ✅ **Fact-check sweep** — all 17 reference docs updated to 2025-2026 accuracy
 **Blockers:** None for Phase 2. Phase 3 needs Google Ads API credentials (try Explorer Access first).
 
 ---
@@ -117,6 +119,67 @@ Full plugin audit identified 4 weaknesses. Tackling one at a time — each gets 
 - `campaign-review` skill is less interactive than the `campaign-reviewer` agent.
 - `campaign-setup` asks questions in Step 1 but then jumps to templates.
 - **Fix:** Redesign skill interaction patterns — add decision-tree questions throughout, not just at the start.
+
+---
+
+## Fact-Check Sweep (2026-04-01)
+
+Full fact-check of all 17 `reference/platforms/google-ads/` files against 2025-2026 Google Ads changes. 16 of 17 files need updates. Plan: `docs/superpowers/plans/2026-04-01-fact-check-sweep.md` (in execution plan file).
+
+### Tier 1: Factual Errors (must fix)
+
+| File | Issue | Status |
+|------|-------|--------|
+| `bidding-strategies.md` | Enhanced CPC described as active — **deprecated March 2025** | ⬜ Not started |
+| `pmax/pmax-metrics.md` | Says PMax shows "categories of search terms" — **has full visibility since March 2025** | ⬜ Not started |
+| `campaign-types.md` | Video Action Campaigns still listed — **migrated to Demand Gen, no longer exist** | ⬜ Not started |
+| `ads-scripts-api.md` | AWQL reporting example deprecated; UrlFetchApp limit wrong (50 vs 20,000/day); missing `AdsApp.search()` | ✅ Done |
+
+### Tier 2: Significant Omissions (should fix)
+
+| File | Issue | Status |
+|------|-------|--------|
+| `match-types.md` | AI Max for Search not mentioned — fundamentally changes match type behavior | ✅ Done |
+| `pmax/audience-signals.md` | Missing audience exclusions, demographic exclusions, search themes (50/group) | ✅ Done |
+| `shopping-campaigns.md` | PMax comparison table wrong (negatives + reporting), free listings missing, MC transitions | ✅ Done |
+| `video-campaigns.md` | Video Action subtype removed, Video Reach sub-options incomplete, Shorts behavior | ✅ Done |
+| `demand-gen.md` | GDN expansion missing, VAC absorption, channel controls, ~10 new features | ✅ Done |
+| `dsa.md` | AI Max for Search not mentioned, no deprecation warning | ✅ Done |
+
+### Tier 3: Minor Updates
+
+| File | Issue | Status |
+|------|-------|--------|
+| `account-structure.md` | PMax negatives missing, "extensions" terminology | ✅ Done |
+| `quality-score.md` | "Extensions" → "assets", component weighting, Ad Rank formula | ✅ Done |
+| `ad-extensions.md` | Header terminology, call-only deprecation, Brand Guidelines | ✅ Done |
+| `conversion-actions.md` | Incomplete categories, External Attribution, Data Manager API | ✅ Done |
+| `enhanced-conversions.md` | Account-level EC (2025 change), automatic detection, Data Manager | ✅ Done |
+| `gaql-reference.md` | DEMAND_GEN channel type, PMax channel reporting, PARAMETERS | ✅ Done |
+
+### Tier 4: PMax & Audit Remaining
+
+| File | Issue | Status |
+|------|-------|--------|
+| `pmax/asset-requirements.md` | Description spec wrong, search themes, brand guidelines, video count | ✅ Done |
+| `pmax/feed-optimization.md` | MC Next, Content API sunset, product ID split, feed frequency | ✅ Done |
+| `audit/audit-checklist.md` | PMax section too thin, Consent Mode v2, "assets" terminology | ✅ Done |
+| `audit/common-mistakes.md` | Missing PMax-specific mistakes section | ✅ Done |
+
+### Clean
+
+| File | Status |
+|------|--------|
+| `audit/negative-keyword-lists.md` | ✅ Updated (added PMax shared lists note) |
+
+### Recurring themes — all resolved
+
+- ~~PMax evolved massively in 2025~~ → all PMax docs updated
+- ~~AI Max for Search absent everywhere~~ → added to match-types, campaign-types, dsa, account-structure, audit-checklist
+- ~~"Extensions" → "assets" rebrand~~ → replaced throughout all files
+- ~~Enhanced CPC deprecated March 2025~~ → removed from all strategy/bidding tables, replaced with deprecation warnings
+- ~~Video Action Campaigns gone~~ → removed from video-campaigns, campaign-types; redirected to demand-gen
+- ~~Demand Gen expanded~~ → GDN, VAC absorption, channel controls, new features all documented
 
 ---
 
