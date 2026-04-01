@@ -1,6 +1,6 @@
 ---
 title: Primer — Session Handoff
-date: 2026-03-31
+date: 2026-04-01
 tags:
   - mwp
 ---
@@ -15,36 +15,60 @@ tags:
 
 ## Last Completed
 
-- **Phase 2: Content Completion & MCP Prep** — all 10 steps implemented
-- **LESSONS.md updated** in both this plugin and master (`project-structure-and-scaffolding-plugin`) — added critical lesson: Claude must execute marketplace clone sync itself after every push, not just remind the user
-- **Marketplace clone sync** executed for both plugins after push
+### Session 2026-04-01: Reference Knowledge Base Overhaul
 
-### Phase 2 Deliverables
+Two major deliverables:
 
-- 17 Google Ads Script docs across 5 subdirectories (`bidding/` 3, `monitoring/` 4, `reporting/` 3, `cleanup/` 4, `pmax/` 3)
-- 3 MCP reference files updated (new official repo `googleads/google-ads-mcp`, Explorer Access tier, `.mcp.json` config)
+**1. New campaign type docs (Finding #2 from plugin audit)**
+- Created 4 standalone reference files: `shopping-campaigns.md`, `video-campaigns.md`, `dsa.md`, `demand-gen.md`
+- Updated `campaign-types.md` with cross-references, decision tree, and comparison table
+- Updated CONTEXT.md routing tables
+
+**2. Full fact-check sweep of all 17 reference docs**
+- Tier 1 (factual errors): eCPC deprecated, PMax full search terms, Video Action removed, AWQL→GAQL
+- Tier 2 (significant omissions): AI Max added, audience exclusions, GDN expansion, free listings, DSA deprecation warning
+- Tier 3 (minor updates): "assets" terminology, QS weighting, account-level EC, Data Manager API, GAQL updates
+- Tier 4 (PMax & audit): asset specs fixed, MC Next, 7 new PMax audit checks, 7 new PMax common mistakes
+- All recurring themes resolved: PMax 2025, AI Max, "assets" rebrand, eCPC, VAC→Demand Gen
+
+Design spec: `docs/superpowers/specs/2026-03-31-missing-campaign-types-design.md`
+
+### Session 2026-03-31: Phase 2 Completion
+
+- 17 Google Ads Script docs across 5 subdirectories
+- 3 MCP reference files updated (new official repo `googleads/google-ads-mcp`, Explorer Access tier)
 - `reference/repos/open-source-repos.md` — 9 curated repos
-- `_config/ecosystem.md` — added MCP servers, CLIs, external tools
-- `skills/connect-mcp/SKILL.md` — Explorer Access as Step 0
 - New `campaign-cleanup` skill — account triage for messy/neglected accounts
 - `LESSONS.md` seeded with 6 plugin development lessons
-- `PLAN.md` updated to 4-phase structure
 
 ## Current State
 
-- **84 markdown files** total
-- **57 reference files** (17 scripts + 1 repos catalog added)
-- **11 skills** (added `campaign-cleanup`)
-- **2 agents** (unchanged)
-- **0 stale placeholder directories** in scripts/
+- **21 reference files** under `platforms/google-ads/` (8 core + 4 campaign types + 4 PMax + 3 audit + GAQL + Scripts API)
+- **17 script docs** under `reference/scripts/`
+- **6 tracking-bridge docs** (the differentiator)
+- **5 reporting docs** + **3 MCP docs** + **1 repos catalog**
+- **11 skills** (9 Phase 1 active + 2 Phase 2 hidden)
+- **2 agents** (campaign-reviewer, tracking-auditor)
+- All reference docs fact-checked to 2025-2026 accuracy
+
+## Remaining Audit Findings
+
+3 of 4 audit findings from 2026-03-31 remain (saved in PLAN.md):
+
+| # | Finding | Status |
+|---|---------|--------|
+| 1 | No API access — guidance-only, Phase 2 skills hidden | ⬜ Not started |
+| 2 | Missing campaign types | ✅ Done |
+| 3 | Workflow dead-ends — no post-launch monitoring, no actionable insights, no brainstorming scaffold | ⬜ Not started |
+| 4 | Skills tell rather than ask — instructional instead of Socratic | ⬜ Not started |
 
 ## Next Steps
 
-1. **Try Explorer Access** — Google Ads → Tools → API Center, check for 2,880 ops/day automatic tier
-2. **Install read-only MCP** — `googleads/google-ads-mcp` as first live connection
-3. **Test connect-mcp and campaign-cleanup skills** with real accounts
-4. **Feed-only PMax via GMC** — document in `pmax-guide` (known gap)
-5. **Real client work** — all Phase 1 + 2 skills ready for production
+1. **Tackle Finding #3 or #4** — workflow dead-ends or Socratic skill redesign
+2. **Try Explorer Access** — Google Ads → Tools → API Center, check for 2,880 ops/day automatic tier
+3. **Install read-only MCP** — `googleads/google-ads-mcp` as first live connection
+4. **Test skills with real accounts** — all Phase 1 + 2 skills ready for production
+5. **Feed-only PMax via GMC** — document in `pmax-guide` (known gap)
 
 ## Open Blockers
 
