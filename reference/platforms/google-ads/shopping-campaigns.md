@@ -80,7 +80,6 @@ Shopping Campaign (priority: High / Medium / Low)
 | Strategy | When to Use |
 |----------|-------------|
 | Manual CPC | New campaigns, small catalogs, or when you want full control |
-| Enhanced CPC | Transitional — manual CPC with Google's auto-adjustment |
 | Target ROAS | Mature campaigns with 15+ conversions/month and consistent ROAS |
 | Maximize Conversion Value | When you want maximum revenue and trust Google's bidding |
 
