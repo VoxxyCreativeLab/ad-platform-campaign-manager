@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-01
-**Current milestone:** Phase 2 — Content Completion & MCP Prep
+**Current milestone:** Phase 3 — MCP API Integration ✅ Done (25 tools verified in Claude Code)
 
 ---
 
@@ -24,8 +24,8 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 | Phase | Name | Status | Notes |
 |-------|------|--------|-------|
 | 1 | Knowledge & Guidance | ✅ Done | 10 skills, 37 reference files, 2 agents, config complete |
-| 2 | Content Completion & MCP Prep | 🔄 In progress | Fill script files, repos catalog, update MCP refs, add campaign-cleanup skill |
-| 3 | MCP API Integration | 🔄 In progress | Custom `voxxy/google-ads-mcp-server` built — 9 read + 11 write tools, three-gate safety architecture |
+| 2 | Content Completion & MCP Prep | ✅ Done | Script files, repos catalog, MCP refs, campaign-cleanup skill |
+| 3 | MCP API Integration | ✅ Done | Custom `voxxy/google-ads-mcp-server` — 25 tools verified in Claude Code, three-gate safety |
 | 4 | Multi-Platform | ⬜ Not started | Populate meta-ads/, linkedin-ads/, tiktok-ads/ |
 
 ## Stages & Status
@@ -42,17 +42,14 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Current Focus
 
-**Active phase:** Phase 2 — Content Completion & MCP Prep
+**Active phase:** Audit Findings #3/#4
 **What's happening:**
-- ✅ Populated `reference/scripts/` with 17 script docs
-- ✅ Created `reference/repos/open-source-repos.md` — curated repo catalog
-- ✅ Updated MCP references — official repo moved to `googleads/google-ads-mcp`, added Explorer Access tier
-- ✅ Added `campaign-cleanup` skill for messy account triage
-- ✅ Seeded `LESSONS.md` with master plugin development lessons
-- ✅ Added 4 campaign type docs (Shopping, Video, DSA, Demand Gen) — Finding #2
-- ✅ **Fact-check sweep** — all 17 reference docs updated to 2025-2026 accuracy
-- 🔄 **Phase 3 started** — custom `voxxy/google-ads-mcp-server` built with three-gate safety architecture (session passphrase + validate_only dry-run + confirm); MCP reference docs updated
-**Blockers:** None for Phase 2. Phase 3 needs Google Ads API credentials configured (try Explorer Access first).
+- ✅ Phase 2 complete — scripts, repos, MCP refs, campaign-cleanup, fact-check sweep
+- ✅ Phase 3 complete — MCP server built, connected, and verified (25 tools live in Claude Code)
+- ✅ Finding #1 resolved — API access working via custom MCP server
+- ✅ Finding #2 resolved — 4 campaign type docs added
+- Next: Finding #3 (workflow dead-ends) or Finding #4 (Socratic skills)
+**Blockers:** OAuth client secret should be rotated (exposed in previous session screenshot).
 
 ---
 
@@ -68,17 +65,24 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - 2026-03-31 — PMax scripts get their own `scripts/pmax/` subdirectory
 - 2026-03-31 — Master plugin is always `project-structure-and-scaffolding-plugin`
 - 2026-04-01 — Custom `voxxy/google-ads-mcp-server` built locally — preferred over community alternatives due to three-gate safety architecture and audit logging
+- 2026-04-01 — Human currency input only (no raw micros) — prevents the #1 costly Google Ads API error
+- 2026-04-01 — Session passphrase write lock (`voxxy-writes`) — additional gate beyond draft-then-confirm
+- 2026-04-01 — MCP server lives as sibling under CLAUDE-plugins (own git repo, own version lifecycle)
+- 2026-04-01 — Explorer Access (2,880 ops/day) obtained — sufficient for interactive Claude use
+- 2026-04-01 — MCC 7244069584 as login_customer_id — gives access to all child client accounts
+- 2026-04-01 — MCP config: use `claude mcp add` CLI, not manual JSON edits (`~/.claude/.mcp.json` is not read, `~/.claude.json` gets overwritten)
+- 2026-04-01 — Python `-m` shared singleton must live in its own module (not in the `__main__` entrypoint) to avoid dual-instance bug
+- 2026-04-01 — Windows MCP servers need wrapper scripts in clean paths (no spaces) — `C:\mcp\` directory
 
 ---
 
 ## Next Steps
 
-1. **Complete Phase 2** — finish all 10 content completion steps
-2. **Test skills** — invoke each `/ad-platform-campaign-manager:*` skill and verify it loads correctly
-3. **Try Explorer Access** — go to Google Ads → Tools → API Center, check for automatic 2,880 ops/day tier
-4. **Install read-only MCP** — `googleads/google-ads-mcp` as first live API connection
-5. **Test connect-mcp and live-report** — once API access is confirmed
-6. **Real client work** — use skills on a live Google Ads account
+1. **Rotate OAuth client secret** — exposed in previous session screenshot, update `~/google-ads.yaml`
+2. **Unhide Phase 2 skills** — set `disable-model-invocation: false` in `connect-mcp` and `live-report`
+3. **Tackle Finding #3** — workflow dead-ends (post-launch monitoring, actionable insights, brainstorming scaffolds)
+4. **Tackle Finding #4** — Socratic skill redesign (guided discovery instead of info dumps)
+5. **Real client work** — use skills on a live Google Ads account
 
 ---
 
@@ -88,7 +92,7 @@ Full plugin audit identified 4 weaknesses. Tackling one at a time — each gets 
 
 | # | Weakness | Impact | Status |
 |---|----------|--------|--------|
-| 1 | **No API access** — guidance-only, Phase 2 skills hidden | Can teach but can't validate or automate | ⬜ Not started |
+| 1 | **No API access** — guidance-only, Phase 2 skills hidden | Can teach but can't validate or automate | ✅ Done — MCP server built, connected, 25 tools verified in Claude Code |
 | 2 | **Missing campaign types** — Shopping, Video/YouTube, DSA, Demand Gen undocumented | Plugin can't guide setup/review for these types | ✅ Done |
 | 3 | **Workflow dead-ends** — campaign-setup has no post-launch monitoring, live-report has no actionable insights, keyword-strategy has no brainstorming scaffold | User gets a plan but no follow-through | ⬜ Not started |
 | 4 | **Skills tell rather than ask** — instructional instead of Socratic, less interactive than agents | Tracking specialist needs guided discovery, not info dumps | ⬜ Not started |
@@ -187,7 +191,25 @@ Full fact-check of all 17 `reference/platforms/google-ads/` files against 2025-2
 
 ## Notes / Open Questions
 
-- Explorer Access (Feb 2026) provides 2,880 ops/day with no formal application — try this before standard developer token process
-- Phase 2 skills (`connect-mcp`, `live-report`) are fully defined, updated with Explorer Access path
+- Explorer Access obtained (2,880 ops/day) — sufficient for interactive use
+- Phase 2 skills (`connect-mcp`, `live-report`) ready to unhide — MCP is now verified
 - Platform placeholder directories (meta-ads/, linkedin-ads/, tiktok-ads/) remain .gitkeep only (Phase 4)
 - `campaign-cleanup` skill addresses common pattern: messy accounts need triage before optimization
+- Custom MCP server: `../google-ads-mcp-server/` — 96 tests, 25 tools, 16 commits, clean git
+- **SECURITY:** OAuth client secret was exposed in a conversation screenshot (2026-04-01). Must rotate in GCP Console before production use.
+
+## MCP Server Details (google-ads-mcp-server)
+
+| Item | Value |
+|------|-------|
+| Location | `../google-ads-mcp-server/` (sibling to this plugin) |
+| Tests | 96 passing |
+| Tools | 25 (3 session + 9 read + 11 write + 2 confirm) |
+| Safety | Three-gate: passphrase lock → ChangePlan draft → validate_only dry-run |
+| Passphrase | `voxxy-writes` |
+| API Tier | Explorer Access (2,880 ops/day) |
+| MCC | 7244069584 (Voxxy Creative Lab) |
+| Credentials | `~/google-ads.yaml` |
+| MCP Config | `claude mcp add google-ads -s user` → `C:\mcp\google-ads.cmd` |
+| Audit Log | `~/google-ads-mcp-audit.jsonl` |
+| Implementation Plan | `docs/superpowers/plans/2026-04-01-google-ads-mcp-server.md` |

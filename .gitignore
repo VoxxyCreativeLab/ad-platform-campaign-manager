@@ -9,6 +9,9 @@ desktop.ini
 *.swp
 *.swo
 
+# MCP config (local paths)
+.mcp.json
+
 # Cloned reference repos (local only)
 reference/repos/*/
 !reference/repos/.gitkeep
