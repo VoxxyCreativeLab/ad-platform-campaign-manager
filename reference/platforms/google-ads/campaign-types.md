@@ -1,6 +1,6 @@
 ---
 title: Google Ads Campaign Types
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -17,7 +17,7 @@ What is your primary goal?
 ├── Capture long-tail queries from website content → DSA
 ├── Maximize conversions across all Google channels → PERFORMANCE MAX
 ├── Build brand awareness with visual ads → DISPLAY
-├── Drive action through visual storytelling → DEMAND GEN
+├── Drive action through visual storytelling / video → DEMAND GEN
 ├── Video views / brand awareness on YouTube → VIDEO
 ├── App installs / in-app actions → APP
 └── Local store visits / calls → PERFORMANCE MAX (with store goals)
@@ -44,6 +44,9 @@ What is your primary goal?
 - **Display URL paths:** 2 optional path fields (15 chars each)
 - Google tests combinations automatically; pin headlines/descriptions only when legally required
 
+> [!info] AI Max for Search
+> AI Max for Search (2025) is a campaign-level feature that expands query matching beyond your keyword list using broad match + keywordless targeting. Not a separate campaign type, but fundamentally changes Search campaign behavior. Works with Smart Bidding strategies. Enable it per campaign to let Google's AI find relevant queries you haven't explicitly targeted.
+
 ## Performance Max (PMax)
 
 **Best for:** Maximizing conversions across ALL Google channels with a single campaign.
@@ -60,7 +63,8 @@ What is your primary goal?
 - **Structure:** Campaign → Asset Groups (each with audience signals + creative assets)
 
 ### PMax Considerations
-- Limited reporting transparency (improving but still less granular than Search)
+- Reporting has improved significantly: full search terms report, channel-level breakdown, demographic data
+- Campaign-level negative keywords now supported (10,000 limit)
 - May cannibalize brand Search traffic
 - Needs quality creative assets (images, videos, text) to perform well
 - Works best with a Merchant Center product feed for Shopping
@@ -87,17 +91,20 @@ What is your primary goal?
 
 ## Demand Gen Campaigns
 
-**Best for:** Visual storytelling to drive action on YouTube, Discover, Gmail.
+**Best for:** Visual storytelling to drive action across Google's visual surfaces.
 
 - **Ad format:** Image ads, video ads, carousel ads
 - **Targeting:** Google audiences, lookalike segments, customer lists
-- **Where ads show:** YouTube (in-feed, Shorts), Discover feed, Gmail
+- **Where ads show:** YouTube (in-feed, Shorts), Discover feed, Gmail, Google Display Network (3M+ sites)
+- **Now includes:** Absorbed Video Action Campaigns — action-oriented video advertising lives here now
+- **Channel controls:** Choose which surfaces to serve at the ad group level
 - **When to use:**
   - Mid-funnel engagement
   - Visually appealing products/services
   - Social-media-style ad creative
   - Reaching users in "discovery" mindset
-- **Typical bid strategies:** Maximize Conversions, Target CPA
+  - Action-oriented video campaigns (formerly Video Action)
+- **Typical bid strategies:** Maximize Conversions, Target CPA, Target CPC (new in 2025)
 
 See [[demand-gen]] for full details including asset requirements, audience strategy, and tracking implications.
 
@@ -108,8 +115,9 @@ See [[demand-gen]] for full details including asset requirements, audience strat
 - **Subtypes:**
   - **Video reach:** Maximize impressions (bumper, in-stream)
   - **Video views:** Maximize views (in-feed, in-stream skippable)
-  - **Video action:** Drive conversions (in-stream with CTAs)
 - **Where ads show:** YouTube, Google video partners
+
+> [!info] Video Action Campaigns have been absorbed into Demand Gen. Action-oriented video advertising now lives in [[demand-gen]].
 
 See [[video-campaigns]] for full details including format specs, targeting options, and tracking implications (VTC, cross-device, sGTM).
 
@@ -145,16 +153,18 @@ See [[shopping-campaigns]] for full details including feed requirements, priorit
 
 See [[dsa]] for full details including page feed setup, exclusion best practices, and tracking implications (landing page coverage audit).
 
+> [!warning] DSA is expected to be superseded by AI Max for Search. No official sunset date yet, but AI Max overlaps significantly with DSA functionality (auto-generating ads from website content, capturing long-tail queries). Consider testing AI Max as a replacement.
+
 ## Campaign Type Comparison
 
 | Feature | Search | PMax | Shopping | Display | Demand Gen | Video | DSA |
 |---------|--------|------|----------|---------|------------|-------|----|
 | Intent level | High | Mixed | High | Low-Med | Medium | Low-Med | High |
 | Control | High | Low | High | Medium | Medium | Medium | Medium |
-| Reporting depth | High | Limited | High | Medium | Medium | Medium | High |
+| Reporting depth | High | Medium | High | Medium | Medium | Medium | High |
 | Creative needs | Text only | All formats | Product feed | Images+text | Images+video | Video | Auto+text |
 | Min budget | Low | Medium | Low | Low | Medium | Medium | Low |
 | Beginner-friendly | Yes | Yes* | Medium | Remarketing | No | No | Yes |
 | Conv. data needed | Some | 30+/month | Some | Some | Some | Some | Some |
 
-*\* PMax is easy to set up but hard to diagnose when underperforming — limited reporting transparency.*
+*\* PMax is easy to set up but can be hard to diagnose when underperforming — reporting has improved but is still less granular than Search.*

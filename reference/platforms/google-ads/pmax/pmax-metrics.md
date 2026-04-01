@@ -1,6 +1,6 @@
 ---
 title: PMax Metrics & Reporting
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -9,13 +9,15 @@ tags:
 
 # PMax Metrics & Reporting
 
-## Understanding PMax Reporting Limitations
+## Understanding PMax Reporting
 
-PMax has less granular reporting than Search campaigns. Key differences:
-- No keyword-level performance data (limited search term reporting)
+PMax reporting has improved significantly since 2025. Current state:
+- Full search term visibility with individual queries (since March 2025)
+- Channel-level performance breakdown (Search, YouTube, Display, Discover, Gmail, Maps, Search Partners)
 - No placement-level data for Display/YouTube
 - Asset performance is rated (Best/Good/Low) rather than showing exact metrics
 - Audience insights show segments, not individual targeting performance
+- Demographic breakdowns (age and gender) now available
 
 ## Key Metrics to Monitor
 
@@ -50,10 +52,10 @@ Google rates each individual asset:
 
 ### Search Term Insights
 Available under Insights → Search terms:
-- Shows **categories** of search terms, not individual terms
-- Categories: branded, competitor, generic
-- Shows impression share by category
-- Use this to detect brand cannibalization
+- Shows **full search term visibility** — individual queries, not just categories (since March 2025)
+- You can add negative keywords directly from the search terms report
+- Categories view still available: branded, competitor, generic with impression share
+- Use this to detect brand cannibalization and refine targeting
 
 ## Common PMax Reports to Build
 
@@ -75,13 +77,31 @@ Search Category | Impressions | Clicks | Conversions | % of Total
 ```
 Check if PMax is spending on the right search categories.
 
-### Channel Distribution
-PMax distributes across channels. Check:
+### Channel-Level Performance Reporting
+PMax now breaks down performance by channel with clicks, conversions, conversion value, and cost. Available channels:
+- Search, YouTube, Display, Discover, Gmail, Maps, Search Partners
+
+**Access:** Google Ads UI campaign report → Segment by Network. Also available via Google Ads API v23+ (January 2026).
+
+Use this to answer:
 - What % goes to Search vs Display vs YouTube vs Shopping?
 - Is one channel dominating? (Often Shopping for e-commerce)
 - Are you getting YouTube/Display impressions? (Need video assets)
+- Which channels drive conversions vs. which just spend budget?
 
-**Access:** Insights tab → Performance by time → filter by network
+### Asset Group Segmentation
+Asset group performance can now be segmented by:
+- **Device** (desktop, mobile, tablet)
+- **Time** (hour of day, day of week)
+- **Conversion action** (which goals each asset group drives)
+- **Network** (which channels each asset group serves)
+- **Top vs. Others** ranking (how your asset groups compare to competitors)
+
+### Demographic Reporting
+Age and gender breakdowns are now available for PMax campaigns. Use these to:
+- Identify which demographics convert best
+- Adjust audience signals based on actual performance data
+- Spot demographic skews that may indicate wasted spend
 
 ## PMax vs Search Campaign Comparison
 
@@ -95,6 +115,8 @@ To prevent PMax from cannibalizing brand Search:
 1. Create a brand exclusion list in Google Ads
 2. Apply it to PMax campaigns
 3. Run brand terms only in dedicated Search campaigns
+
+> [!warning] Brand exclusions only apply to Search and Shopping channels within PMax. They do NOT apply to Display, YouTube, or Discover channels — your brand may still appear in those surfaces.
 
 ## GAQL Queries for PMax
 

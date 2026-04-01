@@ -1,6 +1,6 @@
 ---
 title: Google Ads Scripts — API Quick Reference
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -97,6 +97,8 @@ while (iterator.hasNext()) {
 .withCondition("QualityScore < 5")
 ```
 
+> [!info] `.withCondition()` accepts both AWQL field names (`CampaignName`, `Impressions`) and GAQL names (`campaign.name`, `metrics.impressions`) — AWQL names still work via auto-translation, but GAQL names are the modern standard for new code.
+
 ### Stats Object
 ```javascript
 var stats = entity.getStatsFor("LAST_30_DAYS");
@@ -174,8 +176,30 @@ var results = BigQuery.Jobs.query({
 }, "project-id");
 ```
 
-## Reporting API
+## Reporting API (GAQL)
+
+Use `AdsApp.search()` with Google Ads Query Language (GAQL). This replaces the legacy `AdsApp.report()` with AWQL.
+
 ```javascript
+var results = AdsApp.search(
+  "SELECT campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros " +
+  "FROM campaign " +
+  "WHERE metrics.impressions > 0 " +
+  "AND segments.date DURING LAST_30_DAYS"
+);
+
+while (results.hasNext()) {
+  var row = results.next();
+  Logger.log(row.campaign.name + ": " + row.metrics.clicks + " clicks");
+}
+```
+
+### Legacy Reporting (AWQL — deprecated)
+
+`AdsApp.report()` with AWQL still works via auto-translation but is deprecated. Migrate to `AdsApp.search()` with GAQL for new scripts.
+
+```javascript
+// Legacy — still functional but deprecated
 var report = AdsApp.report(
   "SELECT CampaignName, Impressions, Clicks, Cost " +
   "FROM CAMPAIGN_PERFORMANCE_REPORT " +
@@ -189,7 +213,7 @@ while (rows.hasNext()) {
   Logger.log(row["CampaignName"] + ": " + row["Clicks"] + " clicks");
 }
 
-// Export to Sheets
+// Export to Sheets (only available with AdsApp.report)
 report.exportToSheet(sheet);
 ```
 
@@ -213,7 +237,8 @@ function main() {
 ## Limits
 
 - 30-minute execution time
-- 250,000 entity operations per execution
-- 50 UrlFetchApp calls per execution
+- 250,000 entity *reads* per execution (via selectors/iterators)
+- ~10,000 entity *mutations* (get/mutate operations for writes) per execution
+- 20,000 UrlFetchApp calls per day (across all script executions in the account)
 - 100 email recipients per day
 - Scripts can only access the account they're created in (or MCC child accounts)

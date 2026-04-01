@@ -1,6 +1,6 @@
 ---
 title: Google Ads Bidding Strategies
-date: 2026-03-28
+date: 2026-04-01
 tags:
   - reference
   - google-ads
@@ -42,7 +42,7 @@ Sets bids to get as many conversions as possible at or below your target cost pe
 ### Target ROAS (tROAS)
 Sets bids to maximize conversion value at your target return on ad spend.
 
-- **Min data:** 15-30 conversions with values in last 30 days
+- **Min data:** 50+ conversions with values in last 30 days
 - **ROAS calculation:** (Conversion Value / Ad Spend) × 100%
 - **Example:** Target ROAS 400% = for every €1 spent, you expect €4 in return
 - **Good for:** E-commerce, revenue-focused campaigns
@@ -67,7 +67,8 @@ Spends your budget to maximize total conversion value. Like Maximize Conversions
 ### Manual CPC
 You set bids at keyword or ad group level. Full control, but labor-intensive.
 
-- **Enhanced CPC (eCPC):** Optional overlay — Google adjusts your manual bid up/down based on conversion likelihood. A middle ground.
+> [!warning] Enhanced CPC was deprecated March 2025. Existing eCPC campaigns now run as Manual CPC. Use Maximize Conversions or Target CPA instead.
+
 - **Good for:** Very small budgets, new accounts with zero data, specific keyword experiments
 - **Bad for:** Scale — you can't optimize bids across thousands of signals like Google's AI can
 
@@ -91,13 +92,28 @@ Bids to show your ad a certain percentage of the time.
 
 | Scenario | Strategy | Notes |
 |----------|----------|-------|
-| New account, no data | Manual CPC or Maximize Clicks | Gather initial data |
+| New account, no data | Manual CPC → Maximize Conversions | Gather initial data, then switch when ready |
 | 15+ conversions/month | Maximize Conversions | Build conversion volume |
 | 30+ conversions/month | Target CPA | Set tCPA at current average |
 | E-commerce, 30+ conv | Target ROAS | Set tROAS at current average |
 | Brand protection | Target Impression Share | 90%+ on brand terms |
 | Remarketing | Target CPA | Good conversion rates expected |
 | PMax | Max Conv Value + tROAS | PMax works best with value-based |
+
+## Additional Strategies
+
+### Demand Gen Target CPC
+Demand Gen campaigns support Target CPC bidding (new in 2025), allowing you to set a target cost per click alongside conversion-based strategies. Useful when optimizing for traffic quality on Demand Gen surfaces (YouTube, Discover, Gmail, Display).
+
+### Portfolio Bid Strategies
+Portfolio bid strategies let you group multiple campaigns under a single shared bidding strategy with a shared budget. Benefits:
+- Manage bid targets across campaigns from one place
+- Balance performance between campaigns (one campaign can compensate for another)
+- Set minimum and maximum bid limits across the portfolio
+- Available for Target CPA, Target ROAS, Maximize Conversions, Maximize Conversion Value, and Target Impression Share
+
+> [!info] AI Max for Search
+> AI Max for Search (2025) layers on top of Search campaigns and works with Smart Bidding strategies. It expands query matching beyond your keyword list using broad match + keywordless targeting. Your chosen bid strategy still governs optimization — AI Max changes *which* queries you enter auctions for, not *how* you bid.
 
 ## Learning Period
 
