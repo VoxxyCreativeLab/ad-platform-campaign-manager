@@ -17,6 +17,7 @@ Campaign management and plugin development lessons captured over time. Each entr
 - **2026-03-31** — VSCode extension requires a full window reload (`Ctrl+Shift+P` → `Developer: Reload Window`) after plugin install. Opening new tabs or restarting terminals is not enough.
 - **2026-03-31** — Skill names must be globally unique across ALL installed plugins. Prefix with plugin name to prevent collisions.
 - **2026-03-31** — Claude (the AI) MUST run the marketplace clone sync as part of every commit+push workflow, NOT just remind the user to do it manually. The sync commands (`git pull` marketplace clone → `claude plugin uninstall` → `claude plugin install`) must be executed by Claude immediately after `git push`, in the same workflow. Telling the user "don't forget to sync" is not acceptable — the user asked Claude to handle the full process. If Claude cannot execute the sync commands (e.g. plan mode), it must flag this as a blocker before pushing.
+- **2026-04-01** — Plugin installation can silently half-complete. The marketplace clone (`known_marketplaces.json`), the cache (`plugins/cache/`), and the `additionalDirectories` entry can all exist while `installed_plugins.json` and `enabledPlugins` in `settings.json` are missing. This means the plugin LOOKS installed but skills never load. Root cause: the `claude plugin install` step either failed silently, was interrupted, or was skipped during a batch install. Always verify all 5 registration points after installing: (1) `known_marketplaces.json`, (2) `plugins/cache/{name}/`, (3) `additionalDirectories` in `settings.json`, (4) `installed_plugins.json`, (5) `enabledPlugins` in `settings.json`. If skills don't appear, check `enabledPlugins` first — that's the gate.
 
 ## MCP Server Development
 
@@ -34,7 +35,9 @@ Campaign management and plugin development lessons captured over time. Each entr
 
 ## Campaign Strategy
 
-_(No entries yet)_
+- **2026-04-01** — Feed-only PMax is a distinct configuration from full PMax. When a client has a Merchant Center feed but no creative assets, the answer is NOT "you can't launch PMax" — it's feed-only PMax with auto-generated creative from the feed. The campaign-setup skill previously blocked this path entirely with a factually wrong blocker.
+- **2026-04-01** — Account restructuring (messy Shopping+PMax → clean feed-based PMax) must be stepwise: create new PMax paused → pause overlapping Shopping → enable new PMax → monitor 2-4 weeks. Never cold-turkey. Keep old campaigns paused (not deleted) for 30 days as rollback.
+- **2026-04-01** — Since late 2024, PMax is no longer auto-prioritized over Standard Shopping in auctions. Both compete on Ad Rank. Running both (70/30 or 80/20 split favoring PMax) is a viable strategy — restructuring to PMax-only is a choice, not a necessity.
 
 ## Keyword Management
 
@@ -46,7 +49,10 @@ _(No entries yet)_
 
 ## Performance Max
 
-_(No entries yet)_
+- **2026-04-01** — Listing groups are the PMax equivalent of Shopping product groups. They control which products from the feed appear in which asset group. Critical difference from Shopping: listing groups are for inclusion/exclusion ONLY — they do NOT set bids. Without proper listing group configuration, all products dump into a single bucket — defeating the purpose of asset group segmentation.
+- **2026-04-01** — Seven listing group dimension types available: ProductBrandInfo, ProductCategoryInfo, ProductChannelInfo, ProductConditionInfo, ProductCustomAttributeInfo, ProductItemIdInfo, ProductTypeInfo. Custom attributes (custom_label_0-4) are the most flexible. Google's API docs say listing groups work "best when targeting groups of products" — use item ID sparingly.
+- **2026-04-01** — When creating PMax from Merchant Center Next, use Performance tab → "Create campaign" — this pre-selects PMax with the feed and is the fastest path for e-commerce clients.
+- **2026-04-01** — SMEC data (4,000+ campaigns): 90% of PMax spend goes to feed-based ads (74-97% range). "There is little-to-no downside of using a feed-only campaign and little-to-no upside of using a full-asset campaign." The choice is strategic, not performance-driven.
 
 ## Conversion Tracking
 

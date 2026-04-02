@@ -18,15 +18,21 @@ Product-feed-driven campaigns that display product images, prices, and merchant 
 - When you want product-level bidding and ROAS tracking
 - **Not for:** services, lead generation, or businesses without a product catalog
 
-### Shopping vs PMax with Feed
+### Shopping vs PMax: Choosing the Right Feed-Based Campaign
 
-| Factor | Standard Shopping | PMax with Feed |
-|--------|-------------------|----------------|
-| Control | High — manual bids, negatives, product groups | Low — Google AI manages everything |
-| Reporting | Granular — product, query, device level | Improved — full search terms, channel-level breakdowns |
-| Reach | Shopping tab + Search only | All Google channels (Search, Display, YouTube, Gmail, Discover) |
-| Negatives | Supported | Campaign-level (up to 10,000) + shared lists |
-| Best for | Experienced advertisers wanting control | Maximizing reach with minimal management |
+| Factor | Standard Shopping | Feed-Only PMax | Full PMax (with assets) |
+|--------|-------------------|----------------|------------------------|
+| Creative needed | None (feed only) | None (feed only) | Images + video + text |
+| Control | High — manual bids, negatives, product groups | Low — Google AI manages everything | Low — Google AI manages everything |
+| Reporting | Granular — product, query, device level | Full search terms, channel-level breakdowns | Full search terms, channel-level breakdowns |
+| Reach | Shopping tab + Search only | All Google channels (Search, Display, YouTube, Gmail, Discover) | All Google channels (higher quality non-Shopping surfaces) |
+| Negatives | Supported | Campaign-level (up to 10,000) + shared lists | Campaign-level (up to 10,000) + shared lists |
+| Auction priority | Competes on Ad Rank (since late 2024) | Competes on Ad Rank (since late 2024) | Competes on Ad Rank (since late 2024) |
+| Non-Shopping ad quality | N/A | Auto-generated (lower) | Custom creative (higher) |
+| Best for | Experienced advertisers wanting granular control | E-commerce without creative team, wanting multi-channel reach | E-commerce with creative resources wanting maximum brand control |
+
+> [!tip] Starting Point for Most E-Commerce Clients
+> Feed-only PMax is the default starting point when a client has a healthy Merchant Center feed but no creative team. 90% of PMax spend goes to feed-based surfaces anyway — start feed-only, add creative assets incrementally as resources allow. See [[pmax/feed-only-pmax|feed-only-pmax]] for the full setup guide.
 
 > [!info] Smart Shopping → PMax Migration
 > Google migrated Smart Shopping to Performance Max in 2022. Standard Shopping campaigns still exist and remain a strong choice when you need granular control. See [[campaign-types]] for the full comparison.

@@ -13,9 +13,10 @@ tags:
 ```
 What is your primary goal?
 ├── Drive sales/leads from search intent → SEARCH
-├── Sell physical products with images/prices → SHOPPING (needs Merchant Center)
+├── Sell physical products (want granular control) → SHOPPING (needs Merchant Center)
+├── Sell physical products (want multi-channel reach) → FEED-ONLY PMAX (needs Merchant Center)
 ├── Capture long-tail queries from website content → DSA
-├── Maximize conversions across all Google channels → PERFORMANCE MAX
+├── Maximize conversions across all channels (with creative) → PERFORMANCE MAX
 ├── Build brand awareness with visual ads → DISPLAY
 ├── Drive action through visual storytelling / video → DEMAND GEN
 ├── Video views / brand awareness on YouTube → VIDEO
@@ -66,8 +67,9 @@ What is your primary goal?
 - Reporting has improved significantly: full search terms report, channel-level breakdown, demographic data
 - Campaign-level negative keywords now supported (10,000 limit)
 - May cannibalize brand Search traffic
-- Needs quality creative assets (images, videos, text) to perform well
+- Needs quality creative assets (images, videos, text) to perform well — unless using feed-only configuration
 - Works best with a Merchant Center product feed for Shopping
+- **Feed-only PMax:** E-commerce businesses with a Merchant Center feed can run PMax WITHOUT custom creative — Google auto-generates ads from the feed. 90% of PMax spend goes to feed-based surfaces. See [[pmax/feed-only-pmax|feed-only-pmax]] for setup and listing group configuration.
 - See `/ad-platform-campaign-manager:pmax-guide` for detailed guidance
 
 ## Display Campaigns

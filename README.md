@@ -19,7 +19,7 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | Conversion Tracking | `/ad-platform-campaign-manager:conversion-tracking` | GTM/sGTM conversion setup for Google Ads |
 | Reporting Pipeline | `/ad-platform-campaign-manager:reporting-pipeline` | Google Ads to BigQuery pipelines |
 | Campaign Review | `/ad-platform-campaign-manager:campaign-review` | Best-practice audit checklist |
-| PMax Guide | `/ad-platform-campaign-manager:pmax-guide` | Performance Max campaign guidance |
+| PMax Guide | `/ad-platform-campaign-manager:pmax-guide` | Performance Max — feed-only PMax, full PMax, listing groups, restructuring |
 | Budget Optimizer | `/ad-platform-campaign-manager:budget-optimizer` | Budget allocation and bid strategy |
 | Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` | Google Ads Scripts library |
 | Campaign Cleanup | `/ad-platform-campaign-manager:campaign-cleanup` | Account triage for messy/neglected accounts |

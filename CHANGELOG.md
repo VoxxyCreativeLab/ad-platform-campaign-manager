@@ -7,6 +7,31 @@ tags:
 
 # Changelog
 
+## [1.2.0] — 2026-04-01
+
+### Added
+- **Feed-only PMax reference doc** (`pmax/feed-only-pmax.md`) — complete guide: listing group configuration (7 API-verified dimension types), Merchant Center campaign creation flow, minimum viable setup, account restructuring pattern (Shopping+PMax → clean feed-based PMax), external sources (Google API docs, SMEC 4,000+ campaign study)
+- **3 Google repos** added to open-source-repos.md: pmax_best_practices_dashboard, feedgen, google-ads-python retail examples
+- **3 PMax monitoring scripts** (Nils Rooijmans): Shopping spend drop alert, non-converting search term alerts, placement exclusion suggestions
+
+### Changed
+- **pmax-guide skill** restructured — Step 0 decision fork (feed-only / full / non-feed PMax), listing group guidance as first-class step, account restructuring section, updated troubleshooting
+- **campaign-setup skill** — PMax block expanded with decision fork (MC feed? → feed-only / full / non-feed), new Shopping campaigns block added
+- **campaign-types.md** — decision tree now shows Feed-Only PMax as visible option alongside Shopping
+- **shopping-campaigns.md** — comparison table expanded from 2 to 3 columns (Shopping / Feed-Only PMax / Full PMax)
+- **asset-requirements.md** — callout added: feed-only PMax doesn't require these assets
+- **CONTEXT.md** — routing row added for feed-only PMax / Shopping restructuring
+- **All CONTEXT.md files** updated with new file counts and dependency maps
+- **START-HERE.md** — skill count corrected (11), campaign-cleanup added to nav table
+- **LESSONS.md** — 7 entries added under Campaign Strategy + Performance Max
+- **open-source-repos.md** — 2 new sections (Feed & PMax Retail, PMax Monitoring Scripts)
+
+### Fixed
+- **campaign-setup skill line 101** — removed factually wrong blocker ("Cannot launch PMax without creative") — feed-only PMax CAN launch with just a Merchant Center feed
+- **PMax priority assumption** — added note that PMax is no longer auto-prioritized over Shopping (late 2024 change)
+
+---
+
 ## [1.1.0] — 2026-04-01
 
 ### Added

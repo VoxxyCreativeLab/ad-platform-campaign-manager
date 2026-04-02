@@ -63,3 +63,15 @@ The `campaign-review` skill and `campaign-reviewer` agent cover the same domain 
 - **CHANGELOG.md** — appends with each version
 
 No file tries to do two jobs.
+
+## Feed-Only PMax as Distinct Configuration
+
+**Decision:** Created a dedicated reference doc (`pmax/feed-only-pmax.md`) for feed-only PMax rather than patching it into `asset-requirements.md` or `feed-optimization.md`. Restructured `pmax-guide` skill with a decision fork at Step 0.
+
+**Why:** The plugin treated PMax as a single archetype requiring full creative assets. This caused a real failure: Claude couldn't guide campaign restructuring for an e-commerce client because it thought PMax "cannot launch" without creative. Feed-only PMax is a distinct configuration with its own setup flow (listing groups, not asset groups), its own auto-generation behavior, and its own restructuring pattern. It shares audience signals and bidding with full PMax, but the setup workflow is fundamentally different. A decision fork at the top of the skill routes to the correct path.
+
+## External Source Verification
+
+**Decision:** `feed-only-pmax.md` includes an External Sources section with Google API docs, code samples, and SMEC industry research URLs.
+
+**Why:** Campaign management knowledge can become stale quickly. By citing specific Google support pages, API documentation, and industry research (SMEC's 4,000+ campaign study), future sessions can verify claims against the source rather than trusting training data. The listing group dimensions were verified against the actual API proto definition, not guessed from memory.

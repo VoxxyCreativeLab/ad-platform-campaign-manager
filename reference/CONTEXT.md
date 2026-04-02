@@ -51,6 +51,7 @@ To add a new platform: populate `platforms/[platform-name]/`, update `reporting/
 ### PMax
 | File | Content |
 |------|---------|
+| `platforms/google-ads/pmax/feed-only-pmax.md` | Feed-only PMax: listing groups, MC creation flow, restructuring, external sources |
 | `platforms/google-ads/pmax/asset-requirements.md` | Text, image, video specs and best practices |
 | `platforms/google-ads/pmax/audience-signals.md` | Signal types, strategy, per-asset-group design |
 | `platforms/google-ads/pmax/feed-optimization.md` | Merchant Center feed attributes, title optimization |

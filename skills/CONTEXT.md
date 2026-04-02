@@ -31,7 +31,7 @@ keyword-strategy ────→ match-types, negative-keyword-lists
 conversion-tracking ─→ conversion-actions, enhanced-conversions, tracking-bridge/*
 reporting-pipeline ──→ reporting/*, gaql-reference
 campaign-review ─────→ audit/*, quality-score, bidding-strategies
-pmax-guide ──────────→ pmax/*, bidding-strategies
+pmax-guide ──────────→ pmax/*, bidding-strategies, shopping-campaigns
 budget-optimizer ────→ bidding-strategies, campaign-types
 ads-scripts ─────────→ scripts/catalog, ads-scripts-api
 campaign-cleanup ────→ audit/*, common-mistakes, negative-keyword-lists,

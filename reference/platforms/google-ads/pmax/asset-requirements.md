@@ -9,6 +9,9 @@ tags:
 
 # PMax Asset Requirements
 
+> [!info] Feed-Only PMax
+> If your PMax campaign uses a Merchant Center product feed and you don't have creative assets, you can run PMax with feed only — Google auto-generates ads from your product data. The asset minimums below apply to **full PMax campaigns with custom creative**. See [[feed-only-pmax]] for the feed-only configuration and what to add incrementally.
+
 ## Text Assets
 
 | Asset | Min | Max | Character Limit |

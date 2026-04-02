@@ -8,7 +8,7 @@ tags:
 
 # Google Ads — Context
 
-21 reference files: 8 core fundamentals, 4 campaign type deep-dives, 4 PMax, 3 audit, plus `gaql-reference.md` and `ads-scripts-api.md`.
+22 reference files: 8 core fundamentals, 4 campaign type deep-dives, 5 PMax, 3 audit, plus `gaql-reference.md` and `ads-scripts-api.md`.
 
 ## Which Skill Loads What
 
@@ -28,5 +28,6 @@ tags:
 | `video-campaigns.md` | campaign-setup (if Video), campaign-review |
 | `dsa.md` | campaign-setup (if DSA), campaign-review |
 | `demand-gen.md` | campaign-setup (if Demand Gen), campaign-review |
-| `pmax/*` | pmax-guide, campaign-setup (if PMax) |
+| `pmax/feed-only-pmax.md` | pmax-guide, campaign-setup (if feed-based PMax) |
+| `pmax/*` (other) | pmax-guide, campaign-setup (if PMax) |
 | `audit/*` | campaign-review, campaign-reviewer agent |

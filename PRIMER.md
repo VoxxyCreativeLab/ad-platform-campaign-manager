@@ -11,50 +11,53 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.1.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.2.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ## Last Completed
 
-### Session 2026-04-01 (Part 3): MCP Connection Verified
+### Session 2026-04-01 (Part 4): Feed-Only PMax Knowledge Gap Fixed
 
-**1. Fixed MCP server `tools/list` returning empty**
-- Root cause: `python -m` dual-instance bug — `server.py` as `__main__` created one `mcp` instance, tool modules importing `from google_ads_mcp.server import mcp` created a second. Tools registered on the wrong instance.
-- Fix: moved shared `mcp` object to `google_ads_mcp/app.py`, all modules import from there
-- 96 tests still passing after fix
+**Problem:** Plugin had zero coverage of feed-only PMax (PMax with Merchant Center feed, no creative assets). When asked to restructure a real e-commerce client's (Vaxteronline) messy Shopping+PMax campaigns, Claude failed — it didn't know feed-only PMax existed, couldn't explain listing groups, and the `campaign-setup` skill had a wrong blocker saying PMax "cannot launch" without creative.
 
-**2. Fixed MCP config registration**
-- `~/.claude/.mcp.json` is NOT read by VS Code extension (wrong file)
-- Manual edits to `~/.claude.json` get overwritten on startup
-- Correct method: `claude mcp add google-ads -s user -- "C:\mcp\google-ads.cmd"`
+**What was done:**
 
-**3. Windows path wrapper**
-- Created `C:\mcp\google-ads.cmd` to avoid spaces-in-path issues
-- Script `cd /d`s to server directory, runs `.venv\Scripts\python.exe -m google_ads_mcp.server`
+1. **Created `reference/platforms/google-ads/pmax/feed-only-pmax.md`** (~300 lines)
+   - Feed-only PMax config, minimum viable setup, MC Next creation flow
+   - Listing group configuration: 7 dimension types (verified against Google Ads API proto)
+   - Listing group strategies (margin tier, category, brand, performance, hero products)
+   - Account restructuring pattern (Shopping+PMax → clean feed-based PMax)
+   - SMEC industry data: 90% of PMax spend is feed-based (4,000+ campaigns)
+   - External sources section with Google official docs, API samples, SMEC research
+   - Priority change note: PMax no longer auto-prioritized over Shopping (late 2024)
 
-**4. Updated LESSONS.md** with 3 new lessons (MCP config, Python `-m` bug, Windows paths)
+2. **Restructured `pmax-guide` skill** — Step 0 decision fork (feed-only / full / non-feed), listing group guidance as first-class step, restructuring section
 
-### Session 2026-04-01 (Part 2): Custom MCP Server Built + Connected
+3. **Fixed `campaign-setup` skill** — removed wrong blocker (line 101), added PMax decision fork, added missing Shopping campaigns block
 
-- 32 Python files, 96 tests passing, 25 MCP tools (3 session + 9 read + 11 write + 2 confirmation)
-- Three-gate safety: session passphrase lock → draft-then-confirm ChangePlans → validate_only dry-run
-- Connected to MCC 7244069584 via Explorer Access (2,880 ops/day)
-- Implementation plan: `docs/superpowers/plans/2026-04-01-google-ads-mcp-server.md`
+4. **Updated 8 more files** — campaign-types decision tree, shopping-campaigns comparison table (3 columns), asset-requirements callout, CONTEXT routing, LESSONS (7 entries), open-source-repos (3 Google repos + 3 monitoring scripts), PLAN, CHANGELOG
 
-### Session 2026-04-01 (Part 1): Reference Knowledge Base Overhaul
+**Sources verified:**
+- Google Ads API: listing group dimensions, ShoppingSetting fields, retail PMax config
+- SMEC (4,000+ campaigns): 90% feed-based, "little-to-no downside of feed-only"
+- SMEC: PMax priority change late 2024, 70/30 split recommendation
 
-- 4 new campaign type docs (Shopping, Video, DSA, Demand Gen) — Finding #2
-- Full fact-check sweep — all 17 reference docs updated to 2025-2026 accuracy
+### Prior sessions (same day)
+
+- **Part 3:** MCP connection verified (25 tools, three-gate safety)
+- **Part 2:** Custom MCP server built (96 tests, 25 tools)
+- **Part 1:** Reference knowledge base overhaul (4 campaign type docs, fact-check sweep)
 
 ## Current State
 
 ### Plugin (ad-platform-campaign-manager)
-- **21 reference files** under `platforms/google-ads/`
+- **22 reference files** under `platforms/google-ads/` (was 21 — added feed-only-pmax.md)
 - **17 script docs** under `reference/scripts/`
 - **6 tracking-bridge docs** (the differentiator)
 - **5 reporting docs** + **3 MCP docs** + **1 repos catalog**
 - **11 skills** (9 Phase 1 active + 2 Phase 2 ready to unhide)
 - **2 agents** (campaign-reviewer, tracking-auditor)
 - All reference docs fact-checked to 2025-2026 accuracy
+- Feed-only PMax verified against Google API docs + SMEC industry data
 
 ### MCP Server (google-ads-mcp-server)
 - **33 Python files**, **96 tests**, clean git
@@ -74,7 +77,7 @@ tags:
 
 1. **Rotate OAuth client secret** — exposed in previous session screenshot. GCP Console → Credentials → reset → update `~/google-ads.yaml`
 2. **Unhide Phase 2 skills** — `connect-mcp` and `live-report` (set `disable-model-invocation: false`)
-3. **Test live workflow** — use skills with real account data via MCP tools
+3. **Test feed-only PMax workflow** — use pmax-guide skill on Vaxteronline account via MCP tools
 4. **Tackle Finding #3** — workflow dead-ends (post-launch monitoring, actionable insights)
 5. **Tackle Finding #4** — Socratic skill redesign
 
@@ -86,6 +89,7 @@ tags:
 | 2 | Missing campaign types | ✅ Done |
 | 3 | Workflow dead-ends | ⬜ Not started |
 | 4 | Skills tell rather than ask | ⬜ Not started |
+| 5 | Feed-only PMax knowledge gap | ✅ Done |
 
 ## Open Blockers
 
@@ -94,7 +98,8 @@ tags:
 
 ## Session Notes
 
-- The `__main__` vs module-name split is a classic Python gotcha — always put shared singletons in their own module
-- `claude mcp add` is the only reliable way to register MCP servers (not manual JSON edits)
-- Windows paths with spaces require wrapper scripts for MCP servers
+- Feed-only PMax is the default starting point for e-commerce clients without creative teams — 90% of PMax spend goes to feed-based surfaces anyway
+- Listing groups are the #1 most important and most overlooked setup step for feed-based PMax
+- Since late 2024, PMax no longer auto-prioritized over Shopping — both compete on Ad Rank
+- The pmax-guide skill now has a Step 0 decision fork — always determine PMax type before giving guidance
 - **Critical workflow:** after every `git push`, Claude must execute marketplace clone sync (git pull → uninstall → install)

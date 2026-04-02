@@ -40,10 +40,30 @@ Based on the selected type, design the full campaign structure. Consult [[../../
 - Consult [[../../reference/platforms/google-ads/match-types|match-types.md]] for match type strategy
 
 **For PMax campaigns:**
-- Propose asset group structure
-- Define audience signals per asset group (consult [[../../reference/platforms/google-ads/pmax/audience-signals|audience-signals.md]])
-- List required creative assets (consult [[../../reference/platforms/google-ads/pmax/asset-requirements|asset-requirements.md]])
-- If Shopping: discuss feed optimization (consult [[../../reference/platforms/google-ads/pmax/feed-optimization|feed-optimization.md]])
+- Ask: Does the client have a Merchant Center product feed?
+  - **If yes (e-commerce) + no creative assets → Feed-only PMax:**
+    - Design asset groups by product segment (margin tier, category, or brand)
+    - Configure listing groups per asset group — the critical step (consult [[../../reference/platforms/google-ads/pmax/feed-only-pmax|feed-only-pmax.md]])
+    - Define audience signals per asset group (consult [[../../reference/platforms/google-ads/pmax/audience-signals|audience-signals.md]])
+    - Discuss optional text assets and logo (low effort, recommended)
+    - Discuss feed optimization (consult [[../../reference/platforms/google-ads/pmax/feed-optimization|feed-optimization.md]])
+  - **If yes (e-commerce) + has creative assets → Full PMax:**
+    - Propose asset group structure
+    - Configure listing groups per asset group (consult [[../../reference/platforms/google-ads/pmax/feed-only-pmax|feed-only-pmax.md]] for listing group details)
+    - Define audience signals per asset group (consult [[../../reference/platforms/google-ads/pmax/audience-signals|audience-signals.md]])
+    - List required creative assets (consult [[../../reference/platforms/google-ads/pmax/asset-requirements|asset-requirements.md]])
+    - Discuss feed optimization (consult [[../../reference/platforms/google-ads/pmax/feed-optimization|feed-optimization.md]])
+  - **If no (services/lead gen) → Non-feed PMax:**
+    - Propose asset group structure by audience
+    - Define audience signals per asset group (consult [[../../reference/platforms/google-ads/pmax/audience-signals|audience-signals.md]])
+    - List required creative assets — mandatory for non-feed PMax (consult [[../../reference/platforms/google-ads/pmax/asset-requirements|asset-requirements.md]])
+
+**For Shopping campaigns:**
+- Verify Merchant Center link and feed health
+- Propose product group structure (by brand, category, margin tier, or custom label)
+- Discuss priority campaign strategy (multi-campaign tiered priority) vs single campaign (simpler, good for starting out)
+- Recommend bidding: Manual CPC for control or Target ROAS if conversion data exists
+- Consult [[../../reference/platforms/google-ads/shopping-campaigns|shopping-campaigns.md]]
 
 **For Display/Demand Gen/Video:**
 - Propose targeting strategy (audiences, placements)
@@ -98,7 +118,9 @@ Before proceeding to the campaign plan, check for these blockers:
 
 | Blocker | Impact | Resolution |
 |---------|--------|------------|
-| No creative assets for PMax/Display/Demand Gen | Cannot launch — these types require images and video | Recommend starting with Search (text-only) while assets are produced, or provide asset specs so the client can prepare them |
+| No creative assets for Display/Demand Gen | Cannot launch — these types require images and video | Recommend starting with Search while assets are produced, or provide asset specs |
+| No creative assets for PMax (no feed) | Cannot launch — non-feed PMax requires images and video | Recommend starting with Search while assets are produced |
+| No creative assets for PMax (has MC feed) | CAN launch — feed-only PMax auto-generates from product data | Proceed with feed-only PMax setup. See `/ad-platform-campaign-manager:pmax-guide` |
 | Monthly budget under €300 for Search | Too thin to gather meaningful data across multiple ad groups | Limit to 1-2 tightly themed ad groups with exact/phrase match only; avoid broad match |
 | No conversion tracking in place | Smart bidding won't work; campaign will optimize for clicks only | Set up tracking first via `/ad-platform-campaign-manager:conversion-tracking` before launching |
 | Client wants PMax but has fewer than 30 conversions/month | PMax needs conversion volume to optimize | Start with Search to build conversion history, then migrate to PMax after reaching 30+/month |

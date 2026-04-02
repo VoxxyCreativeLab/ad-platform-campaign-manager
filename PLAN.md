@@ -32,7 +32,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
-| 01 | Reference | 🔄 Expanding | 37 → 59+ files — added 17 script docs, repos catalog, 4 campaign type docs |
+| 01 | Reference | 🔄 Expanding | 37 → 60+ files — added 17 script docs, repos catalog, 4 campaign type docs, feed-only-pmax.md |
 | 02 | Skills | 🔄 Expanding | 10 → 11 skills — adding campaign-cleanup |
 | 03 | Agents | ✅ Done | 2 agents (campaign-reviewer, tracking-auditor) |
 
@@ -48,6 +48,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Phase 3 complete — MCP server built, connected, and verified (25 tools live in Claude Code)
 - ✅ Finding #1 resolved — API access working via custom MCP server
 - ✅ Finding #2 resolved — 4 campaign type docs added
+- ✅ Finding #5 resolved — feed-only PMax reference doc, skill restructuring, blocker fix
 - Next: Finding #3 (workflow dead-ends) or Finding #4 (Socratic skills)
 **Blockers:** OAuth client secret should be rotated (exposed in previous session screenshot).
 
@@ -96,6 +97,7 @@ Full plugin audit identified 4 weaknesses. Tackling one at a time — each gets 
 | 2 | **Missing campaign types** — Shopping, Video/YouTube, DSA, Demand Gen undocumented | Plugin can't guide setup/review for these types | ✅ Done |
 | 3 | **Workflow dead-ends** — campaign-setup has no post-launch monitoring, live-report has no actionable insights, keyword-strategy has no brainstorming scaffold | User gets a plan but no follow-through | ⬜ Not started |
 | 4 | **Skills tell rather than ask** — instructional instead of Socratic, less interactive than agents | Tracking specialist needs guided discovery, not info dumps | ⬜ Not started |
+| 5 | **Feed-only PMax knowledge gap** — zero coverage of feed-only PMax, listing groups, MC creation flow, restructuring patterns. campaign-setup had wrong blocker. | Claude failed real-world e-commerce campaign restructuring | ✅ Done |
 
 ### Finding 1: No API Access
 
@@ -125,6 +127,15 @@ Full plugin audit identified 4 weaknesses. Tackling one at a time — each gets 
 - `campaign-review` skill is less interactive than the `campaign-reviewer` agent.
 - `campaign-setup` asks questions in Step 1 but then jumps to templates.
 - **Fix:** Redesign skill interaction patterns — add decision-tree questions throughout, not just at the start.
+
+### Finding 5: Feed-Only PMax Knowledge Gap
+
+- Plugin had zero coverage of feed-only PMax, listing groups, Merchant Center campaign creation flow, and account restructuring patterns.
+- `campaign-setup` skill had a factually wrong blocker saying PMax "cannot launch" without creative assets — false for feed-only PMax.
+- **Impact:** Claude failed to guide real-world campaign restructuring for e-commerce client (Vaxteronline).
+- **Fix:** Created `feed-only-pmax.md` reference doc (verified against Google API docs + SMEC 4,000+ campaign study), restructured `pmax-guide` skill with feed-only/full/non-feed decision fork, fixed `campaign-setup` blockers, updated decision tree, comparison tables, open-source-repos catalog.
+- **Files changed:** 1 created (`pmax/feed-only-pmax.md`), 10 modified (asset-requirements, shopping-campaigns, campaign-types, pmax-guide SKILL, campaign-setup SKILL, CONTEXT, LESSONS, PLAN, open-source-repos).
+- **Status:** ✅ Done
 
 ---
 

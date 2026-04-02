@@ -39,6 +39,28 @@ Curated list of open-source repositories relevant to Google Ads campaign managem
 > [!tip] Tracking Bridge
 > The three tracking infrastructure repos above are documented in detail in [[../tracking-bridge/profit-based-bidding|profit-based-bidding.md]], [[../tracking-bridge/value-based-bidding|value-based-bidding.md]], and [[../tracking-bridge/bq-to-gads|bq-to-gads.md]].
 
+## Feed & PMax Retail
+
+| Repository | Maintainer | What it provides |
+|-----------|-----------|-----------------|
+| google/pmax_best_practices_dashboard | Google | Looker Studio + BigQuery dashboard for PMax retail — asset compliance, performance monitoring, non-retail-to-retail upgrade script |
+| google-marketing-solutions/feedgen | Google | AI-powered (Vertex AI / Gemini) feed title and description optimization — outputs supplemental feeds for Merchant Center |
+| googleads/google-ads-python (retail examples) | Google | Canonical API code samples for creating PMax retail campaigns with listing group filters (`examples/shopping_ads/add_performance_max_retail_campaign.py`) |
+
+> [!tip] Feed-Only PMax
+> The repos above are directly relevant to feed-only PMax setup and optimization. See [[../platforms/google-ads/pmax/feed-only-pmax|feed-only-pmax.md]] for the complete feed-only PMax reference.
+
+## PMax Monitoring Scripts (Community)
+
+| Script | Author | What it provides |
+|--------|--------|-----------------|
+| PMax Shopping Spend Drop Alert | Nils Rooijmans | Alerts when PMax campaigns stop serving on Shopping inventory — critical for feed-only campaigns where Shopping IS the campaign |
+| PMax Non-Converting Search Term Alerts | Nils Rooijmans | Flags wasted spend from non-converting search terms in PMax campaigns |
+| PMax Placement Exclusion Suggestions | Nils Rooijmans | Suggests Display/YouTube placement exclusions for poor-quality placements |
+
+> [!note] Source
+> Scripts available at nilsrooijmans.com. These complement the existing agencysavvy/pmax scripts cataloged above.
+
 ## CLI Tools
 
 | Tool | Source | What it provides |
