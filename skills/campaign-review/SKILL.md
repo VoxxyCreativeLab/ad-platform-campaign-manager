@@ -37,7 +37,21 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 2. Run the full audit automatically
 3. Produce a comprehensive report
 
+### If insufficient data is provided:
+1. Tell the user which of the 11 review areas you cannot evaluate
+2. List the minimum data needed for a useful audit:
+   - Campaign names and types
+   - Last 30-day spend, conversions, and CPA per campaign
+   - Current bid strategies
+   - Whether conversion tracking is configured
+3. If fewer than 3 areas can be evaluated, recommend:
+   - Export campaign data from Google Ads (Reports → Predefined → Campaigns)
+   - Or connect MCP for direct access: `/ad-platform-campaign-manager:connect-mcp`
+
 ## Review Areas
+
+> [!tip] Conversion Tracking Issues
+> If conversion tracking is missing or misconfigured during the audit, recommend the user run `/ad-platform-campaign-manager:conversion-tracking` before continuing the review — most other review areas depend on reliable conversion data.
 
 Work through these areas from the audit checklist:
 
