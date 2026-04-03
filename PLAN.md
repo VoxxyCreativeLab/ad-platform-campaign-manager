@@ -8,8 +8,8 @@ tags:
 
 # Plan — Ad Platform Campaign Manager
 
-**Last updated:** 2026-04-01
-**Current milestone:** Phase 3 — MCP API Integration ✅ Done (25 tools verified in Claude Code)
+**Last updated:** 2026-04-02
+**Current milestone:** Phase 3 — MCP API Integration ✅ Done (25 tools verified, reconnected after migration)
 
 ---
 
@@ -46,11 +46,12 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 **What's happening:**
 - ✅ Phase 2 complete — scripts, repos, MCP refs, campaign-cleanup, fact-check sweep
 - ✅ Phase 3 complete — MCP server built, connected, and verified (25 tools live in Claude Code)
+- ✅ MCP reconnected after machine migration (2026-04-02) — credentials restored, server re-registered
 - ✅ Finding #1 resolved — API access working via custom MCP server
 - ✅ Finding #2 resolved — 4 campaign type docs added
 - ✅ Finding #5 resolved — feed-only PMax reference doc, skill restructuring, blocker fix
-- Next: Finding #3 (workflow dead-ends) or Finding #4 (Socratic skills)
-**Blockers:** OAuth client secret should be rotated (exposed in previous session screenshot).
+- Next: Restart session → test MCP → Finding #3 (workflow dead-ends) or Finding #4 (Socratic skills)
+**Blockers:** OAuth client secret should be rotated. Session restart needed for MCP tools to load.
 
 ---
 
@@ -79,11 +80,13 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Next Steps
 
-1. **Rotate OAuth client secret** — exposed in previous session screenshot, update `~/google-ads.yaml`
-2. **Unhide Phase 2 skills** — set `disable-model-invocation: false` in `connect-mcp` and `live-report`
-3. **Tackle Finding #3** — workflow dead-ends (post-launch monitoring, actionable insights, brainstorming scaffolds)
-4. **Tackle Finding #4** — Socratic skill redesign (guided discovery instead of info dumps)
-5. **Real client work** — use skills on a live Google Ads account
+1. **Restart Claude Code session** — MCP tools registered but won't load until restart
+2. **Test MCP connection** — call `list_accounts()` to verify credentials work post-migration
+3. **Rotate OAuth client secret** — exposed in previous session screenshot, update `~/google-ads.yaml`
+4. **Unhide Phase 2 skills** — set `disable-model-invocation: false` in `connect-mcp` and `live-report`
+5. **Tackle Finding #3** — workflow dead-ends (post-launch monitoring, actionable insights, brainstorming scaffolds)
+6. **Tackle Finding #4** — Socratic skill redesign (guided discovery instead of info dumps)
+7. **Real client work** — use skills on a live Google Ads account
 
 ---
 
@@ -147,9 +150,9 @@ Full fact-check of all 17 `reference/platforms/google-ads/` files against 2025-2
 
 | File | Issue | Status |
 |------|-------|--------|
-| `bidding-strategies.md` | Enhanced CPC described as active — **deprecated March 2025** | ⬜ Not started |
-| `pmax/pmax-metrics.md` | Says PMax shows "categories of search terms" — **has full visibility since March 2025** | ⬜ Not started |
-| `campaign-types.md` | Video Action Campaigns still listed — **migrated to Demand Gen, no longer exist** | ⬜ Not started |
+| `bidding-strategies.md` | Enhanced CPC described as active — **deprecated March 2025** | ✅ Done |
+| `pmax/pmax-metrics.md` | Says PMax shows "categories of search terms" — **has full visibility since March 2025** | ✅ Done |
+| `campaign-types.md` | Video Action Campaigns still listed — **migrated to Demand Gen, no longer exist** | ✅ Done |
 | `ads-scripts-api.md` | AWQL reporting example deprecated; UrlFetchApp limit wrong (50 vs 20,000/day); missing `AdsApp.search()` | ✅ Done |
 
 ### Tier 2: Significant Omissions (should fix)

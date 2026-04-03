@@ -24,7 +24,7 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` | Google Ads Scripts library |
 | Campaign Cleanup | `/ad-platform-campaign-manager:campaign-cleanup` | Account triage for messy/neglected accounts |
 
-## Phase 2 — API Integration (requires Google Ads API credentials)
+## Phase 2 — API Integration (MCP connected — skills hidden until unhidden)
 
 | Skill | Command | Purpose |
 |-------|---------|---------|

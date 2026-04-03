@@ -21,6 +21,8 @@ Campaign management and plugin development lessons captured over time. Each entr
 
 ## MCP Server Development
 
+- **2026-04-02** — Machine migration gotcha: `google-ads.yaml` (home directory credential file) is NOT covered by OneDrive sync or git. It must be backed up separately during machine migrations. The wrapper script (`C:\mcp\google-ads.cmd`), `.venv`, `config.yaml`, and even tool permissions in `settings.json` all survived — but the credential file was the single point of failure. Add `~/google-ads.yaml` to the migration runbook checklist.
+- **2026-04-02** — MCP server registration (`mcpServers` in `~/.claude.json`) does NOT survive machine migration. Must re-register with `claude mcp add google-ads -s user -- "C:\mcp\google-ads.cmd"` after migration. Note: this writes to `~/.claude.json`, not `~/.claude/settings.json` — they are different files with different purposes.
 - **2026-04-01** — Google's own MCP server (`googleads/google-ads-mcp`) is deliberately read-only. ~70% of all Google Ads MCP repos are read-only. Write operations through LLM-controlled tools are high-risk. Always implement a multi-gate safety architecture for write operations.
 - **2026-04-01** — The #1 costly error in Google Ads API work is micros confusion (1,000,000 micros = 1 EUR). Accept human currency only, convert internally, reject values > 10,000 as likely raw micros.
 - **2026-04-01** — Draft-then-confirm with `ChangePlan` objects + `validate_only` dry-runs + stale-state re-reads before mutation is the gold-standard safety pattern. Learned from `kLOsk/adloop` and `TheMattBerman/google-ads-copilot`.

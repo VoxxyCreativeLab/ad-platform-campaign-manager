@@ -7,6 +7,19 @@ tags:
 
 # Changelog
 
+## [1.2.1] — 2026-04-02
+
+### Fixed (MCP reconnection — post-migration)
+- **Restored `~/google-ads.yaml`** — credential file was not backed up during machine migration. Jerry provided credentials, file recreated at `C:\Users\VCL1\google-ads.yaml`
+- **Re-registered MCP server** — `claude mcp add google-ads -s user -- "C:\mcp\google-ads.cmd"` → `~/.claude.json`. Registration did not survive migration.
+- **Verified working components:** wrapper script (`C:\mcp\google-ads.cmd`), venv, `config.yaml`, client secret JSON, tool permissions in `settings.json` — all intact
+- **Identified stale path:** `start-mcp.cmd` in MCP server directory still references old `D:\Jerry\...` path (not actively used; `C:\mcp\google-ads.cmd` is the active wrapper)
+
+### Added
+- **LESSONS.md** — 2 migration lessons: credential file backup, MCP re-registration
+
+---
+
 ## [1.2.0] — 2026-04-01
 
 ### Added

@@ -23,13 +23,13 @@ Architecture rationale for ad-platform-campaign-manager. Documents the *why* beh
 
 ## Phased Approach
 
-**Decision:** Phase 1 = knowledge/guidance (no API). Phase 2 = MCP API integration. Phase 3 = multi-platform.
+**Decision:** Phase 1 = knowledge/guidance (no API). Phase 2 = content completion & MCP prep. Phase 3 = MCP API integration. Phase 4 = multi-platform.
 
-**Why:** Jerry doesn't have Google Ads API credentials yet. Phase 1 provides immediate value — guided campaign setup, keyword strategy, conversion tracking docs, reporting pipeline designs — all without needing any API access. Phase 2 skills are declared in marketplace.json with `[Phase 2]` prefix so the plugin manifest is complete from day one.
+**Why:** Phase 1 provides immediate value — guided campaign setup, keyword strategy, conversion tracking docs, reporting pipeline designs — all without API access. Phase 2 filled content gaps (scripts, repos, fact-check sweep) and prepared MCP configuration. Phase 3 delivered a custom MCP server (`voxxy/google-ads-mcp-server`) with 25 tools, three-gate safety, and Explorer Access (2,880 ops/day). Phase 4 (multi-platform) is deferred — only Google Ads is populated.
 
 ## Skills vs Agents
 
-**Decision:** 10 skills (invoked by user) + 2 agents (autonomous audit).
+**Decision:** 11 skills (invoked by user) + 2 agents (autonomous audit).
 
 **Why:** Skills are interactive — the user triggers them and works through them step by step. Agents are autonomous — they run a full audit checklist without user interaction and produce a report. The split maps to two usage patterns:
 - "Help me build/plan something" → skill
@@ -69,6 +69,12 @@ No file tries to do two jobs.
 **Decision:** Created a dedicated reference doc (`pmax/feed-only-pmax.md`) for feed-only PMax rather than patching it into `asset-requirements.md` or `feed-optimization.md`. Restructured `pmax-guide` skill with a decision fork at Step 0.
 
 **Why:** The plugin treated PMax as a single archetype requiring full creative assets. This caused a real failure: Claude couldn't guide campaign restructuring for an e-commerce client because it thought PMax "cannot launch" without creative. Feed-only PMax is a distinct configuration with its own setup flow (listing groups, not asset groups), its own auto-generation behavior, and its own restructuring pattern. It shares audience signals and bidding with full PMax, but the setup workflow is fundamentally different. A decision fork at the top of the skill routes to the correct path.
+
+## Custom MCP Server (Three-Gate Safety)
+
+**Decision:** Built a custom `voxxy/google-ads-mcp-server` rather than using community alternatives (`googleads/google-ads-mcp`, `kLOsk/adloop`, `TheMattBerman/google-ads-copilot`). Write operations use three gates: session passphrase lock → ChangePlan draft-then-confirm → `validate_only` dry-run.
+
+**Why:** Google's official MCP server is deliberately read-only. ~70% of all Google Ads MCP repos are read-only — write operations through LLM-controlled tools are high-risk. The three-gate safety pattern ensures: (1) writes require explicit user intent per session, (2) every mutation is previewed as a draft before execution, (3) the API validates the change without applying it. Additional safeguards: budget ±50% / bid +30% caps, stale-state re-reads before mutation, REMOVE operations blocked entirely, full JSON audit log.
 
 ## External Source Verification
 

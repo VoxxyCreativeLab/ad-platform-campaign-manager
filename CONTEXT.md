@@ -63,9 +63,9 @@ reference/ ──────────────→ skills/    (skills load
 ```
 Phase 1 (done): Knowledge & guidance skills — no API required
     ↓
-Phase 2 (current): Content completion & MCP prep — fill scripts, repos, update refs
-    ↓ (try Explorer Access for 2,880 ops/day — no application needed)
-Phase 3: MCP API integration — connect-mcp + live-report skills
-    ↓ (when expanding to other platforms)
+Phase 2 (done): Content completion & MCP prep — scripts, repos, fact-check sweep
+    ↓
+Phase 3 (done): MCP API integration — 25 tools via custom google-ads-mcp-server
+    ↓ (reconnected after machine migration 2026-04-02)
 Phase 4: Multi-platform — populate meta-ads/, linkedin-ads/, tiktok-ads/
 ```
