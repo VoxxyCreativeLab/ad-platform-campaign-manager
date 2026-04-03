@@ -71,7 +71,7 @@ Provide a curated negative keyword list:
 Present the keyword plan as a structured table:
 
 ```
-AD GROUP: [Theme Name]
+AD GROUP: {{theme_name}}
 Match Type | Keyword                  | Est. Intent | Notes
 Broad      | running shoes            | High        | Core term
 Phrase      | "best running shoes"     | Medium      | Comparison

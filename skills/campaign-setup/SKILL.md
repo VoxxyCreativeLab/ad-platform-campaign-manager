@@ -34,7 +34,7 @@ Present the recommendation with reasoning:
 Based on the selected type, design the full campaign structure. Consult [[../../reference/platforms/google-ads/account-structure|account-structure.md]] for patterns.
 
 **For Search campaigns:**
-- Propose campaign name following the naming convention: `[Type] | [Goal] | [Targeting] | [Region]`
+- Propose campaign name following the naming convention: `{{type}} | {{goal}} | {{targeting}} | {{region}}`
 - Design ad groups (one theme per ad group)
 - For each ad group: suggest 10-15 keywords with recommended match types
 - Consult [[../../reference/platforms/google-ads/match-types|match-types.md]] for match type strategy

@@ -1,6 +1,7 @@
 ---
 name: campaign-cleanup
 description: "Account cleanup and triage — stop the bleeding in messy accounts before optimization. Use when inheriting a neglected Google Ads account or when performance has degraded."
+argument-hint: "[client-name]"
 disable-model-invocation: false
 ---
 
@@ -89,9 +90,9 @@ Create a plan for the cleaned-up account:
 Present findings as a triage report:
 
 ```
-## Account Triage Report: [Client Name]
+## Account Triage Report: {{client_name}}
 
-### Severity: [Critical / High / Medium / Low]
+### Severity: {{severity_rating}}
 
 ### Immediate Actions Taken
 - [ ] Paused [X] keywords with $[Y] spend and 0 conversions
@@ -99,7 +100,7 @@ Present findings as a triage report:
 - [ ] Reallocated $[Z] from [underperformer] to [top performer]
 
 ### Structural Issues Found
-1. [Issue] — [Impact] — [Recommended fix]
+1. {{issue}} — {{impact}} — [Recommended fix]
 2. ...
 
 ### Cleanup Plan (Priority Order)

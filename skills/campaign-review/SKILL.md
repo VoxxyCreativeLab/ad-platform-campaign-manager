@@ -1,6 +1,7 @@
 ---
 name: campaign-review
 description: Audit a campaign against best practices — structure, keywords, ads, bids, conversions, budget. Use when reviewing an existing Google Ads campaign.
+argument-hint: "[campaign-name or account-data]"
 disable-model-invocation: false
 ---
 
@@ -58,17 +59,17 @@ Work through these areas from the audit checklist:
 # Campaign Audit Report
 
 ## Summary
-**Overall Health:** [Excellent / Good / Needs Work / Critical]
-**Score:** [X/Y checklist items passing]
+**Overall Health:** {{health_rating}}
+**Score:** {{passing_count}}/{{total_count}} checklist items passing
 
 ## Critical Issues (fix immediately)
-1. [Issue] — [Impact] — [Fix]
+1. {{issue}} — {{impact}} — {{fix}}
 
 ## Warnings (fix soon)
-1. [Issue] — [Impact] — [Fix]
+1. {{issue}} — {{impact}} — {{fix}}
 
 ## Suggestions (nice to have)
-1. [Issue] — [Impact] — [Fix]
+1. {{issue}} — {{impact}} — {{fix}}
 
 ## Section-by-Section Results
 ### Conversion Tracking: [Pass/Needs Work]
@@ -77,7 +78,7 @@ Work through these areas from the audit checklist:
 ...
 
 ## Prioritized Action Plan
-1. [Highest impact fix]
-2. [Second priority]
+1. {{highest_impact_fix}}
+2. {{second_priority}}
 3. ...
 ```
