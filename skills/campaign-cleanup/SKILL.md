@@ -24,6 +24,22 @@ If `$ARGUMENTS` provides a client name or account context, use it throughout the
 - **Common mistakes:** [[../../reference/platforms/google-ads/audit/common-mistakes|common-mistakes.md]]
 - **Negative keyword lists:** [[../../reference/platforms/google-ads/audit/negative-keyword-lists|negative-keyword-lists.md]]
 - **Account structure:** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
+- **Account profiles (vertical-specific triage priorities):** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
+
+## Triage Assessment
+
+Before diving into fixes, gather diagnostic context. Ask:
+1. What vertical is this account? (e-commerce, lead gen, B2B SaaS, local services)
+2. Is conversion tracking working? (Conversions column > 0 in last 30 days)
+3. What is the approximate monthly spend?
+4. How many conversions last month?
+5. What maturity stage? (< 3 months, 3-6 months, 6+ months, 18+ months)
+
+Use answers to determine triage priority:
+- **E-commerce:** prioritize feed health, product groups, Shopping/PMax separation
+- **B2B/Lead gen:** prioritize conversion tracking and offline import pipeline
+- **Local services:** prioritize geographic targeting, call tracking, location assets
+- **No conversion data at all:** stop — fix tracking first (`/ad-platform-campaign-manager:conversion-tracking`)
 
 ## Triage Process
 
