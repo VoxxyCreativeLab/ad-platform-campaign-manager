@@ -81,3 +81,21 @@ No file tries to do two jobs.
 **Decision:** `feed-only-pmax.md` includes an External Sources section with Google API docs, code samples, and SMEC industry research URLs.
 
 **Why:** Campaign management knowledge can become stale quickly. By citing specific Google support pages, API documentation, and industry research (SMEC's 4,000+ campaign study), future sessions can verify claims against the source rather than trusting training data. The listing group dimensions were verified against the actual API proto definition, not guessed from memory.
+
+## Tiered Account Profile Framework (Strategic Upgrade v2.0)
+
+**Decision:** Strategic recommendations flow through a 10-dimension account profile organized in 3 tiers: Core Axes (vertical × maturity × budget → select archetype), Strategic Modifiers (tracking maturity, conversion complexity, geographic scope, competition → adjust archetype), Operational Context (management model, feed presence, business model → shape workflow). ~64 core combinations collapse into ~15 strategy archetypes.
+
+**Why:** The plugin's biggest gap was context-blindness — every skill gave the same advice regardless of whether the account was a cold-start B2B SaaS on €2K/mo or a mature e-commerce store on €50K/mo. A flat list of "account types" would create either too many buckets (unmanageable) or too few (useless). The tiered approach lets the strategy skill ask 3 core questions first to narrow the archetype, then refine with modifiers only when relevant. The 15 archetypes are the sweet spot between actionability and coverage.
+
+## Strategy Docs in reference/platforms/google-ads/strategy/
+
+**Decision:** Strategic reference docs live in `reference/platforms/google-ads/strategy/` as a subdirectory alongside `pmax/` and `audit/`, not as a separate top-level `reference/strategy/` directory.
+
+**Why:** Strategy is platform-specific — Google Ads bidding strategies differ from Meta bid strategies. When Phase 4 adds other platforms, each will get its own `strategy/` subdirectory with platform-specific playbooks. This preserves the existing pattern (all Google Ads knowledge under one tree) and the reference-loading convention (skills load from `reference/platforms/google-ads/`).
+
+## Skill Flow Graph (Inter-Skill Routing)
+
+**Decision:** Skills are no longer islands. Each skill routes to relevant next skills at completion. The intended flow is: account-strategy (Phase 2) → campaign-setup → keyword-strategy → budget-optimizer, with conversion-tracking and campaign-review as cross-cutting skills.
+
+**Why:** The skill review audit (2026-04-03) found 6 of 11 skills had no inter-skill references — users would finish keyword planning with no guidance on what to do next. The flow graph ensures every skill ends with a clear "next step" recommendation, creating a natural workflow through the plugin's capabilities.

@@ -41,6 +41,12 @@ Campaign management and plugin development lessons captured over time. Each entr
 - **2026-04-01** — Account restructuring (messy Shopping+PMax → clean feed-based PMax) must be stepwise: create new PMax paused → pause overlapping Shopping → enable new PMax → monitor 2-4 weeks. Never cold-turkey. Keep old campaigns paused (not deleted) for 30 days as rollback.
 - **2026-04-01** — Since late 2024, PMax is no longer auto-prioritized over Standard Shopping in auctions. Both compete on Ad Rank. Running both (70/30 or 80/20 split favoring PMax) is a viable strategy — restructuring to PMax-only is a choice, not a necessity.
 
+## Skill Quality & Architecture
+
+- **2026-04-03** — Full skill audit revealed 6 systemic issues across all 11 skills: missing argument-hints (9/11), wrong placeholder syntax (11/11), missing inter-skill refs (6/11), dependency map drift (2/11), missing $ARGUMENTS handling (5/11), no companion files (11/11). The live-report skill was the weakest (62/100) — essentially a table of contents with no actionable content. pmax-guide (90/100) was the gold standard: Step 0 decision tree, task-specific paths, troubleshooting table, inter-skill refs. Use pmax-guide as the template when designing or improving skills.
+- **2026-04-03** — Subagent-driven development works well for mechanical skill fixes (batch frontmatter changes, add sections). Use haiku for simple edits (CONTEXT.md routing fixes), sonnet for content additions (troubleshooting tables, output templates), opus for research-heavy work (strategy reference docs). The tiering saved significant time and cost.
+- **2026-04-03** — Strategy docs should use `%%fact-check: [feature] — verified [date]%%` markers on any claims tied to specific Google Ads features. Google changes features frequently — these markers create an audit trail for future fact-check sweeps.
+
 ## Keyword Management
 
 _(No entries yet)_

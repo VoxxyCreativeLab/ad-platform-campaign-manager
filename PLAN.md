@@ -8,8 +8,8 @@ tags:
 
 # Plan — Ad Platform Campaign Manager
 
-**Last updated:** 2026-04-02
-**Current milestone:** Phase 3 — MCP API Integration ✅ Done (25 tools verified, reconnected after migration)
+**Last updated:** 2026-04-03
+**Current milestone:** Strategic Upgrade v2.0 — Phase 1a ✅ + Phase 1b ✅ — Phase 1c next
 
 ---
 
@@ -28,12 +28,22 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 | 3 | MCP API Integration | ✅ Done | Custom `voxxy/google-ads-mcp-server` — 25 tools verified in Claude Code, three-gate safety |
 | 4 | Multi-Platform | ⬜ Not started | Populate meta-ads/, linkedin-ads/, tiktok-ads/ |
 
+## Strategic Upgrade v2.0
+
+| Phase | Name | Status | Notes |
+|-------|------|--------|-------|
+| 1a | Systemic Skill Fixes | ✅ Done (v1.3.0) | 6 systemic issues fixed across 11 skills, live-report redesigned |
+| 1b | Strategic Reference Docs | ✅ Done (v1.4.0) | 8 new strategy docs, 3 existing enhanced with profile-aware sections |
+| 1c | Skill Strategy Hooks | ⬜ Next | Wire strategy docs into 4 skills, finish Findings #3/#4 |
+| 2 | Account Strategy Skill | ⬜ Not started | New account-strategy skill + enhance 5 existing skills |
+| 3 | Strategy Agent + Remaining | ⬜ Not started | strategy-advisor agent + 5 remaining reference docs |
+
 ## Stages & Status
 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
-| 01 | Reference | 🔄 Expanding | 37 → 60+ files — added 17 script docs, repos catalog, 4 campaign type docs, feed-only-pmax.md |
-| 02 | Skills | 🔄 Expanding | 10 → 11 skills — adding campaign-cleanup |
+| 01 | Reference | 🔄 Expanding | 22 → 30 google-ads files (+8 strategy), 17 script docs, 6 tracking-bridge, 5 reporting, 3 mcp |
+| 02 | Skills | 🔄 Improving | 11 skills — all fixed (argument-hints, placeholders, inter-skill refs, live-report redesign) |
 | 03 | Agents | ✅ Done | 2 agents (campaign-reviewer, tracking-auditor) |
 
 **Status key:** ⬜ Not started · 🔄 In progress · ✅ Done · ⚠️ Blocked
@@ -42,16 +52,14 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Current Focus
 
-**Active phase:** Audit Findings #3/#4
+**Active phase:** Strategic Upgrade v2.0 — Phase 1c (Skill Strategy Hooks)
 **What's happening:**
-- ✅ Phase 2 complete — scripts, repos, MCP refs, campaign-cleanup, fact-check sweep
-- ✅ Phase 3 complete — MCP server built, connected, and verified (25 tools live in Claude Code)
-- ✅ MCP reconnected after machine migration (2026-04-02) — credentials restored, server re-registered
-- ✅ Finding #1 resolved — API access working via custom MCP server
-- ✅ Finding #2 resolved — 4 campaign type docs added
-- ✅ Finding #5 resolved — feed-only PMax reference doc, skill restructuring, blocker fix
-- Next: Restart session → test MCP → Finding #3 (workflow dead-ends) or Finding #4 (Socratic skills)
-**Blockers:** OAuth client secret should be rotated. Session restart needed for MCP tools to load.
+- ✅ Phase 1a (v1.3.0) — systemic skill fixes, live-report redesign, all 6 issues resolved
+- ✅ Phase 1b (v1.4.0) — 8 new strategy docs, 3 existing enhanced, routing updated
+- ⬜ Phase 1c — wire strategy docs into 4 key skills (campaign-setup, keyword-strategy, budget-optimizer, campaign-cleanup), finish Findings #3/#4
+- ⬜ Phase 2 — build account-strategy skill, enhance 5 skills for strategy-awareness
+- ⬜ Phase 3 — strategy-advisor agent + remaining reference docs
+**Blockers:** OAuth client secret should be rotated (non-blocking for 1c work).
 
 ---
 
@@ -75,18 +83,29 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - 2026-04-01 — MCP config: use `claude mcp add` CLI, not manual JSON edits (`~/.claude/.mcp.json` is not read, `~/.claude.json` gets overwritten)
 - 2026-04-01 — Python `-m` shared singleton must live in its own module (not in the `__main__` entrypoint) to avoid dual-instance bug
 - 2026-04-01 — Windows MCP servers need wrapper scripts in clean paths (no spaces) — `C:\mcp\` directory
+- 2026-04-03 — Strategic layer uses tiered account profiles (10 dimensions × 3 tiers) — avoids combinatorial explosion by collapsing 64 core combinations into ~15 strategy archetypes
+- 2026-04-03 — Strategy docs live in `reference/platforms/google-ads/strategy/` — same pattern as pmax/ and audit/, not a separate top-level directory
+- 2026-04-03 — Phased releases for strategic upgrade: 1a (systemic fixes), 1b (reference docs), 1c (skill hooks), 2 (account-strategy skill), 3 (strategy agent)
+- 2026-04-03 — pmax-guide structure (Step 0 decision tree → task paths → troubleshooting → inter-skill refs) is the gold standard — use it as template when enhancing other skills
+- 2026-04-03 — live-report `disable-model-invocation` changed to `false` — it's a read-only reporting skill, not a config wizard like connect-mcp
 
 ---
 
 ## Next Steps
 
-1. **Restart Claude Code session** — MCP tools registered but won't load until restart
-2. **Test MCP connection** — call `list_accounts()` to verify credentials work post-migration
-3. **Rotate OAuth client secret** — exposed in previous session screenshot, update `~/google-ads.yaml`
-4. **Unhide Phase 2 skills** — set `disable-model-invocation: false` in `connect-mcp` and `live-report`
-5. **Tackle Finding #3** — workflow dead-ends (post-launch monitoring, actionable insights, brainstorming scaffolds)
-6. **Tackle Finding #4** — Socratic skill redesign (guided discovery instead of info dumps)
-7. **Real client work** — use skills on a live Google Ads account
+1. **Phase 1c — Skill strategy hooks** (say "continue" to resume):
+   - Wire `strategy/account-profiles.md` into campaign-setup, keyword-strategy, budget-optimizer, campaign-cleanup
+   - Add account profile questions (vertical/maturity/budget) to campaign-setup Step 1
+   - Add maturity-aware match type progression to keyword-strategy
+   - Add vertical-specific benchmarks to budget-optimizer
+   - Add diagnostic questions to campaign-cleanup
+   - Complete Findings #3 (dead-ends → routing) and #4 (lecture → Socratic)
+   - Update skills/CONTEXT.md dependency maps for `strategy/*`
+   - CHANGELOG v1.5.0
+2. **Phase 2 — Account strategy skill** — new `account-strategy` skill + enhance 5 existing skills
+3. **Phase 3 — Strategy agent** — `strategy-advisor` MCP agent + 5 remaining reference docs
+4. **Rotate OAuth client secret** — exposed in previous session screenshot
+5. **Real client work** — use skills on a live Google Ads account
 
 ---
 
@@ -98,8 +117,8 @@ Full plugin audit identified 4 weaknesses. Tackling one at a time — each gets 
 |---|----------|--------|--------|
 | 1 | **No API access** — guidance-only, Phase 2 skills hidden | Can teach but can't validate or automate | ✅ Done — MCP server built, connected, 25 tools verified in Claude Code |
 | 2 | **Missing campaign types** — Shopping, Video/YouTube, DSA, Demand Gen undocumented | Plugin can't guide setup/review for these types | ✅ Done |
-| 3 | **Workflow dead-ends** — campaign-setup has no post-launch monitoring, live-report has no actionable insights, keyword-strategy has no brainstorming scaffold | User gets a plan but no follow-through | ⬜ Not started |
-| 4 | **Skills tell rather than ask** — instructional instead of Socratic, less interactive than agents | Tracking specialist needs guided discovery, not info dumps | ⬜ Not started |
+| 3 | **Workflow dead-ends** — campaign-setup has no post-launch monitoring, live-report has no actionable insights, keyword-strategy has no brainstorming scaffold | User gets a plan but no follow-through | 🔄 Partially fixed (1a added inter-skill refs + routing to 6 skills; 1c will complete) |
+| 4 | **Skills tell rather than ask** — instructional instead of Socratic, less interactive than agents | Tracking specialist needs guided discovery, not info dumps | 🔄 Partially fixed (1a added troubleshooting + error handling; 1c will add profile questions) |
 | 5 | **Feed-only PMax knowledge gap** — zero coverage of feed-only PMax, listing groups, MC creation flow, restructuring patterns. campaign-setup had wrong blocker. | Claude failed real-world e-commerce campaign restructuring | ✅ Done |
 
 ### Finding 1: No API Access

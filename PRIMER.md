@@ -1,6 +1,6 @@
 ---
 title: Primer — Session Handoff
-date: 2026-04-02
+date: 2026-04-03
 tags:
   - mwp
 ---
@@ -11,104 +11,105 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.2.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.4.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists. Now includes a strategic layer with account profile framework.
 
 ## Last Completed
 
-### Session 2026-04-02: MCP Reconnection After Machine Migration
+### Session 2026-04-03: Strategic Upgrade v2.0 — Phase 1a + 1b
 
-**Problem:** Machine migration (2026-04-02) broke the MCP connection to the Google Ads API. The `google-ads.yaml` credential file was missing from the new machine, the MCP server was not registered in Claude Code settings, and the `start-mcp.cmd` inside the MCP server directory still had the old `D:\Jerry\...` path.
+**Objective:** Add strategic guidance layer to the plugin. The plugin excelled at execution (tracking pipeline, campaign setup, feed optimization) but lacked account-specific strategy. Now it can differentiate "B2B SaaS with €3K/mo" from "e-commerce with €25K/mo."
 
-**What was done:**
+**What was done (Phase 1a — v1.3.0):**
+1. **Full skill review audit** — scored all 11 skills (avg 82/100), identified 6 systemic issues
+2. **Fixed all 6 systemic issues:**
+   - Added `argument-hint` frontmatter to 9 skills
+   - Replaced `[bracket]` → `{{placeholder}}` syntax in all output templates
+   - Added inter-skill cross-references to 6 skills (skill flow graph)
+   - Fixed dependency maps in both CONTEXT.md files
+   - Added `$ARGUMENTS` handling to budget-optimizer + campaign-cleanup
+   - **Redesigned live-report** (62/100 → 85+): GAQL mapping, MCP tool mapping, error handling, companion reference file
+3. **Fixed Findings #3 + #4** partially: added troubleshooting sections, inter-skill routing, data sufficiency handling
 
-1. **Diagnosed the break** — explored the MCP server directory, Claude settings, and migration backups to map what was in place vs missing
-2. **Identified working components:**
-   - `C:\mcp\google-ads.cmd` wrapper — already copied during migration with correct new path
-   - `.venv` with all Python dependencies — intact
-   - `config.yaml` with safety settings and write passphrase — intact
-   - Client secret JSON — found at `0007 - Claude Files/GCS - Google Ads - Client Secret.json`
-   - Tool permissions (`mcp__google-ads__list_accounts`, `mcp__google-ads__list_campaigns`) — already in `settings.json`
-3. **Identified missing pieces:**
-   - `~/google-ads.yaml` — credential file not backed up during migration
-   - MCP server registration — `mcpServers` key absent from `~/.claude.json`
-4. **Restored credentials** — Jerry provided the full `google-ads.yaml` contents (developer_token, client_id, client_secret, refresh_token, login_customer_id, use_proto_plus). Written to `C:\Users\VCL1\google-ads.yaml`
-5. **Re-registered MCP server** — `claude mcp add google-ads -s user -- "C:\mcp\google-ads.cmd"` → wrote to `~/.claude.json`
-6. **Pending:** Session restart required for MCP tools to become available
+**What was done (Phase 1b — v1.4.0):**
+4. **8 new strategic reference docs** in `reference/platforms/google-ads/strategy/`:
+   - `account-profiles.md` — 10-dimension tiered framework, 15 strategy archetypes
+   - `account-maturity-roadmap.md` — 4-stage progression with graduation criteria
+   - `vertical-ecommerce.md` — feed-centric, ROAS-driven playbook
+   - `vertical-lead-gen.md` — CPA-driven, call tracking playbook
+   - `vertical-b2b-saas.md` — long-cycle, offline conversion playbook
+   - `vertical-local-services.md` — location-bound, call-first playbook
+   - `targeting-framework.md` — all audience types, remarketing matrix
+   - `attribution-guide.md` — 6 models, CPA vs CAC, profit-based metrics
+5. **Enhanced 3 existing reference docs** with account-profile-aware sections:
+   - `bidding-strategies.md` — maturity/volume bid strategy table, learning period tactics
+   - `account-structure.md` — maturity + budget tier structure tables
+   - `campaign-types.md` — vertical + maturity campaign mix tables
+6. **Updated routing tables and CHANGELOG**
 
-**Key files touched:**
-- Created: `C:\Users\VCL1\google-ads.yaml` (credentials — DO NOT COMMIT)
-- Modified: `C:\Users\VCL1\.claude.json` (MCP server registration)
+**Key files created/modified:**
+- 8 new files in `reference/platforms/google-ads/strategy/`
+- 1 new file: `skills/live-report/references/report-templates.md`
+- 15 modified SKILL.md files
+- 3 spec/plan docs in `docs/superpowers/`
+- Both CONTEXT.md files, CHANGELOG.md
 
-### Prior sessions (2026-04-01)
-
-- **Part 4:** Feed-only PMax knowledge gap fixed (reference doc, skill restructuring, blocker fix)
-- **Part 3:** MCP connection verified (25 tools, three-gate safety)
-- **Part 2:** Custom MCP server built (96 tests, 25 tools)
-- **Part 1:** Reference knowledge base overhaul (4 campaign type docs, fact-check sweep)
+### Prior sessions
+- **2026-04-02:** MCP reconnection after machine migration
+- **2026-04-01:** Feed-only PMax knowledge gap fix, MCP server built + verified, fact-check sweep
 
 ## Current State
 
 ### Plugin (ad-platform-campaign-manager)
-- **22 reference files** under `platforms/google-ads/`
+- **30 reference files** under `platforms/google-ads/` (was 22; +8 strategy docs)
 - **17 script docs** under `reference/scripts/`
 - **6 tracking-bridge docs** (the differentiator)
 - **5 reporting docs** + **3 MCP docs** + **1 repos catalog**
-- **11 skills** (9 Phase 1 active + 2 Phase 2 ready to unhide)
+- **11 skills** — all with argument-hints, inter-skill refs, {{placeholder}} syntax
 - **2 agents** (campaign-reviewer, tracking-auditor)
 - All reference docs fact-checked to 2025-2026 accuracy
+- **Skill quality:** avg 82/100 → improved (live-report redesigned, systemic fixes applied)
 
 ### MCP Server (google-ads-mcp-server)
 - **33 Python files**, **96 tests**, clean git
 - **25 MCP tools** (3 session + 9 read + 11 write + 2 confirm)
 - Connected to MCC 7244069584 via Explorer Access (2,880 ops/day)
 - Write passphrase: `voxxy-writes`
-- Registration: `claude mcp add google-ads -s user -- "C:\mcp\google-ads.cmd"` → `~/.claude.json`
 - Credentials at `C:\Users\VCL1\google-ads.yaml`
 - Wrapper at `C:\mcp\google-ads.cmd`
-- **Status after migration:** Credentials restored, server re-registered. Restart session to activate.
 
 ### Credential Files (DO NOT COMMIT)
 - `C:\Users\VCL1\google-ads.yaml` — developer token, OAuth client ID/secret, refresh token, login_customer_id
 - `C:\mcp\google-ads.cmd` — wrapper script (no secrets, just paths)
 - `C:\Users\VCL1\Voxxy Creative Lab Limited\08 - Projects\0007 - Claude Files\GCS - Google Ads - Client Secret.json` — OAuth JSON backup
 
-### Migration References (from `.migration/`)
-- `.migration/mcp/google-ads.cmd` — wrapper script source (already copied to `C:\mcp\`)
-- `.migration/claude-memories/0001-ad-platform-campaign-manager/project_mcp_connection.md` — original MCP setup documentation
-- `start-mcp.cmd` inside MCP server directory — **still has old `D:\Jerry\...` path** (not used; `C:\mcp\google-ads.cmd` is the active wrapper)
+## What Still Needs to Happen
 
-## Immediate Next Steps
+### Phase 1c — Skill Strategy Hooks (next up)
 
-1. **Restart Claude Code session** — MCP tools won't load until session restart
-2. **Test MCP connection** — call `list_accounts()` to verify credentials work
-3. **Rotate OAuth client secret** — exposed in previous session screenshot. GCP Console → Credentials → reset → update `~/google-ads.yaml`
-4. **Unhide Phase 2 skills** — `connect-mcp` and `live-report` (set `disable-model-invocation: false`)
-5. **Tackle Finding #3** — workflow dead-ends (post-launch monitoring, actionable insights)
-6. **Tackle Finding #4** — Socratic skill redesign
-7. **Fix `start-mcp.cmd`** — update old `D:\Jerry\...` path to current location (low priority, wrapper at `C:\mcp\` is the one in use)
+Wire the new strategic reference docs into the 4 key skills. Fix remaining Findings #3/#4.
 
-## Remaining Audit Findings
+1. **campaign-setup** — Add account profile questions in Step 1, reference `account-profiles.md`, adapt type recommendations by vertical/maturity. Add "next step" routing. Convert lecture sections to Socratic questions.
+2. **keyword-strategy** — Reference `account-profiles.md` for match type progression by maturity. Add competition-level and conversion-complexity questions.
+3. **budget-optimizer** — Reference `account-profiles.md` for budget-tier targets. Add maturity-aware questioning with vertical-specific benchmarks.
+4. **campaign-cleanup** — Reference `account-profiles.md` for triage priority by vertical/maturity. Add diagnostic questions before prescribing.
+5. Update skills/CONTEXT.md dependency maps to include `strategy/*` for these 4 skills.
+6. Update CHANGELOG with v1.5.0.
 
-| # | Finding | Status |
-|---|---------|--------|
-| 1 | No API access | ✅ Done — MCP server built, connected, verified |
-| 2 | Missing campaign types | ✅ Done |
-| 3 | Workflow dead-ends | ⬜ Not started |
-| 4 | Skills tell rather than ask | ⬜ Not started |
-| 5 | Feed-only PMax knowledge gap | ✅ Done |
+### Phase 2 — Account Strategy Skill (after 1c)
+
+New `account-strategy` skill that asks Tier 1/2/3 questions and generates tailored strategy. Enhance 5 existing skills to pull from strategy context.
+
+### Phase 3 — Strategy Agent (after Phase 2)
+
+New `strategy-advisor` MCP agent + 5 remaining reference docs (seasonality, remarketing, ad testing, bid adjustments, shopping feed).
+
+## Design Documents
+
+- **Design spec:** `docs/superpowers/specs/2026-04-03-strategic-upgrade-design.md`
+- **Skill review audit:** `docs/superpowers/specs/2026-04-03-skill-review-audit.md`
+- **Phase 1a plan:** `docs/superpowers/plans/2026-04-03-phase-1a-systemic-skill-fixes.md`
 
 ## Open Blockers
 
 - **Credential rotation:** OAuth client secret should be rotated (exposed in previous session screenshot)
-- **Session restart needed:** MCP server re-registered but tools won't load until Claude Code restarts
 - **Phase 4 (Multi-platform):** not started — Meta/LinkedIn/TikTok placeholders only
-
-## Session Notes
-
-- `google-ads.yaml` was NOT included in the machine migration backup — must be backed up separately in future migrations (add to migration runbook)
-- The `C:\mcp\google-ads.cmd` wrapper was correctly migrated and works on the new machine
-- The `start-mcp.cmd` inside the MCP server directory still has the old D: path — doesn't matter because `C:\mcp\google-ads.cmd` is the active wrapper used by Claude Code
-- Tool permissions in `settings.json` survived migration (already had `mcp__google-ads__*` entries)
-- MCP registration goes into `~/.claude.json` (via `claude mcp add`), NOT `~/.claude/settings.json` — two different files
-- Client secret JSON exists in two locations: `05 - Tracking/.../CLAUDE-files/` and `08 - Projects/0007 - Claude Files/`
-- **Critical workflow:** after every `git push`, Claude must execute marketplace clone sync (git pull → uninstall → install)
