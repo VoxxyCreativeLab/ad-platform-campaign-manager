@@ -11,12 +11,21 @@ You are helping with budget allocation, bid strategy selection, and spend optimi
 
 If `$ARGUMENTS` provides a budget amount, campaign name, or context, use it to scope the guidance. Otherwise, ask the user what they need help with: allocation, forecasting, bid strategy, or CPA/ROAS targets.
 
+Before recommending budget or bidding changes, establish the account's maturity stage and budget tier. Ask:
+1. How many conversions per month is this account generating?
+2. How long has the account been running?
+3. What vertical? (e-commerce, lead gen, B2B SaaS, local services)
+
+Consult the maturity stage table in account-profiles.md to determine viable strategies.
+
 ## Reference Material
 
 - **Bidding strategies:** [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]]
 - **Campaign types:** [[../../reference/platforms/google-ads/campaign-types|campaign-types.md]]
 - **Account structure:** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
 - **Common mistakes:** [[../../reference/platforms/google-ads/audit/common-mistakes|common-mistakes.md]]
+- **Account profiles (budget tier and maturity):** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
+- **Maturity roadmap (bidding progression):** [[../../reference/platforms/google-ads/strategy/account-maturity-roadmap|account-maturity-roadmap.md]]
 
 ## Common Tasks
 
@@ -29,7 +38,21 @@ Help the user choose the right bid strategy based on:
 
 Use the decision tree from the bidding strategies reference.
 
+Ask before recommending: "How many conversions did this campaign generate last month?" Map to maturity-appropriate strategy:
+- 0-15 conv/mo → Manual CPC or Maximize Clicks (do not recommend Smart Bidding)
+- 15-30 → test Maximize Conversions on highest-volume campaign only
+- 30-50+ → tCPA or tROAS viable
+- 50+ stable → value-based bidding, portfolio strategies
+
 ### Setting Target CPA/ROAS
+Ask first: "What is your current CPA? What conversion volume do you have?"
+
+Vertical-specific benchmarks for reference:
+- **E-commerce:** ROAS 3-8x depending on margins; CPA varies by AOV
+- **Lead gen:** CPA €15-200 (legal €50-150, home services €15-50, insurance €30-100)
+- **B2B SaaS:** CPA €50-300 for demo/trial; true CAC much higher
+- **Local services:** CPA €10-60 per call/booking
+
 1. **Never set aspirational targets** — start with actual performance data
 2. Calculate current CPA: Total Cost / Total Conversions (last 30 days)
 3. Set initial target at current CPA or slightly above
