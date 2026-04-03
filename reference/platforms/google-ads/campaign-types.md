@@ -170,3 +170,29 @@ See [[dsa]] for full details including page feed setup, exclusion best practices
 | Conv. data needed | Some | 30+/month | Some | Some | Some | Some | Some |
 
 *\* PMax is easy to set up but can be hard to diagnose when underperforming — reporting has improved but is still less granular than Search.*
+
+## Campaign Type by Account Profile
+
+Which campaign types to run depends on vertical, maturity, and budget. See [[strategy/account-profiles]] for the full framework.
+
+### By Vertical
+
+| Vertical | Primary Type | Secondary | Add When Established | Add When Mature |
+|----------|-------------|-----------|---------------------|-----------------|
+| E-commerce | Shopping / Feed-only PMax | Brand Search | Non-brand Search, Demand Gen remarketing | Full PMax, Display prospecting |
+| Lead Gen | Search (exact+phrase) | Call extensions, DSA | Non-feed PMax, Display remarketing | Demand Gen, YouTube |
+| B2B SaaS | Search (exact, high-intent) | — | Demand Gen retargeting | Demand Gen prospecting, Video |
+| Local Services | Search + Location assets | Call-only campaigns | Local PMax | Local Services Ads (if available) |
+
+### By Maturity (regardless of vertical)
+
+| Stage | Recommended | Avoid |
+|-------|------------|-------|
+| Cold start | Search only | PMax (not enough conversion data), Display (too broad), Video (awareness only) |
+| Early data | Search + Brand split, DSA for discovery | PMax (unless e-commerce with feed), Demand Gen |
+| Established | Add PMax (with 30+ conv/mo), Display remarketing | Display prospecting (unless large budget) |
+| Mature | Full mix based on vertical | Nothing inherently off-limits — test and measure |
+
+> [!warning] PMax Readiness
+> PMax needs 30+ conversions/month to optimize effectively (60+ ideal). Launching PMax on a cold-start account wastes budget. Build conversion volume via Search first, then migrate.
+%%fact-check: PMax 30+ conversions/month recommendation — verified 2026-04-03%%

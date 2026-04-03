@@ -131,3 +131,31 @@ When you change a bid strategy, Google enters a "learning" period (typically 1-2
 3. **Too little conversion data** — smart bidding needs data to work
 4. **Not using conversion values** — if products have different values, pass them to Google
 5. **Ignoring seasonality** — adjust targets for known seasonal peaks/dips
+
+## Bidding Strategy by Account Profile
+
+Which bid strategy to use depends on account maturity and conversion volume. See [[strategy/account-profiles]] for the full framework.
+
+| Account Stage | Conversions/Month | Recommended Strategy | Why |
+|---------------|-------------------|---------------------|-----|
+| Cold start (0-3mo) | 0-15 | Manual CPC or Maximize Clicks | No conversion data to optimize; need baseline learning |
+| Early data (3-6mo) | 15-30 | Maximize Conversions (no target) | Enough data to let the algorithm find conversions, but not enough for targets |
+| Established (6-18mo) | 30-50 | Target CPA or Target ROAS | Reliable data; set targets from actual 30-day averages, NOT aspirational |
+| Mature (18+mo) | 50+ | Value-based bidding (tROAS with profit-adjusted values) | Rich data enables profit optimization, not just conversion counting |
+
+### Learning Period Tactics
+
+When transitioning between bid strategies:
+1. **Don't change during high-traffic periods** — avoid learning period during Black Friday, launches
+2. **Budget buffer** — increase daily budget by 20% during the 2-week learning period
+3. **No other changes** — don't adjust keywords, ads, or targeting during learning
+4. **Watch for spend spikes** — Maximize Conversions without a target can overspend; set a max CPC bid limit as a safety net
+5. **Failed learning?** — If learning fails after 2 weeks, check: enough conversions? Too-aggressive target? Budget too low?
+
+### Scaling Smart Bidding
+
+After Smart Bidding is stable (4+ weeks, no learning):
+- **Increase budget gradually** — 15-20% max per change, then wait 1-2 weeks
+- **Tighten targets gradually** — reduce CPA or increase ROAS by 10% max, wait 2 weeks
+- **If spend drops** — target is too aggressive; loosen by 15-20% and wait
+- **Portfolio bid strategies** — consider these when 3+ campaigns share the same goal

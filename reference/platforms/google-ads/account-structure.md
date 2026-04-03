@@ -112,3 +112,28 @@ PMax campaigns support campaign-level negative keywords (up to 10,000 per campai
 
 > [!info] AI Max is not a new campaign type
 > AI Max is a Search campaign feature layer (opt-in per campaign). It enables broader matching, auto-generated creative variations, and expanded URL targeting within existing Search campaigns. Think of it as "PMax-like automation layered onto Search" — your campaign structure stays the same.
+
+## Structure by Account Profile
+
+Account structure should match maturity and budget. See [[strategy/account-profiles]] for the full framework.
+
+### By Maturity Stage
+
+| Stage | Campaigns | Ad Groups per Campaign | Keywords per Ad Group |
+|-------|-----------|----------------------|---------------------|
+| Cold start | 1 (Search) | 2-3 | 10-15 exact+phrase |
+| Early data | 2-3 (Brand + Non-brand + test) | 3-5 | 10-20 |
+| Established | 4-6 (Brand + Non-brand + PMax + remarketing) | 5-10 | 15-25 |
+| Mature | 6-10+ (full mix) | 7-10 | 15-30 |
+
+### By Budget Tier
+
+| Budget | Max Campaigns | Campaign Types | Testing Capacity |
+|--------|--------------|----------------|-----------------|
+| Micro (<€1K/mo) | 1-2 | Search only | None — every euro counts |
+| Small (€1-5K/mo) | 2-3 | Search + brand | Minimal — one ad copy test at a time |
+| Medium (€5-25K/mo) | 4-6 | Search + PMax + remarketing | Moderate — ad copy + landing page tests |
+| Large (€25K+/mo) | 6-10+ | Full mix | Aggressive — continuous multivariate testing |
+
+> [!tip] Start Simple, Grow With Data
+> New accounts with limited budgets should resist the urge to build complex structures. One well-optimized Search campaign outperforms five underfunded campaigns competing with each other.
