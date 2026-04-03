@@ -1,6 +1,7 @@
 ---
 name: connect-mcp
 description: "[Phase 2] Configure MCP connections to Google Ads API — OAuth setup, server selection, connection verification. Use when setting up live API access."
+argument-hint: "[account-name or MCC-ID]"
 disable-model-invocation: true
 ---
 

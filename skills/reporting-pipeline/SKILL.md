@@ -1,6 +1,7 @@
 ---
 name: reporting-pipeline
 description: Google Ads to BigQuery reporting pipelines — GAQL queries, BQ schemas, dbt models, Looker Studio dashboards. Use when building or designing a reporting pipeline from Google Ads to BigQuery.
+argument-hint: "[gaql|bigquery|dbt|looker-studio]"
 disable-model-invocation: false
 ---
 

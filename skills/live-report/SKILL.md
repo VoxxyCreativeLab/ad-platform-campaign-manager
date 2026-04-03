@@ -1,6 +1,7 @@
 ---
 name: live-report
 description: "[Phase 2] Pull live campaign data via MCP and generate formatted performance reports. Use when generating live Google Ads reports. Requires MCP connection."
+argument-hint: "[report-type and date-range]"
 disable-model-invocation: true
 ---
 

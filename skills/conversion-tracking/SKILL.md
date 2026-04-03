@@ -1,6 +1,7 @@
 ---
 name: conversion-tracking
 description: Google Ads conversion tracking via GTM/sGTM — conversion actions, enhanced conversions, offline imports, value-based bidding. Use when setting up or troubleshooting conversion tracking for Google Ads.
+argument-hint: "[setup|troubleshoot|enhanced-conversions]"
 disable-model-invocation: false
 ---
 

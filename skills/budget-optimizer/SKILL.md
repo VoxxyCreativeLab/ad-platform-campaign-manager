@@ -1,6 +1,7 @@
 ---
 name: budget-optimizer
 description: Budget allocation, bid strategy selection, spend forecasting, and target CPA/ROAS calculation. Use when planning or optimizing campaign budgets.
+argument-hint: "[budget-amount or campaign-name]"
 disable-model-invocation: false
 ---
 
