@@ -58,6 +58,34 @@ When a user reports conversion tracking issues, check:
 6. Are there duplicate conversion tags (both client and server)?
 7. Check the Google Ads Diagnostics tab status
 
+## Output: Conversion Tracking Setup Summary
+
+After setting up or troubleshooting, produce a summary:
+
+```
+## Conversion Tracking Setup — {{client_name}}
+
+### Conversion Actions
+| Action | Type | Counting | Window | Attribution | Value | Status |
+|--------|------|----------|--------|-------------|-------|--------|
+| {{action_name}} | {{type}} | {{one_or_every}} | {{window_days}}d | {{model}} | {{value_or_dynamic}} | {{active_or_issue}} |
+
+### Implementation
+- **Method:** {{gtm_or_sgtm_or_api}}
+- **Enhanced conversions:** {{enabled_or_not}}
+- **Consent mode:** {{configured_or_not}}
+- **GCLID capture:** {{yes_or_not_needed}}
+
+### Verification
+- [ ] Conversion Linker firing on all pages
+- [ ] Conversion tag firing on correct event
+- [ ] Test conversion visible in Google Ads (allow 24h)
+- [ ] Google Tag Assistant shows no errors
+
+### Issues Found
+{{issues_or_none}}
+```
+
 ## Key Concepts to Explain When Asked
 
 - **Primary vs secondary conversions** and how they affect bidding
