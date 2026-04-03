@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-03
-**Current milestone:** Strategic Upgrade v2.0 — Phase 1a ✅ + Phase 1b ✅ — Phase 1c next
+**Current milestone:** Strategic Upgrade v2.0 — Phase 1 ✅ Complete (1a + 1b + 1c) — Phase 2 next
 
 ---
 
@@ -34,7 +34,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 |-------|------|--------|-------|
 | 1a | Systemic Skill Fixes | ✅ Done (v1.3.0) | 6 systemic issues fixed across 11 skills, live-report redesigned |
 | 1b | Strategic Reference Docs | ✅ Done (v1.4.0) | 8 new strategy docs, 3 existing enhanced with profile-aware sections |
-| 1c | Skill Strategy Hooks | ⬜ Next | Wire strategy docs into 4 skills, finish Findings #3/#4 |
+| 1c | Skill Strategy Hooks | ✅ Done (v1.5.0) | 4 skills profile-aware, Findings #3/#4 complete |
 | 2 | Account Strategy Skill | ⬜ Not started | New account-strategy skill + enhance 5 existing skills |
 | 3 | Strategy Agent + Remaining | ⬜ Not started | strategy-advisor agent + 5 remaining reference docs |
 
@@ -43,7 +43,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
 | 01 | Reference | 🔄 Expanding | 22 → 30 google-ads files (+8 strategy), 17 script docs, 6 tracking-bridge, 5 reporting, 3 mcp |
-| 02 | Skills | 🔄 Improving | 11 skills — all fixed (argument-hints, placeholders, inter-skill refs, live-report redesign) |
+| 02 | Skills | 🔄 Improving | 11 skills — all fixed + 4 now profile-aware (strategy hooks, Socratic questioning) |
 | 03 | Agents | ✅ Done | 2 agents (campaign-reviewer, tracking-auditor) |
 
 **Status key:** ⬜ Not started · 🔄 In progress · ✅ Done · ⚠️ Blocked
@@ -52,14 +52,14 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Current Focus
 
-**Active phase:** Strategic Upgrade v2.0 — Phase 1c (Skill Strategy Hooks)
+**Active phase:** Strategic Upgrade v2.0 — Phase 1 Complete, Phase 2 next
 **What's happening:**
 - ✅ Phase 1a (v1.3.0) — systemic skill fixes, live-report redesign, all 6 issues resolved
 - ✅ Phase 1b (v1.4.0) — 8 new strategy docs, 3 existing enhanced, routing updated
-- ⬜ Phase 1c — wire strategy docs into 4 key skills (campaign-setup, keyword-strategy, budget-optimizer, campaign-cleanup), finish Findings #3/#4
+- ✅ Phase 1c (v1.5.0) — 4 skills now profile-aware, Findings #3/#4 complete
 - ⬜ Phase 2 — build account-strategy skill, enhance 5 skills for strategy-awareness
 - ⬜ Phase 3 — strategy-advisor agent + remaining reference docs
-**Blockers:** OAuth client secret should be rotated (non-blocking for 1c work).
+**Blockers:** OAuth client secret should be rotated.
 
 ---
 
@@ -93,19 +93,12 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Next Steps
 
-1. **Phase 1c — Skill strategy hooks** (say "continue" to resume):
-   - Wire `strategy/account-profiles.md` into campaign-setup, keyword-strategy, budget-optimizer, campaign-cleanup
-   - Add account profile questions (vertical/maturity/budget) to campaign-setup Step 1
-   - Add maturity-aware match type progression to keyword-strategy
-   - Add vertical-specific benchmarks to budget-optimizer
-   - Add diagnostic questions to campaign-cleanup
-   - Complete Findings #3 (dead-ends → routing) and #4 (lecture → Socratic)
-   - Update skills/CONTEXT.md dependency maps for `strategy/*`
-   - CHANGELOG v1.5.0
-2. **Phase 2 — Account strategy skill** — new `account-strategy` skill + enhance 5 existing skills
-3. **Phase 3 — Strategy agent** — `strategy-advisor` MCP agent + 5 remaining reference docs
-4. **Rotate OAuth client secret** — exposed in previous session screenshot
-5. **Real client work** — use skills on a live Google Ads account
+1. **Phase 2 — Account strategy skill** (say "continue" to resume):
+   - New `account-strategy` skill that walks through 10-dimension profile and generates tailored strategy
+   - Enhance 5 existing skills to pull from strategy context (campaign-review, conversion-tracking, pmax-guide, reporting-pipeline, ads-scripts)
+2. **Phase 3 — Strategy agent** — `strategy-advisor` MCP agent + 5 remaining reference docs (seasonality, remarketing, ad testing, bid adjustments, shopping feed)
+3. **Rotate OAuth client secret** — exposed in previous session screenshot
+4. **Real client work** — use skills on a live Google Ads account
 
 ---
 
@@ -117,8 +110,8 @@ Full plugin audit identified 4 weaknesses. Tackling one at a time — each gets 
 |---|----------|--------|--------|
 | 1 | **No API access** — guidance-only, Phase 2 skills hidden | Can teach but can't validate or automate | ✅ Done — MCP server built, connected, 25 tools verified in Claude Code |
 | 2 | **Missing campaign types** — Shopping, Video/YouTube, DSA, Demand Gen undocumented | Plugin can't guide setup/review for these types | ✅ Done |
-| 3 | **Workflow dead-ends** — campaign-setup has no post-launch monitoring, live-report has no actionable insights, keyword-strategy has no brainstorming scaffold | User gets a plan but no follow-through | 🔄 Partially fixed (1a added inter-skill refs + routing to 6 skills; 1c will complete) |
-| 4 | **Skills tell rather than ask** — instructional instead of Socratic, less interactive than agents | Tracking specialist needs guided discovery, not info dumps | 🔄 Partially fixed (1a added troubleshooting + error handling; 1c will add profile questions) |
+| 3 | **Workflow dead-ends** — campaign-setup has no post-launch monitoring, live-report has no actionable insights, keyword-strategy has no brainstorming scaffold | User gets a plan but no follow-through | ✅ Done — 1a added inter-skill refs + routing; 1c added "What to Do Next" to campaign-setup |
+| 4 | **Skills tell rather than ask** — instructional instead of Socratic, less interactive than agents | Tracking specialist needs guided discovery, not info dumps | ✅ Done — 1a added troubleshooting; 1c added Socratic profiling questions to 4 skills |
 | 5 | **Feed-only PMax knowledge gap** — zero coverage of feed-only PMax, listing groups, MC creation flow, restructuring patterns. campaign-setup had wrong blocker. | Claude failed real-world e-commerce campaign restructuring | ✅ Done |
 
 ### Finding 1: No API Access

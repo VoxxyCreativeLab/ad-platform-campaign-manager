@@ -9,7 +9,7 @@ tags:
 
 # Design — Strategic Upgrade v2.0
 
-**Status:** Phase 1a ✅ Done (v1.3.0) + Phase 1b ✅ Done (v1.4.0) — Phase 1c next
+**Status:** Phase 1 ✅ Complete (1a v1.3.0 + 1b v1.4.0 + 1c v1.5.0) — Phase 2 next
 **Approach:** Phased releases (3 phases)
 **Driver:** Practice toolkit — building campaign strategy capability alongside existing tracking expertise
 **Companion doc:** [[2026-04-03-skill-review-audit]] — full scored review of all 11 skills (avg 82/100)

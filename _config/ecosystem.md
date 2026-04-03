@@ -16,7 +16,9 @@ tags:
 
 ## Claude Code Plugins
 
-### gtm-template-builder-plugin ✅ Active
+### Domain Plugins
+
+#### gtm-template-builder-plugin ✅ Active
 - **Skills:** `scaffold-template`, `sandboxed-js`, `permissions`, `parameters`, `template-tests`, `gallery-submit`
 - **Agent:** `template-reviewer`
 - **Domains:** GTM custom templates, analytics, tag management, tracking
@@ -25,8 +27,8 @@ tags:
 
 ---
 
-### wordpress-fse-builder-plugin ✅ Active
-- **Skills:** `scaffold-theme`, `create-pattern`, `create-template`, `deploy-ftp`, `validate-theme`
+#### wordpress-fse-builder-plugin ✅ Active
+- **Skills:** `scaffold-theme`, `apply-design-system`, `generate-css`, `create-pattern`, `create-template`, `deploy-ftp`, `validate-theme`
 - **Agent:** `theme-reviewer`
 - **Domains:** WordPress FSE, block themes, theme.json, Gutenberg patterns, WooCommerce
 - **When to use:** Building or reviewing WordPress FSE block themes
@@ -34,9 +36,8 @@ tags:
 
 ---
 
-### ad-platform-campaign-manager ✅ Active
-- **Skills:** `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `reporting-pipeline`, `campaign-review`, `pmax-guide`, `budget-optimizer`, `ads-scripts`
-- **Phase 2 skills (MCP required):** `connect-mcp`, `live-report`
+#### ad-platform-campaign-manager ✅ Active
+- **Skills:** `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `reporting-pipeline`, `campaign-review`, `campaign-cleanup`, `pmax-guide`, `budget-optimizer`, `ads-scripts`, `live-report`
 - **Agents:** `campaign-reviewer`, `tracking-auditor`
 - **Domains:** Google Ads, PPC, campaign management, conversion tracking, BigQuery reporting
 - **When to use:** Setting up, auditing, or optimizing Google Ads campaigns; building conversion tracking pipelines
@@ -44,23 +45,45 @@ tags:
 
 ---
 
-### kepano/obsidian-skills 📖 Reference
+### Reference & Planned Plugins
+
+#### kepano/obsidian-skills 📖 Reference
 - **Skills:** `obsidian-markdown`, `obsidian-bases`, `json-canvas`, `obsidian-cli`, `defuddle`
 - **Domains:** Obsidian vault management, Obsidian-flavored markdown, Canvas, Bases
 - **Relationship:** Our `obsidian-format` skill draws conventions from this plugin's spec. Not a runtime dependency — our skill is standalone.
 - **Source:** [github.com/kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)
 
-### nextjs-plugin 🔲 Planned
+#### nextjs-plugin 🔲 Planned
 - **Skills:** TBD (scaffold, build, deploy)
 - **Domains:** Next.js apps, React, static sites, JAMstack
 - **When to use:** Building Next.js / React applications
 - **Status:** Not yet built — use `tech-standards.md` + `component-library.md` stubs manually
 
-### n8n-plugin 🔲 Planned
+#### n8n-plugin 🔲 Planned
 - **Skills:** TBD (design, build, test, deploy)
 - **Domains:** N8N workflow automation, API integrations, agent pipelines
 - **When to use:** Designing or building N8N automation workflows
 - **Status:** Not yet built — use `tech-standards.md` + `conventions.md` stubs manually
+
+### Methodology & Workflow Plugins
+
+#### superpowers ✅ Active
+- **Author:** Jesse Vincent (obra) — claude-plugins-official marketplace
+- **Skills:** brainstorming, writing plans, TDD, systematic debugging, subagent-driven development, verification, code review (giving/receiving), parallel agent dispatch, git worktrees, branch finishing, plan execution, skill writing
+- **Domains:** All — cross-cutting methodology plugin, not domain-specific
+- **When to use:** Brainstorming requirements, writing granular plans, TDD workflows, systematic debugging, dispatching parallel agents, code review, git worktree management
+- **Install:** `claude plugin install superpowers@claude-plugins-official`
+
+---
+
+#### frontend-design ✅ Active
+- **Author:** Anthropic (Prithvi Rajasekaran, Alexander Bricken) — claude-plugins-official marketplace
+- **Skills:** `frontend-design`
+- **Domains:** All — cross-cutting design quality plugin, not domain-specific
+- **When to use:** Building frontend interfaces with distinctive design quality — typography, color, animations, spatial composition. Avoids generic AI aesthetics.
+- **Install:** `claude plugin install frontend-design@claude-plugins-official`
+
+---
 
 ### email-marketing-plugin 🔲 Planned
 - **Skills:** TBD (copy, design, build, test)
@@ -116,5 +139,6 @@ tags:
 
 ---
 
-%% To add a new plugin: copy a "Planned" block above, fill in the skills, and change status to ✅ Active. %%
+%% To add a domain plugin: copy a "Planned" block under Domain Plugins, fill in the skills, change status to ✅ Active. %%
+%% To add a methodology plugin: add an entry under Methodology & Workflow Plugins. %%
 %% To add a new MCP: add a row to the MCPs table and change status once configured. %%
