@@ -9,6 +9,8 @@ disable-model-invocation: false
 
 Structured process for cleaning up messy or neglected Google Ads accounts. Use this before optimization — you can't optimize what's broken.
 
+If `$ARGUMENTS` provides a client name or account context, use it throughout the triage report. Otherwise, ask the user to identify the account before starting.
+
 ## When to Use
 
 - Inheriting a client account with unknown history
