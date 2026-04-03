@@ -1,68 +1,73 @@
 ---
 name: live-report
-description: "[Phase 2] Pull live campaign data via MCP and generate formatted performance reports. Use when generating live Google Ads reports. Requires MCP connection."
-disable-model-invocation: true
+description: "Pull live campaign data via MCP and generate formatted performance reports — campaign summary, keyword analysis, search terms, budget pacing, ad copy, device/geo breakdown. Use when generating live Google Ads reports."
+argument-hint: "[report-type and date-range]"
+disable-model-invocation: false
 ---
 
 # Live Campaign Reports
 
-**Phase 2 Skill** — Requires a connected Google Ads MCP server. Set up via `/ad-platform-campaign-manager:connect-mcp`.
+Pull live data from Google Ads via MCP and generate formatted performance reports.
 
-## Prerequisites Check
+## Prerequisites
 
-Before running reports, verify:
-1. MCP server is configured and running
-2. Test with a simple campaign list query
-3. If not connected, direct the user to `/ad-platform-campaign-manager:connect-mcp`
+Before running reports, verify MCP is connected:
+1. Call `list_campaigns` — if it returns data, MCP is working
+2. If not connected → direct the user to `/ad-platform-campaign-manager:connect-mcp`
 
 ## Reference Material
 
-- **GAQL query templates:** [[../../reference/reporting/gaql-query-templates|gaql-query-templates.md]]
-- **Report formats:** [[../../reference/reporting/looker-studio-templates|looker-studio-templates.md]]
-- **GAQL reference:** [[../../reference/platforms/google-ads/gaql-reference|gaql-reference.md]]
+- **Report templates (GAQL, MCP tools, output formats):** [[references/report-templates|report-templates.md]]
+- **GAQL query reference:** [[../../reference/platforms/google-ads/gaql-reference|gaql-reference.md]]
+- **GAQL templates library:** [[../../reference/reporting/gaql-query-templates|gaql-query-templates.md]]
 
 ## Available Reports
 
-### Campaign Performance Summary
-Pull via MCP and format as a table:
-- All enabled campaigns with spend, impressions, clicks, CTR, conversions, CPA, ROAS
-- Compare to previous period (WoW or MoM)
-- Flag anomalies (>20% change)
+If `$ARGUMENTS` specifies a report type, jump directly to it. Otherwise, ask what the user needs.
 
-### Keyword Performance
-- Top keywords by cost with Quality Score
-- Keywords with spend but no conversions (waste)
-- High-converting keywords (potential budget increase candidates)
+| Report | MCP Tools | Best For |
+|--------|-----------|----------|
+| Campaign Performance Summary | `get_campaign_metrics`, `list_campaigns` | Weekly/monthly overview |
+| Keyword Performance | `list_keywords`, `list_ad_groups`, `run_gaql` | Keyword optimization |
+| Search Terms Analysis | `run_gaql` (search_term_view) | Finding new keywords, adding negatives |
+| Budget Pacing | `get_campaign_metrics`, `list_campaigns` | Daily budget monitoring |
+| Ad Copy Performance | `list_ads`, `list_ad_groups` | RSA optimization |
+| Device & Geographic Breakdown | `run_gaql` (segments.device, geographic_view) | Bid adjustment decisions |
 
-### Search Terms Analysis
-- Top search terms triggering ads
-- Search terms with conversions (add as keywords?)
-- Irrelevant search terms (add as negatives?)
+### For each report:
+1. Consult [[references/report-templates|report-templates.md]] for the GAQL query and MCP tool sequence
+2. Pull the data via the appropriate MCP tools
+3. Convert `cost_micros` to currency: divide by 1,000,000
+4. Calculate derived metrics: CTR = clicks/impressions, CPA = cost/conversions, ROAS = value/cost
+5. Format as a clean markdown table using the output template
+6. Add period-over-period comparison where applicable (WoW or MoM)
+7. Flag anomalies: any metric changing >20% vs previous period
+8. End with clear action items based on the data
 
-### Ad Copy Performance
-- RSA performance comparison within each ad group
-- CTR and conversion rate by ad
+## Report Principles
 
-### Budget Pacing
-- Current spend vs daily budget
-- Projected monthly spend at current pace
-- Campaigns limited by budget
+- **Always show the date range** at the top of every report
+- **Sort by spend** (highest first) unless the user asks otherwise
+- **Flag zero-conversion spend** as wasted — show total wasted amount
+- **Include action items** — don't just show data, recommend what to do
+- **Use currency symbols** (€) — never show raw micros values
 
-### Device & Geographic Breakdown
-- Performance by device type
-- Performance by location
+## Troubleshooting
 
-## Report Format
-
-Format all reports as clean markdown tables with:
-- Key metrics highlighted
-- Period-over-period comparisons
-- Clear recommendations based on the data
-- Action items (keywords to add/remove, budgets to adjust, etc.)
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| MCP returns "not connected" or tool not found | MCP server not running or session not unlocked | Run `/ad-platform-campaign-manager:connect-mcp` to set up or restart |
+| GAQL query returns `Unrecognized field` | Field name wrong or not available on the queried resource | Check [[../../reference/platforms/google-ads/gaql-reference|gaql-reference.md]] — field names are resource-specific |
+| Report shows €0 cost for all campaigns | Date range has no data, or all campaigns are paused | Check campaign statuses; try a wider date range (LAST_30_DAYS); verify the account has active campaigns |
+| CPA shows as "∞" or undefined | Campaigns have spend but zero conversions | Show CPA as "—" (no data); flag these campaigns for conversion tracking check |
+| ROAS shows as 0 | No conversion value is being tracked | Check if conversion actions have value configured; recommend `/ad-platform-campaign-manager:conversion-tracking` |
+| Rate limit errors from MCP | Too many API calls in sequence | Batch queries — pull account-level metrics first, then drill into specific campaigns/ad groups only as needed |
+| Data doesn't match Google Ads UI | Different date range, attribution model, or conversion counting | Verify date range matches; note that API uses the default attribution model and may include all conversions vs primary only |
 
 ## Scheduling
 
-For recurring reports, suggest the user set up:
-- Weekly performance summaries (Monday morning)
-- Monthly deep-dive reports
-- Daily budget pacing alerts
+For recurring reports, suggest the user set up automated reporting:
+- **Weekly performance summary** — Monday morning, last 7 days
+- **Monthly deep-dive** — 1st of month, previous month
+- **Daily budget pacing** — daily, current month-to-date
+- For automated pipelines (not ad-hoc), use `/ad-platform-campaign-manager:reporting-pipeline`

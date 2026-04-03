@@ -71,7 +71,7 @@ Provide a curated negative keyword list:
 Present the keyword plan as a structured table:
 
 ```
-AD GROUP: [Theme Name]
+AD GROUP: {{theme_name}}
 Match Type | Keyword                  | Est. Intent | Notes
 Broad      | running shoes            | High        | Core term
 Phrase      | "best running shoes"     | Medium      | Comparison
@@ -105,3 +105,20 @@ Suggest additional keyword opportunities:
 - Seasonal keywords to add/pause
 - Competitor terms to consider
 - Questions people ask (People Also Ask / FAQ keywords)
+
+## Troubleshooting
+
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| User has no keyword ideas to start from | No familiarity with the industry or product | Ask for the client's website URL, competitor names, or Google Search Console data; use these as seed inputs for brainstorming |
+| All suggested keywords have zero estimated volume | Niche business or very specific terms | Broaden to category-level terms, use phrase match to capture long-tail variations, check if the target location is too narrow |
+| Keywords generate clicks but no conversions | Intent mismatch — keywords are informational, not transactional | Review the keyword intent tier; move informational keywords to a separate campaign with lower bids or pause them |
+| Internal keyword competition across ad groups | Same keyword appears in multiple ad groups | Run a duplicate keyword audit; consolidate into the most relevant ad group; add cross-group negatives for the others |
+| Client's existing list conflicts with new strategy | Legacy keywords don't match the proposed ad group themes | Present the gap analysis; recommend phased migration — don't delete old keywords immediately, add new ones alongside and shift budget |
+
+## Next Steps
+
+After keyword research is complete:
+- Build the campaign structure → `/ad-platform-campaign-manager:campaign-setup`
+- Set budget and bids for the keyword plan → `/ad-platform-campaign-manager:budget-optimizer`
+- Review existing campaigns against the new keyword strategy → `/ad-platform-campaign-manager:campaign-review`

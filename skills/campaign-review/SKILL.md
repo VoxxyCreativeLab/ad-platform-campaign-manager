@@ -1,6 +1,7 @@
 ---
 name: campaign-review
 description: Audit a campaign against best practices — structure, keywords, ads, bids, conversions, budget. Use when reviewing an existing Google Ads campaign.
+argument-hint: "[campaign-name or account-data]"
 disable-model-invocation: false
 ---
 
@@ -36,7 +37,21 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 2. Run the full audit automatically
 3. Produce a comprehensive report
 
+### If insufficient data is provided:
+1. Tell the user which of the 11 review areas you cannot evaluate
+2. List the minimum data needed for a useful audit:
+   - Campaign names and types
+   - Last 30-day spend, conversions, and CPA per campaign
+   - Current bid strategies
+   - Whether conversion tracking is configured
+3. If fewer than 3 areas can be evaluated, recommend:
+   - Export campaign data from Google Ads (Reports → Predefined → Campaigns)
+   - Or connect MCP for direct access: `/ad-platform-campaign-manager:connect-mcp`
+
 ## Review Areas
+
+> [!tip] Conversion Tracking Issues
+> If conversion tracking is missing or misconfigured during the audit, recommend the user run `/ad-platform-campaign-manager:conversion-tracking` before continuing the review — most other review areas depend on reliable conversion data.
 
 Work through these areas from the audit checklist:
 
@@ -58,17 +73,17 @@ Work through these areas from the audit checklist:
 # Campaign Audit Report
 
 ## Summary
-**Overall Health:** [Excellent / Good / Needs Work / Critical]
-**Score:** [X/Y checklist items passing]
+**Overall Health:** {{health_rating}}
+**Score:** {{passing_count}}/{{total_count}} checklist items passing
 
 ## Critical Issues (fix immediately)
-1. [Issue] — [Impact] — [Fix]
+1. {{issue}} — {{impact}} — {{fix}}
 
 ## Warnings (fix soon)
-1. [Issue] — [Impact] — [Fix]
+1. {{issue}} — {{impact}} — {{fix}}
 
 ## Suggestions (nice to have)
-1. [Issue] — [Impact] — [Fix]
+1. {{issue}} — {{impact}} — {{fix}}
 
 ## Section-by-Section Results
 ### Conversion Tracking: [Pass/Needs Work]
@@ -77,7 +92,7 @@ Work through these areas from the audit checklist:
 ...
 
 ## Prioritized Action Plan
-1. [Highest impact fix]
-2. [Second priority]
+1. {{highest_impact_fix}}
+2. {{second_priority}}
 3. ...
 ```

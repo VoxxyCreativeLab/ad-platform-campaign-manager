@@ -1,6 +1,7 @@
 ---
 name: connect-mcp
 description: "[Phase 2] Configure MCP connections to Google Ads API — OAuth setup, server selection, connection verification. Use when setting up live API access."
+argument-hint: "[account-name or MCC-ID]"
 disable-model-invocation: true
 ---
 
@@ -75,10 +76,14 @@ Test the connection:
 | `uvx: command not found` | uv/uvx not installed or not on PATH | Install via `curl -LsSf https://astral.sh/uv/install.sh \| sh` and restart the terminal |
 | MCP server starts but returns no data | Customer ID is wrong or the account has no campaigns | Verify the `customer_id` in settings matches the account (no dashes); check the Google Ads interface for at least one campaign |
 | `PERMISSION_DENIED` on MCC sub-account | OAuth was authorized for the MCC but the customer ID points to a sub-account | Add `login_customer_id` set to the MCC ID alongside the sub-account `customer_id` |
+| OAuth consent screen rejected | User clicked "Deny" on the Google consent screen, or the app is not verified and user chose not to proceed | For internal use: set the consent screen to "Internal" (G Workspace only). For external: click through the "unverified app" warning or submit for verification. |
+| OAuth redirect URI mismatch | The redirect URI in the `credentials.json` doesn't match the one registered in GCP Console | Go to GCP Console → APIs & Credentials → OAuth 2.0 Client IDs → Authorized redirect URIs — ensure it matches exactly (including trailing slash) |
+| `invalid_client` during token exchange | Client ID or secret is incorrect, or the OAuth client was deleted/recreated | Verify `client_id` and `client_secret` in `~/google-ads.yaml` match the GCP Console values; regenerate the client secret if needed |
 
 ## Security Reminders
 
-- Never commit credentials to git
-- Use environment variables for tokens
+- Never commit credentials to git — verify `.gitignore` includes `google-ads.yaml`, `credentials.json`, and any `*.secret` files
+- Use environment variables for tokens when possible
 - Review API access permissions regularly
 - Use read-only MCP for day-to-day analysis, full-access only when making changes
+- **Rotate credentials** if they were ever exposed in logs, screenshots, or conversation history

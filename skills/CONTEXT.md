@@ -27,12 +27,13 @@ Each skill loads specific reference files. This map prevents loading unnecessary
 ```
 campaign-setup ──────→ campaign-types, account-structure, match-types,
                        bidding-strategies, ad-extensions, pmax/* (if PMax)
-keyword-strategy ────→ match-types, negative-keyword-lists
+keyword-strategy ────→ match-types, negative-keyword-lists, account-structure
 conversion-tracking ─→ conversion-actions, enhanced-conversions, tracking-bridge/*
 reporting-pipeline ──→ reporting/*, gaql-reference
 campaign-review ─────→ audit/*, quality-score, bidding-strategies
 pmax-guide ──────────→ pmax/*, bidding-strategies, shopping-campaigns
-budget-optimizer ────→ bidding-strategies, campaign-types
+budget-optimizer ────→ bidding-strategies, campaign-types, account-structure,
+                       audit/common-mistakes
 ads-scripts ─────────→ scripts/catalog, ads-scripts-api
 campaign-cleanup ────→ audit/*, common-mistakes, negative-keyword-lists,
                        account-structure

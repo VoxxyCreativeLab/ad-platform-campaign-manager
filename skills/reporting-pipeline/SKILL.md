@@ -1,12 +1,16 @@
 ---
 name: reporting-pipeline
 description: Google Ads to BigQuery reporting pipelines — GAQL queries, BQ schemas, dbt models, Looker Studio dashboards. Use when building or designing a reporting pipeline from Google Ads to BigQuery.
+argument-hint: "[gaql|bigquery|dbt|looker-studio]"
 disable-model-invocation: false
 ---
 
 # Reporting Pipeline
 
 You are helping design and build Google Ads reporting pipelines. The user is a BigQuery expert — leverage their existing infrastructure knowledge.
+
+> [!info] Pipeline Design vs Live Data
+> This skill helps **design** reporting pipelines (GAQL → BQ → dbt → dashboards). For pulling **live ad-hoc data** interactively, use `/ad-platform-campaign-manager:live-report` instead.
 
 ## Reference Material
 
@@ -69,6 +73,13 @@ When the user is planning for multi-platform reporting:
 | MCP (Phase 2) | Ad-hoc queries from Claude | Low |
 | dbt | Data transformation layer | Medium |
 | Looker Studio | Visualization | Low |
+
+> [!note] Getting Started Without All Tools
+> Not all tools need to be in place from day one. Start with what's available:
+> - **No BigQuery yet?** Start with GAQL queries via MCP → export to Sheets
+> - **No dbt yet?** Use BigQuery views for transformation — migrate to dbt later
+> - **No Data Transfer?** Use gaarf or Cloud Functions for scheduled exports
+> - **No Looker Studio?** BigQuery Console + Sheets dashboards work for early reporting
 
 ## Troubleshooting
 

@@ -7,6 +7,33 @@ tags:
 
 # Changelog
 
+## [1.3.0] — 2026-04-03
+
+Phase 1a of the Strategic Upgrade v2.0. Fixes 6 systemic issues across all 11 skills identified in full skill review audit (avg 82/100 → 90+).
+
+### Added
+- `argument-hint` frontmatter to 9 skills (was missing from all except campaign-setup and keyword-strategy)
+- Troubleshooting section to keyword-strategy (5 failure scenarios)
+- Output format template to budget-optimizer and conversion-tracking
+- Inter-skill cross-references: keyword-strategy → campaign-setup/budget-optimizer/campaign-review; budget-optimizer → campaign-review/campaign-cleanup/conversion-tracking; campaign-review → conversion-tracking; reporting-pipeline → live-report
+- Data sufficiency error handling to campaign-review (minimum data threshold, fallback guidance)
+- OAuth flow error handling to connect-mcp (3 new troubleshooting rows)
+- `$ARGUMENTS` handling to budget-optimizer and campaign-cleanup
+- Report templates companion file for live-report (`references/report-templates.md`)
+- Tooling gap guidance callout in reporting-pipeline
+
+### Changed
+- **live-report: complete redesign** — was 271 words / 62 score, now ~600 words with GAQL mapping, MCP tool mapping per report type, error handling (7 scenarios), and companion reference file
+- `disable-model-invocation` changed to `false` for live-report (was incorrectly `true` for a read-only reporting skill)
+- `[bracket]` placeholder syntax replaced with `{{placeholder}}` in all skill output templates (campaign-setup, keyword-strategy, campaign-review, campaign-cleanup)
+- Security reminders in connect-mcp strengthened (.gitignore verification, credential rotation)
+
+### Fixed
+- Dependency map in `skills/CONTEXT.md` — keyword-strategy and budget-optimizer now list all referenced files
+- Dependency map in root `CONTEXT.md` — matching fixes for keyword planning and budget/bids routing rows
+
+---
+
 ## [1.2.1] — 2026-04-02
 
 ### Fixed (MCP reconnection — post-migration)

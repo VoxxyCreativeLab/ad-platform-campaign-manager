@@ -1,6 +1,7 @@
 ---
 name: pmax-guide
 description: Performance Max guidance — feed-only PMax, full PMax, asset groups, audience signals, feed optimization, listing groups, PMax metrics interpretation. Use when working with PMax campaigns.
+argument-hint: "[feed-only|full|optimize|report]"
 disable-model-invocation: false
 ---
 
