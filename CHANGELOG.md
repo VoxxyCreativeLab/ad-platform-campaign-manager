@@ -7,6 +7,28 @@ tags:
 
 # Changelog
 
+## [1.4.0] — 2026-04-03
+
+Phase 1b of the Strategic Upgrade v2.0. New strategic reference layer — 8 documents covering account profiles, maturity progression, 4 vertical playbooks, targeting framework, and attribution guide.
+
+### Added
+- **`strategy/account-profiles.md`** — 10-dimension tiered framework (3 core axes × 4 modifiers × 3 context), 15 strategy archetypes collapsing 64 combinations into actionable playbooks
+- **`strategy/account-maturity-roadmap.md`** — 4-stage progression (cold start → early data → established → mature) with graduation criteria, learning period tactics, per-vertical maturity notes
+- **`strategy/vertical-ecommerce.md`** — feed-centric playbook: Shopping/PMax mix, ROAS benchmarks (3-8x), margin-tier custom labels, Black Friday planning
+- **`strategy/vertical-lead-gen.md`** — CPA-driven playbook: call tracking, offline conversion imports, sub-vertical CPL benchmarks (legal, home services, insurance)
+- **`strategy/vertical-b2b-saas.md`** — long-cycle playbook: multi-step funnel (lead→MQL→SQL→close), offline import pipeline, low-volume Smart Bidding workarounds
+- **`strategy/vertical-local-services.md`** — location-bound playbook: radius targeting, call-only campaigns, GBP integration, LSA as parallel channel
+- **`strategy/targeting-framework.md`** — all 8 audience types, remarketing segmentation matrix (recency × behavior × value), PMax audience signals, layered targeting, frequency capping
+- **`strategy/attribution-guide.md`** — 6 attribution models, CPA vs CAC analysis, ROAS vs profit-based metrics, GA4 multi-touch analysis, offline conversion attribution
+
+### Changed
+- **`bidding-strategies.md`** — added "Bidding Strategy by Account Profile" section with maturity/volume table, learning period tactics, scaling guidance
+- **`account-structure.md`** — added "Structure by Account Profile" section with maturity and budget tier tables
+- **`campaign-types.md`** — added "Campaign Type by Account Profile" section with vertical and maturity decision tables
+- **`CONTEXT.md`** — added strategy routing row, updated shared resources note
+
+---
+
 ## [1.3.0] — 2026-04-03
 
 Phase 1a of the Strategic Upgrade v2.0. Fixes 6 systemic issues across all 11 skills identified in full skill review audit (avg 82/100 → 90+).
