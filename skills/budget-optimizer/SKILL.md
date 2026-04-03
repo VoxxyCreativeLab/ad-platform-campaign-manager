@@ -9,6 +9,8 @@ disable-model-invocation: false
 
 You are helping with budget allocation, bid strategy selection, and spend optimization for Google Ads campaigns.
 
+If `$ARGUMENTS` provides a budget amount, campaign name, or context, use it to scope the guidance. Otherwise, ask the user what they need help with: allocation, forecasting, bid strategy, or CPA/ROAS targets.
+
 ## Reference Material
 
 - **Bidding strategies:** [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]]
@@ -79,6 +81,35 @@ Help estimate required budget:
 4. **Allow learning time** — don't cut budget during the learning period
 5. **Review weekly, adjust monthly** — daily changes create noise
 
+## Output Format
+
+Present budget recommendations as a structured plan:
+
+```
+## Budget & Bid Strategy Plan
+
+### Current State
+| Campaign | Monthly Spend | Conv. | CPA | ROAS | Budget Limited? |
+|----------|--------------|-------|-----|------|-----------------|
+| {{campaign_name}} | €{{spend}} | {{conversions}} | €{{cpa}} | {{roas}} | {{yes_no}} |
+
+### Recommended Changes
+| Campaign | Action | Current → Proposed | Expected Impact |
+|----------|--------|-------------------|-----------------|
+| {{campaign_name}} | {{action}} | {{current}} → {{proposed}} | {{impact}} |
+
+### Bid Strategy Recommendation
+- **Current:** {{current_strategy}}
+- **Recommended:** {{recommended_strategy}}
+- **Rationale:** {{rationale}}
+- **Data requirement:** {{min_conversions}} conversions/month (currently at {{current_conversions}})
+
+### Timeline
+- Week 1-2: {{initial_changes}}
+- Week 3-4: {{monitoring_actions}}
+- Month 2+: {{optimization_actions}}
+```
+
 ## Troubleshooting
 
 | Problem | Cause | Fix |
@@ -88,3 +119,9 @@ Help estimate required budget:
 | Campaign "Limited by budget" but CPA is bad | Budget is being spent on low-quality clicks | Don't increase budget — fix keywords, negatives, or ad relevance first, then reassess |
 | Smart bidding won't exit learning period | Too few conversions per week (need 10+ per campaign) or frequent changes resetting learning | Consolidate campaigns to increase conversion volume; stop making changes for 2 weeks |
 | Shared budget starving one campaign | Higher-priority campaign consumes the pool | Move the high-priority campaign to its own dedicated budget |
+
+## Next Steps
+
+- Validate the optimized campaign → `/ad-platform-campaign-manager:campaign-review`
+- Fix structural issues found during budget analysis → `/ad-platform-campaign-manager:campaign-cleanup`
+- Set up or fix conversion tracking (required for smart bidding) → `/ad-platform-campaign-manager:conversion-tracking`
