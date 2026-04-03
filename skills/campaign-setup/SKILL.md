@@ -11,6 +11,10 @@ You are helping build a new Google Ads campaign. Walk the user through each step
 
 If `$ARGUMENTS` specifies a campaign type (search, pmax, display, demand-gen, video), skip the type selection step.
 
+## Reference Material
+
+- **Account profiles and strategy archetypes:** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
+
 ## Step 1: Define the Business Goal
 
 Ask the user:
@@ -20,11 +24,24 @@ Ask the user:
 4. What is the monthly budget range?
 5. Does the client have existing conversion tracking? (If yes, which conversions are set up?)
 
+### Step 1b: Establish Account Profile
+
+Before recommending a campaign type, establish the account's profile. Ask:
+1. What vertical? (e-commerce, lead gen, B2B SaaS, local services)
+2. How mature is this account? (brand new, running 3-6 months, established 6+ months, mature 18+ months)
+3. What budget tier? (under €1K/mo, €1-5K, €5-25K, €25K+)
+
+Map to a strategy archetype from account-profiles.md (consult the Archetype Quick-Reference Matrix). State the archetype to the user: "Based on your answers, this is a [archetype name] profile — here's what that means for campaign setup."
+
+Use the archetype throughout the remaining steps.
+
 ## Step 2: Select Campaign Type
 
-Based on the goal, recommend a campaign type. Consult [[../../reference/platforms/google-ads/campaign-types|campaign-types.md]] for the decision tree.
+Based on the account profile from Step 1b, present a recommendation first:
 
-Present the recommendation with reasoning:
+"Based on your profile [archetype], I recommend [campaign type]. This is because [profile-specific reasoning]. Does this match your situation, or is there a reason a different type might be better?"
+
+If the user confirms, proceed. If they push back, consult [[../../reference/platforms/google-ads/campaign-types|campaign-types.md]] for the decision tree and discuss alternatives with reasoning:
 - Why this type matches their goal
 - What the alternatives are and why they're less suitable
 - What prerequisites exist (conversion data for PMax, creative assets for Display/Demand Gen)
@@ -85,12 +102,14 @@ Generate text assets:
 
 ## Step 5: Recommend Bid Strategy
 
-Based on campaign type and available data, recommend a bidding strategy. Consult [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]].
+Based on the account's maturity stage from Step 1b, recommend the appropriate bidding strategy. Consult [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]].
 
-- New account with no data → Manual CPC or Maximize Clicks
-- Some conversion data → Maximize Conversions
-- 30+ conversions/month → Target CPA or Target ROAS
-- Explain the recommended strategy and why
+"Your account is at the [maturity stage] stage with [X] conversions/month. At this stage, [bid strategy] is appropriate because [reason]. Here's the progression path as your data grows:"
+
+- Cold start (0-15 conv/mo) → Manual CPC or Maximize Clicks
+- Early data (15-30 conv/mo) → Maximize Conversions (no target)
+- Established (30-50+ conv/mo) → Target CPA or Target ROAS
+- Mature (50+ conv/mo, stable) → Value-based bidding
 
 ## Step 6: Configure Extensions/Assets
 
@@ -137,3 +156,11 @@ Output a structured campaign plan document that includes:
 7. **Next steps:** checklist for implementing in Google Ads
 
 Format as a clean, copyable document the user can reference while building in the Google Ads interface.
+
+## What to Do Next
+
+Based on the campaign plan, route to the next skill:
+- **Keywords not yet planned?** → `/ad-platform-campaign-manager:keyword-strategy`
+- **Conversion tracking not set up?** → `/ad-platform-campaign-manager:conversion-tracking`
+- **Budget needs detailed planning?** → `/ad-platform-campaign-manager:budget-optimizer`
+- **Inheriting a messy account?** → `/ad-platform-campaign-manager:campaign-cleanup`

@@ -7,6 +7,34 @@ tags:
 
 # Changelog
 
+## [1.5.0] — 2026-04-03
+
+Phase 1c of the Strategic Upgrade v2.0. Wires strategy docs into 4 skills — they now ask account profiling questions and adapt recommendations by vertical, maturity, and budget. Completes Findings #3 (dead-ends) and #4 (Socratic/interactive).
+
+### Added
+- **Step 1b (Establish Account Profile)** in campaign-setup — asks vertical, maturity, budget; maps to strategy archetype before recommending campaign type
+- **Triage Assessment** in campaign-cleanup — 5 diagnostic questions with vertical-specific triage priorities before prescribing fixes
+- **Vertical CPA/ROAS benchmarks** in budget-optimizer (e-commerce, lead gen, B2B SaaS, local services)
+- **"What to Do Next" routing** in campaign-setup (→ keyword-strategy, conversion-tracking, budget-optimizer, campaign-cleanup)
+- Account maturity roadmap reference in budget-optimizer (bidding progression by stage)
+- Maturity and competition questions in keyword-strategy Step 1
+- Strategy wikilinks in Reference Material of all 4 skills
+
+### Changed
+- **campaign-setup Step 2** — Socratic: recommends type based on profile, asks for confirmation instead of lecturing
+- **campaign-setup Step 5** — bidding now references maturity stage with 4-stage progression ladder
+- **keyword-strategy Step 2** — asks "what do your customers search for?" before suggesting patterns
+- **keyword-strategy Step 4** — match type advice adjusted by maturity and competition level
+- **budget-optimizer** — asks conversion volume and maturity before recommending; Socratic bid strategy selection
+- **campaign-cleanup** — vertical-aware triage (e-commerce → feed health, B2B → tracking, local → geo targeting)
+
+### Fixed
+- Dependency maps in `skills/CONTEXT.md` — all 4 skills now list `strategy/account-profiles`; budget-optimizer also lists `strategy/account-maturity-roadmap`
+- Routing table in root `CONTEXT.md` — strategy references added to Load column for 4 task rows
+- Inter-skill reference map in `skills/CONTEXT.md` — added campaign-setup, keyword-strategy, budget-optimizer routing entries
+
+---
+
 ## [1.4.0] — 2026-04-03
 
 Phase 1b of the Strategic Upgrade v2.0. New strategic reference layer — 8 documents covering account profiles, maturity progression, 4 vertical playbooks, targeting framework, and attribution guide.

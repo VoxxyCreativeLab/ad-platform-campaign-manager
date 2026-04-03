@@ -16,6 +16,7 @@ If `$ARGUMENTS` provides a business description, use it as the starting point. O
 - **Match type strategy:** [[../../reference/platforms/google-ads/match-types|match-types.md]]
 - **Negative keyword lists:** [[../../reference/platforms/google-ads/audit/negative-keyword-lists|negative-keyword-lists.md]]
 - **Account structure (for ad group theming):** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
+- **Account profiles (maturity and competition level):** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
 
 ## Process
 
@@ -26,10 +27,16 @@ If `$ARGUMENTS` provides a business description, use it as the starting point. O
 - What language(s)?
 - Who are the main competitors?
 - What is the approximate budget?
+- What maturity stage is this account? (new, 3-6 months, established, mature)
+- How competitive is this market? (niche/low CPCs, moderate, saturated/high CPCs)
 
 ### 2. Generate Keyword Ideas
 
 Organize keywords by intent:
+
+Before suggesting keywords, ask: "What terms do your customers actually search for when looking for your product/service?" Use their answers as seed terms before generating additional ideas.
+
+If the market is saturated (from Step 1): "In a competitive market, prioritize long-tail exact match terms over broad head terms — head terms will be expensive."
 
 **High Intent (Bottom of Funnel):**
 - Buy/purchase keywords: "buy [product]", "[product] price", "order [product]"
@@ -55,6 +62,11 @@ Each ad group should contain 10-15 tightly themed keywords. Group by:
 ### 4. Assign Match Types
 
 For each keyword, recommend a match type. Follow the strategy in the match types reference:
+
+Adjust based on account maturity and competition (consult account-profiles.md):
+
+"At your maturity stage [stage] with [competition level] competition, the recommended approach is [strategy]. Here's why:"
+
 - **New campaign, limited data:** Phrase + exact match
 - **30+ conversions/month:** Add broad match with smart bidding
 - **Mature campaign:** Broad + smart bidding for discovery, exact for top terms

@@ -26,17 +26,20 @@ Each skill loads specific reference files. This map prevents loading unnecessary
 
 ```
 campaign-setup ──────→ campaign-types, account-structure, match-types,
-                       bidding-strategies, ad-extensions, pmax/* (if PMax)
-keyword-strategy ────→ match-types, negative-keyword-lists, account-structure
+                       bidding-strategies, ad-extensions, pmax/* (if PMax),
+                       strategy/account-profiles
+keyword-strategy ────→ match-types, negative-keyword-lists, account-structure,
+                       strategy/account-profiles
 conversion-tracking ─→ conversion-actions, enhanced-conversions, tracking-bridge/*
 reporting-pipeline ──→ reporting/*, gaql-reference
 campaign-review ─────→ audit/*, quality-score, bidding-strategies
 pmax-guide ──────────→ pmax/*, bidding-strategies, shopping-campaigns
 budget-optimizer ────→ bidding-strategies, campaign-types, account-structure,
-                       audit/common-mistakes
+                       audit/common-mistakes, strategy/account-profiles,
+                       strategy/account-maturity-roadmap
 ads-scripts ─────────→ scripts/catalog, ads-scripts-api
 campaign-cleanup ────→ audit/*, common-mistakes, negative-keyword-lists,
-                       account-structure
+                       account-structure, strategy/account-profiles
 connect-mcp ─────────→ mcp/*
 live-report ─────────→ reporting/gaql-query-templates, gaql-reference
 ```
@@ -51,3 +54,6 @@ Skills may recommend other skills to the user:
 - `pmax-guide` → recommends `conversion-tracking` for PMax conversion requirements
 - `live-report` → requires `connect-mcp` for MCP setup
 - `reporting-pipeline` → complements `live-report` (design vs live data)
+- `keyword-strategy` → recommends `campaign-setup`, `budget-optimizer`, `campaign-review`
+- `budget-optimizer` → recommends `campaign-review`, `campaign-cleanup`, `conversion-tracking`
+- `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`
