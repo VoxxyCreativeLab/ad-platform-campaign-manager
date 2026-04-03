@@ -23,13 +23,14 @@ tags:
 | Account cleanup | `skills/campaign-cleanup/SKILL.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `negative-keyword-lists.md`, `account-structure.md` | Tracking-bridge, reporting, scripts, mcp |
 | Live reports | `skills/live-report/SKILL.md` | `reference/reporting/gaql-query-templates.md`, `gaql-reference.md` | Everything except reporting |
 | MCP setup | `skills/connect-mcp/SKILL.md` | `reference/mcp/*` | Everything else |
+| Account strategy | `skills/account-strategy/SKILL.md` (Phase 2) | `reference/platforms/google-ads/strategy/*` | Scripts, mcp, reporting |
 | Full campaign audit (agent) | `agents/campaign-reviewer.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md` | Tracking-bridge, reporting, mcp |
 | Tracking audit (agent) | `agents/tracking-auditor.md` | `reference/tracking-bridge/*`, `reference/platforms/google-ads/conversion-actions.md`, `enhanced-conversions.md` | Reporting, scripts, mcp |
 
 ## Shared Resources
 
 These files are stable reference material — never overwrite during normal use:
-- `reference/platforms/google-ads/` — Google Ads domain knowledge
+- `reference/platforms/google-ads/` — Google Ads domain knowledge (includes `strategy/` subdirectory with account profiles, vertical playbooks, targeting, attribution)
 - `reference/tracking-bridge/` — GTM/sGTM/BQ ↔ Google Ads pipeline docs
 - `reference/reporting/` — GAQL, BigQuery, dbt, Looker Studio patterns
 - `reference/mcp/` — MCP server setup and comparison
