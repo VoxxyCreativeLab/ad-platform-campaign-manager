@@ -7,6 +7,18 @@ tags:
 
 # Changelog
 
+## [1.9.1] — 2026-04-04
+
+Feed-only PMax reference correction. Google Ads now requires 3+ headlines to save an asset group — the only true feed-only path is via Merchant Center. Reference doc corrected, new lessons added, sources expanded.
+
+### Changed
+- **feed-only-pmax.md** — MC path promoted to primary creation method, Google Ads path reframed as "feed-first" (not feed-only), added post-creation lockdown steps (disable auto-generated assets, Final URL expansion), CTV auto-generation warning (since Q2 2025), channel-level reporting benchmarks (60-80% Shopping), single-asset-group limitation, 9 new external sources
+- **LESSONS.md** — 5 new Performance Max entries: MC-only creation path, post-creation lockdown, single-asset-group limitation, CTV auto-generation, 90% claim nuance
+- **PRIMER.md** — session entry documenting the finding and impact on Vaxteronline project
+- **plugin.json** — version bumped to 1.9.1
+
+---
+
 ## [1.9.0] — 2026-04-04
 
 New `/ad-copy` skill for multilingual ad copy generation. Character-counted, language-aware, research-backed. Ships with Swedish, Dutch, German, and English CTA libraries. Companion reference doc `ad-copy-framework.md` provides the reusable knowledge base.

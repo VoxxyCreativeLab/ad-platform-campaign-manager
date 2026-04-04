@@ -11,9 +11,16 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.9.0 - Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.9.1 - Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ## Last Completed
+
+### Session 2026-04-04: Feed-Only PMax Reference Correction (v1.9.1)
+
+- **Critical finding:** Google Ads now requires 3+ headlines to save an asset group — "skip images and video" no longer works. True feed-only PMax can ONLY be created from Merchant Center (Marketing > Advertising campaigns).
+- Corrected `reference/platforms/google-ads/pmax/feed-only-pmax.md`: MC path promoted to primary, Google Ads path reframed as "feed-first" (not feed-only), added post-creation lockdown steps, CTV auto-generation warning, channel reporting, single-asset-group limitation
+- Added lesson to LESSONS.md: feed-only creation path correction
+- **Impact on Vaxteronline project:** PLAN.md line 54 and PRIMER.md line 52 in `campaign-vaxteronline-project-files` say "Created in Google Ads, not Merchant Center" — this must be revised in Session 3. Vaxteronline PRIMER.md flagged with correction notice.
 
 ### Session 2026-04-04: Ad Copy Skill (v1.9.0)
 

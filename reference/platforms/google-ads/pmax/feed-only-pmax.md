@@ -56,47 +56,59 @@ PMax campaign linked to a Merchant Center product feed with **no custom creative
 
 ### Step-by-Step: Create Feed-Only PMax Campaign
 
-**From Google Ads UI:**
+%%fact-check: feed-only creation paths — verified 2026-04-04 via ClicksInMind, Store Growers, Search Engine Journal, AdNabu%%
+
+> [!danger] True Feed-Only = Merchant Center Only
+> As of 2025, Google Ads **requires at least 3 headlines** to save an asset group. You can no longer create a zero-asset asset group through the Google Ads UI. The only true feed-only path is via Merchant Center.
+
+**From Merchant Center (the ONLY true feed-only path):**
+
+1. **MC Next dashboard → Marketing → Advertising campaigns** (or Performance tab → "Boost performance" banner)
+2. **"Create campaign"** — this routes to Google Ads campaign creation with your MC feed pre-selected
+3. **PMax is auto-selected** as campaign type with your feed pre-configured — no asset minimums enforced
+4. **Accept "All available products"** or filter by feed label / country of sale
+5. **Campaign name:** Follow naming convention: `PMax | Feed-Only | [Category/Brand] | [Region]`
+6. **Budget:** Set daily budget (minimum €20/day recommended)
+7. **Bid strategy:** Maximize Conversion Value (recommended for e-commerce — drives higher revenue) or Maximize Conversions (if starting fresh with no ROAS data)
+
+> [!warning] Single-Asset-Group Limitation
+> The MC creation path creates **one asset group only**. You cannot add additional asset groups through MC. If you later add asset groups in Google Ads, Google enforces minimums (3+ headlines), breaking the feed-only approach for those groups. Plan your listing group strategy around this single asset group.
+
+### Post-Creation Lockdown (Critical)
+
+Immediately after creating the campaign, go into Google Ads and disable:
+
+8. **Text customization / Automatically created assets → OFF** — prevents Google from auto-generating text ads
+9. **Final URL Expansion → OFF** — ensures only product feed URLs are used, not random pages from your site
+10. **Remove Final URL** from the asset group — so only product URLs from the feed are served
+11. **Optionally** disable enhanced YouTube video generation via API: `AssetAutomationSetting.GENERATE_ENHANCED_YOUTUBE_VIDEOS` → `OPTED_OUT`
+
+> [!info] Why the Lockdown?
+> Without these steps, Google auto-generates creative from your feed data and serves it across Display, YouTube, Gmail, Discover, and even Connected TV (CTV). Since Q2 2025, 80% of PMax advertisers generate CTV impressions from auto-generated product image slideshows — many unknowingly. The lockdown minimizes non-Shopping spend leakage.
+
+### Post-Launch
+
+12. **Brand exclusions:** Add brand terms to prevent cannibalizing brand Search campaigns
+13. **Negative keywords:** Up to 10,000 per campaign + shared lists. Apply to Search and Shopping inventory.
+14. **Monitoring:** Allow 2-4 weeks learning period before making changes
+15. **Channel reporting:** Use channel-level reporting (available since Aug 2025, API v23 Jan 2026) to verify Shopping holds **60-80% of spend** — this is the healthy benchmark
+16. **Iteration:** Add creative assets incrementally — text first, then images, then video
+
+**From Google Ads UI (feed-first, NOT true feed-only):**
+
+> [!warning] Not True Feed-Only
+> This path requires at least 3 headlines to save the asset group. The result is a "feed-first" PMax — the feed drives Shopping ads, but text assets enable Search text ads and provide seeds for auto-generated creative on other surfaces. Use this path when you need multiple asset groups or want more control, but understand it is NOT asset-free.
 
 1. **Campaigns → + New campaign**
 2. **Objective:** Sales (or Leads if applicable)
 3. **Campaign type:** Performance Max
 4. **Select Merchant Center account** — this prompt appears automatically if an MC account is linked. Select it.
 5. **Feed label / country of sale** — select the feed and target country. The `feed_label` field in the API replaces the deprecated `sales_country` field.
-6. **Campaign name:** Follow naming convention: `PMax | Feed-Only | [Category/Brand] | [Region]`
-7. **Budget:** Set daily budget (minimum €20/day recommended)
-8. **Bid strategy:** Maximize Conversion Value (recommended for e-commerce — drives higher revenue) or Maximize Conversions (if starting fresh with no ROAS data)
-
-### Asset Group Configuration (Feed-Only)
-
-9. **Asset group name:** Name by product segment (e.g., "Running Shoes" or "High-Margin Products")
-10. **Listing group:** Configure product filter (see Listing Groups section below) — this controls WHICH products from your feed appear in this asset group
-11. **Creative assets:** Skip images and video. Optionally add:
-    - Text assets: 3+ headlines (30 chars), 1+ long headline (90 chars), 2+ descriptions (90 chars) — recommended for better Search text ads
-    - Logo: 1 square logo — recommended for brand consistency on Display/YouTube
-    - Business name: required (25 chars)
-12. **Audience signals:** Configure per asset group (see [[audience-signals]])
-13. **Final URL expansion:** Enable (lets Google find relevant landing pages from your site)
-
-> [!info] Assets Are Optional for Retail PMax
-> Google's API documentation confirms: assets are not mandatory for retail PMax campaigns. Automatic asset generation occurs when a Merchant Center feed is linked. However, "the more assets you provide, the more ad formats the system can create." Start without, add incrementally.
-
-### Post-Launch
-
-14. **Brand exclusions:** Add brand terms to prevent cannibalizing brand Search campaigns
-15. **Negative keywords:** Up to 10,000 per campaign + shared lists. Apply to Search and Shopping inventory.
-16. **Monitoring:** Allow 2-4 weeks learning period before making changes
-17. **Iteration:** Add creative assets incrementally — text first, then images, then video
-
-**From Merchant Center Next UI:**
-
-1. **MC Next dashboard → Performance tab** (or "Boost performance" banner if shown)
-2. **"Create campaign"** — this links to Google Ads campaign creation with your MC feed pre-selected
-3. **PMax is auto-selected** as campaign type with your feed pre-configured
-4. Continue from step 5 above (feed label, campaign name, budget, bid strategy)
-
-> [!info] MC Next Shortcut
-> Creating from Merchant Center Next auto-selects PMax with your feed. It's the fastest path if you're starting from scratch. The feed and Merchant Center account are pre-linked — no manual configuration needed.
+6. **Campaign name:** Follow naming convention: `PMax | Feed-First | [Category/Brand] | [Region]`
+7. **Budget & bid strategy** as above
+8. **Asset group:** Must provide at minimum 3 headlines (30 chars each), 1 long headline (90 chars), 2 descriptions (90 chars), business name (25 chars). Skip images and video — Google will auto-generate from feed.
+9. **Listing group + audience signals** as normal
+10. Apply the same post-creation lockdown steps (disable auto-generated assets, Final URL expansion)
 
 ## Listing Groups — The Missing Piece
 
@@ -188,7 +200,27 @@ Verified against Google Ads API `AssetGroupListingGroupFilter`:
 | Gmail | Auto-assembled product cards | Your creative + feed |
 | Discover | Auto-assembled visual cards | Your creative + feed |
 
-**Key takeaway:** Shopping surface (where 90% of spend goes for e-commerce) is identical. The difference is in non-Shopping surfaces where auto-generated creative has lower quality — but these represent only 3-26% of spend.
+**Key takeaway:** Shopping surface (where the majority of spend goes for e-commerce) is identical. The difference is in non-Shopping surfaces where auto-generated creative has lower quality — but these represent only 3-26% of spend.
+
+> [!warning] CTV Auto-Generation (since Q2 2025)
+> Even feed-only PMax campaigns now auto-generate **Connected TV (CTV) ads** from product catalog photos. 80% of PMax advertisers generate CTV impressions, many unknowingly. In January 2026, Google added shoppable CTV ads with QR codes. In March 2026, AI voice-over was added (opt-out only). There is **no way to completely prevent** PMax from serving on non-Shopping surfaces — "feed-only" is a practitioner convention, not an official Google feature.
+
+### Channel-Level Reporting (since August 2025)
+
+%%fact-check: channel-level reporting — verified 2026-04-04%%
+
+Use channel-level reporting to monitor where feed-only PMax actually spends. Available since August 2025, programmatic access via API v23 (January 2026).
+
+| Channel | Healthy Benchmark | Action if Over |
+|---------|------------------|----------------|
+| Shopping | **60-80%** of spend | This is your target — if below 60%, feed quality needs work |
+| Search | 10-20% | Acceptable — auto-generated text ads from feed |
+| Display | 5-15% | If >15%, tighten lockdown settings |
+| YouTube/CTV | 3-10% | If >10%, add one custom video to prevent low-quality auto-generated slideshows, or use Nils Rooijmans' script to auto-delete auto-generated videos |
+| Gmail + Discover | 1-5% combined | Usually fine |
+
+> [!tip] The "90% to Feed-Based" Claim
+> The SMEC 90% figure includes feed-based ads on ALL surfaces (dynamic remarketing on Display, product cards on Gmail/Discover), not just Shopping. Channel reporting shows **60-80% to Shopping proper** as the more precise benchmark for actual Shopping surface spend.
 
 ## Account Restructuring: Shopping+PMax → Clean Feed-Based PMax
 
@@ -281,6 +313,10 @@ Verified against Google Ads API `AssetGroupListingGroupFilter`:
 - [PMax Optimization with MC Feed](https://support.google.com/google-ads/answer/13776350) — Google's own feed-based PMax optimization tips
 - [PMax Negative Keywords](https://support.google.com/google-ads/answer/15726455) — 10,000 per campaign + shared lists
 - [Retail Campaign Reporting](https://developers.google.com/google-ads/api/performance-max/retail-reporting) — GAQL queries, cart data metrics
+- [About Final URL Expansion in PMax](https://support.google.com/google-ads/answer/14337539) — Why to disable for feed-only
+- [Controlling Text Customization in PMax](https://support.google.com/google-ads/answer/14337369) — Auto-generated text asset controls
+- [About Auto-Generated Video Ads](https://support.google.com/google-ads/answer/16430641) — YouTube/CTV auto-generation explanation
+- [Create a Performance Max Campaign](https://support.google.com/google-ads/answer/10724896) — Standard PMax creation flow (requires assets)
 
 ### Code Samples
 - [add_performance_max_retail_campaign.py](https://github.com/googleads/google-ads-python/blob/main/examples/shopping_ads/add_performance_max_retail_campaign.py) — Google's canonical Python example for feed-based PMax with listing groups
@@ -290,6 +326,12 @@ Verified against Google Ads API `AssetGroupListingGroupFilter`:
 - [SMEC: State of PMax 2025](https://smarter-ecommerce.com/blog/en/google-ads/state-of-performance-max-campaigns-2025/) — 4,000+ campaigns, 500+ accounts: 90% spend is feed-based, conversion thresholds, ROAS benchmarks
 - [SMEC: PMax FAQ 2025](https://smarter-ecommerce.com/blog/en/google-ads/pmax-2025-faq-campaign-setup-brand-strategies-performance/) — Feed-only vs full-asset verdict (Mike Ryan)
 - [SMEC: Shopping Alongside PMax 2026](https://smarter-ecommerce.com/blog/en/google-ads/how-to-run-google-shopping-alongside-performance-max-in-2026/) — Priority change late 2024, 70/30 split recommendation
+- [ClicksInMind: Feed-Only PMax 2026](https://clicksinmind.com/en/feed-only-pmax-campaign/) — MC-only creation path, lockdown steps, single asset group limitation
+- [Store Growers: PMax Ultimate Ecommerce Guide 2026](https://www.storegrowers.com/performance-max-campaigns/) — Feed-only first 2-4 weeks, then add assets
+- [Search Engine Journal: How To Build Feed-Only PMax](https://www.searchenginejournal.com/how-to-build-a-feed-only-performance-max-campaign/568794/) — Step-by-step MC creation
+- [ALM Corp: 80% of PMax Running CTV Ads](https://almcorp.com/blog/pmax-ctv-ads-performance-max-connected-tv/) — CTV auto-generation from product feeds
+- [ALM Corp: PMax Channel Reporting Video Usage Segment](https://almcorp.com/blog/pmax-channel-reporting-video-usage-segment/) — Channel breakdown reporting
+- [Nils Rooijmans: Script to Delete Auto-Created YouTube Videos](https://nilsrooijmans.com/daily/performance-max-script-to-delete-automatically-created-youtube-videos) — Automation to remove auto-generated video ads
 
 ### Tools
 - [google/pmax_best_practices_dashboard](https://github.com/google/pmax_best_practices_dashboard) — Looker Studio + BQ dashboard with retail upgrade script
