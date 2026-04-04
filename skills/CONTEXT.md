@@ -11,7 +11,7 @@ tags:
 
 # Skills — Context
 
-11 invocable skills, each in its own folder with a `SKILL.md` file. Phase 1 (9 skills) requires no API. Phase 2 (2 skills) requires MCP connection.
+12 invocable skills, each in its own folder with a `SKILL.md` file. 10 are profile-aware (ask account profiling questions). Phase 1 (10 skills) requires no API. Phase 2 (2 skills) requires MCP connection.
 
 ## Conventions
 
@@ -25,19 +25,24 @@ tags:
 Each skill loads specific reference files. This map prevents loading unnecessary material:
 
 ```
+account-strategy ────→ strategy/*, campaign-types, bidding-strategies
 campaign-setup ──────→ campaign-types, account-structure, match-types,
                        bidding-strategies, ad-extensions, pmax/* (if PMax),
                        strategy/account-profiles
 keyword-strategy ────→ match-types, negative-keyword-lists, account-structure,
                        strategy/account-profiles
-conversion-tracking ─→ conversion-actions, enhanced-conversions, tracking-bridge/*
-reporting-pipeline ──→ reporting/*, gaql-reference
-campaign-review ─────→ audit/*, quality-score, bidding-strategies
-pmax-guide ──────────→ pmax/*, bidding-strategies, shopping-campaigns
+conversion-tracking ─→ conversion-actions, enhanced-conversions, tracking-bridge/*,
+                       strategy/account-profiles, strategy/attribution-guide
+reporting-pipeline ──→ reporting/*, gaql-reference, strategy/account-profiles
+campaign-review ─────→ audit/*, quality-score, bidding-strategies,
+                       strategy/account-profiles
+pmax-guide ──────────→ pmax/*, bidding-strategies, shopping-campaigns,
+                       strategy/account-profiles
 budget-optimizer ────→ bidding-strategies, campaign-types, account-structure,
                        audit/common-mistakes, strategy/account-profiles,
                        strategy/account-maturity-roadmap
-ads-scripts ─────────→ scripts/catalog, ads-scripts-api
+ads-scripts ─────────→ scripts/catalog, ads-scripts-api,
+                       strategy/account-profiles
 campaign-cleanup ────→ audit/*, common-mistakes, negative-keyword-lists,
                        account-structure, strategy/account-profiles
 connect-mcp ─────────→ mcp/*
@@ -48,12 +53,15 @@ live-report ─────────→ reporting/gaql-query-templates, gaql-
 
 Skills may recommend other skills to the user:
 
-- `campaign-setup` → recommends `conversion-tracking` for tracking setup
-- `campaign-review` → recommends `conversion-tracking` if tracking is missing
+- `account-strategy` → routes to `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `campaign-cleanup`, `budget-optimizer`, `pmax-guide`, `reporting-pipeline`, `campaign-review` based on profile gaps
+- `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`
+- `campaign-review` → recommends `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `pmax-guide`, `keyword-strategy`, `account-strategy`
 - `campaign-cleanup` → recommends `conversion-tracking`, `campaign-setup`, `keyword-strategy`, `budget-optimizer`
-- `pmax-guide` → recommends `conversion-tracking` for PMax conversion requirements
-- `live-report` → requires `connect-mcp` for MCP setup
-- `reporting-pipeline` → complements `live-report` (design vs live data)
+- `conversion-tracking` → recommends `campaign-setup`, `campaign-review`, `budget-optimizer`, `reporting-pipeline`, `account-strategy`
+- `pmax-guide` → recommends `conversion-tracking`, `live-report`, `budget-optimizer`, `campaign-cleanup`, `account-strategy`
+- `reporting-pipeline` → recommends `ads-scripts`, `live-report`, `conversion-tracking`, `budget-optimizer`, `account-strategy`
+- `ads-scripts` → recommends `reporting-pipeline`, `budget-optimizer`, `live-report`, `account-strategy`
 - `keyword-strategy` → recommends `campaign-setup`, `budget-optimizer`, `campaign-review`
 - `budget-optimizer` → recommends `campaign-review`, `campaign-cleanup`, `conversion-tracking`
-- `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`
+- `live-report` → requires `connect-mcp` for MCP setup
+- `reporting-pipeline` → complements `live-report` (design vs live data)

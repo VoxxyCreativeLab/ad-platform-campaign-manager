@@ -11,34 +11,29 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.5.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists. Includes a strategic layer with account profile framework — skills are now profile-aware.
+**ad-platform-campaign-manager** v1.6.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists. Includes a full strategic layer with account profile framework — 10 of 12 skills are profile-aware.
 
 ## Last Completed
 
-### Session 2026-04-03: Strategic Upgrade v2.0 — Phase 1 Complete (1a + 1b + 1c)
+### Session 2026-04-03: Strategic Upgrade v2.0 — Phase 2 Complete (v1.6.0)
 
-**Objective:** Add strategic guidance layer to the plugin. Skills were context-blind — gave the same advice regardless of account type. Now they ask about vertical, maturity, and budget before recommending.
+**Objective:** Complete the strategic layer. New account-strategy skill as the entry point, plus 5 remaining skills enhanced for strategy-awareness.
 
-**Phase 1a (v1.3.0) — Systemic Skill Fixes:**
-- Full skill review audit: scored all 11 skills (avg 82/100), identified 6 systemic issues
-- Fixed all 6: argument-hints, placeholder syntax, inter-skill refs, dependency maps, $ARGUMENTS handling
-- Redesigned live-report (62/100 → 85+): GAQL mapping, MCP tool mapping, error handling, companion reference file
-
-**Phase 1b (v1.4.0) — Strategic Reference Docs:**
-- 8 new docs in `reference/platforms/google-ads/strategy/`: account-profiles (15 archetypes), account-maturity-roadmap (4 stages), 4 vertical playbooks (ecommerce, lead-gen, b2b-saas, local-services), targeting-framework, attribution-guide
-- 3 existing docs enhanced with profile-aware sections (bidding-strategies, account-structure, campaign-types)
-
-**Phase 1c (v1.5.0) — Skill Strategy Hooks:**
-- 4 skills now profile-aware: campaign-setup, keyword-strategy, budget-optimizer, campaign-cleanup
-- campaign-setup: Step 1b (account profile questions), Socratic Step 2, maturity-aware Step 5, "What to Do Next" routing
-- keyword-strategy: maturity/competition questions, Socratic keyword seeding, maturity-aware match types
-- budget-optimizer: maturity/vertical profiling, Socratic bid strategy, vertical CPA/ROAS benchmarks
-- campaign-cleanup: Triage Assessment with vertical-specific priorities
-- Findings #3 (dead-ends) and #4 (Socratic) fully resolved
+**Phase 2 (v1.6.0) — Account Strategy Skill + 5 Skill Enhancements:**
+- New `account-strategy` skill: interactive 10-dimension profiler → archetype mapping → strategy document → routing
+- campaign-review: profile intake, review area weighting by archetype, severity by maturity, vertical-specific audit items
+- conversion-tracking: tracking tier diagnosis (Basic/Intermediate/Advanced), upgrade path, vertical-specific tracking requirements
+- pmax-guide: maturity/budget gate (30+ conv/month, EUR 50/day minimum), vertical-specific PMax guidance
+- reporting-pipeline: pipeline complexity by maturity (Sheets → BQ → dbt → full), metrics by vertical, cadence by management model
+- ads-scripts: budget-tier gating, scripts by maturity stage, vertical-specific recommendations
+- All 5 skills now have "What to Do Next" routing and "profile skip shortcut"
+- 10 of 12 skills are now profile-aware (only connect-mcp and live-report excluded)
 
 ### Prior sessions
+- **2026-04-03 (earlier):** Strategic Upgrade Phase 1 complete (1a/1b/1c, v1.3.0-v1.5.0)
 - **2026-04-02:** MCP reconnection after machine migration
 - **2026-04-01:** Feed-only PMax knowledge gap fix, MCP server built + verified, fact-check sweep
+
 
 ## Current State
 
@@ -47,7 +42,7 @@ tags:
 - **17 script docs** under `reference/scripts/`
 - **6 tracking-bridge docs** (the differentiator)
 - **5 reporting docs** + **3 MCP docs** + **1 repos catalog**
-- **11 skills** — all with argument-hints, inter-skill refs, {{placeholder}} syntax; 4 are profile-aware
+- **12 skills** — all with argument-hints, inter-skill refs, {{placeholder}} syntax; 10 are profile-aware
 - **2 agents** (campaign-reviewer, tracking-auditor)
 - All reference docs fact-checked to 2025-2026 accuracy
 - All 5 audit findings resolved (Finding #1-#5)
@@ -66,12 +61,7 @@ tags:
 
 ## What Still Needs to Happen
 
-### Phase 2 — Account Strategy Skill (next up)
-
-New `account-strategy` skill that walks through the full 10-dimension profile and generates a tailored strategy document. Plus enhance 5 remaining skills for strategy-awareness:
-- campaign-review, conversion-tracking, pmax-guide, reporting-pipeline, ads-scripts
-
-### Phase 3 — Strategy Agent + Remaining Gaps
+### Phase 3 — Strategy Agent + Remaining Gaps (next up)
 
 New `strategy-advisor` MCP agent that reads live account data and generates strategy. Plus 5 remaining reference docs:
 - seasonal-planning, remarketing-strategies, ad-testing-framework, bid-adjustment-framework, shopping-feed-strategy

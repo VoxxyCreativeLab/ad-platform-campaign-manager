@@ -13,6 +13,63 @@ You are helping the user browse, customize, or generate Google Ads Scripts (Java
 
 - **Scripts catalog:** [[../../reference/scripts/catalog|catalog.md]]
 - **Scripts API reference:** [[../../reference/platforms/google-ads/ads-scripts-api|ads-scripts-api.md]]
+- **Account profiles and archetypes:** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
+
+## Establish Account Profile
+
+Before recommending scripts, understand the account's context. If the user has already run `/ad-platform-campaign-manager:account-strategy`, ask them to share the profile summary to skip these questions.
+
+Ask:
+1. **"What's the monthly Google Ads budget?"** → determines script complexity worth the overhead
+2. **"How many conversions per month?"** → determines account maturity
+3. **"What vertical is this?"** → determines which scripts are most valuable
+
+## Script Recommendations by Budget Tier
+
+Scripts add maintenance overhead. Match script investment to budget tier:
+
+| Budget Tier | Recommendation | Scripts |
+|-------------|---------------|---------|
+| **Micro** (< EUR 1K/mo) | **Skip scripts** — manual management is sufficient and scripts add maintenance overhead | None |
+| **Small** (EUR 1-5K/mo) | **Critical only** — 2 scripts max for basic monitoring | Conversion drop alert, broken URL checker |
+| **Medium** (EUR 5-25K/mo) | **Standard suite** — automated monitoring + reporting | Budget pacing, QS monitor, search term mining, weekly performance report |
+| **Large** (EUR 25K+/mo) | **Full suite** — monitoring + automation + custom reporting | All standard + bidding automation, budget reallocation, day-parting, PMax scripts |
+
+## Scripts by Account Maturity
+
+Even within the right budget tier, match script complexity to account maturity:
+
+| Maturity | Recommended Scripts | Why |
+|----------|-------------------|-----|
+| **Cold start** (0-3 mo) | None | Not enough data for automation. Manual review teaches you the account. |
+| **Early data** (3-6 mo) | Broken URL checker, conversion drop alert | Canary scripts — catch problems before they waste budget |
+| **Established** (6-18 mo) | + Budget pacing alert, QS monitor, search term mining, weekly performance report | Enough data for meaningful automated analysis |
+| **Mature** (18+ mo) | + Automated bid rules, budget reallocation, day-parting adjustments, PMax scripts | Rich data supports automated decision-making |
+
+## Vertical-Specific Script Recommendations
+
+Prioritize scripts that address each vertical's biggest risks:
+
+**E-commerce:**
+- PMax search terms extractor (find what PMax is bidding on)
+- PMax asset performance tracker (identify low-rated assets)
+- Feed monitoring (detect disapprovals, stock-outs)
+- Category label automation (auto-tag products by margin tier)
+
+**Lead Gen:**
+- Conversion drop alert (critical — a day without leads is a day without pipeline)
+- Search term mining (catch low-quality queries early)
+- Landing page performance checker (monitor page speed, 404s)
+
+**B2B SaaS:**
+- Conversion drop alert (fewer conversions makes each one important)
+- Low-QS pauser (protect expensive high-intent keywords from QS decay)
+- Weekly performance report with CPA trending
+
+**Local Services:**
+- Budget pacing alert (fixed monthly budgets must last the whole month)
+- Broken URL checker (local landing pages change frequently)
+- Call extension performance tracker
 
 ## Common Tasks
 
@@ -90,6 +147,17 @@ function main() {
 | `Cannot read property of undefined` | Accessing a metric or field that doesn't exist for the entity type | Check the AdsApp API reference for available methods on that entity |
 | Sheets output is empty | `SPREADSHEET_URL` is blank or the script lacks edit permission on the Sheet | Verify the URL is set in CONFIG and the script's Google account has editor access |
 | Script works in Preview but fails when scheduled | Preview runs as the signed-in user; scheduled runs use the script owner's permissions | Ensure the script owner has access to all referenced Sheets, emails, and account entities |
+
+## What to Do Next
+
+Based on the scripts work completed, recommend the next skill:
+
+| Situation | Next Skill |
+|-----------|-----------|
+| Scripts deployed, need automated reporting pipeline | `/ad-platform-campaign-manager:reporting-pipeline` |
+| Budget issues found, need reallocation | `/ad-platform-campaign-manager:budget-optimizer` |
+| Need live data check to verify script impact | `/ad-platform-campaign-manager:live-report` |
+| No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |
 
 ## Open-Source Script Resources
 

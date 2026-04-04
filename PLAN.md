@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-03
-**Current milestone:** Strategic Upgrade v2.0 — Phase 1 ✅ Complete (1a + 1b + 1c) — Phase 2 next
+**Current milestone:** Strategic Upgrade v2.0 — Phase 2 ✅ Complete (v1.6.0) — Phase 3 next
 
 ---
 
@@ -35,7 +35,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 | 1a | Systemic Skill Fixes | ✅ Done (v1.3.0) | 6 systemic issues fixed across 11 skills, live-report redesigned |
 | 1b | Strategic Reference Docs | ✅ Done (v1.4.0) | 8 new strategy docs, 3 existing enhanced with profile-aware sections |
 | 1c | Skill Strategy Hooks | ✅ Done (v1.5.0) | 4 skills profile-aware, Findings #3/#4 complete |
-| 2 | Account Strategy Skill | ⬜ Not started | New account-strategy skill + enhance 5 existing skills |
+| 2 | Account Strategy Skill | ✅ Done (v1.6.0) | New account-strategy skill + 5 skills enhanced for strategy-awareness |
 | 3 | Strategy Agent + Remaining | ⬜ Not started | strategy-advisor agent + 5 remaining reference docs |
 
 ## Stages & Status
@@ -43,7 +43,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
 | 01 | Reference | 🔄 Expanding | 22 → 30 google-ads files (+8 strategy), 17 script docs, 6 tracking-bridge, 5 reporting, 3 mcp |
-| 02 | Skills | 🔄 Improving | 11 skills — all fixed + 4 now profile-aware (strategy hooks, Socratic questioning) |
+| 02 | Skills | 🔄 Improving | 12 skills — all fixed + 10 now profile-aware (strategy hooks, Socratic questioning) |
 | 03 | Agents | ✅ Done | 2 agents (campaign-reviewer, tracking-auditor) |
 
 **Status key:** ⬜ Not started · 🔄 In progress · ✅ Done · ⚠️ Blocked
@@ -52,12 +52,12 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Current Focus
 
-**Active phase:** Strategic Upgrade v2.0 — Phase 1 Complete, Phase 2 next
+**Active phase:** Strategic Upgrade v2.0 — Phase 2 Complete, Phase 3 next
 **What's happening:**
 - ✅ Phase 1a (v1.3.0) — systemic skill fixes, live-report redesign, all 6 issues resolved
 - ✅ Phase 1b (v1.4.0) — 8 new strategy docs, 3 existing enhanced, routing updated
 - ✅ Phase 1c (v1.5.0) — 4 skills now profile-aware, Findings #3/#4 complete
-- ⬜ Phase 2 — build account-strategy skill, enhance 5 skills for strategy-awareness
+- ✅ Phase 2 (v1.6.0) — account-strategy skill + 5 skills enhanced for strategy-awareness (10 of 12 profile-aware)
 - ⬜ Phase 3 — strategy-advisor agent + remaining reference docs
 **Blockers:** OAuth client secret should be rotated.
 
@@ -93,10 +93,9 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Next Steps
 
-1. **Phase 2 — Account strategy skill** (say "continue" to resume):
-   - New `account-strategy` skill that walks through 10-dimension profile and generates tailored strategy
-   - Enhance 5 existing skills to pull from strategy context (campaign-review, conversion-tracking, pmax-guide, reporting-pipeline, ads-scripts)
-2. **Phase 3 — Strategy agent** — `strategy-advisor` MCP agent + 5 remaining reference docs (seasonality, remarketing, ad testing, bid adjustments, shopping feed)
+1. **Phase 3 — Strategy agent + remaining gaps** (say "continue" to resume):
+   - New `strategy-advisor` MCP agent that reads live account data and generates strategy
+   - 5 remaining reference docs: seasonal-planning, remarketing-strategies, ad-testing-framework, bid-adjustment-framework, shopping-feed-strategy
 3. **Rotate OAuth client secret** — exposed in previous session screenshot
 4. **Real client work** — use skills on a live Google Ads account
 

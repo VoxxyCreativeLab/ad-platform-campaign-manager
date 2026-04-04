@@ -62,7 +62,7 @@ ad-platform-campaign-manager/
   MEMORY.sh            ← Git context injection
   _config/             ← Layer 3: Stable reference files
   reference/           ← Stage 01: Domain knowledge base (37 files)
-  skills/              ← Stage 02: Interactive guidance tools (10 skills)
+  skills/              ← Stage 02: Interactive guidance tools (12 skills)
   agents/              ← Stage 03: Autonomous audit agents (2 agents)
   .claude-plugin/      ← Plugin metadata
 ```
@@ -73,6 +73,7 @@ ad-platform-campaign-manager/
 
 | I want to... | Go here |
 |---|---|
+| Profile an account and build strategy | `/ad-platform-campaign-manager:account-strategy` |
 | Set up a new campaign | `/ad-platform-campaign-manager:campaign-setup` |
 | Plan keywords | `/ad-platform-campaign-manager:keyword-strategy` |
 | Set up conversion tracking | `/ad-platform-campaign-manager:conversion-tracking` |

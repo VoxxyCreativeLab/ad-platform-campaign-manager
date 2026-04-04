@@ -19,10 +19,30 @@ You are helping with Performance Max (PMax) campaign setup, optimization, or ana
 - **Campaign types overview:** [[../../reference/platforms/google-ads/campaign-types|campaign-types.md]] (PMax section)
 - **Bidding strategies:** [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]]
 - **Shopping campaigns:** [[../../reference/platforms/google-ads/shopping-campaigns|shopping-campaigns.md]]
+- **Account profiles and archetypes:** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
 
 ## Step 0: Determine PMax Type
 
-Before anything else, ask:
+### Maturity and Budget Gate
+
+Before determining PMax type, verify this account can run PMax effectively. Ask:
+- **"How many conversions per month does this account generate?"**
+- **"What's the monthly Google Ads budget?"**
+
+| Situation | Verdict | Action |
+|-----------|---------|--------|
+| < 30 conversions/month | **Not ready for PMax** | "PMax needs 30+ conversions/month to optimize. Build conversion history with Search first." → `/ad-platform-campaign-manager:campaign-setup` |
+| Micro budget (< EUR 1K/mo) | **PMax not viable** | "PMax needs ~EUR 50/day minimum to learn. At this budget, Search campaigns will be more effective." → `/ad-platform-campaign-manager:campaign-setup` |
+| Small budget (EUR 1-5K/mo) | **Marginal** | "PMax can work at this budget if it's the only campaign, but leaves no room for Search. Proceed with awareness of the tradeoff." |
+| Medium+ budget (EUR 5K+) + 30+ conv | **PMax viable** | Continue to PMax type selection below. |
+
+If the user has run `/ad-platform-campaign-manager:account-strategy`, ask for their archetype number. State: "Based on your **Archetype #[X]** profile, here's how PMax fits your account."
+
+Consult [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]] for archetype-specific PMax recommendations.
+
+### PMax Type Selection
+
+Now determine which PMax configuration to use. Ask:
 
 1. **Does the client sell physical products with a Merchant Center product feed?**
    - Yes → feed-based PMax (continue to question 2)
@@ -108,6 +128,29 @@ Walk through product feed improvements:
 - Custom labels for campaign segmentation (the power tool for listing groups)
 - Supplemental feed strategy
 
+### Vertical-Specific PMax Guidance
+
+Adapt PMax advice based on the account's vertical:
+
+**E-commerce:**
+- Feed-only PMax is the default starting point (90% of spend goes to feed-based surfaces)
+- Segment asset groups by margin tier using custom labels (high margin → higher ROAS target)
+- Seasonal product rotation: pause off-season asset groups, adjust targets for peak periods
+- Only add creative assets (images, video) when you specifically need YouTube or Display reach
+
+**Lead Gen / B2B SaaS:**
+- Non-feed PMax only — no Merchant Center product feed
+- Audience signals are the primary lever: in-market segments, custom intent keywords, customer lists
+- Fewer creative assets needed than e-commerce — focus on headline/description quality
+- Critical: conversion tracking must be solid before PMax (it amplifies bad tracking)
+- B2B SaaS: consider only at Established+ maturity with 50+ conversions/month
+
+**Local Services:**
+- Store goals PMax for multi-location businesses
+- Location-specific asset groups (one per service area or store)
+- Combine with local Search campaigns — PMax handles Display/YouTube/Discovery surfaces
+- Budget carefully: local audiences are smaller, PMax may overspend on irrelevant geo
+
 ## Key Points to Emphasize
 
 - PMax needs 30+ conversions/month for effective optimization (60+ ideal)
@@ -132,3 +175,15 @@ Walk through product feed improvements:
 | Feed-based PMax has no Shopping impressions | Listing group misconfigured or feed disapprovals | Check listing group filters — may be filtering out all products; check MC diagnostics |
 | Products showing in wrong asset group | Listing groups overlap between asset groups | Audit listing groups — ensure no product appears in more than one asset group |
 | PMax and Shopping competing for same products | Both campaign types targeting the same catalog | Restructure: migrate to clean PMax with proper listing groups; pause overlapping Shopping. Or run both with 70/30 split. |
+
+## What to Do Next
+
+Based on the PMax work completed, recommend the next skill:
+
+| Situation | Next Skill |
+|-----------|-----------|
+| PMax launched, need to monitor performance | `/ad-platform-campaign-manager:live-report` |
+| Conversion tracking issues found during setup | `/ad-platform-campaign-manager:conversion-tracking` |
+| Budget needs reallocation across campaigns | `/ad-platform-campaign-manager:budget-optimizer` |
+| Account has structural issues beyond PMax | `/ad-platform-campaign-manager:campaign-cleanup` |
+| No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |

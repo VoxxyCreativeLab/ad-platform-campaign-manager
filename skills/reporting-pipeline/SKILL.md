@@ -20,6 +20,49 @@ You are helping design and build Google Ads reporting pipelines. The user is a B
 - **Looker Studio templates:** [[../../reference/reporting/looker-studio-templates|looker-studio-templates.md]]
 - **Cross-platform data model:** [[../../reference/reporting/cross-platform-data-model|cross-platform-data-model.md]]
 - **GAQL language reference:** [[../../reference/platforms/google-ads/gaql-reference|gaql-reference.md]]
+- **Account profiles and archetypes:** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
+
+## Establish Reporting Context
+
+Before designing a pipeline, understand the account's profile to recommend the right complexity level. If the user has already run `/ad-platform-campaign-manager:account-strategy`, ask them to share the profile summary to skip these questions.
+
+Ask:
+1. **"How long has this account been running, and roughly how many conversions per month?"** → map to maturity stage
+2. **"Who manages the ads — in-house team, agency, or freelancer?"** → management model
+3. **"What vertical is this?"** → determines which metrics matter
+
+## Pipeline Complexity by Maturity
+
+Match pipeline sophistication to the account's maturity. Don't over-engineer early-stage accounts.
+
+| Maturity | Recommended Pipeline | Tools | Why |
+|----------|---------------------|-------|-----|
+| **Cold start** (0-3 mo) | Google Sheets | GAQL via MCP → copy/paste to Sheets | Not enough data for automated pipelines. Manual review teaches you the account. |
+| **Early data** (3-6 mo) | BigQuery views | Google Ads Data Transfer or gaarf → BQ views for metrics | Enough data for basic trends. Views are low-maintenance. |
+| **Established** (6-18 mo) | dbt models | Data Transfer → BQ → dbt staging/intermediate/marts | Reliable data volume. dbt gives reproducible transformations and version control. |
+| **Mature** (18+ mo) | Full sGTM + BQ + dbt + Looker Studio | sGTM → BQ (raw events) + Data Transfer (cost data) → dbt → Looker Studio | Rich data. Profit-based metrics, LTV, full attribution pipeline. |
+
+> [!warning] Don't Build dbt for a 2-Month-Old Account
+> A cold-start account generating 10 conversions/month doesn't need a dbt pipeline. Start with Sheets, graduate to BQ views when data is meaningful, then add dbt when the account is established. Complexity should grow with the account.
+
+## Key Metrics by Vertical
+
+Different verticals need different metrics in their reports:
+
+| Vertical | Primary Metrics | Secondary Metrics | Advanced Metrics |
+|----------|----------------|-------------------|-----------------|
+| **E-commerce** | ROAS, Revenue, Purchases | AOV, Blended ROAS, MER | Profit margin, LTV by cohort, New vs returning customer ROAS |
+| **Lead Gen** | CPA, CPL, Leads | Lead-to-close rate, Cost per closed deal | Offline conversion rate, Lead quality score, Revenue per lead |
+| **B2B SaaS** | CPL, CPMQL, Demos | CPSQL, Pipeline value | CAC payback period, LTV:CAC ratio, Revenue by keyword theme |
+| **Local Services** | CPA per call/booking, Calls | Call duration, Location performance | Revenue per service type, Seasonal trends, Geographic ROI |
+
+## Reporting Cadence by Management Model
+
+| Model | Cadence | Format | Content |
+|-------|---------|--------|---------|
+| **In-house** | Weekly summary + daily budget pacing | Dashboard (Looker Studio) + automated alerts | Focus on actionable metrics — what to change this week |
+| **Agency** | Monthly deep-dive + bi-weekly email summary | PDF report + live dashboard access | QBR template with exec summary, trends, and next steps |
+| **Freelancer** | Weekly report + ad-hoc deep-dives | Sheets or simple dashboard | Flexible — match the client's communication preference |
 
 ## Common Tasks
 
@@ -91,3 +134,15 @@ When the user is planning for multi-platform reporting:
 | Looker Studio shows "no data" | Data source connection expired or the BQ view/table has no rows for the selected date range | Reconnect the data source; verify the date partition filter matches available data; check BQ directly with a `SELECT COUNT(*)` |
 | Cost values look 1,000,000× too high | Google Ads API returns cost in micros (1 unit = 1/1,000,000 currency unit) | Divide `cost_micros` by 1,000,000 in your dbt model or BQ view: `cost_micros / 1000000 AS cost` |
 | Data is stale (yesterday's data missing) | Data Transfer runs on a schedule (typically overnight); gaarf needs to be triggered | Check transfer run status in BQ Console; for gaarf, verify the Cloud Scheduler or cron job is active |
+
+## What to Do Next
+
+Based on the pipeline work completed, recommend the next skill:
+
+| Situation | Next Skill |
+|-----------|-----------|
+| Pipeline designed, need automated monitoring scripts | `/ad-platform-campaign-manager:ads-scripts` |
+| Need ad-hoc live data pulls (not scheduled reports) | `/ad-platform-campaign-manager:live-report` |
+| Tracking gaps found during pipeline design | `/ad-platform-campaign-manager:conversion-tracking` |
+| Budget allocation needs rethinking based on data | `/ad-platform-campaign-manager:budget-optimizer` |
+| No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |

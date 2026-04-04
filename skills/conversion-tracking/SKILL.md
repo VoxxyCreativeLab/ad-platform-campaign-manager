@@ -21,6 +21,94 @@ Consult these reference documents based on the user's needs:
 - **Full data flow diagrams:** [[../../reference/tracking-bridge/data-flow-diagrams|data-flow-diagrams.md]]
 - **Profit-based bidding via sGTM:** [[../../reference/tracking-bridge/profit-based-bidding|profit-based-bidding.md]]
 - **ML-predicted value bidding:** [[../../reference/tracking-bridge/value-based-bidding|value-based-bidding.md]]
+- **Account profiles and archetypes:** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
+- **Attribution guide:** [[../../reference/platforms/google-ads/strategy/attribution-guide|attribution-guide.md]]
+
+## Establish Account Profile
+
+Before diving into tracking setup, understand the account context. If the user has already run `/ad-platform-campaign-manager:account-strategy`, ask them to share the profile summary to skip these questions.
+
+Ask:
+1. **"What does this business do?"** → map to vertical (e-commerce, lead gen, B2B SaaS, local services)
+2. **"How long has the account been running, and roughly how many conversions per month?"** → map to maturity stage
+
+The vertical determines WHAT to track. The maturity determines HOW sophisticated the tracking needs to be right now.
+
+## Step 0: Diagnose Tracking Tier
+
+Ask: **"What tracking is currently in place? Just GA4, or do you have GTM, enhanced conversions, server-side tagging?"**
+
+Classify into one of three tiers:
+
+| Tier | Stack | What's Working | What's Missing |
+|------|-------|---------------|----------------|
+| **Basic** | GA4 only | Conversion counting, last-click attribution | No enhanced matching, limited Smart Bidding signal, no offline data |
+| **Intermediate** | GTM + enhanced conversions | Smart Bidding viable, data-driven attribution, better conversion matching | No offline pipeline, no profit-level data |
+| **Advanced** | sGTM + BigQuery + offline imports | Value-based bidding, profit-based optimization, full attribution | Requires maintenance; pipeline can break silently |
+
+State the tier: "Your tracking is at the **[tier]** level. Here's what that means and what upgrading to [next tier] would unlock."
+
+> [!tip] Tracking Maturity Is Your Competitive Advantage
+> Most agencies operate at Basic or Intermediate. Moving a client to Advanced (sGTM + BQ + offline imports) is the single highest-leverage consulting service you can offer. It unlocks bidding strategies competitors literally cannot access.
+
+## Tracking Upgrade Path
+
+Based on the diagnosed tier, present the upgrade path:
+
+### Basic → Intermediate
+
+| Step | What to Do | What It Unlocks | Effort |
+|------|-----------|-----------------|--------|
+| 1 | Deploy GTM container | Tag management, consent mode, debugging | Low |
+| 2 | Set up Google Ads conversion tags in GTM | Proper conversion counting with deduplication | Low |
+| 3 | Enable enhanced conversions (hashed PII) | Better conversion matching as cookies decline | Medium |
+| 4 | Enable data-driven attribution | More accurate conversion credit across touchpoints | Low (settings change) |
+
+### Intermediate → Advanced
+
+| Step | What to Do | What It Unlocks | Effort |
+|------|-----------|-----------------|--------|
+| 1 | Deploy sGTM | Ad-blocker resilience, first-party data control | Medium-High |
+| 2 | Build BigQuery pipeline (sGTM → BQ) | Raw event data, custom attribution, LTV analysis | Medium |
+| 3 | Set up offline conversion imports (BQ → Google Ads) | Smart Bidding optimizes for actual business outcomes | Medium |
+| 4 | Implement profit-based bidding (sGTM enrichment) | Optimize for margin, not just revenue | High |
+
+### Maturity-Appropriate Recommendations
+
+Match your recommendations to the account maturity — don't over-engineer:
+
+- **Cold start** → focus on getting Basic tracking working reliably. Don't build an sGTM pipeline for an account with 5 conversions/month.
+- **Early data** → upgrade to Intermediate. Enhanced conversions and DDA are high-value, low-effort wins.
+- **Established** → Intermediate is the minimum. Consider Advanced if the vertical demands it (B2B SaaS, lead gen with quality issues).
+- **Mature** → should be Advanced or working toward it. Value-based bidding is the unlocked capability that justifies the investment.
+
+## Vertical-Specific Tracking Requirements
+
+Tracking needs vary significantly by vertical. Prioritize the right setup:
+
+**E-commerce:**
+- Purchase conversion with dynamic value (order total)
+- Add-to-cart as secondary conversion
+- Dynamic remarketing tags (product ID, value, type)
+- ROAS is the core metric — value tracking must be accurate
+
+**Lead Gen:**
+- Form fills AND calls as separate primary conversion actions
+- Call tracking with duration threshold (30+ seconds = likely qualified)
+- Offline conversion imports for lead quality (lead → closed-won)
+- Without offline imports, Smart Bidding optimizes for cheapest leads (the Lead Quality Trap)
+
+**B2B SaaS:**
+- Demo request / trial signup as primary conversion
+- Build offline import pipeline: CRM → BigQuery → Google Ads
+- Assign ascending values to funnel stages: lead = 1, MQL = 5, SQL = 25, close = 100
+- Long attribution windows (90+ days) — Google Ads default of 30 days will miss most B2B conversions
+
+**Local Services:**
+- Call tracking is essential — often the most valuable conversion action
+- Call duration threshold: 30-60 seconds depending on service type
+- Google Business Profile conversion linking if using GBP
+- Booking/appointment conversions if online scheduling exists
 
 ## Common Tasks
 
@@ -94,3 +182,15 @@ After setting up or troubleshooting, produce a summary:
 - **Enhanced conversions** and why they matter as cookies decline
 - **Consent mode** interaction with conversion tracking
 - **Server-side advantages** for ad blocker resilience and data control
+
+## What to Do Next
+
+Based on the tracking work completed, recommend the next skill:
+
+| Situation | Next Skill |
+|-----------|-----------|
+| Tracking set up, need to build campaigns | `/ad-platform-campaign-manager:campaign-setup` |
+| Tracking set up, need to audit existing campaigns | `/ad-platform-campaign-manager:campaign-review` |
+| Advanced tracking built, value-based bidding now possible | `/ad-platform-campaign-manager:budget-optimizer` |
+| BQ pipeline built, need reporting dashboards | `/ad-platform-campaign-manager:reporting-pipeline` |
+| No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |

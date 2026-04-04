@@ -7,6 +7,42 @@ tags:
 
 # Changelog
 
+## [1.6.0] — 2026-04-03
+
+Phase 2 of the Strategic Upgrade v2.0. New account-strategy skill (the strategic entry point) plus 5 existing skills enhanced for full strategy-awareness. After this release, 10 of 12 skills are profile-aware.
+
+### Added
+- **New skill: account-strategy** — interactive 10-dimension account profiling, maps to 15 archetypes, generates tailored strategy document (campaign mix, bid roadmap, tracking upgrade path, budget allocation, vertical-specific notes, key risks)
+- **Profile intake sections** in: campaign-review, conversion-tracking, pmax-guide, reporting-pipeline, ads-scripts — each asks account profiling questions and adapts recommendations by archetype
+- **Tracking tier classification** in conversion-tracking — diagnoses Basic/Intermediate/Advanced with upgrade path tables and vertical-specific tracking requirements
+- **Maturity/budget gating** in pmax-guide — gates PMax by conversion volume (30+/month) and budget (EUR 50/day minimum) before the feed/creative decision fork
+- **Pipeline complexity ladder** in reporting-pipeline — Sheets → BQ views → dbt → full sGTM+BQ+dbt+Looker Studio, matched to account maturity
+- **Budget-tier script gating** in ads-scripts — Micro=skip, Small=critical only, Medium=standard suite, Large=full automation
+- **Review area weighting** in campaign-review — 11 audit areas weighted by archetype, severity thresholds adjusted by maturity
+- **Vertical-specific audit items** in campaign-review — e-commerce feed health, lead gen call tracking, B2B SaaS offline pipeline, local services geo targeting
+- **Key metrics by vertical** in reporting-pipeline — e-commerce ROAS/AOV, lead gen CPA/CPL, B2B SaaS CPL/CPMQL/CAC, local services CPA per call
+- **Reporting cadence by management model** in reporting-pipeline — in-house/agency/freelancer cadence and format
+- **Vertical-specific PMax guidance** in pmax-guide — e-commerce feed-only default, lead gen audience signals, local services store goals
+- **Vertical-specific script recommendations** in ads-scripts — e-commerce PMax/feed scripts, lead gen conversion alerts, B2B SaaS QS monitor, local services budget pacing
+- **"What to Do Next" routing** in all 5 enhanced skills — profile-aware routing to downstream skills
+- **Profile skip shortcut** in all enhanced skills — "If you've already run `/account-strategy`, share the profile summary to skip"
+
+### Changed
+- campaign-review now weights 11 review areas by account archetype and adjusts severity thresholds by maturity stage
+- conversion-tracking now classifies tracking tier (Basic/Intermediate/Advanced) with upgrade path and vertical-specific requirements
+- pmax-guide Step 0 now gates by maturity and budget before the feed/creative decision fork, with vertical-specific asset guidance
+- reporting-pipeline now recommends pipeline complexity based on maturity and metrics based on vertical
+- ads-scripts now recommends scripts based on budget tier, maturity stage, and vertical
+- Skill count: 11 → 12; profile-aware skills: 4 → 10
+
+### Fixed
+- Dependency maps in `skills/CONTEXT.md` — all 5 enhanced skills now list `strategy/account-profiles`; conversion-tracking also lists `strategy/attribution-guide`
+- Routing table in root `CONTEXT.md` — strategy references added to Load column for 5 task rows; account-strategy row no longer marked as Phase 2
+- Inter-skill reference map in `skills/CONTEXT.md` — added account-strategy routing entries and updated routing for all 5 enhanced skills
+- `plugin.json` version bumped from 1.0.0 to 1.6.0
+
+---
+
 ## [1.5.0] — 2026-04-03
 
 Phase 1c of the Strategic Upgrade v2.0. Wires strategy docs into 4 skills — they now ask account profiling questions and adapt recommendations by vertical, maturity, and budget. Completes Findings #3 (dead-ends) and #4 (Socratic/interactive).

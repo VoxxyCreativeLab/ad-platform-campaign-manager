@@ -18,6 +18,7 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 - **Bid strategy reference:** [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]]
 - **Account structure patterns:** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
 - **Conversion actions:** [[../../reference/platforms/google-ads/conversion-actions|conversion-actions.md]]
+- **Account profiles and archetypes:** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
 
 ## How to Review
 
@@ -47,6 +48,45 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 3. If fewer than 3 areas can be evaluated, recommend:
    - Export campaign data from Google Ads (Reports → Predefined → Campaigns)
    - Or connect MCP for direct access: `/ad-platform-campaign-manager:connect-mcp`
+
+## Establish Account Profile
+
+Before auditing, establish the account's profile to weight the review correctly. If the user has already run `/ad-platform-campaign-manager:account-strategy`, ask them to share the profile summary to skip these questions.
+
+Ask:
+1. **"What does this business do?"** → map to vertical (e-commerce, lead gen, B2B SaaS, local services)
+2. **"How long has this account been running, and roughly how many conversions per month?"** → map to maturity stage
+3. **"What's the monthly budget?"** → map to budget tier
+4. **"What tracking is in place — GA4, GTM, sGTM?"** → map to tracking maturity
+
+Map to a strategy archetype from [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]. State it: "This is **Archetype #[X]** — I'll weight the audit accordingly."
+
+### Review Area Weighting by Profile
+
+Not all 11 review areas are equally important for every account. Weight based on the profile:
+
+| Profile | High Priority | Medium Priority | Lower Priority / Skip |
+|---------|--------------|-----------------|----------------------|
+| **E-commerce** | PMax, Budget, Conversion Tracking | Keywords, Bidding | (all relevant) |
+| **Lead Gen** | Conversion Tracking, Keywords, Ads | Bidding, Budget | PMax (unless running) |
+| **B2B SaaS** | Conversion Tracking, Keywords, Bidding | Ads, Targeting | PMax (unless mature + 50+ conv) |
+| **Local Services** | Targeting, Conversion Tracking, Extensions | Ads, Budget | PMax (unless medium+ budget) |
+| **Micro budget** | Budget, Keywords, Bidding | Ads, Conversion Tracking | PMax (skip), Extensions (basic only) |
+| **Cold start** | Conversion Tracking, Campaign Structure, Keywords | Bidding, Ads | PMax (too early) |
+| **Mature + Large** | (all areas weighted equally — full audit) | | |
+
+### Severity Thresholds by Maturity
+
+Adjust how you grade issues based on account maturity:
+
+| Finding | Cold Start | Early Data | Established | Mature |
+|---------|-----------|------------|-------------|--------|
+| No Smart Bidding | Informational — expected | Suggestion | Warning | Critical |
+| No value-based bidding | N/A | N/A | Suggestion | Warning |
+| No PMax | Informational — too early | Informational | Suggestion if 30+ conv | Warning if feed present |
+| Limited budget on top campaign | Warning | Warning | Critical | Critical |
+| No negative keywords | Warning | Critical | Critical | Critical |
+| No enhanced conversions | Suggestion | Warning | Warning | Critical |
 
 ## Review Areas
 
@@ -95,4 +135,49 @@ Work through these areas from the audit checklist:
 1. {{highest_impact_fix}}
 2. {{second_priority}}
 3. ...
+
+## Vertical-Specific Checks
+{{Include the relevant section below based on profile}}
 ```
+
+### Vertical-Specific Audit Items
+
+When generating the report, include checks specific to the account's vertical:
+
+**E-commerce:**
+- Feed health: check Merchant Center for disapprovals, feed freshness, missing attributes
+- PMax listing groups: verify segmentation (not "All products" default)
+- Shopping campaign bid strategy: matches conversion volume?
+- ROAS tracking: is purchase value being passed correctly?
+
+**Lead Gen:**
+- Call tracking: is it set up? Duration threshold for conversion (30+ seconds)?
+- Offline conversion imports: are lead quality signals being sent back to Google Ads?
+- Form fills: are they deduplicated? Using transaction ID?
+- Lead quality: is Smart Bidding optimizing for quantity over quality (the Lead Quality Trap)?
+
+**B2B SaaS:**
+- Offline pipeline: is the CRM → Google Ads import pipeline working?
+- Multi-step value assignment: are MQL/SQL/close stages assigned ascending values?
+- Low volume handling: is the account below Smart Bidding thresholds? Should campaigns be consolidated?
+- Landing page experience: demo/trial pages convert differently — are they split-tested?
+
+**Local Services:**
+- Geographic targeting: is it set to "Presence" (not "Presence or interest")?
+- Location assets: are they linked to Google Business Profile?
+- Radius targeting: is the radius appropriate for the service area?
+- Call extensions: on every ad group?
+- LSA eligibility: is the business eligible for Local Services Ads?
+
+## What to Do Next
+
+Based on the audit findings, recommend the next skill:
+
+| Finding | Next Skill |
+|---------|-----------|
+| Conversion tracking broken or missing | `/ad-platform-campaign-manager:conversion-tracking` |
+| Budget allocation issues or bid strategy mismatch | `/ad-platform-campaign-manager:budget-optimizer` |
+| Account structure messy, overlapping campaigns | `/ad-platform-campaign-manager:campaign-cleanup` |
+| PMax campaign needs setup or restructuring | `/ad-platform-campaign-manager:pmax-guide` |
+| Keywords need rework, poor search terms | `/ad-platform-campaign-manager:keyword-strategy` |
+| No strategy profile established | `/ad-platform-campaign-manager:account-strategy` |
