@@ -27,6 +27,7 @@ tags:
 | Full campaign audit (agent) | `agents/campaign-reviewer.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `ad-testing-framework.md`, `strategy/remarketing-strategies.md`, `strategy/bid-adjustment-framework.md` | Tracking-bridge, reporting, mcp |
 | Strategy validation (agent) | `agents/strategy-advisor.md` | `reference/platforms/google-ads/strategy/*`, `campaign-types.md`, `bidding-strategies.md`, `shopping-feed-strategy.md`, `ad-testing-framework.md` | Scripts, mcp config, tracking-bridge |
 | Tracking audit (agent) | `agents/tracking-auditor.md` | `reference/tracking-bridge/*`, `reference/platforms/google-ads/conversion-actions.md`, `enhanced-conversions.md` | Reporting, scripts, mcp |
+| Report output conventions | `_config/conventions.md` | Sections: Output Completeness Convention, Report File-Writing Convention | — |
 
 ## Shared Resources
 
@@ -35,6 +36,9 @@ These files are stable reference material — never overwrite during normal use:
 - `reference/tracking-bridge/` — GTM/sGTM/BQ ↔ Google Ads pipeline docs
 - `reference/reporting/` — GAQL, BigQuery, dbt, Looker Studio patterns
 - `reference/mcp/` — MCP server setup and comparison
+
+> [!info] Report Output
+> All report-producing skills and agents follow the 6-step write sequence defined in [[_config/conventions#Report File-Writing Convention]] when running inside an MWP client project. Each skill's `## Report Output` section specifies its stage and SUMMARY.md mapping.
 
 ---
 
@@ -55,8 +59,8 @@ reference/ ──────────────→ skills/    (skills load
 | Stage | Reads From | Writes To |
 |---|---|---|
 | reference/ | External sources (Google Ads docs, tracking architecture) | `reference/` subdirectories |
-| skills/ | `reference/` (via relative paths in SKILL.md) | Guidance output (interactive, not file-based) |
-| agents/ | `reference/` (via agent definitions) | Scored audit reports (runtime output) |
+| skills/ | `reference/` (via relative paths in SKILL.md) | `reports/{YYYY-MM-DD}/{stage}/` in MWP projects, conversation fallback otherwise |
+| agents/ | `reference/` (via agent definitions) | `reports/{YYYY-MM-DD}/{stage}/` in MWP projects, conversation fallback otherwise |
 
 ---
 

@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-04
-**Current milestone:** Report Output Structure v1.8.0 — 🔄 In progress (design approved, implementation pending)
+**Current milestone:** Report Output Structure v1.8.0 — ✅ Done
 
 ---
 
@@ -52,19 +52,13 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Current Focus
 
-**Active phase:** Report Output Structure (v1.8.0)
-**Design spec:** `docs/superpowers/specs/2026-04-04-report-output-structure-design.md`
-
-**Problem:** Skills produce 100+ pages of conversational output. Overwhelms context, makes review impractical, wastes tokens. Additionally, long output gets truncated with "etc." patterns. Two fixes: file-based report output + output completeness convention.
-
-**Approach:** Coordinated update across ad-platform-campaign-manager AND project-structure-and-scaffolding-plugin (master). All 11 report-producing skills + 3 agents write to `reports/{YYYY-MM-DD}/{stage}/` folders inside MWP client projects. Each date folder gets CONTEXT.md (technical index) and SUMMARY.md (client-facing summary, auto-built).
-
 **Previous milestones:**
 - ✅ Phase 1a (v1.3.0) — systemic skill fixes, live-report redesign
 - ✅ Phase 1b (v1.4.0) — 8 new strategy docs, 3 existing enhanced
 - ✅ Phase 1c (v1.5.0) — 4 skills now profile-aware
 - ✅ Phase 2 (v1.6.0) — account-strategy skill + 5 skills enhanced
 - ✅ Phase 3 (v1.7.0) — strategy-advisor agent + 5 new reference docs
+- ✅ Report Output Structure (v1.8.0) — file-based report output, output completeness convention, master plugin coordination
 **Blockers:** OAuth client secret should be rotated.
 
 ---
@@ -108,18 +102,18 @@ Read the full design spec first: `docs/superpowers/specs/2026-04-04-report-outpu
 
 #### Master Plugin Changes (project-structure-and-scaffolding-plugin)
 
-- [ ] **Step 1: Update domain-classification.md** — Add `Output Pattern` column to classification table. Ad-platform row gets `reports/{date}/{stage}/`. All other domains get `stages/{stage}/output/` (existing default, now explicit). Add explanatory paragraph after the table.
+- [x] **Step 1: Update domain-classification.md** — Add `Output Pattern` column to classification table. Ad-platform row gets `reports/{date}/{stage}/`. All other domains get `stages/{stage}/output/` (existing default, now explicit). Add explanatory paragraph after the table.
   - File: `c:\Users\VCL1\Voxxy Creative Lab Limited\08 - Projects\0001 - Claude Plugins\project-structure-and-scaffolding-plugin\reference\domain-classification.md`
 
-- [ ] **Step 2: Update scaffold-project skill** — When domain output pattern is `reports/{date}/{stage}/`: create `reports/.gitkeep` instead of per-stage `output/.gitkeep`. Add note in generated CLAUDE.md template about reports/ directory. Update companion plugin handoff message.
+- [x] **Step 2: Update scaffold-project skill** — When domain output pattern is `reports/{date}/{stage}/`: create `reports/.gitkeep` instead of per-stage `output/.gitkeep`. Add note in generated CLAUDE.md template about reports/ directory. Update companion plugin handoff message.
   - File: `c:\Users\VCL1\Voxxy Creative Lab Limited\08 - Projects\0001 - Claude Plugins\project-structure-and-scaffolding-plugin\skills\scaffold-project\SKILL.md`
 
-- [ ] **Step 3: Update structure-reviewer agent** — Add `reports/` to recognized directories whitelist. Accept `reports/{YYYY-MM-DD}/{stage}/*.md` as valid. Accept CONTEXT.md and SUMMARY.md in date folders. Do NOT flag missing `output/.gitkeep` when `reports/` pattern detected.
+- [x] **Step 3: Update structure-reviewer agent** — Add `reports/` to recognized directories whitelist. Accept `reports/{YYYY-MM-DD}/{stage}/*.md` as valid. Accept CONTEXT.md and SUMMARY.md in date folders. Do NOT flag missing `output/.gitkeep` when `reports/` pattern detected.
   - File: `c:\Users\VCL1\Voxxy Creative Lab Limited\08 - Projects\0001 - Claude Plugins\project-structure-and-scaffolding-plugin\agents\structure-reviewer.md`
 
 #### Ad-Platform Plugin — Conventions
 
-- [ ] **Step 4: Update conventions.md** — Add two new sections:
+- [x] **Step 4: Update conventions.md** — Add two new sections:
   1. "Output Completeness Convention" — hard rule: all report output fully specified, no truncation. Prohibited patterns: etc., ..., and so on, similar to above, repeat for remaining, back-references. Required: every item, row, attribute explicit. If > ~500 lines, split into sub-files.
   2. "Report File-Writing Convention" — the 6-step write sequence (detect MWP, ensure dirs, write report, update CONTEXT.md, update SUMMARY.md, conversation summary). CONTEXT.md template. SUMMARY.md template (no em-dashes). Frontmatter template for report files.
   - File: `c:\Users\VCL1\Voxxy Creative Lab Limited\08 - Projects\0001 - Claude Plugins\ad-platform-campaign-manager\_config\conventions.md`
@@ -128,27 +122,27 @@ Read the full design spec first: `docs/superpowers/specs/2026-04-04-report-outpu
 
 Each skill gets a `## Report Output` section with: stage assignment, SUMMARY.md section, 6-step write sequence reference, completeness convention reference, fallback note.
 
-- [ ] **Step 5a: campaign-review** — stage: `01-audit`, summary: Account Health
+- [x] **Step 5a: campaign-review** — stage: `01-audit`, summary: Account Health
   - File: `skills/campaign-review/SKILL.md`
-- [ ] **Step 5b: campaign-cleanup** — stage: `01-audit`, summary: Account Health
+- [x] **Step 5b: campaign-cleanup** — stage: `01-audit`, summary: Account Health
   - File: `skills/campaign-cleanup/SKILL.md`
-- [ ] **Step 5c: live-report** — stage: `01-audit`, summary: Account Health
+- [x] **Step 5c: live-report** — stage: `01-audit`, summary: Account Health
   - File: `skills/live-report/SKILL.md`
-- [ ] **Step 5d: account-strategy** — stage: `02-plan`, summary: Strategy & Planning
+- [x] **Step 5d: account-strategy** — stage: `02-plan`, summary: Strategy & Planning
   - File: `skills/account-strategy/SKILL.md`
-- [ ] **Step 5e: keyword-strategy** — stage: `02-plan`, summary: Strategy & Planning
+- [x] **Step 5e: keyword-strategy** — stage: `02-plan`, summary: Strategy & Planning
   - File: `skills/keyword-strategy/SKILL.md`
-- [ ] **Step 5f: budget-optimizer** — stage: `02-plan`, summary: Strategy & Planning
+- [x] **Step 5f: budget-optimizer** — stage: `02-plan`, summary: Strategy & Planning
   - File: `skills/budget-optimizer/SKILL.md`
-- [ ] **Step 5g: campaign-setup** — stage: `03-build`, summary: Campaign Build
+- [x] **Step 5g: campaign-setup** — stage: `03-build`, summary: Campaign Build
   - File: `skills/campaign-setup/SKILL.md`
-- [ ] **Step 5h: pmax-guide** — stage: `03-build`, summary: Campaign Build
+- [x] **Step 5h: pmax-guide** — stage: `03-build`, summary: Campaign Build
   - File: `skills/pmax-guide/SKILL.md`
-- [ ] **Step 5i: ads-scripts** — stage: `03-build`, summary: Campaign Build
+- [x] **Step 5i: ads-scripts** — stage: `03-build`, summary: Campaign Build
   - File: `skills/ads-scripts/SKILL.md`
-- [ ] **Step 5j: conversion-tracking** — stage: `04-launch`, summary: Tracking & Launch
+- [x] **Step 5j: conversion-tracking** — stage: `04-launch`, summary: Tracking & Launch
   - File: `skills/conversion-tracking/SKILL.md`
-- [ ] **Step 5k: reporting-pipeline** — stage: `05-optimize`, summary: Optimization & Reporting
+- [x] **Step 5k: reporting-pipeline** — stage: `05-optimize`, summary: Optimization & Reporting
   - File: `skills/reporting-pipeline/SKILL.md`
 
 **NOT updated:** `skills/connect-mcp/SKILL.md` — stays conversational-only (setup wizard).
@@ -157,28 +151,28 @@ Each skill gets a `## Report Output` section with: stage assignment, SUMMARY.md 
 
 Same report output section, adapted for agent execution context.
 
-- [ ] **Step 6a: campaign-reviewer** — stage: `01-audit`, summary: Account Health
+- [x] **Step 6a: campaign-reviewer** — stage: `01-audit`, summary: Account Health
   - File: `agents/campaign-reviewer.md`
-- [ ] **Step 6b: strategy-advisor** — stage: `02-plan`, summary: Strategy & Planning
+- [x] **Step 6b: strategy-advisor** — stage: `02-plan`, summary: Strategy & Planning
   - File: `agents/strategy-advisor.md`
-- [ ] **Step 6c: tracking-auditor** — stage: `01-audit`, summary: Tracking & Launch (exception: physical stage is 01-audit but client summary goes to Tracking & Launch)
+- [x] **Step 6c: tracking-auditor** — stage: `01-audit`, summary: Tracking & Launch (exception: physical stage is 01-audit but client summary goes to Tracking & Launch)
   - File: `agents/tracking-auditor.md`
 
 #### Ad-Platform Plugin — Root File Updates
 
-- [ ] **Step 7a: Update CONTEXT.md** — Add routing entry for report output pointing to conventions.md. Add note that all skills/agents follow 6-step write sequence in MWP projects.
+- [x] **Step 7a: Update CONTEXT.md** — Add routing entry for report output pointing to conventions.md. Add note that all skills/agents follow 6-step write sequence in MWP projects.
   - File: `CONTEXT.md`
-- [ ] **Step 7b: Update CLAUDE.md** — Add to Permanent Rules: "When inside an MWP client project, all report-producing skills write output to `reports/{YYYY-MM-DD}/{stage}/`. See `_config/conventions.md`."
+- [x] **Step 7b: Update CLAUDE.md** — Add to Permanent Rules: "When inside an MWP client project, all report-producing skills write output to `reports/{YYYY-MM-DD}/{stage}/`. See `_config/conventions.md`."
   - File: `CLAUDE.md`
 
 #### Finalize
 
-- [ ] **Step 8: Update CHANGELOG.md** — Add v1.8.0 entry: report output structure, output completeness convention, CONTEXT.md/SUMMARY.md auto-generation, master plugin coordination.
+- [x] **Step 8: Update CHANGELOG.md** — Add v1.8.0 entry: report output structure, output completeness convention, CONTEXT.md/SUMMARY.md auto-generation, master plugin coordination.
   - File: `CHANGELOG.md`
 
 #### Verification
 
-- [ ] **Step 9: Verify all changes** — Read each modified file, confirm completeness convention present, stage mappings correct, no missed files. Optionally dry-run: create temp MWP project, invoke campaign-review, verify file structure at `reports/{date}/01-audit/campaign-review.md`.
+- [x] **Step 9: Verify all changes** — Read each modified file, confirm completeness convention present, stage mappings correct, no missed files. Optionally dry-run: create temp MWP project, invoke campaign-review, verify file structure at `reports/{date}/01-audit/campaign-review.md`.
 
 ### Execution Notes
 

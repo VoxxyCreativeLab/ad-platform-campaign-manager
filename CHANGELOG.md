@@ -7,6 +7,30 @@ tags:
 
 # Changelog
 
+## [1.8.0] — 2026-04-04
+
+Report output structure. Skills and agents now write deliverables to files inside MWP client projects instead of dumping 100+ pages into conversation. Adds an output completeness convention that bans truncation patterns (`etc.`, `...`, back-references).
+
+### Added
+- **Output Completeness Convention** (`_config/conventions.md`) — hard rule: all report output fully specified, no truncation, no shortcuts. Prohibited patterns defined. 500-line split rule for massive output.
+- **Report File-Writing Convention** (`_config/conventions.md`) — 6-step write sequence: detect MWP project, ensure dirs, write report, update CONTEXT.md index, update SUMMARY.md client summary, show conversation summary. Templates for CONTEXT.md and SUMMARY.md included.
+- **Report Output section** added to 11 skills: campaign-review, campaign-cleanup, live-report, account-strategy, keyword-strategy, budget-optimizer, campaign-setup, pmax-guide, ads-scripts, conversion-tracking, reporting-pipeline
+- **Report Output section** added to 3 agents: campaign-reviewer, strategy-advisor, tracking-auditor
+- **Re-run behavior** defined: same skill same day overwrites report file, updates (not duplicates) CONTEXT.md row and SUMMARY.md paragraph
+
+### Changed
+- **CLAUDE.md** — new permanent rule for report output in MWP projects
+- **CONTEXT.md** — report output routing entry added, inter-stage dependencies updated (skills/agents now write to `reports/` in MWP projects), report output callout added
+- **Master plugin: `domain-classification.md`** — Output Pattern column added (ad-platform gets `reports/{date}/{stage}/`, all others get `stages/{stage}/output/`)
+- **Master plugin: `scaffold-project` skill** — reports-pattern project handling (creates `reports/.gitkeep`, adds CLAUDE.md note, handoff message)
+- **Master plugin: `structure-reviewer` agent** — `reports/` whitelisted as valid output directory
+
+### Not Changed
+- `connect-mcp` skill — stays conversational-only (setup wizard, not a report)
+- Report directory structure, stage names, and reference files unchanged
+
+---
+
 ## [1.7.0] — 2026-04-03
 
 Phase 3 of the Strategic Upgrade v2.0. Completes the strategic layer with a new strategy-advisor agent (live account validation against strategy profiles) and 5 new reference docs filling remaining knowledge gaps.

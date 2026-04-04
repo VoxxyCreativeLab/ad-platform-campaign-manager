@@ -232,3 +232,17 @@ Based on the strategy document, route to the next skill. Recommend based on what
 | Existing campaigns need audit | `/ad-platform-campaign-manager:campaign-review` |
 
 Tell the user which skill to run next and why — based on the profile, not just a generic list. For example: "Your tracking is at Basic level, which is the biggest bottleneck for this archetype. I'd recommend running `/ad-platform-campaign-manager:conversion-tracking` next to upgrade to Intermediate — that unlocks Smart Bidding."
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `02-plan`
+- **Output file:** `reports/{YYYY-MM-DD}/02-plan/account-strategy.md`
+- **SUMMARY.md section:** Strategy & Planning
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this skill runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

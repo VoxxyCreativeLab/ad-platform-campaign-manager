@@ -146,3 +146,17 @@ Based on the pipeline work completed, recommend the next skill:
 | Tracking gaps found during pipeline design | `/ad-platform-campaign-manager:conversion-tracking` |
 | Budget allocation needs rethinking based on data | `/ad-platform-campaign-manager:budget-optimizer` |
 | No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `05-optimize`
+- **Output file:** `reports/{YYYY-MM-DD}/05-optimize/reporting-pipeline.md`
+- **SUMMARY.md section:** Optimization & Reporting
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this skill runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

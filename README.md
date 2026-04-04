@@ -46,6 +46,15 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | `tracking-auditor` | Conversion tracking pipeline audit (Ads ↔ GTM/sGTM ↔ BQ) |
 | `strategy-advisor` | Live account data vs strategy profile — gap analysis with prioritized actions |
 
+## Report Output
+
+When skills and agents run inside an MWP client project, they write deliverables to `reports/{YYYY-MM-DD}/{stage}/` instead of dumping output into conversation. Each date folder gets:
+
+- **CONTEXT.md** — technical index for the specialist
+- **SUMMARY.md** — client-facing summary (auto-built as skills run)
+
+An Output Completeness Convention ensures all output is fully deterministic — no truncation, no `etc.`, no back-references. See `_config/conventions.md` for the full specification.
+
 ## Platform Support
 
 - **Current:** Google Ads

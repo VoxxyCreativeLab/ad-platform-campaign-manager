@@ -128,3 +128,17 @@ Flag significant discrepancies (>10% difference).
 2. [Second priority]
 ...
 ```
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `01-audit`
+- **Output file:** `reports/{YYYY-MM-DD}/01-audit/tracking-auditor.md`
+- **SUMMARY.md section:** Tracking & Launch (exception: report file is in `01-audit/` but SUMMARY.md paragraph goes to Tracking & Launch)
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this agent runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

@@ -164,3 +164,17 @@ Based on the campaign plan, route to the next skill:
 - **Conversion tracking not set up?** → `/ad-platform-campaign-manager:conversion-tracking`
 - **Budget needs detailed planning?** → `/ad-platform-campaign-manager:budget-optimizer`
 - **Inheriting a messy account?** → `/ad-platform-campaign-manager:campaign-cleanup`
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `03-build`
+- **Output file:** `reports/{YYYY-MM-DD}/03-build/campaign-setup.md`
+- **SUMMARY.md section:** Campaign Build
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this skill runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

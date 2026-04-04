@@ -148,3 +148,17 @@ Present budget recommendations as a structured plan:
 - Validate the optimized campaign → `/ad-platform-campaign-manager:campaign-review`
 - Fix structural issues found during budget analysis → `/ad-platform-campaign-manager:campaign-cleanup`
 - Set up or fix conversion tracking (required for smart bidding) → `/ad-platform-campaign-manager:conversion-tracking`
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `02-plan`
+- **Output file:** `reports/{YYYY-MM-DD}/02-plan/budget-optimizer.md`
+- **SUMMARY.md section:** Strategy & Planning
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this skill runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

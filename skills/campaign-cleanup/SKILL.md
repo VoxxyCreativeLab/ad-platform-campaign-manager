@@ -139,3 +139,17 @@ Present findings as a triage report:
 | Client wants to keep everything running | Explain the "stop the bleeding" principle — spending on waste funds competition. Pause, don't delete. |
 | Multiple conversion actions with unclear purpose | Audit each action against the actual website events. Remove duplicates. Set one primary action per campaign goal. |
 | PMax campaigns mixed with Search | Keep PMax separate in triage. PMax uses different signals — evaluate it against its own benchmarks. See `/ad-platform-campaign-manager:pmax-guide` |
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `01-audit`
+- **Output file:** `reports/{YYYY-MM-DD}/01-audit/campaign-cleanup.md`
+- **SUMMARY.md section:** Account Health
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this skill runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

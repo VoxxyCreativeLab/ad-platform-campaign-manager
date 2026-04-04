@@ -245,3 +245,17 @@ and prioritized recommendations.
 - **70-89** → Generally aligned but has meaningful gaps. Prioritize top 3 actions.
 - **50-69** → Significant misalignment. Multiple areas need rework.
 - **Below 50** → Major restructuring needed. Start with campaign mix and tracking.
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `02-plan`
+- **Output file:** `reports/{YYYY-MM-DD}/02-plan/strategy-advisor.md`
+- **SUMMARY.md section:** Strategy & Planning
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this agent runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

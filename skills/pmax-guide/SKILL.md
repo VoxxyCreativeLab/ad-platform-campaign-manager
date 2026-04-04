@@ -187,3 +187,17 @@ Based on the PMax work completed, recommend the next skill:
 | Budget needs reallocation across campaigns | `/ad-platform-campaign-manager:budget-optimizer` |
 | Account has structural issues beyond PMax | `/ad-platform-campaign-manager:campaign-cleanup` |
 | No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `03-build`
+- **Output file:** `reports/{YYYY-MM-DD}/03-build/pmax-guide.md`
+- **SUMMARY.md section:** Campaign Build
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this skill runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).

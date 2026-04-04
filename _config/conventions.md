@@ -131,3 +131,141 @@ Tracking audits (from `conversion-tracking` skill or `tracking-auditor` agent):
 - Lowercase, hyphen-separated: `my-folder-name`
 - No spaces, no underscores (exception: `_config/` per MWP convention)
 - Plugin root directories are convention-locked: `skills/`, `agents/`, `reference/`, `_config/`, `.claude-plugin/`
+
+---
+
+## Output Completeness Convention
+
+All skill and agent output written to report files MUST be fully specified and deterministic. This is a hard rule, not a suggestion.
+
+### Prohibited Patterns
+
+These patterns are banned from all report file output:
+
+- `etc.` / `...` / `and so on` / `similar to above`
+- `repeat for remaining X`
+- Truncating lists, tables, or repetitive sections
+- Shortening later items because earlier items established a pattern
+- `[same as group 1]` or any back-reference that avoids writing content
+
+### Required Behavior
+
+- If a skill recommends 8 asset groups with 5 attributes each, all 40 attribute values are written.
+- If a keyword strategy has 142 keywords, all 142 are listed with match type and intent.
+- If an audit checks 11 sections, all 11 sections appear with their findings, even if 7 passed cleanly.
+- Every table row is complete. Every list item is complete. No implicit repetition.
+
+### When Output is Genuinely Massive
+
+If a single report file would exceed approximately 500 lines, split into sub-files within the same stage folder. Example: `02-plan/keyword-strategy-brand.md`, `02-plan/keyword-strategy-competitor.md`. CONTEXT.md reflects all sub-files.
+
+---
+
+## Report File-Writing Convention
+
+When a report-producing skill or agent runs inside an MWP client project (detected by `stages/` or `reports/` directory at CWD), it follows this 6-step write sequence.
+
+### Step 1: Detect MWP Project
+
+Check if CWD has a `stages/` directory or `reports/` directory. If yes: MWP project detected, proceed with file writing. If no: fall back to conversational output (legacy behavior, nothing breaks).
+
+### Step 2: Ensure Directory Structure
+
+- Create `reports/{YYYY-MM-DD}/` if it does not exist (use today's date).
+- Create `reports/{YYYY-MM-DD}/{stage}/` for this skill's assigned stage.
+
+### Step 3: Write the Technical Report
+
+Write full output to `reports/{YYYY-MM-DD}/{stage}/{skill-name}.md`.
+
+If the same skill runs twice on the same day, overwrite the existing file (the latest run is authoritative).
+
+Frontmatter template for report files:
+
+````yaml
+---
+title: {Skill Display Name} - {Client Name}
+date: {YYYY-MM-DD}
+skill: {skill-name}
+stage: {stage}
+account: {Client Name} ({Account ID})
+tags: [report, google-ads, {stage}, {skill-name}]
+---
+````
+
+### Step 4: Update CONTEXT.md
+
+CONTEXT.md is the technical index for the specialist, located at `reports/{YYYY-MM-DD}/CONTEXT.md`.
+
+- If CONTEXT.md does not exist: create it from the template below with the first entry.
+- If it exists: update the row for this skill (replace if re-running same day, append if new).
+- Update "What Was Not Run" section (remove this skill from the list).
+
+CONTEXT.md template:
+
+````yaml
+---
+title: Campaign Report - {Client Name}
+date: {YYYY-MM-DD}
+account: {Client Name} ({Account ID})
+tags: [report, google-ads]
+---
+````
+
+````markdown
+## Report Overview
+
+| File | Stage | Skill | Summary |
+|------|-------|-------|---------|
+| [[{stage}/{skill-name}]] | {stage} | {skill-name} | {One-line summary of key findings} |
+
+## What Was Not Run
+
+Skills not invoked this session: {comma-separated list of remaining skills}
+
+## Reading Order
+
+Read files in stage order (01 -> 05) for the full picture.
+Start with 01-audit if triaging. Start with 02-plan if building new.
+````
+
+### Step 5: Update SUMMARY.md
+
+SUMMARY.md is the client-facing summary, located at `reports/{YYYY-MM-DD}/SUMMARY.md`.
+
+- If SUMMARY.md does not exist: create it from the template below.
+- Append (or replace if re-running same day) this skill's client-facing paragraph to the appropriate section.
+- If a section has no content (no skills ran for that stage), omit the section entirely.
+
+Rules for SUMMARY.md content:
+- Language is non-technical: "We found 3 issues affecting your ad spend" not "QS = 4.2, CTR below 2% threshold"
+- Numbers and quantities always included: "142 keywords", "8 asset groups", "2,500 EUR per month"
+- No implementation detail: client knows WHAT and HOW MANY, not HOW
+- Typical length per skill: 3-5 lines. Additional lines permitted when strictly necessary.
+- No em-dashes in SUMMARY.md. Use hyphens or restructure the sentence.
+
+SUMMARY.md template:
+
+````yaml
+---
+title: Campaign Report - {Client Name}
+date: {YYYY-MM-DD}
+account: {Client Name} ({Account ID})
+type: client-summary
+tags: [report, client, google-ads]
+---
+````
+
+Sections (map to stages):
+
+| Section | Stage | Skills |
+|---------|-------|--------|
+| Account Health | 01-audit | campaign-review, campaign-cleanup, live-report, campaign-reviewer (agent) |
+| Strategy & Planning | 02-plan | account-strategy, keyword-strategy, budget-optimizer, strategy-advisor (agent) |
+| Campaign Build | 03-build | campaign-setup, pmax-guide, ads-scripts |
+| Tracking & Launch | 04-launch | conversion-tracking, tracking-auditor (agent, exception: lives in 01-audit physically) |
+| Optimization & Reporting | 05-optimize | reporting-pipeline |
+
+### Step 6: Conversation Summary
+
+After writing files, show a 5-10 line summary in conversation with key findings plus file path. Example: "Audit complete - 3 critical issues, 5 warnings. Full report: `reports/2026-04-04/01-audit/campaign-review.md`"

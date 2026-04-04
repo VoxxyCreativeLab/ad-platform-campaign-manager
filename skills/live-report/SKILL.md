@@ -71,3 +71,17 @@ For recurring reports, suggest the user set up automated reporting:
 - **Monthly deep-dive** — 1st of month, previous month
 - **Daily budget pacing** — daily, current month-to-date
 - For automated pipelines (not ad-hoc), use `/ad-platform-campaign-manager:reporting-pipeline`
+
+---
+
+## Report Output
+
+When running inside an MWP client project (detected by `stages/` or `reports/` directory):
+
+- **Stage:** `01-audit`
+- **Output file:** `reports/{YYYY-MM-DD}/01-audit/live-report.md`
+- **SUMMARY.md section:** Account Health
+- **Write sequence:** Follow the 6-step write sequence in [[conventions#Report File-Writing Convention]]
+- **Completeness:** Follow the [[conventions#Output Completeness Convention]]. No truncation, no shortcuts.
+- **Re-run behavior:** If this skill runs twice on the same day, overwrite the existing report file. Update (not duplicate) CONTEXT.md row and SUMMARY.md paragraph.
+- **Fallback:** If not in an MWP project, output to conversation (legacy behavior).
