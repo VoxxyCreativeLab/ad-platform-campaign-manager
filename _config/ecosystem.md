@@ -1,6 +1,6 @@
 ---
 title: Claude Plugin & Tool Ecosystem
-date: 2026-03-28
+date: 2026-04-03
 tags:
   - reference
   - ecosystem
@@ -45,26 +45,6 @@ tags:
 
 ---
 
-### Reference & Planned Plugins
-
-#### kepano/obsidian-skills 📖 Reference
-- **Skills:** `obsidian-markdown`, `obsidian-bases`, `json-canvas`, `obsidian-cli`, `defuddle`
-- **Domains:** Obsidian vault management, Obsidian-flavored markdown, Canvas, Bases
-- **Relationship:** Our `obsidian-format` skill draws conventions from this plugin's spec. Not a runtime dependency — our skill is standalone.
-- **Source:** [github.com/kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)
-
-#### nextjs-plugin 🔲 Planned
-- **Skills:** TBD (scaffold, build, deploy)
-- **Domains:** Next.js apps, React, static sites, JAMstack
-- **When to use:** Building Next.js / React applications
-- **Status:** Not yet built — use `tech-standards.md` + `component-library.md` stubs manually
-
-#### n8n-plugin 🔲 Planned
-- **Skills:** TBD (design, build, test, deploy)
-- **Domains:** N8N workflow automation, API integrations, agent pipelines
-- **When to use:** Designing or building N8N automation workflows
-- **Status:** Not yet built — use `tech-standards.md` + `conventions.md` stubs manually
-
 ### Methodology & Workflow Plugins
 
 #### superpowers ✅ Active
@@ -85,7 +65,27 @@ tags:
 
 ---
 
-### email-marketing-plugin 🔲 Planned
+### Reference & Planned Plugins
+
+#### kepano/obsidian-skills 📖 Reference
+- **Skills:** `obsidian-markdown`, `obsidian-bases`, `json-canvas`, `obsidian-cli`, `defuddle`
+- **Domains:** Obsidian vault management, Obsidian-flavored markdown, Canvas, Bases
+- **Relationship:** Our `obsidian-format` skill draws conventions from this plugin's spec. Not a runtime dependency — our skill is standalone.
+- **Source:** [github.com/kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)
+
+#### nextjs-plugin 🔲 Planned
+- **Skills:** TBD (scaffold, build, deploy)
+- **Domains:** Next.js apps, React, static sites, JAMstack
+- **When to use:** Building Next.js / React applications
+- **Status:** Not yet built — use `tech-standards.md` + `component-library.md` stubs manually
+
+#### n8n-plugin 🔲 Planned
+- **Skills:** TBD (design, build, test, deploy)
+- **Domains:** N8N workflow automation, API integrations, agent pipelines
+- **When to use:** Designing or building N8N automation workflows
+- **Status:** Not yet built — use `tech-standards.md` + `conventions.md` stubs manually
+
+#### email-marketing-plugin 🔲 Planned
 - **Skills:** TBD (copy, design, build, test)
 - **Domains:** Email campaigns, newsletters, drip sequences, MailChimp, ActiveCampaign
 - **When to use:** Creating email marketing campaigns or sequences
@@ -114,6 +114,7 @@ tags:
 | MCP | Domain | What it enables | Status |
 |-----|--------|----------------|--------|
 | Notion MCP | All | Read/write Notion pages, databases, comments | ✅ Active |
+| WP Playground MCP | WordPress | Spin up WordPress instances, install themes, preview in-browser | ✅ Active |
 | googleads/google-ads-mcp | Google Ads | Read-only — diagnostics, analytics, GAQL, anomaly detection | 🔲 Awaiting credentials |
 | cohnen/mcp-google-ads | Google Ads | Read + Write — full CRUD, keywords, budget, GAQL | 🔲 Awaiting credentials |
 | GitHub MCP | All | Read/write GitHub repos, issues, PRs | 🔲 Not configured |
