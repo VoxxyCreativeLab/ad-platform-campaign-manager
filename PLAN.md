@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-03
-**Current milestone:** Strategic Upgrade v2.0 — Phase 2 ✅ Complete (v1.6.0) — Phase 3 next
+**Current milestone:** Strategic Upgrade v2.0 — Phase 3 ✅ Complete (v1.7.0) — all phases done
 
 ---
 
@@ -36,15 +36,15 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 | 1b | Strategic Reference Docs | ✅ Done (v1.4.0) | 8 new strategy docs, 3 existing enhanced with profile-aware sections |
 | 1c | Skill Strategy Hooks | ✅ Done (v1.5.0) | 4 skills profile-aware, Findings #3/#4 complete |
 | 2 | Account Strategy Skill | ✅ Done (v1.6.0) | New account-strategy skill + 5 skills enhanced for strategy-awareness |
-| 3 | Strategy Agent + Remaining | ⬜ Not started | strategy-advisor agent + 5 remaining reference docs |
+| 3 | Strategy Agent + Remaining | ✅ Done (v1.7.0) | strategy-advisor agent + 5 reference docs |
 
 ## Stages & Status
 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
-| 01 | Reference | 🔄 Expanding | 22 → 30 google-ads files (+8 strategy), 17 script docs, 6 tracking-bridge, 5 reporting, 3 mcp |
-| 02 | Skills | 🔄 Improving | 12 skills — all fixed + 10 now profile-aware (strategy hooks, Socratic questioning) |
-| 03 | Agents | ✅ Done | 2 agents (campaign-reviewer, tracking-auditor) |
+| 01 | Reference | ✅ Done | 35 google-ads files (24 core + 11 strategy), 17 script docs, 6 tracking-bridge, 5 reporting, 3 mcp |
+| 02 | Skills | ✅ Done | 12 skills — all fixed + 10 profile-aware (strategy hooks, Socratic questioning) |
+| 03 | Agents | ✅ Done | 3 agents (campaign-reviewer, tracking-auditor, strategy-advisor) |
 
 **Status key:** ⬜ Not started · 🔄 In progress · ✅ Done · ⚠️ Blocked
 
@@ -52,13 +52,13 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ## Current Focus
 
-**Active phase:** Strategic Upgrade v2.0 — Phase 2 Complete, Phase 3 next
-**What's happening:**
+**Active phase:** Strategic Upgrade v2.0 — Complete
+**What's happened:**
 - ✅ Phase 1a (v1.3.0) — systemic skill fixes, live-report redesign, all 6 issues resolved
 - ✅ Phase 1b (v1.4.0) — 8 new strategy docs, 3 existing enhanced, routing updated
 - ✅ Phase 1c (v1.5.0) — 4 skills now profile-aware, Findings #3/#4 complete
 - ✅ Phase 2 (v1.6.0) — account-strategy skill + 5 skills enhanced for strategy-awareness (10 of 12 profile-aware)
-- ⬜ Phase 3 — strategy-advisor agent + remaining reference docs
+- ✅ Phase 3 (v1.7.0) — strategy-advisor agent + 5 new reference docs (shopping-feed-strategy, ad-testing-framework, bid-adjustment-framework, remarketing-strategies, seasonal-planning)
 **Blockers:** OAuth client secret should be rotated.
 
 ---
@@ -88,16 +88,17 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - 2026-04-03 — Phased releases for strategic upgrade: 1a (systemic fixes), 1b (reference docs), 1c (skill hooks), 2 (account-strategy skill), 3 (strategy agent)
 - 2026-04-03 — pmax-guide structure (Step 0 decision tree → task paths → troubleshooting → inter-skill refs) is the gold standard — use it as template when enhancing other skills
 - 2026-04-03 — live-report `disable-model-invocation` changed to `false` — it's a read-only reporting skill, not a config wizard like connect-mcp
+- 2026-04-03 — Docs-first agent development for Phase 3 — write 5 reference docs before strategy-advisor agent so existing skills benefit immediately and agent has complete knowledge base from day one
+- 2026-04-03 — Two-mode strategy-advisor: full gap analysis with profile, structural health check without — mirrors the "profile skip shortcut" pattern in profile-aware skills
+- 2026-04-03 — Reference doc placement: core (technical/procedural: shopping-feed-strategy, ad-testing-framework) vs strategy (conditional/framework: bid-adjustment-framework, remarketing-strategies, seasonal-planning)
 
 ---
 
 ## Next Steps
 
-1. **Phase 3 — Strategy agent + remaining gaps** (say "continue" to resume):
-   - New `strategy-advisor` MCP agent that reads live account data and generates strategy
-   - 5 remaining reference docs: seasonal-planning, remarketing-strategies, ad-testing-framework, bid-adjustment-framework, shopping-feed-strategy
-3. **Rotate OAuth client secret** — exposed in previous session screenshot
-4. **Real client work** — use skills on a live Google Ads account
+1. **Rotate OAuth client secret** — exposed in previous session screenshot
+2. **Real client work** — use skills on a live Google Ads account
+3. **Phase 4 — Multi-platform** — populate meta-ads/, linkedin-ads/, tiktok-ads/
 
 ---
 

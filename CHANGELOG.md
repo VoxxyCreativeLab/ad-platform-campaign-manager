@@ -7,6 +7,28 @@ tags:
 
 # Changelog
 
+## [1.7.0] — 2026-04-03
+
+Phase 3 of the Strategic Upgrade v2.0. Completes the strategic layer with a new strategy-advisor agent (live account validation against strategy profiles) and 5 new reference docs filling remaining knowledge gaps.
+
+### Added
+- **New agent: strategy-advisor** — reads live account data via MCP, cross-references against strategy profile (from `/account-strategy`), produces scored gap analysis (8 categories, X/10 each, overall X/100) with prioritized recommendations. Two modes: full gap analysis (with profile) or structural health check (without profile).
+- **New reference doc: `shopping-feed-strategy.md`** — feed architecture, multi-market feeds, automation pipelines, feed health scoring, product exclusions, vertical feed considerations
+- **New reference doc: `ad-testing-framework.md`** — RSA testing methodology, headline/description strategy, pinning decisions, Ad Strength, performance evaluation, creative iteration process, AI Max for Search
+- **New reference doc: `strategy/bid-adjustment-framework.md`** — device/geo/schedule/audience bid adjustments by archetype and maturity, stacking math, vertical patterns, review cadence
+- **New reference doc: `strategy/remarketing-strategies.md`** — audience list design, funnel segmentation, membership durations, RLSA, dynamic remarketing, cross-channel remarketing, frequency management
+- **New reference doc: `strategy/seasonal-planning.md`** — annual planning calendars (EU/NL focus), vertical-specific seasonality, ramp-up timelines, Smart Bidding seasonality adjustments, post-season analysis
+
+### Changed
+- **CONTEXT.md** — 5 new reference doc routing entries added to existing skill routes; strategy-advisor agent routing entry added; file counts updated; phase map updated
+- **campaign-reviewer agent** — now references `ad-testing-framework.md`, `strategy/remarketing-strategies.md`, `strategy/bid-adjustment-framework.md` in Step 3
+- **CLAUDE.md** — file counts updated (42 reference files, 3 agents), strategy-advisor added to quick navigation
+- **README.md** — strategic layer section added, agent count updated
+- **plugin.json** — version bumped to 1.7.0, description updated
+- Agent count: 2 → 3; reference file count: 30 → 35 google-ads files (22 core + 2 new core + 8 strategy + 3 new strategy)
+
+---
+
 ## [1.6.0] — 2026-04-03
 
 Phase 2 of the Strategic Upgrade v2.0. New account-strategy skill (the strategic entry point) plus 5 existing skills enhanced for full strategy-awareness. After this release, 10 of 12 skills are profile-aware.

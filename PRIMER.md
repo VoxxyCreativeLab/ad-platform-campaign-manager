@@ -11,41 +11,42 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.6.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists. Includes a full strategic layer with account profile framework — 10 of 12 skills are profile-aware.
+**ad-platform-campaign-manager** v1.7.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists. Full strategic layer complete: 10 of 12 skills profile-aware, strategy-advisor agent validates live accounts against strategy profiles.
 
 ## Last Completed
 
-### Session 2026-04-03: Strategic Upgrade v2.0 — Phase 2 Complete (v1.6.0)
+### Session 2026-04-03: Strategic Upgrade v2.0 — Phase 3 Complete (v1.7.0)
 
-**Objective:** Complete the strategic layer. New account-strategy skill as the entry point, plus 5 remaining skills enhanced for strategy-awareness.
+**Objective:** Complete the strategic layer with a strategy-advisor agent and 5 remaining reference docs.
 
-**Phase 2 (v1.6.0) — Account Strategy Skill + 5 Skill Enhancements:**
-- New `account-strategy` skill: interactive 10-dimension profiler → archetype mapping → strategy document → routing
-- campaign-review: profile intake, review area weighting by archetype, severity by maturity, vertical-specific audit items
-- conversion-tracking: tracking tier diagnosis (Basic/Intermediate/Advanced), upgrade path, vertical-specific tracking requirements
-- pmax-guide: maturity/budget gate (30+ conv/month, EUR 50/day minimum), vertical-specific PMax guidance
-- reporting-pipeline: pipeline complexity by maturity (Sheets → BQ → dbt → full), metrics by vertical, cadence by management model
-- ads-scripts: budget-tier gating, scripts by maturity stage, vertical-specific recommendations
-- All 5 skills now have "What to Do Next" routing and "profile skip shortcut"
-- 10 of 12 skills are now profile-aware (only connect-mcp and live-report excluded)
+**Phase 3 (v1.7.0) — Strategy Agent + 5 Reference Docs:**
+- New `strategy-advisor` agent: two-mode (with/without profile), 8 scoring categories, cross-references all strategy + reference docs, prioritized actions with skill routing
+- New `shopping-feed-strategy.md`: feed architecture, multi-market feeds, automation pipelines, feed health scoring, product exclusions
+- New `ad-testing-framework.md`: RSA testing methodology, headline/description strategy, pinning, Ad Strength, creative iteration, AI Max
+- New `strategy/bid-adjustment-framework.md`: device/geo/schedule/audience adjustments by archetype, stacking math, vertical patterns
+- New `strategy/remarketing-strategies.md`: audience list design, funnel segmentation, RLSA, dynamic remarketing, cross-channel, frequency
+- New `strategy/seasonal-planning.md`: annual calendars (EU/NL), vertical seasonality, ramp-up timelines, Smart Bidding seasonality adjustments
+- CONTEXT.md routing updated with 5 new doc entries + strategy-advisor agent entry
+- campaign-reviewer agent updated with 3 new reference doc pointers
+- All root docs updated (CLAUDE.md, PLAN.md, CHANGELOG.md, DESIGN.md, README.md, START-HERE.md, plugin.json)
 
 ### Prior sessions
-- **2026-04-03 (earlier):** Strategic Upgrade Phase 1 complete (1a/1b/1c, v1.3.0-v1.5.0)
+- **2026-04-03 (earlier):** Strategic Upgrade Phases 1a-2 (v1.3.0-v1.6.0)
 - **2026-04-02:** MCP reconnection after machine migration
-- **2026-04-01:** Feed-only PMax knowledge gap fix, MCP server built + verified, fact-check sweep
-
+- **2026-04-01:** Feed-only PMax fix, MCP server built + verified, fact-check sweep
 
 ## Current State
 
 ### Plugin (ad-platform-campaign-manager)
-- **30 reference files** under `platforms/google-ads/` (22 core + 8 strategy)
+- **35 reference files** under `platforms/google-ads/` (24 core + 11 strategy)
 - **17 script docs** under `reference/scripts/`
 - **6 tracking-bridge docs** (the differentiator)
 - **5 reporting docs** + **3 MCP docs** + **1 repos catalog**
 - **12 skills** — all with argument-hints, inter-skill refs, {{placeholder}} syntax; 10 are profile-aware
-- **2 agents** (campaign-reviewer, tracking-auditor)
+- **3 agents** (campaign-reviewer, tracking-auditor, strategy-advisor)
 - All reference docs fact-checked to 2025-2026 accuracy
 - All 5 audit findings resolved (Finding #1-#5)
+- Strategic Upgrade v2.0 complete (all 3 phases)
 
 ### MCP Server (google-ads-mcp-server)
 - **33 Python files**, **96 tests**, clean git
@@ -61,16 +62,20 @@ tags:
 
 ## What Still Needs to Happen
 
-### Phase 3 — Strategy Agent + Remaining Gaps (next up)
+### Housekeeping
+- **Rotate OAuth client secret** — exposed in previous session screenshot (2026-04-01)
 
-New `strategy-advisor` MCP agent that reads live account data and generates strategy. Plus 5 remaining reference docs:
-- seasonal-planning, remarketing-strategies, ad-testing-framework, bid-adjustment-framework, shopping-feed-strategy
+### Phase 4 — Multi-Platform (not started)
+- Populate `meta-ads/`, `linkedin-ads/`, `tiktok-ads/` directories
+
+### Real Client Work
+- Use skills and agents on live Google Ads accounts
 
 ## Design Documents
 
-- **Design spec:** `docs/superpowers/specs/2026-04-03-strategic-upgrade-design.md`
+- **Phase 3 design spec:** `docs/superpowers/specs/2026-04-03-phase-3-strategy-agent-design.md`
+- **Phase 2 design spec:** `docs/superpowers/specs/2026-04-03-strategic-upgrade-design.md`
 - **Skill review audit:** `docs/superpowers/specs/2026-04-03-skill-review-audit.md`
-- **Phase 1a plan:** `docs/superpowers/plans/2026-04-03-phase-1a-systemic-skill-fixes.md`
 
 ## Open Blockers
 

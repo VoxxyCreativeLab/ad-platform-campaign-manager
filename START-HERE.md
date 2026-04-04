@@ -21,7 +21,7 @@ A Claude Code plugin that provides campaign management guidance for Google Ads �
 
 1. **[[reference/CONTEXT|Reference]]** (`reference/`) — Domain knowledge base: Google Ads fundamentals, tracking-bridge docs (GTM/sGTM/BQ), reporting patterns, PMax (including feed-only PMax), audit checklists, Ads Scripts API
 2. **[[skills/CONTEXT|Skills]]** (`skills/`) — 12 interactive guidance tools that load reference docs on demand (account strategy, campaign setup, keyword strategy, conversion tracking, PMax, reporting, etc.)
-3. **[[agents/CONTEXT|Agents]]** (`agents/`) — 2 autonomous audit agents (campaign reviewer, tracking auditor) that produce scored reports
+3. **[[agents/CONTEXT|Agents]]** (`agents/`) — 3 autonomous agents (campaign reviewer, tracking auditor, strategy advisor) that produce scored reports
 
 Reference feeds into both Skills and Agents. Skills and Agents are independent of each other.
 
@@ -41,6 +41,7 @@ Reference feeds into both Skills and Agents. Skills and Agents are independent o
 | Optimize budget/bids | `/ad-platform-campaign-manager:budget-optimizer` |
 | Browse Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` |
 | Clean up messy account | `/ad-platform-campaign-manager:campaign-cleanup` |
+| Validate account against strategy | `strategy-advisor` agent |
 | Understand task routing | [[CONTEXT]] |
 | See what's in progress | [[PLAN]] |
 | Check available plugins/tools | [[_config/ecosystem|_config/ecosystem.md]] |

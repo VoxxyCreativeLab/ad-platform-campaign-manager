@@ -47,6 +47,11 @@ Campaign management and plugin development lessons captured over time. Each entr
 - **2026-04-03** — Subagent-driven development works well for mechanical skill fixes (batch frontmatter changes, add sections). Use haiku for simple edits (CONTEXT.md routing fixes), sonnet for content additions (troubleshooting tables, output templates), opus for research-heavy work (strategy reference docs). The tiering saved significant time and cost.
 - **2026-04-03** — Strategy docs should use `%%fact-check: [feature] — verified [date]%%` markers on any claims tied to specific Google Ads features. Google changes features frequently — these markers create an audit trail for future fact-check sweeps.
 
+## Strategic Layer
+
+- **2026-04-03** — Docs-first agent development is the right pattern for knowledge-heavy agents. Writing the 5 reference docs before the strategy-advisor agent meant: (1) existing skills benefited immediately, (2) the agent had a complete knowledge base on day one, (3) no rework cycle. This mirrors Phase 1b/1c where reference docs preceded skill hooks.
+- **2026-04-03** — Two-mode agents (with/without profile) provide flexibility without compromising quality. The strategy-advisor produces a full gap analysis with a profile, or a quick structural health check without one. This matches the "profile skip shortcut" pattern already in 10 skills — consistency across the plugin.
+
 ## Keyword Management
 
 _(No entries yet)_

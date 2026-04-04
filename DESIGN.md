@@ -29,7 +29,7 @@ Architecture rationale for ad-platform-campaign-manager. Documents the *why* beh
 
 ## Skills vs Agents
 
-**Decision:** 11 skills (invoked by user) + 2 agents (autonomous audit).
+**Decision:** 12 skills (invoked by user) + 3 agents (autonomous audit/validation).
 
 **Why:** Skills are interactive — the user triggers them and works through them step by step. Agents are autonomous — they run a full audit checklist without user interaction and produce a report. The split maps to two usage patterns:
 - "Help me build/plan something" → skill
@@ -93,6 +93,24 @@ No file tries to do two jobs.
 **Decision:** Strategic reference docs live in `reference/platforms/google-ads/strategy/` as a subdirectory alongside `pmax/` and `audit/`, not as a separate top-level `reference/strategy/` directory.
 
 **Why:** Strategy is platform-specific — Google Ads bidding strategies differ from Meta bid strategies. When Phase 4 adds other platforms, each will get its own `strategy/` subdirectory with platform-specific playbooks. This preserves the existing pattern (all Google Ads knowledge under one tree) and the reference-loading convention (skills load from `reference/platforms/google-ads/`).
+
+## Docs-First Agent Development (Strategic Upgrade v2.0 Phase 3)
+
+**Decision:** Write the 5 new reference docs before building the strategy-advisor agent, not in parallel.
+
+**Why:** The agent's value depends entirely on the quality of its knowledge base. Writing docs first means: (1) the 10 existing profile-aware skills benefit immediately from the new reference material, (2) the agent gets designed with full awareness of what's available, (3) no rework cycle — the agent references stable, reviewed docs from day one. This mirrors how Phase 1b/1c worked: reference docs first, then skills/agents that consume them.
+
+## Two-Mode Strategy Agent
+
+**Decision:** The `strategy-advisor` agent operates in two modes: Mode 1 (with profile) produces a full scored gap analysis; Mode 2 (without profile) produces a structural health check with a recommendation to run `/account-strategy` first.
+
+**Why:** Hard-gating on a profile would prevent quick health checks during client onboarding. But running without a profile means the agent can only report raw numbers, not strategic gaps. The two-mode approach gives Jerry flexibility — quick cold-run for new clients, full analysis once profiled. The "profile skip shortcut" pattern (already in the 10 profile-aware skills) provides consistency.
+
+## Reference Doc Placement: Core vs Strategy
+
+**Decision:** `shopping-feed-strategy.md` and `ad-testing-framework.md` live in `reference/platforms/google-ads/` (core). `bid-adjustment-framework.md`, `remarketing-strategies.md`, and `seasonal-planning.md` live in `reference/platforms/google-ads/strategy/`.
+
+**Why:** Core docs are technical/procedural — feed attributes, RSA testing methodology. Strategy docs are conditional/framework — they vary by archetype, maturity, and vertical. This mirrors existing placement: `bidding-strategies.md` (core, technical) vs `account-profiles.md` (strategy, conditional). Skills load both types but the distinction helps future maintainers understand what changes rarely (core) vs what adapts to context (strategy).
 
 ## Skill Flow Graph (Inter-Skill Routing)
 

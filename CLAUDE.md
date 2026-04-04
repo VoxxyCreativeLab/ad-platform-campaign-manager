@@ -61,9 +61,9 @@ ad-platform-campaign-manager/
   CHANGELOG.md         ← Version log
   MEMORY.sh            ← Git context injection
   _config/             ← Layer 3: Stable reference files
-  reference/           ← Stage 01: Domain knowledge base (37 files)
+  reference/           ← Stage 01: Domain knowledge base (42 files)
   skills/              ← Stage 02: Interactive guidance tools (12 skills)
-  agents/              ← Stage 03: Autonomous audit agents (2 agents)
+  agents/              ← Stage 03: Autonomous agents (3 agents)
   .claude-plugin/      ← Plugin metadata
 ```
 
@@ -83,6 +83,7 @@ ad-platform-campaign-manager/
 | Optimize budget/bids | `/ad-platform-campaign-manager:budget-optimizer` |
 | Browse Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` |
 | Clean up messy account | `/ad-platform-campaign-manager:campaign-cleanup` |
+| Validate account against strategy | `strategy-advisor` agent (via `/ad-platform-campaign-manager:campaign-review` or direct dispatch) |
 | Understand task routing | [[CONTEXT]] |
 | Adjust conventions | [[_config/conventions|_config/conventions.md]] |
 | See what's in progress | [[PLAN]] |

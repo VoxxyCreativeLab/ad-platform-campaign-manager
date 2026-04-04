@@ -11,26 +11,27 @@ tags:
 
 | Task | Location | Load | Skip |
 |------|----------|------|------|
-| New campaign | `skills/campaign-setup/SKILL.md` | `reference/platforms/google-ads/campaign-types.md`, `account-structure.md`, `match-types.md`, `bidding-strategies.md`, `ad-extensions.md`, `strategy/account-profiles.md` | PMax refs (unless PMax), tracking-bridge, reporting |
-| Keyword planning | `skills/keyword-strategy/SKILL.md` | `reference/platforms/google-ads/match-types.md`, `audit/negative-keyword-lists.md`, `account-structure.md`, `strategy/account-profiles.md` | PMax, tracking-bridge, reporting, mcp |
+| New campaign | `skills/campaign-setup/SKILL.md` | `reference/platforms/google-ads/campaign-types.md`, `account-structure.md`, `match-types.md`, `bidding-strategies.md`, `ad-extensions.md`, `ad-testing-framework.md`, `strategy/account-profiles.md`, `strategy/remarketing-strategies.md`, `shopping-feed-strategy.md` (if Shopping/PMax) | PMax refs (unless PMax), tracking-bridge, reporting |
+| Keyword planning | `skills/keyword-strategy/SKILL.md` | `reference/platforms/google-ads/match-types.md`, `audit/negative-keyword-lists.md`, `account-structure.md`, `strategy/account-profiles.md`, `strategy/remarketing-strategies.md` | PMax, tracking-bridge, reporting, mcp |
 | Conversion tracking | `skills/conversion-tracking/SKILL.md` | `reference/tracking-bridge/*`, `reference/platforms/google-ads/conversion-actions.md`, `enhanced-conversions.md`, `strategy/account-profiles.md`, `strategy/attribution-guide.md` | Reporting, scripts, mcp |
 | Reporting pipeline | `skills/reporting-pipeline/SKILL.md` | `reference/reporting/*`, `reference/platforms/google-ads/gaql-reference.md`, `strategy/account-profiles.md` | Tracking-bridge, scripts, audit |
-| Campaign audit | `skills/campaign-review/SKILL.md` | `reference/platforms/google-ads/audit/*`, `quality-score.md`, `bidding-strategies.md`, `strategy/account-profiles.md` | Tracking-bridge, reporting, scripts, mcp |
-| PMax work | `skills/pmax-guide/SKILL.md` | `reference/platforms/google-ads/pmax/*`, `bidding-strategies.md`, `strategy/account-profiles.md` | Tracking-bridge (unless conversion setup), scripts |
+| Campaign audit | `skills/campaign-review/SKILL.md` | `reference/platforms/google-ads/audit/*`, `quality-score.md`, `bidding-strategies.md`, `ad-testing-framework.md`, `strategy/account-profiles.md`, `strategy/remarketing-strategies.md`, `strategy/bid-adjustment-framework.md` | Tracking-bridge, reporting, scripts, mcp |
+| PMax work | `skills/pmax-guide/SKILL.md` | `reference/platforms/google-ads/pmax/*`, `bidding-strategies.md`, `shopping-feed-strategy.md`, `strategy/account-profiles.md` | Tracking-bridge (unless conversion setup), scripts |
 | Feed-only PMax / Shopping restructure | `skills/pmax-guide/SKILL.md` | `reference/platforms/google-ads/pmax/feed-only-pmax.md`, `pmax/feed-optimization.md`, `pmax/audience-signals.md`, `shopping-campaigns.md` | asset-requirements (unless adding creative), tracking-bridge, scripts |
-| Budget / bids | `skills/budget-optimizer/SKILL.md` | `reference/platforms/google-ads/bidding-strategies.md`, `campaign-types.md`, `account-structure.md`, `audit/common-mistakes.md`, `strategy/account-profiles.md`, `strategy/account-maturity-roadmap.md` | Tracking-bridge, reporting, pmax, scripts |
+| Budget / bids | `skills/budget-optimizer/SKILL.md` | `reference/platforms/google-ads/bidding-strategies.md`, `campaign-types.md`, `account-structure.md`, `audit/common-mistakes.md`, `strategy/account-profiles.md`, `strategy/account-maturity-roadmap.md`, `strategy/bid-adjustment-framework.md`, `strategy/seasonal-planning.md` | Tracking-bridge, reporting, pmax, scripts |
 | Ads Scripts | `skills/ads-scripts/SKILL.md` | `reference/scripts/catalog.md`, `reference/platforms/google-ads/ads-scripts-api.md`, `strategy/account-profiles.md` | Everything else except strategy |
 | Account cleanup | `skills/campaign-cleanup/SKILL.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `negative-keyword-lists.md`, `account-structure.md`, `strategy/account-profiles.md` | Tracking-bridge, reporting, scripts, mcp |
 | Live reports | `skills/live-report/SKILL.md` | `reference/reporting/gaql-query-templates.md`, `gaql-reference.md` | Everything except reporting |
 | MCP setup | `skills/connect-mcp/SKILL.md` | `reference/mcp/*` | Everything else |
 | Account strategy | `skills/account-strategy/SKILL.md` | `reference/platforms/google-ads/strategy/*`, `campaign-types.md`, `bidding-strategies.md` | Scripts, mcp, reporting |
-| Full campaign audit (agent) | `agents/campaign-reviewer.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md` | Tracking-bridge, reporting, mcp |
+| Full campaign audit (agent) | `agents/campaign-reviewer.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `ad-testing-framework.md`, `strategy/remarketing-strategies.md`, `strategy/bid-adjustment-framework.md` | Tracking-bridge, reporting, mcp |
+| Strategy validation (agent) | `agents/strategy-advisor.md` | `reference/platforms/google-ads/strategy/*`, `campaign-types.md`, `bidding-strategies.md`, `shopping-feed-strategy.md`, `ad-testing-framework.md` | Scripts, mcp config, tracking-bridge |
 | Tracking audit (agent) | `agents/tracking-auditor.md` | `reference/tracking-bridge/*`, `reference/platforms/google-ads/conversion-actions.md`, `enhanced-conversions.md` | Reporting, scripts, mcp |
 
 ## Shared Resources
 
 These files are stable reference material — never overwrite during normal use:
-- `reference/platforms/google-ads/` — Google Ads domain knowledge (includes `strategy/` subdirectory with account profiles, vertical playbooks, targeting, attribution)
+- `reference/platforms/google-ads/` — Google Ads domain knowledge (includes `strategy/` subdirectory with account profiles, vertical playbooks, targeting, attribution, bid adjustments, remarketing, seasonal planning; plus core docs for feed strategy and ad testing)
 - `reference/tracking-bridge/` — GTM/sGTM/BQ ↔ Google Ads pipeline docs
 - `reference/reporting/` — GAQL, BigQuery, dbt, Looker Studio patterns
 - `reference/mcp/` — MCP server setup and comparison
@@ -68,5 +69,7 @@ Phase 2 (done): Content completion & MCP prep — scripts, repos, fact-check swe
     ↓
 Phase 3 (done): MCP API integration — 25 tools via custom google-ads-mcp-server
     ↓ (reconnected after machine migration 2026-04-02)
+Strategic Upgrade v2.0 (done): Account profiles, strategy docs, skill hooks, strategy-advisor agent
+    ↓
 Phase 4: Multi-platform — populate meta-ads/, linkedin-ads/, tiktok-ads/
 ```

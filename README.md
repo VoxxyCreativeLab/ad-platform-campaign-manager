@@ -31,12 +31,20 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | Connect MCP | `/ad-platform-campaign-manager:connect-mcp` | Set up MCP connection to Google Ads API |
 | Live Report | `/ad-platform-campaign-manager:live-report` | Pull live data and generate reports |
 
+## Strategic Layer
+
+| Skill / Agent | Command / Agent | Purpose |
+|-------|---------|---------|
+| Account Strategy | `/ad-platform-campaign-manager:account-strategy` | Interactive 10-dimension account profiling → strategy document |
+| Strategy Advisor | `strategy-advisor` agent | Validates live account state against strategy profile — scored gap analysis |
+
 ## Agents
 
 | Agent | Purpose |
 |-------|---------|
 | `campaign-reviewer` | Automated campaign audit with scored report |
 | `tracking-auditor` | Conversion tracking pipeline audit (Ads ↔ GTM/sGTM ↔ BQ) |
+| `strategy-advisor` | Live account data vs strategy profile — gap analysis with prioritized actions |
 
 ## Platform Support
 

@@ -76,9 +76,14 @@ Work through every section of the audit checklist at `reference/platforms/google
 - [ ] Audience signals configured
 - [ ] Brand exclusions applied
 
-### Step 3: Cross-Reference with Common Mistakes
+### Step 3: Cross-Reference with Common Mistakes and Best Practices
 
 Check the campaign against `reference/platforms/google-ads/audit/common-mistakes.md` — the top 25 Google Ads mistakes. Flag any matches.
+
+Additionally, evaluate against these reference docs when relevant:
+- `reference/platforms/google-ads/ad-testing-framework.md` — RSA asset diversity, pinning strategy, creative iteration cadence
+- `reference/platforms/google-ads/strategy/remarketing-strategies.md` — audience list coverage, funnel segmentation, frequency management
+- `reference/platforms/google-ads/strategy/bid-adjustment-framework.md` — device/geo/schedule adjustments, stacking math, data thresholds
 
 ### Step 4: Produce Report
 
