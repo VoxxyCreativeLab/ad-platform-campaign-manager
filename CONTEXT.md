@@ -23,6 +23,7 @@ tags:
 | Account cleanup | `skills/campaign-cleanup/SKILL.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `negative-keyword-lists.md`, `account-structure.md`, `strategy/account-profiles.md` | Tracking-bridge, reporting, scripts, mcp |
 | Live reports | `skills/live-report/SKILL.md` | `reference/reporting/gaql-query-templates.md`, `gaql-reference.md` | Everything except reporting |
 | MCP setup | `skills/connect-mcp/SKILL.md` | `reference/mcp/*` | Everything else |
+| Ad copy generation | `skills/ad-copy/SKILL.md` | `reference/platforms/google-ads/ad-copy-framework.md`, `ad-testing-framework.md`, `ad-extensions.md`, `pmax/asset-requirements.md`, `shopping-feed-strategy.md`, `strategy/account-profiles.md` | Tracking-bridge, reporting, scripts, mcp |
 | Account strategy | `skills/account-strategy/SKILL.md` | `reference/platforms/google-ads/strategy/*`, `campaign-types.md`, `bidding-strategies.md` | Scripts, mcp, reporting |
 | Full campaign audit (agent) | `agents/campaign-reviewer.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `ad-testing-framework.md`, `strategy/remarketing-strategies.md`, `strategy/bid-adjustment-framework.md` | Tracking-bridge, reporting, mcp |
 | Strategy validation (agent) | `agents/strategy-advisor.md` | `reference/platforms/google-ads/strategy/*`, `campaign-types.md`, `bidding-strategies.md`, `shopping-feed-strategy.md`, `ad-testing-framework.md` | Scripts, mcp config, tracking-bridge |

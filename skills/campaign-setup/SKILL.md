@@ -89,6 +89,9 @@ Based on the selected type, design the full campaign structure. Consult [[../../
 
 ## Step 4: Write Ad Copy
 
+> [!tip] Multilingual or Detailed Copy
+> For multilingual ad copy, character-counted output, or detailed language-specific generation, use `/ad-platform-campaign-manager:ad-copy` instead. It generates production-ready copy with `(XX/YY chars)` counts for every element and supports Swedish, Dutch, German, and English with native CTA libraries.
+
 **For Search (RSAs):**
 Generate 15 headlines and 4 descriptions per ad group:
 - Headlines should include: keywords, value propositions, CTAs, brand name, differentiators
@@ -164,6 +167,7 @@ Based on the campaign plan, route to the next skill:
 - **Conversion tracking not set up?** → `/ad-platform-campaign-manager:conversion-tracking`
 - **Budget needs detailed planning?** → `/ad-platform-campaign-manager:budget-optimizer`
 - **Inheriting a messy account?** → `/ad-platform-campaign-manager:campaign-cleanup`
+- **Need multilingual or character-counted ad copy?** → `/ad-platform-campaign-manager:ad-copy`
 
 ---
 

@@ -11,11 +11,19 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.8.0 - Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.9.0 - Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ## Last Completed
 
-### Session 2026-04-04: Report Output Structure (v1.8.0)
+### Session 2026-04-04: Ad Copy Skill (v1.9.0)
+
+- Built `/ad-copy` skill — multilingual ad copy generator (RSA, extensions, PMax, Shopping feed titles)
+- Created `reference/platforms/google-ads/ad-copy-framework.md` — character limits, headline categories, language-specific rules (Swedish, Dutch, German, English), CTA libraries, compound-word handling, Shopping feed title formulas, extension copy framework
+- Updated routing (CONTEXT.md, skills/CONTEXT.md), navigation (CLAUDE.md), cross-refs (campaign-setup → ad-copy)
+- Version bumped to 1.9.0
+- Built for Vaxteronline project Session 2 (Swedish brand Search + extensions copy needed)
+
+### Session 2026-04-04 (earlier): Report Output Structure (v1.8.0)
 
 - Implemented report output structure across both plugins (19 files modified)
 - Added Output Completeness Convention to `_config/conventions.md` - hard rule banning truncation patterns (`etc.`, `...`, back-references)
@@ -37,11 +45,11 @@ tags:
 ## Current State
 
 ### Plugin (ad-platform-campaign-manager)
-- **35 reference files** under `platforms/google-ads/` (24 core + 11 strategy)
+- **36 reference files** under `platforms/google-ads/` (25 core + 11 strategy)
 - **17 script docs** under `reference/scripts/`
 - **6 tracking-bridge docs** (the differentiator)
 - **5 reporting docs** + **3 MCP docs** + **1 repos catalog**
-- **12 skills** - all with argument-hints, inter-skill refs, Report Output sections; 10 are profile-aware
+- **13 skills** - all with argument-hints, inter-skill refs, Report Output sections; 11 are profile-aware
 - **3 agents** (campaign-reviewer, tracking-auditor, strategy-advisor) - all with Report Output sections
 - All reference docs fact-checked to 2025-2026 accuracy
 - All 5 audit findings resolved

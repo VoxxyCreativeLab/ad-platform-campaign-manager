@@ -29,7 +29,7 @@ Architecture rationale for ad-platform-campaign-manager. Documents the *why* beh
 
 ## Skills vs Agents
 
-**Decision:** 12 skills (invoked by user) + 3 agents (autonomous audit/validation).
+**Decision:** 13 skills (invoked by user) + 3 agents (autonomous audit/validation).
 
 **Why:** Skills are interactive — the user triggers them and works through them step by step. Agents are autonomous — they run a full audit checklist without user interaction and produce a report. The split maps to two usage patterns:
 - "Help me build/plan something" → skill
@@ -116,4 +116,4 @@ No file tries to do two jobs.
 
 **Decision:** Skills are no longer islands. Each skill routes to relevant next skills at completion. The intended flow is: account-strategy (Phase 2) → campaign-setup → keyword-strategy → budget-optimizer, with conversion-tracking and campaign-review as cross-cutting skills.
 
-**Why:** The skill review audit (2026-04-03) found 6 of 11 skills had no inter-skill references — users would finish keyword planning with no guidance on what to do next. The flow graph ensures every skill ends with a clear "next step" recommendation, creating a natural workflow through the plugin's capabilities.
+**Why:** The skill review audit (2026-04-03) found 6 of 11 skills had no inter-skill references — users would finish keyword planning with no guidance on what to do next. The flow graph ensures every skill ends with a clear "next step" recommendation, creating a natural workflow through the plugin's capabilities. The `ad-copy` skill (v1.9.0) routes to 6 downstream skills and is referenced from `campaign-setup`.

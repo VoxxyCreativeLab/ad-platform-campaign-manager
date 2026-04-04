@@ -11,7 +11,7 @@ tags:
 
 # Skills — Context
 
-12 invocable skills, each in its own folder with a `SKILL.md` file. 10 are profile-aware (ask account profiling questions). Phase 1 (10 skills) requires no API. Phase 2 (2 skills) requires MCP connection.
+13 invocable skills, each in its own folder with a `SKILL.md` file. 11 are profile-aware (ask account profiling questions). Phase 1 (11 skills) requires no API. Phase 2 (2 skills) requires MCP connection.
 
 ## Conventions
 
@@ -46,7 +46,10 @@ ads-scripts ─────────→ scripts/catalog, ads-scripts-api,
 campaign-cleanup ────→ audit/*, common-mistakes, negative-keyword-lists,
                        account-structure, strategy/account-profiles
 connect-mcp ─────────→ mcp/*
-live-report ─────────→ reporting/gaql-query-templates, gaql-reference
+ad-copy ─────────────→ ad-copy-framework, ad-testing-framework, ad-extensions,
+                       pmax/asset-requirements, shopping-feed-strategy,
+                       strategy/account-profiles
+live-report ──────��──→ reporting/gaql-query-templates, gaql-reference
 ```
 
 ## Inter-Skill References
@@ -54,7 +57,7 @@ live-report ─────────→ reporting/gaql-query-templates, gaql-
 Skills may recommend other skills to the user:
 
 - `account-strategy` → routes to `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `campaign-cleanup`, `budget-optimizer`, `pmax-guide`, `reporting-pipeline`, `campaign-review` based on profile gaps
-- `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`
+- `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `ad-copy`
 - `campaign-review` → recommends `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `pmax-guide`, `keyword-strategy`, `account-strategy`
 - `campaign-cleanup` → recommends `conversion-tracking`, `campaign-setup`, `keyword-strategy`, `budget-optimizer`
 - `conversion-tracking` → recommends `campaign-setup`, `campaign-review`, `budget-optimizer`, `reporting-pipeline`, `account-strategy`
@@ -62,6 +65,7 @@ Skills may recommend other skills to the user:
 - `reporting-pipeline` → recommends `ads-scripts`, `live-report`, `conversion-tracking`, `budget-optimizer`, `account-strategy`
 - `ads-scripts` → recommends `reporting-pipeline`, `budget-optimizer`, `live-report`, `account-strategy`
 - `keyword-strategy` → recommends `campaign-setup`, `budget-optimizer`, `campaign-review`
+- `ad-copy` → recommends `campaign-setup`, `keyword-strategy`, `budget-optimizer`, `campaign-review`, `pmax-guide`, `live-report`
 - `budget-optimizer` → recommends `campaign-review`, `campaign-cleanup`, `conversion-tracking`
 - `live-report` → requires `connect-mcp` for MCP setup
 - `reporting-pipeline` → complements `live-report` (design vs live data)

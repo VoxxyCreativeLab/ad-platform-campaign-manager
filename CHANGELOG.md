@@ -7,6 +7,23 @@ tags:
 
 # Changelog
 
+## [1.9.0] — 2026-04-04
+
+New `/ad-copy` skill for multilingual ad copy generation. Character-counted, language-aware, research-backed. Ships with Swedish, Dutch, German, and English CTA libraries. Companion reference doc `ad-copy-framework.md` provides the reusable knowledge base.
+
+### Added
+- **New skill: ad-copy** — interactive multilingual ad copy generator for RSA headlines/descriptions, extensions (sitelinks, callouts, structured snippets), PMax text assets, and Shopping feed titles. Every text element includes `(XX/YY chars)` character counts. Supports Swedish (sv-SE), Dutch (nl-NL), German (de-DE), English (en-GB/US) with native CTA libraries and compound-word handling.
+- **New reference doc: `ad-copy-framework.md`** — character limits quick reference (RSA, extensions, PMax, Shopping), headline generation framework (8 categories with distribution), language-specific rules (compound words, CTA libraries, trust signals, address forms), Shopping feed title formulas by market, extension copy framework (sitelink topics, callout themes, structured snippet headers)
+
+### Changed
+- **CONTEXT.md** — ad copy generation routing entry added
+- **skills/CONTEXT.md** — skill count 12→13, dependency map entry added, inter-skill references updated (campaign-setup → ad-copy, ad-copy → 6 downstream skills)
+- **CLAUDE.md** — quick navigation entry added, file counts updated (43 reference files, 13 skills)
+- **campaign-setup skill** — Step 4 callout added recommending `/ad-copy` for multilingual or character-counted copy; `/ad-copy` added to "What to Do Next" routing
+- **plugin.json** — version bumped to 1.9.0
+
+---
+
 ## [1.8.0] — 2026-04-04
 
 Report output structure. Skills and agents now write deliverables to files inside MWP client projects instead of dumping 100+ pages into conversation. Adds an output completeness convention that bans truncation patterns (`etc.`, `...`, back-references).

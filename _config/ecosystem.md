@@ -37,8 +37,8 @@ tags:
 ---
 
 #### ad-platform-campaign-manager ✅ Active
-- **Skills:** `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `reporting-pipeline`, `campaign-review`, `campaign-cleanup`, `pmax-guide`, `budget-optimizer`, `ads-scripts`, `live-report`
-- **Agents:** `campaign-reviewer`, `tracking-auditor`
+- **Skills:** `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `reporting-pipeline`, `campaign-review`, `campaign-cleanup`, `pmax-guide`, `budget-optimizer`, `ads-scripts`, `ad-copy`, `account-strategy`, `connect-mcp`, `live-report`
+- **Agents:** `campaign-reviewer`, `tracking-auditor`, `strategy-advisor`
 - **Domains:** Google Ads, PPC, campaign management, conversion tracking, BigQuery reporting
 - **When to use:** Setting up, auditing, or optimizing Google Ads campaigns; building conversion tracking pipelines
 - **Companion trigger:** Run `/ad-platform-campaign-manager:campaign-setup` for new campaigns

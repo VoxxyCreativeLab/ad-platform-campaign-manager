@@ -22,6 +22,7 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | PMax Guide | `/ad-platform-campaign-manager:pmax-guide` | Performance Max — feed-only PMax, full PMax, listing groups, restructuring |
 | Budget Optimizer | `/ad-platform-campaign-manager:budget-optimizer` | Budget allocation and bid strategy |
 | Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` | Google Ads Scripts library |
+| Ad Copy | `/ad-platform-campaign-manager:ad-copy` | Multilingual ad copy — RSA, extensions, PMax, Shopping titles |
 | Campaign Cleanup | `/ad-platform-campaign-manager:campaign-cleanup` | Account triage for messy/neglected accounts |
 
 ## Phase 2 — API Integration (MCP connected — skills hidden until unhidden)

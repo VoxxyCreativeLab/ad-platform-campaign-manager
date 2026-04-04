@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-04
-**Current milestone:** Report Output Structure v1.8.0 — ✅ Done
+**Current milestone:** Ad Copy Skill v1.9.0 — ✅ Done
 
 ---
 
@@ -42,8 +42,8 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
-| 01 | Reference | ✅ Done | 35 google-ads files (24 core + 11 strategy), 17 script docs, 6 tracking-bridge, 5 reporting, 3 mcp |
-| 02 | Skills | ✅ Done | 12 skills — all fixed + 10 profile-aware (strategy hooks, Socratic questioning) |
+| 01 | Reference | ✅ Done | 36 google-ads files (25 core + 11 strategy), 17 script docs, 6 tracking-bridge, 5 reporting, 3 mcp |
+| 02 | Skills | ✅ Done | 13 skills — all fixed + 11 profile-aware (strategy hooks, Socratic questioning) |
 | 03 | Agents | ✅ Done | 3 agents (campaign-reviewer, tracking-auditor, strategy-advisor) |
 
 **Status key:** ⬜ Not started · 🔄 In progress · ✅ Done · ⚠️ Blocked
@@ -59,6 +59,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Phase 2 (v1.6.0) — account-strategy skill + 5 skills enhanced
 - ✅ Phase 3 (v1.7.0) — strategy-advisor agent + 5 new reference docs
 - ✅ Report Output Structure (v1.8.0) — file-based report output, output completeness convention, master plugin coordination
+- ✅ Ad Copy Skill (v1.9.0) — multilingual ad copy generator (RSA, extensions, PMax, Shopping) + ad-copy-framework.md reference doc
 **Blockers:** OAuth client secret should be rotated.
 
 ---
@@ -182,7 +183,7 @@ Same report output section, adapted for agent execution context.
 - Step 7 (root files) after Steps 5-6.
 - Step 8 (changelog) last.
 
-### After v1.8.0
+### After v1.9.0
 
 1. **Rotate OAuth client secret** — exposed in previous session screenshot
 2. **Real client work** — use skills on a live Google Ads account
