@@ -1,6 +1,6 @@
 ---
 title: Primer — Session Handoff
-date: 2026-04-03
+date: 2026-04-04
 tags:
   - mwp
 ---
@@ -15,22 +15,14 @@ tags:
 
 ## Last Completed
 
-### Session 2026-04-03: Strategic Upgrade v2.0 — Phase 3 Complete (v1.7.0)
+### Session 2026-04-04: Cross-Plugin Lessons + Hierarchy Memory
 
-**Objective:** Complete the strategic layer with a strategy-advisor agent and 5 remaining reference docs.
-
-**Phase 3 (v1.7.0) — Strategy Agent + 5 Reference Docs:**
-- New `strategy-advisor` agent: two-mode (with/without profile), 8 scoring categories, cross-references all strategy + reference docs, prioritized actions with skill routing
-- New `shopping-feed-strategy.md`: feed architecture, multi-market feeds, automation pipelines, feed health scoring, product exclusions
-- New `ad-testing-framework.md`: RSA testing methodology, headline/description strategy, pinning, Ad Strength, creative iteration, AI Max
-- New `strategy/bid-adjustment-framework.md`: device/geo/schedule/audience adjustments by archetype, stacking math, vertical patterns
-- New `strategy/remarketing-strategies.md`: audience list design, funnel segmentation, RLSA, dynamic remarketing, cross-channel, frequency
-- New `strategy/seasonal-planning.md`: annual calendars (EU/NL), vertical seasonality, ramp-up timelines, Smart Bidding seasonality adjustments
-- CONTEXT.md routing updated with 5 new doc entries + strategy-advisor agent entry
-- campaign-reviewer agent updated with 3 new reference doc pointers
-- All root docs updated (CLAUDE.md, PLAN.md, CHANGELOG.md, DESIGN.md, README.md, START-HERE.md, plugin.json)
+- Added superpowers deprecation lesson to LESSONS.md (Third-Party Plugins section) — `/brainstorm`, `/write-plan`, `/execute-plan` replaced by `/brainstorming`, `/writing-plans`, `/executing-plans`
+- Same lesson added to all 3 sibling plugins (master + 2 children)
+- Saved plugin hierarchy feedback to auto-memory: master = project-structure-and-scaffolding-plugin, NOT superpowers
 
 ### Prior sessions
+- **2026-04-03:** Strategic Upgrade v2.0 — Phase 3 Complete (v1.7.0)
 - **2026-04-03 (earlier):** Strategic Upgrade Phases 1a-2 (v1.3.0-v1.6.0)
 - **2026-04-02:** MCP reconnection after machine migration
 - **2026-04-01:** Feed-only PMax fix, MCP server built + verified, fact-check sweep
