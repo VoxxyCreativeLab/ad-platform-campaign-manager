@@ -31,13 +31,13 @@ This is the implementation roadmap for expanding the audit checklist beyond Sear
 | PMax | 14 dedicated items | 5 dedicated docs | — |
 | **Shopping** | ~~ZERO~~ → 28 items added (v1.10.0) | shopping-campaigns.md, shopping-feed-strategy.md | **✅ Done** |
 | **Audience Strategy** | ~~ZERO~~ → 11 items added (v1.10.0) | targeting-framework.md, remarketing-strategies.md | **✅ Done** |
-| Display | ZERO | 15 lines in campaign-types.md | Priority 2 |
-| Demand Gen | ZERO | demand-gen.md (solid, 204 lines) | Priority 2 |
+| **Display** | ~~ZERO~~ → 20 items added (v1.11.0) | 15 lines in campaign-types.md | **✅ Done** |
+| **Demand Gen** | ~~ZERO~~ → 14 items added (v1.11.0) | demand-gen.md (solid, 204 lines) | **✅ Done** |
+| **Competitive Analysis** | ~~ZERO~~ → 6 items added (v1.11.0) | Not documented | **✅ Done** |
+| **Feed Health** | ~~1 mention in PMax~~ → 10 items added (v1.11.0) | shopping-feed-strategy.md (166 lines) | **✅ Done** |
 | Video/YouTube | ZERO | video-campaigns.md (135 lines) | Priority 3 |
-| Competitive Analysis | ZERO | Not documented | Priority 2 |
 | Cross-campaign Cannibalization | 1 generic line | Partial in vertical-ecommerce.md | Priority 3 |
 | Attribution Depth | 1 item | attribution-guide.md (360 lines, excellent) | Priority 3 |
-| Feed Health | 1 mention in PMax | shopping-feed-strategy.md (166 lines) | Priority 2 |
 | DSA | ZERO | dsa.md (196 lines, AI Max context) | Priority 4 |
 | App Campaigns | ZERO | No doc | Priority 4 |
 
@@ -50,9 +50,9 @@ This is the implementation roadmap for expanding the audit checklist beyond Sear
 
 ---
 
-## Priority 2: Implement Next
+## Priority 2: Implement Next — ✅ Done (v1.11.0)
 
-### Display Campaign Audit Section
+### Display Campaign Audit Section — ✅ Done (v1.11.0)
 
 No dedicated audit coverage. No standalone reference doc. Display is commonly used (remarketing is near-universal for e-commerce).
 
@@ -99,7 +99,7 @@ No dedicated audit coverage. No standalone reference doc. Display is commonly us
 
 ---
 
-### Demand Gen Audit Section
+### Demand Gen Audit Section — ✅ Done (v1.11.0)
 
 Growing in importance (absorbed GDN + Video Action Campaigns). Strong reference doc exists but not wired into audit.
 
@@ -129,7 +129,7 @@ Growing in importance (absorbed GDN + Video Action Campaigns). Strong reference 
 
 ---
 
-### Competitive Analysis Section (Cross-Campaign)
+### Competitive Analysis Section (Cross-Campaign) — ✅ Done (v1.11.0)
 
 Currently zero mentions of auction insights anywhere in the plugin. This is a standard part of any professional audit.
 
@@ -146,7 +146,7 @@ Currently zero mentions of auction insights anywhere in the plugin. This is a st
 
 ---
 
-### Feed Health Section (E-commerce)
+### Feed Health Section (E-commerce) — ✅ Done (v1.11.0)
 
 Currently only a passing mention in PMax section ("Product feed optimized"). The shopping-feed-strategy.md has a 6-dimension Feed Health Scoring framework that should flow into the checklist.
 

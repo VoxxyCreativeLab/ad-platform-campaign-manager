@@ -7,6 +7,30 @@ tags:
 
 # Changelog
 
+## [1.11.0] — 2026-04-06
+
+All Priority 2 audit gaps from audit-gap-analysis.md implemented: Display, Demand Gen, Competitive Analysis, Feed Health. Adds 50 new checklist items, 4 new campaign-review areas (14-17), 3 new GAQL verification sections, and a Display/Demand Gen triage block in campaign-cleanup. The campaign-reviewer agent was also backfilled with 6 inline sections missing since v1.10.0 (Shopping, Audience, Display, Demand Gen, Competitive Analysis, Feed Health).
+
+### Added
+- **Display Campaign section in audit-checklist.md** — 20 checks across 5 sub-areas: Campaign Settings, Targeting, Placement Controls, Responsive Display Ads, Performance. Key thresholds: CTR 0.5-1.0% (< 0.3% = investigate); frequency 3-5/week awareness; VTC window 7 days not 30.
+- **Demand Gen section in audit-checklist.md** — 14 checks across 4 sub-areas: Campaign Settings, Creative, Audiences, Measurement. Key thresholds: budget 10-15x target CPA; learning period 2-3 weeks; creative refresh 4-6 weeks.
+- **Competitive Analysis section in audit-checklist.md** — 6 cross-campaign checks: Auction Insights, IS lost to rank vs budget, absolute top IS > 80% on brand, competitor brand detection, MC Price Competitiveness.
+- **Feed Health section in audit-checklist.md** — 10 checks with callout explaining the overlap with Shopping > Feed Health & MC (Shopping = quick 6-item pre-flight; Feed Health = deeper 10-item standalone audit).
+- **Areas 14-17 in campaign-review SKILL.md** — Display, Demand Gen, Competitive Analysis, Feed Health review areas.
+- **MCP Verification: Display Campaigns** — GAQL query + 4 flag thresholds (CTR, VTC inflation, IS lost to rank/budget).
+- **MCP Verification: Demand Gen Campaigns** — GAQL query + 3 flag thresholds (VTC inflation, cost/conv, learning period).
+- **MCP Verification: Competitive Analysis** — GAQL query for IS metrics + 3 flag thresholds + callout explaining Auction Insights UI requirement.
+- **Display / Demand Gen Triage in campaign-cleanup SKILL.md** — GAQL query, 4 flag thresholds, 3 manual checks for placement waste, broad targeting, and creative fatigue.
+- **6 inline checklist sections in campaign-reviewer agent** — Shopping Specific, Audience Strategy, Display Campaign, Demand Gen, Competitive Analysis, Feed Health (backfill from v1.10.0 and this release).
+
+### Changed
+- **campaign-review SKILL.md** — 13 → 17 review areas; stale "11 review areas" text fixed to "17"; profile weighting table updated for all 6 profiles; e-commerce vertical-specific items reference Areas 14-17.
+- **audit-gap-analysis.md** — All Priority 2 sections marked ✅ Done (v1.11.0) in coverage matrix and section headings.
+- **audit-checklist.md** — total checklist grows from ~121 to ~171 items.
+- **plugin.json** — version bumped to 1.11.0.
+
+---
+
 ## [1.10.0] — 2026-04-06
 
 Shopping-specific and Audience Strategy audit sections added to the audit checklist and campaign-review skill. Complete gap analysis document saved for future expansion. Discovered via Vaxteronline client project where the Shopping campaign (biggest spender) passed a full audit with critical issues undetected.

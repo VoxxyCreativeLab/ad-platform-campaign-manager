@@ -68,6 +68,34 @@ Also check:
 
 These checks can catch critical Shopping issues in the first 5 minutes — before any other analysis.
 
+### Display / Demand Gen Triage (if Display or Demand Gen campaigns present — run before Phase 1)
+
+When MCP is connected, pull Display and Demand Gen spend immediately — these campaign types are common sources of invisible waste in messy accounts:
+
+```gaql
+SELECT campaign.name, campaign.advertising_channel_type,
+  metrics.impressions, metrics.clicks, metrics.ctr,
+  metrics.cost_micros, metrics.conversions,
+  metrics.view_through_conversions
+FROM campaign
+WHERE campaign.advertising_channel_type IN ('DISPLAY', 'DEMAND_GEN')
+  AND segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+Flag immediately if:
+- **Display CTR < 0.2%** — likely junk placements (mobile apps, accidental clicks); review placement report
+- **Display spend > 0, conversions = 0** — pause and investigate targeting; could be burning budget with no return
+- **Demand Gen running < 14 days with recent budget changes** — still in learning; stop making changes
+- **VTC > 70% of Demand Gen conversions** — view-through conversion window likely too wide (30-day default); reduce to 7
+
+Also check:
+- Placement report: any mobile app placements active? (Settings > Placements > Where ads showed)
+- Audience targeting: any Display campaigns targeting "All users" with no audience signals?
+- Creative age: any Display or Demand Gen ads older than 8 weeks? (creative fatigue is the #1 Demand Gen performance killer)
+
+These checks take under 5 minutes and can expose significant waste before any deep analysis.
+
 ## Triage Process
 
 ### Phase 1: Stop the Bleeding (Day 1)

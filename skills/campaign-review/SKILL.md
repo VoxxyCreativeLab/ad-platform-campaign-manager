@@ -39,7 +39,7 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 3. Produce a comprehensive report
 
 ### If insufficient data is provided:
-1. Tell the user which of the 13 review areas you cannot evaluate
+1. Tell the user which of the 17 review areas you cannot evaluate
 2. List the minimum data needed for a useful audit:
    - Campaign names and types
    - Last 30-day spend, conversions, and CPA per campaign
@@ -63,16 +63,16 @@ Map to a strategy archetype from [[../../reference/platforms/google-ads/strategy
 
 ### Review Area Weighting by Profile
 
-Not all 11 review areas are equally important for every account. Weight based on the profile:
+Not all 17 review areas are equally important for every account. Weight based on the profile:
 
 | Profile | High Priority | Medium Priority | Lower Priority / Skip |
 |---------|--------------|-----------------|----------------------|
-| **E-commerce** | Shopping Specific, PMax, Budget, Conversion Tracking | Keywords, Bidding, Audience Strategy | (all relevant) |
-| **Lead Gen** | Conversion Tracking, Keywords, Ads | Bidding, Budget | PMax (unless running) |
-| **B2B SaaS** | Conversion Tracking, Keywords, Bidding | Ads, Targeting | PMax (unless mature + 50+ conv) |
-| **Local Services** | Targeting, Conversion Tracking, Extensions | Ads, Budget | PMax (unless medium+ budget) |
-| **Micro budget** | Budget, Keywords, Bidding | Ads, Conversion Tracking | PMax (skip), Extensions (basic only) |
-| **Cold start** | Conversion Tracking, Campaign Structure, Keywords | Bidding, Ads | PMax (too early) |
+| **E-commerce** | Shopping Specific, PMax, Budget, Conversion Tracking, Feed Health, Competitive Analysis | Keywords, Bidding, Audience Strategy, Display (remarketing), Demand Gen (if running) | (all relevant) |
+| **Lead Gen** | Conversion Tracking, Keywords, Ads | Bidding, Budget, Competitive Analysis, Display (remarketing) | PMax (unless running), Feed Health (skip), Demand Gen (skip) |
+| **B2B SaaS** | Conversion Tracking, Keywords, Bidding | Ads, Targeting, Competitive Analysis, Demand Gen (if running) | PMax (unless mature + 50+ conv), Feed Health (skip), Display (skip) |
+| **Local Services** | Targeting, Conversion Tracking, Extensions | Ads, Budget, Competitive Analysis | PMax (unless medium+ budget), Feed Health (skip), Demand Gen (skip), Display (if remarketing) |
+| **Micro budget** | Budget, Keywords, Bidding | Ads, Conversion Tracking, Competitive Analysis | PMax (skip), Extensions (basic only), Feed Health (skip), Display (skip), Demand Gen (skip) |
+| **Cold start** | Conversion Tracking, Campaign Structure, Keywords | Bidding, Ads | PMax (too early), Feed Health (skip), Display (skip), Demand Gen (skip), Competitive Analysis (too early) |
 | **Mature + Large** | (all areas weighted equally — full audit) | | |
 
 ### Severity Thresholds by Maturity
@@ -108,6 +108,10 @@ Work through these areas from the audit checklist:
 11. **PMax** (if applicable) — Asset quality? Audience signals? Brand exclusions?
 12. **Shopping Specific** (if Shopping campaigns present) — Product group structure? Bids vs benchmark? Click share? Impression share? Feed health? See Shopping Specific section in audit-checklist.md. Use MCP GAQL to pull Shopping metrics when connected.
 13. **Audience Strategy** — Remarketing lists built and sized? Converter exclusions? RLSA layered? Customer Match? See Audience Strategy section in audit-checklist.md.
+14. **Display Campaign** (if Display campaigns present) — Separated from Search? Frequency capping configured? Placement exclusions applied? Responsive display ad quality? CTR benchmarks? VTC window? See Display Campaign section in audit-checklist.md. Use MCP GAQL to pull Display metrics when connected.
+15. **Demand Gen** (if Demand Gen campaigns present) — Channel controls configured? Creative fresh (< 6 weeks)? Prospecting vs remarketing separated? VTC window reviewed? See Demand Gen section in audit-checklist.md. Use MCP GAQL to pull Demand Gen metrics when connected.
+16. **Competitive Analysis** (cross-campaign) — Impression share reviewed? IS lost to rank vs budget distinguished? Brand absolute top IS > 80%? Competitor brand bidding detected? See Competitive Analysis section in audit-checklist.md. Use MCP GAQL to pull IS metrics when connected.
+17. **Feed Health** (if e-commerce with MC feed) — Feed updated daily? Disapproval rate < 2%? GTIN coverage > 90%? Supplemental feed in use? Content API migration planned? See Feed Health section in audit-checklist.md. (MC-only — no GAQL available)
 
 ### MCP Verification: Shopping Campaigns
 
@@ -153,6 +157,73 @@ Flag these thresholds as issues:
 - Search IS lost to rank > 30%: **Critical** — bids or feed quality is the constraint
 - Budget utilization < 70%: **Warning** — bids may be too low to spend the daily budget
 
+### MCP Verification: Display Campaigns
+
+When MCP is connected and Display campaigns are present, run this GAQL query:
+
+```gaql
+SELECT campaign.name, campaign.id,
+  metrics.impressions, metrics.clicks, metrics.ctr,
+  metrics.cost_micros, metrics.conversions,
+  metrics.view_through_conversions,
+  metrics.content_impression_share,
+  metrics.content_rank_lost_impression_share,
+  metrics.content_budget_lost_impression_share
+FROM campaign
+WHERE campaign.advertising_channel_type = 'DISPLAY'
+  AND segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+Flag these thresholds as issues:
+- CTR < 0.3%: **Warning** — likely junk placements or poor creative; check placement report
+- VTC > 50% of total conversions: **Warning** — VTC window may be too wide; review attribution
+- Content IS lost to rank > 30%: **Warning** — bids or targeting too restrictive
+- Content IS lost to budget > 20%: **Warning** — budget is the constraint
+
+### MCP Verification: Demand Gen Campaigns
+
+When MCP is connected and Demand Gen campaigns are present, run this GAQL query:
+
+```gaql
+SELECT campaign.name, campaign.id,
+  metrics.impressions, metrics.clicks, metrics.ctr,
+  metrics.cost_micros, metrics.conversions,
+  metrics.view_through_conversions
+FROM campaign
+WHERE campaign.advertising_channel_type = 'DEMAND_GEN'
+  AND segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+Flag these thresholds as issues:
+- VTC > 60% of total conversions: **Warning** — Demand Gen VTC can inflate results; reduce window to 7 days
+- Cost per conversion > 2x account average: **Warning** — may need audience refresh or creative update
+- Campaign running < 14 days: **Informational** — still in learning period; do not judge performance yet
+
+### MCP Verification: Competitive Analysis
+
+When MCP is connected, pull impression share metrics for all active campaigns:
+
+```gaql
+SELECT campaign.name, campaign.id,
+  metrics.search_impression_share,
+  metrics.search_absolute_top_impression_share,
+  metrics.search_budget_lost_impression_share,
+  metrics.search_rank_lost_impression_share
+FROM campaign
+WHERE campaign.status = 'ENABLED'
+  AND segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+Flag these thresholds as issues:
+- Brand campaign absolute top IS < 80%: **Critical** — brand position at risk; increase bids or budget
+- Search IS lost to rank > 30%: **Warning** — quality score or bid issue on this campaign
+- Search IS lost to budget > 20%: **Warning** — budget is constraining reach
+
+> [!info] Auction Insights detail (competitor names, overlap rate, outranking share) requires the Google Ads UI — export from Tools > Auction Insights. This cannot be pulled via GAQL.
+
 ## Report Format
 
 ```
@@ -191,8 +262,12 @@ Flag these thresholds as issues:
 When generating the report, include checks specific to the account's vertical:
 
 **E-commerce:**
-- Run full **Area 12: Shopping Specific** (28 checks) — this is the primary e-commerce differentiator. Pull competitive metrics via MCP GAQL. See Shopping Specific section in audit-checklist.md.
+- Run full **Area 12: Shopping Specific** (28 checks) — the primary e-commerce differentiator. Pull competitive metrics via MCP GAQL. See Shopping Specific section in audit-checklist.md.
 - Run **Area 13: Audience Strategy** — remarketing lists, converter exclusions, RLSA.
+- Run **Area 14: Display Campaign** (if running) — placement exclusions, remarketing configuration, CTR benchmarks.
+- Run **Area 15: Demand Gen** (if running) — creative freshness, channel controls, VTC window.
+- Run **Area 16: Competitive Analysis** — IS metrics via MCP GAQL; Auction Insights via UI.
+- Run **Area 17: Feed Health** — full feed audit beyond the Shopping pre-flight (10 checks).
 - PMax listing groups: verify segmentation (not "All products" default) — covered in Area 11.
 - ROAS tracking: purchase value passed correctly — covered in Area 1 (Conversion Tracking).
 - Reference: [[../../reference/platforms/google-ads/shopping-campaigns|shopping-campaigns.md]] and [[../../reference/platforms/google-ads/audit/audit-gap-analysis|audit-gap-analysis.md]]

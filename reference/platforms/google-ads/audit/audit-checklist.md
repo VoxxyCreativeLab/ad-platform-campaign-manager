@@ -191,6 +191,89 @@ tags:
 - [ ] Customer Match list uploaded and refreshed (quarterly minimum)
 - [ ] Match rate above 30% (below 30% indicates Consent Mode or list quality issues)
 
+## Display Campaign (if Display campaigns present)
+
+### Campaign Settings
+- [ ] Display campaigns separated from Search (never run Display+Search in a combined campaign)
+- [ ] Campaign objective matches actual goal (awareness vs remarketing vs conversions)
+- [ ] Frequency capping configured (3-5 impressions/week for awareness; 5-7/week for remarketing)
+- [ ] Ad rotation set to Optimize (best-performing ads)
+- [ ] Location targeting set to Presence (not Presence or interest)
+
+### Targeting
+- [ ] Targeting expansion / optimized targeting reviewed and intentionally enabled or disabled
+- [ ] Audience segments appropriate for goal (affinity = awareness; in-market = conversions; remarketing lists = retargeting)
+- [ ] Remarketing campaigns using product feed for dynamic display ads (if e-commerce)
+- [ ] No overly broad targeting (all users with no audience signals — wastes budget)
+- [ ] Audience exclusions configured (exclude converters from prospecting Display campaigns)
+
+### Placement Controls
+- [ ] Placement exclusion lists applied (poor-quality sites, apps, kids content)
+- [ ] Automatic placements reviewed for quality (Where ads showed report, last 30 days)
+- [ ] Mobile app placements excluded or reviewed (notorious for accidental clicks)
+- [ ] Content exclusions configured (sensitive categories, parked domains, error pages)
+
+### Responsive Display Ads
+- [ ] All asset slots populated (landscape 1200×628, square 1200×1200, logo 1200×1200)
+- [ ] Up to 5 short headlines, 1 long headline, 5 descriptions provided
+- [ ] Ad strength: Good or Excellent (not Poor or Average)
+- [ ] Custom uploaded images used (not relying solely on auto-generated)
+
+### Performance
+- [ ] CTR benchmarks checked (Display CTR typically 0.5-1.0%; below 0.3% = investigate targeting or creative)
+- [ ] View-through conversions reviewed separately from click-through conversions
+- [ ] VTC window set appropriately (consider 7 days, not default 30-day)
+
+## Demand Gen (if Demand Gen campaigns present)
+
+### Campaign Settings
+- [ ] Campaign objective aligned with actual goal (mid-funnel engagement vs conversion)
+- [ ] Channel controls configured at ad group level (YouTube, GDN, Discover, Gmail selected intentionally)
+- [ ] Budget at minimum 10-15x target CPA daily (Google recommendation for optimization)
+- [ ] Learning period respected (2-3 weeks before judging performance or making changes)
+
+### Creative
+- [ ] Lifestyle imagery used (no corporate stock photos, heavy text overlays, or staged scenes)
+- [ ] All formats tested: image, video, carousel (video typically wins for engagement)
+- [ ] Vertical video provided for Shorts placement (native vertical, not repurposed landscape)
+- [ ] Creative refreshed within last 4-6 weeks (fatigue is the #1 Demand Gen risk for static creative)
+
+### Audiences
+- [ ] Lookalike / audience suggestion segments configured from best customers
+- [ ] Customer list exclusions applied (existing customers excluded from prospecting)
+- [ ] Optimized targeting reviewed after first 2 weeks (may expand too broadly)
+- [ ] Prospecting and remarketing separated into distinct campaigns (not mixed)
+
+### Measurement
+- [ ] View-through conversion window reviewed (default 30 days — consider reducing to 7 for conservative reporting)
+- [ ] VTC analyzed separately from click-through (Demand Gen VTC can significantly inflate reported conversions)
+
+## Competitive Analysis (cross-campaign)
+
+### Competitive Position
+- [ ] Auction Insights reviewed for top campaigns (impression share, overlap rate, outranking share)
+- [ ] Top 3-5 competitors identified from Auction Insights data
+- [ ] Impression share lost to rank vs lost to budget distinguished (rank = quality/bid issue; budget = spend constraint)
+- [ ] Absolute top impression share reviewed for brand campaigns (target > 80% on brand terms)
+- [ ] Competitor bidding on brand terms detected (check if non-brand CPCs appear in brand campaign)
+- [ ] Price Competitiveness report reviewed in Merchant Center (products priced 20%+ above market get fewer Shopping impressions — e-commerce only)
+
+## Feed Health (if e-commerce with Merchant Center feed)
+
+> [!info] This section expands on the basic feed checks in Shopping Specific > Feed Health & MC. Run both for e-commerce accounts — Shopping pre-flight (6 checks) + this deeper audit (10 checks).
+
+### Feed Quality
+- [ ] Feed update frequency: daily minimum; every 4-6 hours for dynamic pricing
+- [ ] Disapproval rate below 2% of total products (MC > Diagnostics)
+- [ ] Price accuracy: feed prices match landing page prices (mismatches cause disapprovals)
+- [ ] GTIN coverage above 90% for branded products (missing GTINs = lost auctions)
+- [ ] Image quality: minimum 800×800px, white background, no watermarks or text overlays
+- [ ] All required attributes populated (id, title, description, link, image_link, price, availability)
+- [ ] Supplemental feed in use for title overrides, custom labels, or promotions data
+- [ ] Content API migration planned if applicable (Content API sunsets August 18, 2026)
+- [ ] Feed rules configured for title/description optimization where needed
+- [ ] MC Price Competitiveness report reviewed (products priced 20%+ above market flagged)
+
 ## Scoring Guide
 
 Count total checks and checked items:

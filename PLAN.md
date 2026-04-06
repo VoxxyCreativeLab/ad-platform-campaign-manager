@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-06
-**Current milestone:** Shopping + Audience Audit Sections v1.10.0 — ✅ Done
+**Current milestone:** Priority 2 Audit Expansion v1.11.0 — ✅ Done
 
 ---
 
@@ -62,6 +62,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Ad Copy Skill (v1.9.0) — multilingual ad copy generator (RSA, extensions, PMax, Shopping) + ad-copy-framework.md reference doc
 - ✅ Feed-Only PMax Correction (v1.9.1) — MC-only creation path corrected, post-creation lockdown steps, CTV warning
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
+- ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
 **Blockers:** OAuth client secret should be rotated.
 
 ---

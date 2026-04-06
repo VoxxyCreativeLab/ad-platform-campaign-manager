@@ -76,6 +76,39 @@ Work through every section of the audit checklist at `reference/platforms/google
 - [ ] Audience signals configured
 - [ ] Brand exclusions applied
 
+#### Shopping Specific (if Shopping campaigns present)
+- [ ] Product groups subdivided (not all on default "All Products" catch-all)
+- [ ] Product group bids differentiated by performance (not all identical)
+- [ ] Click share > 40% on core product groups (below = losing majority of eligible clicks)
+- [ ] Feed health: disapproval rate < 2%, price accuracy, GTIN coverage > 90%
+
+#### Audience Strategy
+- [ ] Remarketing lists built and populated (all visitors, cart abandoners, converters minimum)
+- [ ] Converter exclusion applied to all prospecting campaigns
+- [ ] RLSA layered on Search campaigns (observation mode at minimum)
+
+#### Display Campaign (if Display campaigns present)
+- [ ] Display separated from Search (no combined Display+Search campaigns)
+- [ ] Frequency capping configured (3-5/week awareness; 5-7/week remarketing)
+- [ ] Placement exclusions applied (exclude mobile apps, kids content, parked domains)
+- [ ] Responsive display ad quality: all slots filled, ad strength Good or Excellent
+
+#### Demand Gen (if Demand Gen campaigns present)
+- [ ] Channel controls configured intentionally at ad group level
+- [ ] Creative refreshed within last 6 weeks (fatigue = #1 Demand Gen performance risk)
+- [ ] Prospecting and remarketing in separate campaigns (not mixed)
+- [ ] VTC window reviewed (default 30 days often inflates; consider 7 days)
+
+#### Competitive Analysis
+- [ ] Impression share reviewed for top campaigns (target > 60% on core Search campaigns)
+- [ ] IS lost to rank vs budget distinguished (rank = bid/quality issue; budget = spend constraint)
+- [ ] Brand campaign absolute top impression share > 80%
+
+#### Feed Health (if e-commerce with MC feed)
+- [ ] Feed updated daily minimum (4-6h for dynamic pricing)
+- [ ] Disapproval rate below 2% (MC > Diagnostics)
+- [ ] Supplemental feed in use for title overrides and custom labels
+
 ### Step 3: Cross-Reference with Common Mistakes and Best Practices
 
 Check the campaign against `reference/platforms/google-ads/audit/common-mistakes.md` — the top 25 Google Ads mistakes. Flag any matches.
