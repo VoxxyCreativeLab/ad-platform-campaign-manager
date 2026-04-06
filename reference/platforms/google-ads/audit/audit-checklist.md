@@ -126,6 +126,71 @@ tags:
 - [ ] Search themes per asset group reviewed (up to 50 per asset group)
 
 
+## Shopping Specific (if Shopping campaigns present)
+
+### Feed Health & Merchant Center
+- [ ] Merchant Center linked and active (Tools > Linked accounts)
+- [ ] Feed processing without critical errors (MC > Diagnostics)
+- [ ] Disapproval rate below 2% of total products
+- [ ] Price accuracy: feed prices match landing page prices (mismatches cause disapprovals)
+- [ ] Required attributes populated: id, title, description, link, image_link, price, availability
+- [ ] GTIN coverage above 90% for branded products
+
+### Product Group Structure
+- [ ] Product groups subdivided beyond default "All Products" (never bid on everything equally)
+- [ ] Structure aligns with business logic (category, margin tier, brand, or custom label)
+- [ ] "Everything else" catch-all group has the lowest bid or is excluded
+- [ ] No empty product groups with zero impressions in last 30 days
+- [ ] Ad group naming follows account convention (not platform-default or original language)
+
+### Bidding
+- [ ] Bid strategy matches conversion volume (Manual CPC < 50 conv/mo; tROAS > 50 conv/mo, sustained 4+ weeks)
+- [ ] Product group bids differentiated by performance (winners higher, losers lower)
+- [ ] Bids at or above benchmark CPC (check Benchmark max CPC column in product groups view)
+- [ ] Default max CPC set intentionally (not leftover from initial campaign setup)
+- [ ] Budget utilization > 80%/day (if spending well below daily budget, bids are likely too low)
+
+### Competitive Metrics
+- [ ] Click share reviewed (target > 50% on core product groups; 35% = losing 2/3 of eligible clicks)
+- [ ] Search impression share reviewed (target 60-80% on top product groups)
+- [ ] Search IS lost to budget vs lost to rank distinguished (budget = increase spend; rank = increase bids/feed quality)
+- [ ] Auction Insights reviewed for top competitor overlap
+
+### Negative Keywords
+- [ ] Negative keyword lists applied to Shopping campaigns
+- [ ] Search terms report reviewed (last 30 days minimum)
+- [ ] Irrelevant queries excluded (DIY, care, free, jobs, how-to, informational)
+
+### Product-Level Performance
+- [ ] "Zombie" products identified: products with spend and zero conversions over 30+ days
+- [ ] Products with zero impressions flagged (catalog coverage gap — may indicate feed or bid issue)
+- [ ] Top 10 revenue products verified as active and not disapproved
+
+### Shopping Tracking
+- [ ] Dynamic remarketing tag fires on product pages with ecomm_prodid matching feed id
+- [ ] Revenue reconciliation: Google Ads reported revenue vs backend (< 5% discrepancy acceptable)
+
+## Audience Strategy
+
+### Remarketing Lists
+- [ ] Remarketing lists built and populated: all visitors, product viewers, cart abandoners, converters
+- [ ] Audience membership durations match vertical sales cycle (e-commerce: 7/14/30/90 days typical)
+- [ ] Audience sizes above minimum thresholds (1,000 for Display; 1,000 for Search/Shopping RLSA)
+- [ ] Lists refreshing properly (not stale or empty — check Audience Manager)
+
+### Exclusions
+- [ ] Converter exclusion list applied to all prospecting campaigns
+- [ ] Bounce suppression list active (exclude visits < 10 seconds — prevents wasted bids)
+- [ ] Customer list exclusions applied where showing to existing customers is inappropriate
+
+### RLSA & Audience Layering
+- [ ] RLSA audiences layered on Search campaigns (at minimum observation mode)
+- [ ] Bid adjustments set for high-value segments (cart abandoners, past purchasers)
+
+### Customer Match
+- [ ] Customer Match list uploaded and refreshed (quarterly minimum)
+- [ ] Match rate above 30% (below 30% indicates Consent Mode or list quality issues)
+
 ## Scoring Guide
 
 Count total checks and checked items:

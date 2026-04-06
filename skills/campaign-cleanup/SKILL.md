@@ -36,10 +36,37 @@ Before diving into fixes, gather diagnostic context. Ask:
 5. What maturity stage? (< 3 months, 3-6 months, 6+ months, 18+ months)
 
 Use answers to determine triage priority:
-- **E-commerce:** prioritize feed health, product groups, Shopping/PMax separation
+- **E-commerce with Shopping campaigns:** run the Shopping triage checklist below before Phase 1
+- **E-commerce PMax-only:** prioritize PMax asset quality, listing group segmentation, Shopping overlap
 - **B2B/Lead gen:** prioritize conversion tracking and offline import pipeline
 - **Local services:** prioritize geographic targeting, call tracking, location assets
 - **No conversion data at all:** stop — fix tracking first (`/ad-platform-campaign-manager:conversion-tracking`)
+
+### Shopping Triage (E-commerce — run before Phase 1)
+
+When MCP is connected, pull Shopping competitive metrics immediately. These are often the first sign of throttled spend:
+
+```gaql
+SELECT campaign.name, metrics.search_impression_share, metrics.search_click_share,
+  metrics.search_budget_lost_impression_share, metrics.search_rank_lost_impression_share
+FROM campaign
+WHERE campaign.advertising_channel_type = 'SHOPPING'
+  AND segments.date DURING LAST_30_DAYS
+```
+
+Flag immediately if:
+- **Click share < 40%** — losing majority of eligible clicks; product group bids likely too low
+- **Budget utilization < 70%** — bids so low the campaign cannot spend its daily budget
+- **Search IS lost to rank > 30%** — bids or feed quality is the primary constraint
+- **Search IS lost to budget > 20%** — budget is the constraint (increase budget)
+
+Also check:
+- Ad group naming: does it follow account convention or is it a platform default / wrong language?
+- Product groups: are all bids identical? Is everything going through one catch-all group?
+- Individual product groups (gla_XXXX, custom IDs): any with zero impressions for 30+ days?
+- Budget utilization vs daily cap: compare actual spend/day against daily budget
+
+These checks can catch critical Shopping issues in the first 5 minutes — before any other analysis.
 
 ## Triage Process
 

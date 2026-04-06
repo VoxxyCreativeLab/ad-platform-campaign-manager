@@ -57,6 +57,11 @@ Campaign management and plugin development lessons captured over time. Each entr
 - **2026-04-03** — Docs-first agent development is the right pattern for knowledge-heavy agents. Writing the 5 reference docs before the strategy-advisor agent meant: (1) existing skills benefited immediately, (2) the agent had a complete knowledge base on day one, (3) no rework cycle. This mirrors Phase 1b/1c where reference docs preceded skill hooks.
 - **2026-04-03** — Two-mode agents (with/without profile) provide flexibility without compromising quality. The strategy-advisor produces a full gap analysis with a profile, or a quick structural health check without one. This matches the "profile skip shortcut" pattern already in 10 skills — consistency across the plugin.
 
+## Audit & Reviews
+
+- **2026-04-06** — Having comprehensive reference docs for a campaign type does NOT mean the audit checklist covers it. Reference docs and audit checklist items must be added as **paired units**. The Vaxteronline Shopping campaign (biggest spender) passed a full audit with EUR 0.10 product group bids, 35% click share, and 40% impression share undetected — because the audit checklist had zero Shopping-specific items despite `shopping-campaigns.md` and `shopping-feed-strategy.md` both existing. Lesson: after adding any reference doc, immediately wire at least a stub section into `audit-checklist.md` and `campaign-review` SKILL.md.
+- **2026-04-06** — Audience strategy is a near-universal audit gap. Most audit checklists focus on campaign structure, keywords, and bids — and completely miss whether remarketing lists are configured, whether converters are excluded from prospecting, and whether RLSA layering exists. This gap existed in our plugin despite having `remarketing-strategies.md` and `targeting-framework.md`. Added an 11-item Audience Strategy section as Area 13 in campaign-review.
+
 ## Keyword Management
 
 _(No entries yet)_

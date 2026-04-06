@@ -62,7 +62,7 @@ ad-platform-campaign-manager/
   CHANGELOG.md         ← Version log
   MEMORY.sh            ← Git context injection
   _config/             ← Layer 3: Stable reference files
-  reference/           ← Stage 01: Domain knowledge base (43 files)
+  reference/           ← Stage 01: Domain knowledge base (44 files)
   skills/              ← Stage 02: Interactive guidance tools (13 skills)
   agents/              ← Stage 03: Autonomous agents (3 agents)
   .claude-plugin/      ← Plugin metadata

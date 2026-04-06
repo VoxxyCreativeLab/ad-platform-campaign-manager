@@ -39,7 +39,7 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 3. Produce a comprehensive report
 
 ### If insufficient data is provided:
-1. Tell the user which of the 11 review areas you cannot evaluate
+1. Tell the user which of the 13 review areas you cannot evaluate
 2. List the minimum data needed for a useful audit:
    - Campaign names and types
    - Last 30-day spend, conversions, and CPA per campaign
@@ -67,7 +67,7 @@ Not all 11 review areas are equally important for every account. Weight based on
 
 | Profile | High Priority | Medium Priority | Lower Priority / Skip |
 |---------|--------------|-----------------|----------------------|
-| **E-commerce** | PMax, Budget, Conversion Tracking | Keywords, Bidding | (all relevant) |
+| **E-commerce** | Shopping Specific, PMax, Budget, Conversion Tracking | Keywords, Bidding, Audience Strategy | (all relevant) |
 | **Lead Gen** | Conversion Tracking, Keywords, Ads | Bidding, Budget | PMax (unless running) |
 | **B2B SaaS** | Conversion Tracking, Keywords, Bidding | Ads, Targeting | PMax (unless mature + 50+ conv) |
 | **Local Services** | Targeting, Conversion Tracking, Extensions | Ads, Budget | PMax (unless medium+ budget) |
@@ -106,6 +106,52 @@ Work through these areas from the audit checklist:
 9. **Ads** — RSA quality? All slots used? Landing pages match?
 10. **Extensions** — Sitelinks, callouts, structured snippets at minimum?
 11. **PMax** (if applicable) — Asset quality? Audience signals? Brand exclusions?
+12. **Shopping Specific** (if Shopping campaigns present) — Product group structure? Bids vs benchmark? Click share? Impression share? Feed health? See Shopping Specific section in audit-checklist.md. Use MCP GAQL to pull Shopping metrics when connected.
+13. **Audience Strategy** — Remarketing lists built and sized? Converter exclusions? RLSA layered? Customer Match? See Audience Strategy section in audit-checklist.md.
+
+### MCP Verification: Shopping Campaigns
+
+When MCP is connected and Shopping campaigns are present, run these GAQL queries:
+
+**Product group performance and bids:**
+```gaql
+SELECT ad_group.name, ad_group_criterion.cpc_bid_micros,
+  metrics.impressions, metrics.clicks, metrics.cost_micros,
+  metrics.conversions, metrics.conversions_value
+FROM product_group_view
+WHERE campaign.advertising_channel_type = 'SHOPPING'
+  AND segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+**Shopping competitive metrics (click share + impression share):**
+```gaql
+SELECT campaign.name, campaign.id,
+  metrics.search_impression_share,
+  metrics.search_click_share,
+  metrics.search_budget_lost_impression_share,
+  metrics.search_rank_lost_impression_share
+FROM campaign
+WHERE campaign.advertising_channel_type = 'SHOPPING'
+  AND segments.date DURING LAST_30_DAYS
+```
+
+**Ad group details for Shopping:**
+```gaql
+SELECT ad_group.name, ad_group.status, ad_group.cpc_bid_micros,
+  campaign.name, metrics.impressions, metrics.clicks
+FROM ad_group
+WHERE campaign.advertising_channel_type = 'SHOPPING'
+  AND segments.date DURING LAST_30_DAYS
+```
+
+Flag these thresholds as issues:
+- Click share < 40%: **Critical** — losing majority of eligible clicks; bids too low
+- Click share 40-60%: **Warning** — room for improvement
+- Search IS < 50%: **Warning** — significant missed impression opportunity
+- Search IS lost to budget > 20%: **Warning** — budget is the constraint, not bids
+- Search IS lost to rank > 30%: **Critical** — bids or feed quality is the constraint
+- Budget utilization < 70%: **Warning** — bids may be too low to spend the daily budget
 
 ## Report Format
 
@@ -145,10 +191,11 @@ Work through these areas from the audit checklist:
 When generating the report, include checks specific to the account's vertical:
 
 **E-commerce:**
-- Feed health: check Merchant Center for disapprovals, feed freshness, missing attributes
-- PMax listing groups: verify segmentation (not "All products" default)
-- Shopping campaign bid strategy: matches conversion volume?
-- ROAS tracking: is purchase value being passed correctly?
+- Run full **Area 12: Shopping Specific** (28 checks) — this is the primary e-commerce differentiator. Pull competitive metrics via MCP GAQL. See Shopping Specific section in audit-checklist.md.
+- Run **Area 13: Audience Strategy** — remarketing lists, converter exclusions, RLSA.
+- PMax listing groups: verify segmentation (not "All products" default) — covered in Area 11.
+- ROAS tracking: purchase value passed correctly — covered in Area 1 (Conversion Tracking).
+- Reference: [[../../reference/platforms/google-ads/shopping-campaigns|shopping-campaigns.md]] and [[../../reference/platforms/google-ads/audit/audit-gap-analysis|audit-gap-analysis.md]]
 
 **Lead Gen:**
 - Call tracking: is it set up? Duration threshold for conversion (30+ seconds)?

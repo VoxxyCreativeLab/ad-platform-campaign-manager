@@ -11,9 +11,19 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.9.1 - Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.10.0 - Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ## Last Completed
+
+### Session 2026-04-06: Shopping + Audience Audit Sections (v1.10.0)
+
+- **Root cause:** Shopping campaign audit miss on Vaxteronline — biggest spender passed full audit with critical issues undetected (EUR 0.10 product group bids, 35% click share, 40% impression share, Dutch ad group name, dead product groups). The audit checklist had ZERO Shopping-specific items despite having comprehensive Shopping reference docs.
+- **Added:** 28-item Shopping Specific section to audit-checklist.md (7 sub-areas: Feed Health, Product Group Structure, Bidding, Competitive Metrics, Negative Keywords, Product-Level Performance, Tracking)
+- **Added:** 11-item Audience Strategy section to audit-checklist.md (4 sub-areas: Remarketing Lists, Exclusions, RLSA, Customer Match)
+- **Updated:** campaign-review skill — now 13 review areas; Area 12 (Shopping) includes GAQL queries for click share, impression share, product group bids; Area 13 (Audience Strategy)
+- **Updated:** campaign-cleanup skill — e-commerce triage now has concrete Shopping checks with GAQL query and flag thresholds
+- **Added:** audit-gap-analysis.md — complete gap analysis for Display, Demand Gen, Video, DSA, App, and cross-cutting gaps. Serves as roadmap for future expansion.
+- **Version:** 1.9.1 → 1.10.0
 
 ### Session 2026-04-04: Feed-Only PMax Reference Correction (v1.9.1)
 
@@ -52,7 +62,7 @@ tags:
 ## Current State
 
 ### Plugin (ad-platform-campaign-manager)
-- **36 reference files** under `platforms/google-ads/` (25 core + 11 strategy)
+- **37 reference files** under `platforms/google-ads/` (26 core + 11 strategy — added audit-gap-analysis.md)
 - **17 script docs** under `reference/scripts/`
 - **6 tracking-bridge docs** (the differentiator)
 - **5 reporting docs** + **3 MCP docs** + **1 repos catalog**

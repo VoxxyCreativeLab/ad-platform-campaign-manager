@@ -7,6 +7,26 @@ tags:
 
 # Changelog
 
+## [1.10.0] — 2026-04-06
+
+Shopping-specific and Audience Strategy audit sections added to the audit checklist and campaign-review skill. Complete gap analysis document saved for future expansion. Discovered via Vaxteronline client project where the Shopping campaign (biggest spender) passed a full audit with critical issues undetected.
+
+### Added
+- **audit-gap-analysis.md** — complete gap analysis of all audit checklist gaps by campaign type (Display, Demand Gen, Video, DSA, App, cross-cutting), with priority rankings, actionable checklist items, and source URLs. Serves as the implementation roadmap for future audit checklist expansion.
+- **Shopping Specific section in audit-checklist.md** — 28 checks across 7 sub-areas: Feed Health & MC, Product Group Structure, Bidding, Competitive Metrics (click share, impression share, IS lost breakdown), Negative Keywords, Product-Level Performance, Tracking. Mirrors the existing PMax Specific section.
+- **Audience Strategy section in audit-checklist.md** — 11 checks across 4 sub-areas: Remarketing Lists, Exclusions, RLSA & Layering, Customer Match.
+- **Area 12 (Shopping Specific) in campaign-review SKILL.md** — with MCP GAQL queries for product group performance, click share, impression share, and IS lost breakdown. Includes flag thresholds (click share < 40% = Critical; IS < 50% = Warning; budget util < 70% = Warning).
+- **Area 13 (Audience Strategy) in campaign-review SKILL.md** — audience strategy review area.
+- **Shopping Triage in campaign-cleanup SKILL.md** — concrete Shopping checks (GAQL query + flag thresholds) to run before Phase 1, replacing vague "prioritize feed health, product groups" guidance.
+
+### Changed
+- **campaign-review SKILL.md** — 11 → 13 review areas; e-commerce priority table updated; e-commerce vertical checks updated to reference new Shopping section and Area 12/13; MCP section added with Shopping GAQL queries
+- **campaign-cleanup SKILL.md** — e-commerce triage priority updated with Shopping triage checklist and flag thresholds
+- **audit-checklist.md** — total checklist grows from ~82 to ~121 items
+- **plugin.json** — version bumped to 1.10.0
+
+---
+
 ## [1.9.1] — 2026-04-04
 
 Feed-only PMax reference correction. Google Ads now requires 3+ headlines to save an asset group — the only true feed-only path is via Merchant Center. Reference doc corrected, new lessons added, sources expanded.
