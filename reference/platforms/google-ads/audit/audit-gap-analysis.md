@@ -35,9 +35,9 @@ This is the implementation roadmap for expanding the audit checklist beyond Sear
 | **Demand Gen** | ~~ZERO~~ → 14 items added (v1.11.0) | demand-gen.md (solid, 204 lines) | **✅ Done** |
 | **Competitive Analysis** | ~~ZERO~~ → 6 items added (v1.11.0) | Not documented | **✅ Done** |
 | **Feed Health** | ~~1 mention in PMax~~ → 10 items added (v1.11.0) | shopping-feed-strategy.md (166 lines) | **✅ Done** |
-| Video/YouTube | ZERO | video-campaigns.md (135 lines) | Priority 3 |
-| Cross-campaign Cannibalization | 1 generic line | Partial in vertical-ecommerce.md | Priority 3 |
-| Attribution Depth | 1 item | attribution-guide.md (360 lines, excellent) | Priority 3 |
+| **Video/YouTube** | ~~ZERO~~ → 12 items added (v1.12.0) | video-campaigns.md (135 lines) | **✅ Done** |
+| **Cross-campaign Cannibalization** | ~~1 generic line~~ → 5 items added (v1.12.0) | Partial in vertical-ecommerce.md | **✅ Done** |
+| **Attribution Depth** | ~~1 item~~ → 5 items added (v1.12.0) | attribution-guide.md (360 lines, excellent) | **✅ Done** |
 | DSA | ZERO | dsa.md (196 lines, AI Max context) | Priority 4 |
 | App Campaigns | ZERO | No doc | Priority 4 |
 
@@ -165,9 +165,9 @@ Currently only a passing mention in PMax section ("Product feed optimized"). The
 
 ---
 
-## Priority 3: Address in Future Iterations
+## Priority 3: Address in Future Iterations — ✅ Done (v1.12.0)
 
-### Video/YouTube Audit Section
+### Video/YouTube Audit Section — ✅ Done (v1.12.0)
 
 Good reference doc (video-campaigns.md, 135 lines). Needs dedicated checklist items.
 
@@ -186,7 +186,7 @@ Good reference doc (video-campaigns.md, 135 lines). Needs dedicated checklist it
 
 ---
 
-### Cross-Campaign Cannibalization
+### Cross-Campaign Cannibalization — ✅ Done (v1.12.0)
 
 Currently one generic item: "No campaign overlap (competing for same traffic)." Should be specific.
 
@@ -199,7 +199,7 @@ Currently one generic item: "No campaign overlap (competing for same traffic)." 
 
 ---
 
-### Attribution Depth
+### Attribution Depth — ✅ Done (v1.12.0)
 
 attribution-guide.md is excellent (360 lines) but only one item flows into the checklist. Should add:
 - [ ] Attribution windows match vertical sales cycle (e-commerce 30d; B2B 90d)
@@ -236,7 +236,7 @@ Zero coverage. No reference doc. Add if client base includes app advertisers.
 
 ---
 
-## Account-Level Strengthening (Any Priority)
+## Account-Level Strengthening — ✅ Done (v1.12.0)
 
 Items missing from the general account-level audit section:
 

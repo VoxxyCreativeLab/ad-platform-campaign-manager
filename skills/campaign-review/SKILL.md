@@ -39,7 +39,7 @@ You are auditing a Google Ads campaign against best practices. Work through the 
 3. Produce a comprehensive report
 
 ### If insufficient data is provided:
-1. Tell the user which of the 17 review areas you cannot evaluate
+1. Tell the user which of the 21 review areas you cannot evaluate
 2. List the minimum data needed for a useful audit:
    - Campaign names and types
    - Last 30-day spend, conversions, and CPA per campaign
@@ -63,17 +63,17 @@ Map to a strategy archetype from [[../../reference/platforms/google-ads/strategy
 
 ### Review Area Weighting by Profile
 
-Not all 17 review areas are equally important for every account. Weight based on the profile:
+Not all 21 review areas are equally important for every account. Weight based on the profile:
 
 | Profile | High Priority | Medium Priority | Lower Priority / Skip |
 |---------|--------------|-----------------|----------------------|
-| **E-commerce** | Shopping Specific, PMax, Budget, Conversion Tracking, Feed Health, Competitive Analysis | Keywords, Bidding, Audience Strategy, Display (remarketing), Demand Gen (if running) | (all relevant) |
-| **Lead Gen** | Conversion Tracking, Keywords, Ads | Bidding, Budget, Competitive Analysis, Display (remarketing) | PMax (unless running), Feed Health (skip), Demand Gen (skip) |
-| **B2B SaaS** | Conversion Tracking, Keywords, Bidding | Ads, Targeting, Competitive Analysis, Demand Gen (if running) | PMax (unless mature + 50+ conv), Feed Health (skip), Display (skip) |
-| **Local Services** | Targeting, Conversion Tracking, Extensions | Ads, Budget, Competitive Analysis | PMax (unless medium+ budget), Feed Health (skip), Demand Gen (skip), Display (if remarketing) |
-| **Micro budget** | Budget, Keywords, Bidding | Ads, Conversion Tracking, Competitive Analysis | PMax (skip), Extensions (basic only), Feed Health (skip), Display (skip), Demand Gen (skip) |
-| **Cold start** | Conversion Tracking, Campaign Structure, Keywords | Bidding, Ads | PMax (too early), Feed Health (skip), Display (skip), Demand Gen (skip), Competitive Analysis (too early) |
-| **Mature + Large** | (all areas weighted equally — full audit) | | |
+| **E-commerce** | Shopping Specific, PMax, Budget, Conversion Tracking, Feed Health, Competitive Analysis, Cross-Campaign Cannibalization | Keywords, Bidding, Audience Strategy, Display (remarketing), Demand Gen (if running), Attribution Depth | Video (if running), Account-Level Strengthening |
+| **Lead Gen** | Conversion Tracking, Keywords, Ads, Attribution Depth | Bidding, Budget, Competitive Analysis, Display (remarketing), Account-Level Strengthening | PMax (unless running), Feed Health (skip), Demand Gen (skip), Video (if running) |
+| **B2B SaaS** | Conversion Tracking, Keywords, Bidding, Attribution Depth | Ads, Targeting, Competitive Analysis, Demand Gen (if running), Account-Level Strengthening | PMax (unless mature + 50+ conv), Feed Health (skip), Display (skip), Cross-Campaign Cannibalization |
+| **Local Services** | Targeting, Conversion Tracking, Extensions | Ads, Budget, Competitive Analysis, Account-Level Strengthening | PMax (unless medium+ budget), Feed Health (skip), Demand Gen (skip), Display (if remarketing), Video (skip), Attribution Depth (basic only) |
+| **Micro budget** | Budget, Keywords, Bidding | Ads, Conversion Tracking, Competitive Analysis | PMax (skip), Extensions (basic only), Feed Health (skip), Display (skip), Demand Gen (skip), Video (skip), Attribution Depth (basic only), Account-Level Strengthening (basic only) |
+| **Cold start** | Conversion Tracking, Campaign Structure, Keywords, Account-Level Strengthening | Bidding, Ads | PMax (too early), Feed Health (skip), Display (skip), Demand Gen (skip), Competitive Analysis (too early), Video (skip), Cross-Campaign Cannibalization (too early) |
+| **Mature + Large** | (all 21 areas weighted equally — full audit) | | |
 
 ### Severity Thresholds by Maturity
 
@@ -112,6 +112,10 @@ Work through these areas from the audit checklist:
 15. **Demand Gen** (if Demand Gen campaigns present) — Channel controls configured? Creative fresh (< 6 weeks)? Prospecting vs remarketing separated? VTC window reviewed? See Demand Gen section in audit-checklist.md. Use MCP GAQL to pull Demand Gen metrics when connected.
 16. **Competitive Analysis** (cross-campaign) — Impression share reviewed? IS lost to rank vs budget distinguished? Brand absolute top IS > 80%? Competitor brand bidding detected? See Competitive Analysis section in audit-checklist.md. Use MCP GAQL to pull IS metrics when connected.
 17. **Feed Health** (if e-commerce with MC feed) — Feed updated daily? Disapproval rate < 2%? GTIN coverage > 90%? Supplemental feed in use? Content API migration planned? See Feed Health section in audit-checklist.md. (MC-only — no GAQL available)
+18. **Video / YouTube** (if Video campaigns present) — Hook in first 5 seconds? Brand visible early? Frequency capping set? Placement exclusions applied? VTC window reviewed? Creative refreshed within 6 weeks? See Video / YouTube section in audit-checklist.md. Use MCP GAQL to pull Video metrics when connected.
+19. **Cross-Campaign Cannibalization** (cross-campaign) — PMax brand exclusions applied? PMax vs Shopping overlap mapped? Search vs DSA cross-negatives in place? Brand campaign protected from non-brand spillover? See Cross-Campaign Cannibalization section in audit-checklist.md. (Auction Insights detail requires UI export — no GAQL available)
+20. **Attribution Depth** — Attribution windows match vertical sales cycle? VTC window reviewed across all conversion actions? GA4 discrepancy documented (< 15% normal; > 30% needs investigation)? Assisted conversions reviewed before pausing upper-funnel? Value-based bidding eligibility assessed? See Attribution Depth section in audit-checklist.md. Use MCP GAQL to pull conversion action settings when connected.
+21. **Account-Level Strengthening** — Conversion Linker on all pages? Auto-generated extensions reviewed? Budget allocation follows 70/20/10 rule? Change history reviewed for too-frequent Smart Bidding changes? Data exclusions configured for measurement gaps? See Account-Level Strengthening section in audit-checklist.md. Use MCP GAQL to pull change history when connected.
 
 ### MCP Verification: Shopping Campaigns
 
@@ -223,6 +227,66 @@ Flag these thresholds as issues:
 - Search IS lost to budget > 20%: **Warning** — budget is constraining reach
 
 > [!info] Auction Insights detail (competitor names, overlap rate, outranking share) requires the Google Ads UI — export from Tools > Auction Insights. This cannot be pulled via GAQL.
+
+### MCP Verification: Video / YouTube Campaigns
+
+When MCP is connected and Video campaigns are present, run this GAQL query:
+
+```gaql
+SELECT campaign.name, campaign.id,
+  metrics.impressions, metrics.video_views, metrics.video_view_rate,
+  metrics.average_cpv, metrics.cost_micros, metrics.conversions,
+  metrics.view_through_conversions
+FROM campaign
+WHERE campaign.advertising_channel_type = 'VIDEO'
+  AND segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+Flag these thresholds as issues:
+- View rate < 15%: **Warning** — hook failing or audience mismatch; review creative and targeting
+- View rate < 10%: **Critical** — creative not resonating; pause and replace before spending further
+- Average CPV > 2× account average: **Warning** — bids too aggressive or inventory too narrow
+- Spend > €50 with zero conversions and zero VTC: **Warning** — confirm goal is branding (not conversion) — if conversion goal, investigate tracking
+
+### MCP Verification: Attribution Settings
+
+When MCP is connected, pull conversion action attribution settings:
+
+```gaql
+SELECT conversion_action.name, conversion_action.status,
+  conversion_action.attribution_model_settings.attribution_model,
+  conversion_action.click_through_lookback_window_days,
+  conversion_action.view_through_lookback_window_days,
+  conversion_action.counting_type
+FROM conversion_action
+WHERE conversion_action.status = 'ENABLED'
+```
+
+Flag these thresholds as issues:
+- Non-data-driven attribution model: **Warning** — data-driven is recommended once 300+ conversions/month threshold is reached
+- Click-through window > 90 days: **Warning** — may over-attribute to Google Ads vs other channels
+- View-through window = 30 days on Display or Video: **Warning** — default inflates results; consider reducing to 7 days
+- Counting type = ONE_PER_CLICK for purchase conversions: **Warning** — use MANY_PER_CLICK for e-commerce to count all transactions
+
+### MCP Verification: Account Change History
+
+When MCP is connected, pull recent change events to check Smart Bidding stability:
+
+```gaql
+SELECT change_event.change_date_time, change_event.change_resource_type,
+  change_event.client_type, change_event.user_email
+FROM change_event
+WHERE change_event.change_date_time DURING LAST_14_DAYS
+ORDER BY change_event.change_date_time DESC
+LIMIT 50
+```
+
+Flag these thresholds as issues:
+- > 10 bid strategy changes in 14 days: **Warning** — Smart Bidding learning period resets with significant changes; this can cause performance instability
+- Multiple target CPA/ROAS changes within 7 days on same campaign: **Critical** — each change restarts the learning period; consolidate changes
+
+> [!info] Cross-Campaign Cannibalization (Area 19) — Auction Insights detail and product overlap require the Google Ads UI. No single GAQL query exposes cross-campaign cannibalization directly. Assess via campaign structure review and product group overlap mapping.
 
 ## Report Format
 

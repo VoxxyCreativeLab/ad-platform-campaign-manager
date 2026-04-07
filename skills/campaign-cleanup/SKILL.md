@@ -96,6 +96,34 @@ Also check:
 
 These checks take under 5 minutes and can expose significant waste before any deep analysis.
 
+### Video / YouTube Triage (if Video campaigns present — run before Phase 1)
+
+When MCP is connected, pull Video campaign performance — video spend with no views or conversions is a common source of quiet budget drain:
+
+```gaql
+SELECT campaign.name, campaign.id,
+  metrics.impressions, metrics.video_views, metrics.video_view_rate,
+  metrics.average_cpv, metrics.cost_micros, metrics.conversions,
+  metrics.view_through_conversions
+FROM campaign
+WHERE campaign.advertising_channel_type = 'VIDEO'
+  AND segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+Flag immediately if:
+- **View rate < 10%** — creative is failing; hook not landing within first 5 seconds; review creative urgently
+- **CPV > 2× account average CPV** — bids too aggressive or audience too narrow; investigate targeting
+- **Spend > €50, conversions = 0, VTC = 0** — video may be purely branding with no measurement; confirm goal alignment
+- **VTC > 70% of Video conversions** — 30-day VTC window likely inflating results; reduce to 7 days
+
+Also check:
+- Placement report: any placements on kids content (COPPA risk), competitor channels, or low-quality sites?
+- Frequency: is frequency capping set? Uncapped video campaigns run users into creative fatigue quickly
+- Creative age: any video ads older than 8 weeks? Video fatigue sets in faster than display
+
+These checks take under 5 minutes and prevent ongoing budget waste on ineffective video placements.
+
 ## Triage Process
 
 ### Phase 1: Stop the Bleeding (Day 1)

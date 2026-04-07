@@ -1,6 +1,6 @@
 ---
 title: Primer - Session Handoff
-date: 2026-04-04
+date: 2026-04-06
 tags:
   - mwp
 ---
@@ -11,68 +11,62 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.10.0 - Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.12.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ## Last Completed
 
+### Session 2026-04-06: Priority 3 Audit Expansion (v1.12.0)
+
+Added 4 new review areas to the audit system, completing all Priority 3 and Account-Level gaps from audit-gap-analysis.md:
+
+- **Video / YouTube (Area 18)** — 12 checks across 3 sub-areas: Creative Quality (hook, branding, companion banners, format testing), Targeting & Controls (frequency capping, placement exclusions, YouTube linking, campaign separation), Measurement (VTC window, VTC vs click analysis, creative refresh, Brand Lift eligibility). GAQL query added for VIDEO channel type with view rate and CPV thresholds.
+- **Cross-Campaign Cannibalization (Area 19)** — 5 checks: PMax brand exclusions, PMax vs Shopping product overlap, Search vs DSA cross-negatives, brand campaign protection, cross-campaign negative lists. UI-only (Auction Insights not available via GAQL).
+- **Attribution Depth (Area 20)** — 5 checks: attribution windows vs vertical sales cycle, VTC window across all conversion actions, GA4 discrepancy documentation (< 15% normal; > 30% investigate), assisted conversions before pausing upper-funnel, value-based bidding eligibility. GAQL query for conversion_action attribution settings added.
+- **Account-Level Strengthening (Area 21)** — 5 checks: Conversion Linker on all pages, auto-generated extensions review, 70/20/10 budget allocation, change history for Smart Bidding stability (> 10 bid strategy changes in 14 days = Warning), data exclusions for measurement gaps. GAQL query for change_event history added.
+
+**Files changed:** audit-checklist.md (+27 checks, 4 new H2 sections), campaign-review SKILL.md (Areas 18-21 + 3 GAQL sections, count 17→21, weighting table expanded), campaign-cleanup SKILL.md (Video/YouTube triage pre-Phase 1 block), campaign-reviewer agent (+4 sections), audit-gap-analysis.md (Priority 3 + Account-Level marked Done), CHANGELOG.md (v1.12.0), PLAN.md, plugin.json (1.11.0→1.12.0).
+
+**Stale files fixed (same session):** PRIMER.md rewritten to v1.12.0; PLAN.md "After v1.9.0" label updated to "After v1.12.0"; agents/CONTEXT.md updated to reflect 3 agents (strategy-advisor was missing); reference/platforms/google-ads/CONTEXT.md updated from "22 files" to "37 files" with accurate breakdown and expanded "Which Skill Loads What" table.
+
+### Session 2026-04-06: Priority 2 Audit Expansion (v1.11.0)
+
+- Added Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) — Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections (Shopping, Audience, Display, Demand Gen, Competitive Analysis, Feed Health).
+- Created audit-gap-analysis.md as permanent roadmap for future audit expansion.
+
 ### Session 2026-04-06: Shopping + Audience Audit Sections (v1.10.0)
 
-- **Root cause:** Shopping campaign audit miss on Vaxteronline — biggest spender passed full audit with critical issues undetected (EUR 0.10 product group bids, 35% click share, 40% impression share, Dutch ad group name, dead product groups). The audit checklist had ZERO Shopping-specific items despite having comprehensive Shopping reference docs.
-- **Added:** 28-item Shopping Specific section to audit-checklist.md (7 sub-areas: Feed Health, Product Group Structure, Bidding, Competitive Metrics, Negative Keywords, Product-Level Performance, Tracking)
-- **Added:** 11-item Audience Strategy section to audit-checklist.md (4 sub-areas: Remarketing Lists, Exclusions, RLSA, Customer Match)
-- **Updated:** campaign-review skill — now 13 review areas; Area 12 (Shopping) includes GAQL queries for click share, impression share, product group bids; Area 13 (Audience Strategy)
-- **Updated:** campaign-cleanup skill — e-commerce triage now has concrete Shopping checks with GAQL query and flag thresholds
-- **Added:** audit-gap-analysis.md — complete gap analysis for Display, Demand Gen, Video, DSA, App, and cross-cutting gaps. Serves as roadmap for future expansion.
-- **Version:** 1.9.1 → 1.10.0
+- Added 28-item Shopping Specific section (Area 12) and 11-item Audience Strategy section (Area 13) to audit-checklist. Triggered by Vaxteronline Shopping campaign audit miss (EUR 0.10 product group bids, 35% click share undetected).
 
-### Session 2026-04-04: Feed-Only PMax Reference Correction (v1.9.1)
+### Prior sessions (2026-04-04)
+- **v1.9.1** — Feed-only PMax correction: MC-only creation path, post-creation lockdown steps, CTV warning
+- **v1.9.0** — Ad Copy skill: multilingual RSA, extensions, PMax, Shopping; ad-copy-framework.md
+- **v1.8.0** — Report Output Structure: file-based reports, Output Completeness Convention, 6-step write sequence, 19 files modified
+- **v1.7.0** — Strategic Upgrade Phase 3: strategy-advisor agent + 5 reference docs
+- **v1.3.0-v1.6.0** — Strategic Upgrade Phases 1a-2: skill fixes, 8 strategy docs, 4 skills profile-aware, account-strategy skill
 
-- **Critical finding:** Google Ads now requires 3+ headlines to save an asset group — "skip images and video" no longer works. True feed-only PMax can ONLY be created from Merchant Center (Marketing > Advertising campaigns).
-- Corrected `reference/platforms/google-ads/pmax/feed-only-pmax.md`: MC path promoted to primary, Google Ads path reframed as "feed-first" (not feed-only), added post-creation lockdown steps, CTV auto-generation warning, channel reporting, single-asset-group limitation
-- Added lesson to LESSONS.md: feed-only creation path correction
-- **Impact on Vaxteronline project:** PLAN.md line 54 and PRIMER.md line 52 in `campaign-vaxteronline-project-files` say "Created in Google Ads, not Merchant Center" — this must be revised in Session 3. Vaxteronline PRIMER.md flagged with correction notice.
-
-### Session 2026-04-04: Ad Copy Skill (v1.9.0)
-
-- Built `/ad-copy` skill — multilingual ad copy generator (RSA, extensions, PMax, Shopping feed titles)
-- Created `reference/platforms/google-ads/ad-copy-framework.md` — character limits, headline categories, language-specific rules (Swedish, Dutch, German, English), CTA libraries, compound-word handling, Shopping feed title formulas, extension copy framework
-- Updated routing (CONTEXT.md, skills/CONTEXT.md), navigation (CLAUDE.md), cross-refs (campaign-setup → ad-copy)
-- Version bumped to 1.9.0
-- Built for Vaxteronline project Session 2 (Swedish brand Search + extensions copy needed)
-
-### Session 2026-04-04 (earlier): Report Output Structure (v1.8.0)
-
-- Implemented report output structure across both plugins (19 files modified)
-- Added Output Completeness Convention to `_config/conventions.md` - hard rule banning truncation patterns (`etc.`, `...`, back-references)
-- Added Report File-Writing Convention to `_config/conventions.md` - 6-step write sequence with CONTEXT.md/SUMMARY.md templates
-- Added `## Report Output` section to 11 skills and 3 agents with stage mappings, wikilink references to conventions, re-run behavior, fallback
-- Updated master plugin: Output Pattern column in domain-classification, reports-pattern handling in scaffold-project, reports/ whitelisted in structure-reviewer
-- Updated CLAUDE.md (new permanent rule), CONTEXT.md (routing entry + callout + inter-stage dependencies), CHANGELOG.md (v1.8.0), plugin.json (v1.8.0)
-- Re-run behavior decided: same skill same day overwrites report file, updates (not duplicate) CONTEXT.md row and SUMMARY.md paragraph
-- Code review passed: all 14 stage mappings correct, tracking-auditor cross-stage exception verified
-
-### Prior sessions
-- **2026-04-04 (earlier):** Report Output Structure Design spec (approved, 7 sections)
-- **2026-04-04 (earlier):** Cross-Plugin Lessons + Hierarchy Memory
-- **2026-04-03:** Strategic Upgrade v2.0 - Phase 3 Complete (v1.7.0)
-- **2026-04-03 (earlier):** Strategic Upgrade Phases 1a-2 (v1.3.0-v1.6.0)
-- **2026-04-02:** MCP reconnection after machine migration
-- **2026-04-01:** Feed-only PMax fix, MCP server built + verified, fact-check sweep
+---
 
 ## Current State
 
-### Plugin (ad-platform-campaign-manager)
-- **37 reference files** under `platforms/google-ads/` (26 core + 11 strategy — added audit-gap-analysis.md)
-- **17 script docs** under `reference/scripts/`
-- **6 tracking-bridge docs** (the differentiator)
-- **5 reporting docs** + **3 MCP docs** + **1 repos catalog**
-- **13 skills** - all with argument-hints, inter-skill refs, Report Output sections; 11 are profile-aware
-- **3 agents** (campaign-reviewer, tracking-auditor, strategy-advisor) - all with Report Output sections
+### Plugin (ad-platform-campaign-manager) — v1.12.0
+
+| Layer | Count | Notes |
+|-------|-------|-------|
+| Reference files | 37 | 17 core + 5 PMax + 4 audit + 11 strategy |
+| Script docs | 17 | under `reference/scripts/` |
+| Tracking-bridge docs | 6 | the differentiator |
+| Reporting docs | 5 | + 3 MCP docs + 1 repos catalog |
+| Skills | 13 | all with Report Output sections; 11 profile-aware |
+| Agents | 3 | campaign-reviewer, tracking-auditor, strategy-advisor |
+| Audit areas | 21 | Areas 1-17 (original + v1.10.0/v1.11.0) + Areas 18-21 (v1.12.0) |
+
 - All reference docs fact-checked to 2025-2026 accuracy
 - All 5 audit findings resolved
 - Report output conventions in `_config/conventions.md` (Output Completeness + Report File-Writing)
+- Audit gap analysis: Priority 1-3 complete; Priority 4 (DSA, App Campaigns) is the remaining expansion
 
 ### MCP Server (google-ads-mcp-server)
+
 - **33 Python files**, **96 tests**, clean git
 - **25 MCP tools** (3 session + 9 read + 11 write + 2 confirm)
 - Connected to MCC 7244069584 via Explorer Access (2,880 ops/day)
@@ -81,20 +75,29 @@ tags:
 - Wrapper at `C:\mcp\google-ads.cmd`
 
 ### Credential Files (DO NOT COMMIT)
-- `C:\Users\VCL1\google-ads.yaml` - developer token, OAuth client ID/secret, refresh token, login_customer_id
-- `C:\mcp\google-ads.cmd` - wrapper script (no secrets, just paths)
+
+- `C:\Users\VCL1\google-ads.yaml` — developer token, OAuth client ID/secret, refresh token, login_customer_id
+- `C:\mcp\google-ads.cmd` — wrapper script (no secrets, just paths)
+
+---
 
 ## What Still Needs to Happen
 
 ### Housekeeping
-- **Rotate OAuth client secret** - exposed in previous session screenshot (2026-04-01)
+- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01). Must rotate in GCP Console before production use.
 
-### Phase 4 - Multi-Platform (not started)
+### Audit Backlog (Priority 4 — low priority)
+- DSA-specific audit section (~4 checks) — low priority given AI Max migration path
+- App Campaign audit section (~4 checks) — only relevant if client base includes app advertisers
+
+### Phase 4 — Multi-Platform (not started)
 - Populate `meta-ads/`, `linkedin-ads/`, `tiktok-ads/` directories
 
 ### Real Client Work
 - Use skills and agents on live Google Ads accounts
 - First real test of report output structure in an MWP client project
+
+---
 
 ## Design Documents
 
@@ -106,4 +109,3 @@ tags:
 ## Open Blockers
 
 - **Credential rotation:** OAuth client secret should be rotated
-- **Phase 4 (Multi-platform):** not started

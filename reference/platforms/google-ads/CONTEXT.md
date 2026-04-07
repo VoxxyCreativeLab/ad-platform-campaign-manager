@@ -8,7 +8,11 @@ tags:
 
 # Google Ads — Context
 
-22 reference files: 8 core fundamentals, 4 campaign type deep-dives, 5 PMax, 3 audit, plus `gaql-reference.md` and `ads-scripts-api.md`.
+37 reference files across 4 subdirectories:
+- **17 core files** — fundamentals (account-structure, bidding-strategies, campaign-types, match-types, quality-score, ad-extensions, conversion-actions, enhanced-conversions, gaql-reference, ads-scripts-api), campaign types (shopping-campaigns, video-campaigns, dsa, demand-gen), plus shopping-feed-strategy, ad-testing-framework, ad-copy-framework
+- **5 PMax files** (`pmax/`) — feed-only-pmax, asset-requirements, audience-signals, feed-optimization, pmax-metrics
+- **4 audit files** (`audit/`) — audit-checklist (21-area, ~90 checks), common-mistakes, negative-keyword-lists, audit-gap-analysis
+- **11 strategy files** (`strategy/`) — account-profiles, account-maturity-roadmap, 4 vertical playbooks (ecommerce, lead-gen, b2b-saas, local-services), bid-adjustment-framework, remarketing-strategies, seasonal-planning, targeting-framework, attribution-guide
 
 ## Which Skill Loads What
 
@@ -28,6 +32,17 @@ tags:
 | `video-campaigns.md` | campaign-setup (if Video), campaign-review |
 | `dsa.md` | campaign-setup (if DSA), campaign-review |
 | `demand-gen.md` | campaign-setup (if Demand Gen), campaign-review |
+| `shopping-feed-strategy.md` | campaign-setup (if Shopping/PMax), pmax-guide, ad-copy |
+| `ad-testing-framework.md` | campaign-review, campaign-reviewer agent |
+| `ad-copy-framework.md` | ad-copy |
 | `pmax/feed-only-pmax.md` | pmax-guide, campaign-setup (if feed-based PMax) |
 | `pmax/*` (other) | pmax-guide, campaign-setup (if PMax) |
-| `audit/*` | campaign-review, campaign-reviewer agent |
+| `audit/*` | campaign-review, campaign-cleanup, campaign-reviewer agent |
+| `strategy/account-profiles.md` | account-strategy, campaign-setup, keyword-strategy, conversion-tracking, reporting-pipeline, campaign-review, pmax-guide, budget-optimizer, ads-scripts, campaign-cleanup, ad-copy |
+| `strategy/account-maturity-roadmap.md` | account-strategy, budget-optimizer |
+| `strategy/vertical-*.md` | account-strategy |
+| `strategy/bid-adjustment-framework.md` | account-strategy, campaign-review, campaign-reviewer agent |
+| `strategy/remarketing-strategies.md` | account-strategy, campaign-setup, campaign-review, campaign-reviewer agent |
+| `strategy/seasonal-planning.md` | account-strategy, budget-optimizer |
+| `strategy/targeting-framework.md` | account-strategy, campaign-setup |
+| `strategy/attribution-guide.md` | account-strategy, conversion-tracking |

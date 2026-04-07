@@ -109,6 +109,28 @@ Work through every section of the audit checklist at `reference/platforms/google
 - [ ] Disapproval rate below 2% (MC > Diagnostics)
 - [ ] Supplemental feed in use for title overrides and custom labels
 
+#### Video / YouTube (if Video campaigns present)
+- [ ] Hook delivers value proposition within first 5 seconds
+- [ ] Frequency capping configured (3-5/week awareness; 5-7/week remarketing)
+- [ ] Placement exclusions active (kids content, competitor channels)
+- [ ] VTC window reviewed (30-day default often inflates; consider 7 days)
+
+#### Cross-Campaign Cannibalization
+- [ ] PMax brand exclusion list applied (brand search cannibalization prevented)
+- [ ] PMax vs Standard Shopping product overlap mapped (overlapping products = internal auction conflict)
+- [ ] Search vs DSA cross-negatives in place where targeting overlaps
+- [ ] Brand campaign protected from non-brand spillover via campaign-level negatives
+
+#### Attribution Depth
+- [ ] Attribution windows match vertical sales cycle (e-commerce 7-14d; B2B 60-90d)
+- [ ] VTC window reviewed across all conversion actions
+- [ ] Assisted conversions reviewed before pausing any upper-funnel campaign
+
+#### Account-Level Strengthening
+- [ ] Conversion Linker tag verified on all site pages
+- [ ] Auto-generated account extensions reviewed for brand accuracy
+- [ ] Change history checked for too-frequent Smart Bidding changes (> 2 significant changes/week resets learning)
+
 ### Step 3: Cross-Reference with Common Mistakes and Best Practices
 
 Check the campaign against `reference/platforms/google-ads/audit/common-mistakes.md` — the top 25 Google Ads mistakes. Flag any matches.

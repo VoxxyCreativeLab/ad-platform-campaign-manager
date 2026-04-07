@@ -9,7 +9,7 @@ tags:
 # Plan — Ad Platform Campaign Manager
 
 **Last updated:** 2026-04-06
-**Current milestone:** Priority 2 Audit Expansion v1.11.0 — ✅ Done
+**Current milestone:** Priority 3 Audit Expansion v1.12.0 — ✅ Done
 
 ---
 
@@ -63,6 +63,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Feed-Only PMax Correction (v1.9.1) — MC-only creation path corrected, post-creation lockdown steps, CTV warning
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
 - ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
+- ✅ Priority 3 Audit Expansion (v1.12.0) — Video/YouTube (12), Cross-Campaign Cannibalization (5), Attribution Depth (5), Account-Level Strengthening (5) added; Areas 18-21 in campaign-review with GAQL queries; Video triage in campaign-cleanup; campaign-reviewer agent updated with 4 new sections
 **Blockers:** OAuth client secret should be rotated.
 
 ---
@@ -186,12 +187,13 @@ Same report output section, adapted for agent execution context.
 - Step 7 (root files) after Steps 5-6.
 - Step 8 (changelog) last.
 
-### After v1.9.0
+### After v1.12.0
 
-1. **Rotate OAuth client secret** — exposed in previous session screenshot
+1. **Rotate OAuth client secret** — exposed in previous session screenshot (2026-04-01)
 2. **Real client work** — use skills on a live Google Ads account
 3. **Phase 4 — Multi-platform** — populate meta-ads/, linkedin-ads/, tiktok-ads/
-4. **Future enhancements (backlog):** build agent, launch validator agent, optimization agent, finalize-report skill, cross-date comparison, multi-platform report support
+4. **Audit backlog (Priority 4):** DSA-specific section (~4 checks), App Campaigns section (~4 checks) — low priority, niche
+5. **Future enhancements (backlog):** build agent, launch validator agent, optimization agent, finalize-report skill, cross-date comparison, multi-platform report support
 
 ---
 

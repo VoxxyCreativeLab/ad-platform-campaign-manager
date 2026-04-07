@@ -7,6 +7,28 @@ tags:
 
 # Changelog
 
+## [1.12.0] — 2026-04-06
+
+All Priority 3 audit gaps from audit-gap-analysis.md implemented: Video/YouTube, Cross-Campaign Cannibalization, Attribution Depth, and Account-Level Strengthening. Adds 27 new checklist items, 4 new campaign-review areas (18-21), 3 new GAQL verification sections (Video, Attribution, Change History), a Video/YouTube triage block in campaign-cleanup, and 4 inline sections in the campaign-reviewer agent.
+
+### Added
+- **Video / YouTube section in audit-checklist.md** — 12 checks across 3 sub-areas: Creative Quality (hook in 5s, brand early, companion banners, format testing), Targeting & Controls (frequency capping, placement exclusions, YouTube linking, campaign separation), Measurement (VTC window, VTC vs click analysis, creative refresh, Brand Lift eligibility).
+- **Cross-Campaign Cannibalization section in audit-checklist.md** — 5 checks: PMax brand exclusions, PMax vs Shopping product overlap, Search vs DSA cross-negatives, brand campaign protection from non-brand spillover, cross-campaign negative keyword lists.
+- **Attribution Depth section in audit-checklist.md** — 5 checks: attribution windows vs vertical sales cycle, VTC window across all conversion actions, GA4 vs Google Ads discrepancy documentation, assisted conversions reviewed before pausing upper-funnel, value-based bidding eligibility.
+- **Account-Level Strengthening section in audit-checklist.md** — 5 checks: Conversion Linker on all pages, auto-generated extensions review, 70/20/10 budget allocation, change history for Smart Bidding stability, data exclusions for measurement gaps.
+- **Areas 18-21 in campaign-review SKILL.md** — Video/YouTube, Cross-Campaign Cannibalization, Attribution Depth, Account-Level Strengthening added to review list. Area count updated 17 → 21. Weighting table expanded for all 7 profiles.
+- **MCP Verification: Video / YouTube** — GAQL query for VIDEO channel type; thresholds: view rate < 15% Warning, < 10% Critical, CPV > 2× average Warning.
+- **MCP Verification: Attribution Settings** — GAQL query for conversion_action attribution model, click-through and view-through windows; flags for non-DDA model, excessive windows.
+- **MCP Verification: Account Change History** — GAQL query for change_event resource (last 14 days); flags for > 10 bid strategy changes in 14 days resetting Smart Bidding learning.
+- **Video / YouTube Triage in campaign-cleanup SKILL.md** — Pre-Phase 1 section with GAQL query, thresholds (view rate < 10% Critical, CPV > 2× Warning, VTC > 70% Warning), and manual checks (placement report, frequency, creative age).
+- **Sections 17-20 in campaign-reviewer agent** — Video/YouTube (4 checks), Cross-Campaign Cannibalization (4 checks), Attribution Depth (3 checks), Account-Level Strengthening (3 checks) added as inline audit sections.
+
+### Changed
+- **audit-gap-analysis.md** — Coverage matrix updated: Video/YouTube, Cross-Campaign Cannibalization, Attribution Depth marked ✅ Done (v1.12.0). Account-Level Strengthening heading updated. Priority 3 section marked Done.
+- **plugin.json** — version bumped to 1.12.0.
+
+---
+
 ## [1.11.0] — 2026-04-06
 
 All Priority 2 audit gaps from audit-gap-analysis.md implemented: Display, Demand Gen, Competitive Analysis, Feed Health. Adds 50 new checklist items, 4 new campaign-review areas (14-17), 3 new GAQL verification sections, and a Display/Demand Gen triage block in campaign-cleanup. The campaign-reviewer agent was also backfilled with 6 inline sections missing since v1.10.0 (Shopping, Audience, Display, Demand Gen, Competitive Analysis, Feed Health).

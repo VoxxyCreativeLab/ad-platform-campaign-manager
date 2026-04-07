@@ -274,6 +274,53 @@ tags:
 - [ ] Feed rules configured for title/description optimization where needed
 - [ ] MC Price Competitiveness report reviewed (products priced 20%+ above market flagged)
 
+## Video / YouTube (if Video campaigns present)
+
+### Creative Quality
+- [ ] Hook delivers value proposition within first 5 seconds (before skip button appears)
+- [ ] Brand name or logo visible within first 5 seconds
+- [ ] Companion banner uploaded for in-stream ads (300×60px)
+- [ ] All applicable formats tested: skippable in-stream, non-skippable, bumper, in-feed, Shorts
+
+### Targeting & Controls
+- [ ] Frequency capping configured (3-5 impressions/week for awareness; 5-7/week for remarketing)
+- [ ] Placement exclusions active: kids content, competitor channels, low-quality sites
+- [ ] YouTube channel linked to Google Ads account (required for audience list building)
+- [ ] Prospecting and remarketing separated into distinct campaigns
+
+### Measurement
+- [ ] View-through conversion (VTC) window reviewed (default 30 days often inflates; consider 7 days)
+- [ ] VTC analyzed separately from click-through conversions in reports
+- [ ] Creative refreshed within last 4-6 weeks (video fatigue is faster than display)
+- [ ] Brand Lift study eligibility assessed if spend > EUR 10,000 (requires Google rep)
+
+## Cross-Campaign Cannibalization
+
+### Campaign Overlap
+- [ ] PMax brand search cannibalization assessed — brand exclusion list applied to PMax campaigns
+- [ ] PMax vs Standard Shopping product overlap mapped — overlapping product sets cause internal auction conflict (PMax wins auction priority)
+- [ ] Search vs DSA keyword overlap managed — cross-negatives in place where Search and DSA target same pages
+- [ ] Brand campaign protected from non-brand spillover — campaign-level negatives prevent internal bidding on branded terms
+- [ ] Cross-campaign negative keyword lists shared — no active campaigns competing for the same user intent
+
+## Attribution Depth
+
+### Attribution Configuration
+- [ ] Attribution windows match vertical sales cycle (e-commerce impulse: 7-14 days; B2B: 60-90 days)
+- [ ] View-through conversion window reviewed across all conversion actions (default 30-day may inflate results)
+- [ ] Google Ads vs GA4 conversion discrepancy documented and within acceptable range (< 15% gap is normal; > 30% needs investigation)
+- [ ] Assisted conversions reviewed before pausing any upper-funnel campaign (last-click-only view understates value)
+- [ ] Value-based bidding eligibility assessed — requires reliable conversion values and sufficient volume (50+ conv/month)
+
+## Account-Level Strengthening
+
+### Account Hygiene
+- [ ] Conversion Linker tag verified present on all site pages (not just landing pages)
+- [ ] Account-level automated extensions reviewed — auto-generated sitelinks, callouts, and images may be off-brand or inaccurate
+- [ ] Cross-campaign budget allocation reviewed — consider 70/20/10 split (proven campaigns / optimization / testing)
+- [ ] Change history reviewed for too-frequent Smart Bidding changes (more than 2 significant changes/week resets learning period)
+- [ ] Data exclusions configured for known measurement gaps (tracking outages, consent-blocked periods, site downtime)
+
 ## Scoring Guide
 
 Count total checks and checked items:
