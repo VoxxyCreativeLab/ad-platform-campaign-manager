@@ -46,16 +46,16 @@ Claude Code MCP servers are configured in your settings.json.
 **Read tools (9):**
 - `list_accounts` — all accessible accounts under MCC
 - `list_campaigns` — campaigns with status and budget
+- `get_campaign` — single campaign details + current settings
 - `list_ad_groups` — ad groups for a campaign
 - `get_campaign_metrics` — performance data (impressions, clicks, cost, conversions)
+- `get_account_metrics` — account-level rollup metrics
 - `list_keywords` — keywords with match type and metrics
 - `list_ads` — ads with performance
-- `run_gaql_query` — arbitrary GAQL query
-- `get_account_summary` — account-level rollup
-- `list_budgets` — all campaign budgets
+- `run_gaql` — arbitrary GAQL query against any accessible resource
 
 **Write tools (11, all gated):**
-- `unlock_write_session` — set session passphrase to enable writes
+- `unlock_writes` — set session passphrase to enable writes (`voxxy-writes`)
 - `pause_campaign` / `enable_campaign` — change campaign status
 - `pause_ad_group` / `enable_ad_group` — change ad group status
 - `update_campaign_budget` — change daily budget (±50% cap per operation)

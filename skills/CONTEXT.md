@@ -30,7 +30,7 @@ campaign-setup ──────→ campaign-types, account-structure, match-ty
                        bidding-strategies, ad-extensions, pmax/* (if PMax),
                        strategy/account-profiles
 keyword-strategy ────→ match-types, negative-keyword-lists, account-structure,
-                       strategy/account-profiles
+                       strategy/account-profiles, strategy/remarketing-strategies
 conversion-tracking ─→ conversion-actions, enhanced-conversions, tracking-bridge/*,
                        strategy/account-profiles, strategy/attribution-guide
 reporting-pipeline ──→ reporting/*, gaql-reference, strategy/account-profiles
@@ -40,7 +40,8 @@ pmax-guide ──────────→ pmax/*, bidding-strategies, shoppin
                        strategy/account-profiles
 budget-optimizer ────→ bidding-strategies, campaign-types, account-structure,
                        audit/common-mistakes, strategy/account-profiles,
-                       strategy/account-maturity-roadmap
+                       strategy/account-maturity-roadmap, strategy/seasonal-planning,
+                       strategy/bid-adjustment-framework
 ads-scripts ─────────→ scripts/catalog, ads-scripts-api,
                        strategy/account-profiles
 campaign-cleanup ────→ audit/*, common-mistakes, negative-keyword-lists,
@@ -59,7 +60,7 @@ Skills may recommend other skills to the user:
 - `account-strategy` → routes to `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `campaign-cleanup`, `budget-optimizer`, `pmax-guide`, `reporting-pipeline`, `campaign-review` based on profile gaps
 - `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `ad-copy`
 - `campaign-review` → recommends `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `pmax-guide`, `keyword-strategy`, `account-strategy`
-- `campaign-cleanup` → recommends `conversion-tracking`, `campaign-setup`, `keyword-strategy`, `budget-optimizer`
+- `campaign-cleanup` → recommends `conversion-tracking`, `campaign-setup`, `keyword-strategy`, `budget-optimizer`, `campaign-review`
 - `conversion-tracking` → recommends `campaign-setup`, `campaign-review`, `budget-optimizer`, `reporting-pipeline`, `account-strategy`
 - `pmax-guide` → recommends `conversion-tracking`, `live-report`, `budget-optimizer`, `campaign-cleanup`, `account-strategy`
 - `reporting-pipeline` → recommends `ads-scripts`, `live-report`, `conversion-tracking`, `budget-optimizer`, `account-strategy`

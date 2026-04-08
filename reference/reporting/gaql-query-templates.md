@@ -254,3 +254,266 @@ WHERE segments.date DURING LAST_30_DAYS
   AND metrics.clicks > 10
 ORDER BY metrics.cost_micros DESC
 ```
+
+## Shopping / Product Performance
+
+> [!note] MCP boundary
+> These queries use `shopping_performance_view`, which is accessible via `run_gaql`. Feed health data (disapprovals, GTIN coverage) is in Merchant Center — not available via the Google Ads API.
+
+### Top Products by Revenue
+```sql
+SELECT
+  segments.product_item_id,
+  segments.product_title,
+  segments.product_brand,
+  segments.product_category_level1,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions,
+  metrics.conversions_value
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+ORDER BY metrics.conversions_value DESC
+LIMIT 50
+```
+
+### Zombie Products (Spend With Zero Conversions)
+Products consuming budget with no return — candidates for bid reduction, listing group exclusion, or feed optimization.
+```sql
+SELECT
+  segments.product_item_id,
+  segments.product_title,
+  segments.product_brand,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+  AND metrics.cost_micros > 0
+  AND metrics.conversions = 0
+ORDER BY metrics.cost_micros DESC
+LIMIT 50
+```
+
+### Product Category Performance
+Roll-up view to identify strong and weak categories before drilling to individual products.
+```sql
+SELECT
+  segments.product_category_level1,
+  segments.product_category_level2,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions,
+  metrics.conversions_value
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+### High-Impression Low-CTR Products (Feed Optimization Candidates)
+Products getting shown but not clicked — often a title, image, or price issue in the feed.
+```sql
+SELECT
+  segments.product_item_id,
+  segments.product_title,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.ctr,
+  metrics.cost_micros
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+  AND metrics.impressions > 100
+  AND metrics.ctr < 0.01
+ORDER BY metrics.impressions DESC
+LIMIT 50
+```
+
+## PMax Performance
+
+### PMax Campaign Performance
+PMax campaigns rolled up by campaign — cost, volume, and conversion metrics.
+```sql
+SELECT
+  campaign.name,
+  campaign.status,
+  metrics.cost_micros,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.conversions,
+  metrics.conversions_value,
+  metrics.all_conversions,
+  metrics.all_conversions_value
+FROM campaign
+WHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX'
+ORDER BY metrics.cost_micros DESC
+LIMIT 50
+```
+
+**Notes:**
+- Use `metrics.cost_micros / 1000000` for human-readable cost
+- `all_conversions` includes view-through conversions; `conversions` excludes them
+- Cross-reference with [[mcp-capabilities]] for channel breakdown limitations — PMax channel split is not available via GAQL
+
+### PMax Asset Group Performance
+Asset group breakdown for a PMax campaign — identify which creative groupings are driving spend and conversions.
+```sql
+SELECT
+  asset_group.name,
+  asset_group.status,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.conversions,
+  metrics.cost_micros
+FROM asset_group
+WHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX'
+ORDER BY metrics.cost_micros DESC
+```
+
+**Notes:**
+- `asset_group_listing_group_filter` resource gives product group breakdown for Shopping inventory split within PMax
+- Requires Google Ads API v14+
+- Status values: `ENABLED`, `PAUSED`, `REMOVED`
+
+## Display Performance
+
+### Display Placement Report
+Identify where Display ads are showing — use to find low-quality placements for exclusion.
+```sql
+SELECT
+  group_placement_view.display_name,
+  group_placement_view.placement,
+  group_placement_view.placement_type,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions
+FROM group_placement_view
+WHERE campaign.advertising_channel_type = 'DISPLAY'
+ORDER BY metrics.cost_micros DESC
+LIMIT 100
+```
+
+**Notes:**
+- `placement_type` values: `WEBSITE`, `MOBILE_APP_CATEGORY`, `YOUTUBE_VIDEO`, `YOUTUBE_CHANNEL`
+- Mobile apps dominate Display by default — exclude `adsenseformobileapps.com` and review individual apps
+- Cross-reference with Area 14 (Display) in [[audit-checklist]]
+
+## Demand Gen Performance
+
+### Demand Gen Campaign Performance
+Demand Gen campaigns rolled up by campaign — includes view-through conversions which are significant for this channel.
+```sql
+SELECT
+  campaign.name,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions,
+  metrics.conversions_value,
+  metrics.view_through_conversions
+FROM campaign
+WHERE campaign.advertising_channel_type = 'DEMAND_GEN'
+ORDER BY metrics.cost_micros DESC
+```
+
+**Notes:**
+- `DEMAND_GEN` replaced Discovery campaigns in 2024
+- `view_through_conversions` is particularly significant for Demand Gen — document the attribution window before reporting
+- Cross-reference with [[demand-gen]]
+
+## Video Performance
+
+### Video Campaign Performance
+Video campaign performance including view rate and cost-per-view metrics.
+```sql
+SELECT
+  campaign.name,
+  campaign.video_brand_safety_suitability,
+  metrics.impressions,
+  metrics.video_views,
+  metrics.video_view_rate,
+  metrics.cost_per_view,
+  metrics.clicks,
+  metrics.conversions
+FROM campaign
+WHERE campaign.advertising_channel_type = 'VIDEO'
+ORDER BY metrics.cost_micros DESC
+```
+
+**Notes:**
+- `video_view_rate` = views / impressions
+- A "view" is defined as 30 seconds watched (or full video if < 30s) for skippable in-stream ads
+- `cost_per_view` is only populated for CPV (cost-per-view) bidding campaigns
+- Cross-reference with [[video-campaigns]] and Area 18 in [[audit-checklist]]
+
+## Cross-Channel Queries
+
+> [!warning] MCP boundary — Auction Insights
+> Auction Insights competitor domain breakdown (impression share by competitor) is UI-only and cannot be retrieved via GAQL or MCP. The query below returns your own impression share position only.
+
+### Auction Insights (Impression Share — Limited GAQL Support)
+Impression share and lost IS breakdown for Search campaigns — your side of Auction Insights only.
+```sql
+SELECT
+  campaign.name,
+  metrics.search_impression_share,
+  metrics.search_top_impression_share,
+  metrics.search_absolute_top_impression_share,
+  metrics.search_budget_lost_impression_share,
+  metrics.search_rank_lost_impression_share
+FROM campaign
+WHERE campaign.advertising_channel_type = 'SEARCH'
+ORDER BY metrics.search_impression_share ASC
+```
+
+**Notes:**
+- Competitor domain breakdown (the most useful part of Auction Insights) is UI-only — this query gives your impression share position only
+- Use the Google Ads UI for the competitive overlay view
+- Cross-reference [[mcp-capabilities]] Section 3 for the full MCP boundary on competitive data
+
+### Conversion Action Breakdown
+Audit all active conversion actions — names, types, attribution models, counting methods, and volume.
+```sql
+SELECT
+  conversion_action.name,
+  conversion_action.status,
+  conversion_action.type,
+  conversion_action.category,
+  conversion_action.attribution_model_settings.attribution_model,
+  conversion_action.value_settings.default_value,
+  conversion_action.counting_type,
+  metrics.conversions,
+  metrics.conversions_value,
+  metrics.cost_per_conversion
+FROM conversion_action
+WHERE conversion_action.status = 'ENABLED'
+ORDER BY metrics.conversions DESC
+```
+
+**Notes:**
+- Use to audit which conversion actions are active and verify their attribution models
+- The `all_conversions` vs `conversions` difference is explained by primary vs secondary actions — `counting_type = 'ONE_PER_CLICK'` vs `'MANY_PER_CLICK'`
+- Cross-reference with [[conversion-actions]] and Area 5 in [[audit-checklist]]
+
+### Asset Performance
+RSA asset-level performance labels — identify BEST and LOW assets for copy iteration.
+```sql
+SELECT
+  ad_group_ad_asset_view.asset,
+  ad_group_ad_asset_view.field_type,
+  ad_group_ad_asset_view.performance_label,
+  ad_group_ad.ad.name,
+  campaign.name
+FROM ad_group_ad_asset_view
+WHERE ad_group_ad_asset_view.performance_label != 'UNRATED'
+ORDER BY ad_group_ad_asset_view.performance_label DESC
+```
+
+**Notes:**
+- `performance_label` values: `BEST`, `GOOD`, `LOW`, `LEARNING`, `PENDING`
+- `field_type` identifies the asset slot: `HEADLINE`, `DESCRIPTION`, `SITELINK`, etc.
+- Use to identify `LOW`-performing RSA assets for replacement
+- An asset requires at least 1,000 impressions to receive a label

@@ -185,6 +185,7 @@ Create a plan for the cleaned-up account:
    - `/ad-platform-campaign-manager:campaign-setup` — for restructured campaigns
    - `/ad-platform-campaign-manager:keyword-strategy` — for keyword cleanup
    - `/ad-platform-campaign-manager:budget-optimizer` — for budget reallocation
+   - `/ad-platform-campaign-manager:campaign-review` — validate the cleaned-up account against all 21 audit areas
 
 ## Output Format
 

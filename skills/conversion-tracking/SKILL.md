@@ -183,6 +183,42 @@ After setting up or troubleshooting, produce a summary:
 - **Consent mode** interaction with conversion tracking
 - **Server-side advantages** for ad blocker resilience and data control
 
+## Consent Mode
+
+Consent Mode v2 is mandatory for EEA users since March 2024. Non-compliance silently drops conversion reporting for EU traffic.
+
+> [!info] Reference
+> Load [[reference/platforms/google-ads/consent-mode-v2|consent-mode-v2]] for full implementation guidance, Advanced vs Basic mode, and CMP requirements.
+
+### Diagnostic Questions
+
+Ask Jerry to confirm:
+1. Is Consent Mode v2 implemented (Advanced or Basic)?
+2. Is a Google-certified CMP with TCF v2.2 in use?
+3. Is the default state set *before* the CMP fires (Consent Initialization trigger)?
+4. Are all four signals mapped: `ad_storage`, `analytics_storage`, `ad_user_data`, `ad_personalization`?
+5. For sGTM: is consent state being forwarded to the server-side container?
+
+### Implementation Checklist
+
+- [ ] Default consent state set in GTM Consent Initialization trigger (before CMP fires)
+- [ ] CMP fires on all pages with TCF v2.2 support
+- [ ] All 4 signals mapped in CMP → GTM signal mapping
+- [ ] `ad_user_data` GRANTED required for Enhanced Conversions to function
+- [ ] sGTM receiving consent state (if server-side setup)
+- [ ] Denial flow tested (cookies absent when all denied)
+- [ ] Advanced mode confirmed (not Basic) — required for behavioral modeling
+
+### Testing Protocol
+
+1. **Google Tag Assistant** → check consent state pre/post CMP
+2. **GTM Preview mode** → Consent Status tab
+3. **Google Ads Diagnostics** → Tools → Diagnostics → Consent Mode status
+4. **DevTools Network tab** → verify cookieless pings fire on consent denial (Advanced mode)
+
+> [!warning] MCP boundary
+> Consent mode state is NOT visible in the Google Ads API. MCP cannot verify implementation. Verification requires Google Tag Assistant, CMP dashboard, or browser DevTools. The only API-visible signal is performance degradation when consent rates are low. See [[reference/mcp/mcp-capabilities|mcp-capabilities]] Section 4.
+
 ## What to Do Next
 
 Based on the tracking work completed, recommend the next skill:

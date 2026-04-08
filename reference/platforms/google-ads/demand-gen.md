@@ -149,7 +149,7 @@ This means you can run a Demand Gen campaign that only targets YouTube Shorts + 
 |---------|-----|
 | Low-quality creative | Use lifestyle imagery, test video, refresh every 4-6 weeks |
 | Too narrow audience | Start broader (lookalike + optimized targeting), narrow later |
-| Judging too early | Allow 2-3 week learning period before making changes |
+| Judging too early | Allow 2-3 week learning period before making disruptive changes — see [[learning-phase]] for what's safe vs. disruptive |
 | Budget too low | Minimum 10-15x target CPA daily — below this, Google can't optimize |
 | Mixing prospecting + remarketing | Separate into distinct campaigns for budget control |
 | No customer list exclusions | Upload converters as exclusion list to avoid waste |

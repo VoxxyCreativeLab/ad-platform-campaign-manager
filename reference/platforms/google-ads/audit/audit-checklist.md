@@ -230,7 +230,7 @@ tags:
 - [ ] Campaign objective aligned with actual goal (mid-funnel engagement vs conversion)
 - [ ] Channel controls configured at ad group level (YouTube, GDN, Discover, Gmail selected intentionally)
 - [ ] Budget at minimum 10-15x target CPA daily (Google recommendation for optimization)
-- [ ] Learning period respected (2-3 weeks before judging performance or making changes)
+- [ ] Learning period respected (2-3 weeks before judging performance or making disruptive changes — see [[learning-phase]])
 
 ### Creative
 - [ ] Lifestyle imagery used (no corporate stock photos, heavy text overlays, or staged scenes)

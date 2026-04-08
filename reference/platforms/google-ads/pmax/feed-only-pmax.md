@@ -88,9 +88,16 @@ Immediately after creating the campaign, go into Google Ads and disable:
 
 ### Post-Launch
 
+#### Pre-Learning Setup (do immediately after enabling)
+
 12. **Brand exclusions:** Add brand terms to prevent cannibalizing brand Search campaigns
 13. **Negative keywords:** Up to 10,000 per campaign + shared lists. Apply to Search and Shopping inventory.
-14. **Monitoring:** Allow 2-4 weeks learning period before making changes
+
+> [!tip] These are safe during learning — they do not reset the learning period. See [[learning-phase]].
+
+#### Learning Period
+
+14. **Monitoring:** Allow 2-4 weeks learning period before making disruptive changes (bid strategy switches, target changes, budget changes >20%). See [[learning-phase]] for the full safe vs. disruptive list.
 15. **Channel reporting:** Use channel-level reporting (available since Aug 2025, API v23 Jan 2026) to verify Shopping holds **60-80% of spend** — this is the healthy benchmark
 16. **Iteration:** Add creative assets incrementally — text first, then images, then video
 
@@ -263,7 +270,7 @@ Use channel-level reporting to monitor where feed-only PMax actually spends. Ava
 3. **Add audience signals** and optional text assets
 4. **Pause old Shopping campaigns** for the product segments that overlap with new PMax
 5. **Enable new PMax campaigns**
-6. **Monitor 2-4 weeks** — this is the learning period. Do NOT make changes.
+6. **Monitor 2-4 weeks** — this is the learning period. Avoid disruptive changes (bid strategy switches, target changes, budget >20%). See [[learning-phase]] for what's safe.
 7. **After stabilization:** Pause remaining old campaigns. Adjust ROAS/CPA targets based on 4-week data.
 
 ### Rollback Plan

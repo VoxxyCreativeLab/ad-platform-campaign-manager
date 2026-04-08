@@ -7,6 +7,99 @@ tags:
 
 # Changelog
 
+## [1.17.0] — 2026-04-08
+
+Creates the authoritative Consent Mode v2 reference and adds a comprehensive Consent Mode section to the conversion-tracking skill. Critical for EU clients (NL/SE) — non-compliance silently drops conversion reporting for EEA users since March 2024.
+
+### Added
+- **`reference/platforms/google-ads/consent-mode-v2.md`** — 13 sections: v1 vs v2 comparison, four consent signals with denied-state behavior, Advanced vs Basic mode (cookieless pings, 5-30% behavioral modeling), CMP requirements (TCF v2.2, Google-certified CMPs), EEA enforcement timeline (March 2024), Smart Bidding impact (consent rate thresholds), GTM/sGTM implementation (default state timing, sGTM forwarding approaches, Enhanced Conversions interaction), verification steps, common mistakes table, MCP boundary warning.
+
+### Changed
+- **`skills/conversion-tracking/SKILL.md`** — New `## Consent Mode` section: 5 diagnostic questions, 7-item implementation checklist, 4-step testing protocol, MCP boundary callout (consent state not in Google Ads API).
+- **`reference/platforms/google-ads/CONTEXT.md`** — Core file count 18 → 19; `consent-mode-v2.md` added to "Which Skill Loads What" table (Used By: conversion-tracking).
+- **Root `CONTEXT.md`** — `consent-mode-v2.md` added to Load column for conversion tracking row.
+
+---
+
+## [1.16.0] — 2026-04-08
+
+Expands GAQL query coverage from 16 to 24 queries (PMax, Display, Demand Gen, Video, Auction Insights, Conversion Actions, Asset Performance) and wires 3 orphaned strategy reference files into the skills that use them.
+
+### Added
+- **8 new GAQL query sections** in `reference/reporting/gaql-query-templates.md`:
+  - `## PMax Performance` — PMax Campaign Performance (channel breakdown), PMax Asset Group Performance (`asset_group`, `asset_group_listing_group_filter`)
+  - `## Display Performance` — Display Placement Report (`group_placement_view`) with exclusion workflow
+  - `## Demand Gen Performance` — Demand Gen Campaign Performance (DEMAND_GEN channel filter)
+  - `## Video Performance` — Video Campaign Performance (video_view_rate, cost_per_view, CPV)
+  - `## Cross-Channel Queries` — Auction Insights (with `[!warning]` MCP boundary noting UI-only limitation), Conversion Action Breakdown (`conversion_action` resource), Asset Performance (`ad_group_ad_asset_view` with performance_label)
+
+### Changed
+- **`skills/budget-optimizer/SKILL.md`** — Added `seasonal-planning.md` and `bid-adjustment-framework.md` to Reference Material. Added `[!tip] Seasonality` and `[!tip] Bid Adjustments` callouts in the Budget Forecasting section.
+- **`skills/keyword-strategy/SKILL.md`** — Added `remarketing-strategies.md` to Reference Material. Added new "### 7. Existing Account: Search Term Analysis Workflow" section (search term mining → winner promotion → negative extraction → RLSA via `remarketing-strategies`). Renumbered old section 7 → 8.
+- **`skills/campaign-cleanup/SKILL.md`** — Added `/ad-platform-campaign-manager:campaign-review` to step 9 next-skills routing (closes the cleanup → validate loop).
+- **`skills/CONTEXT.md`** — Updated dependency maps: keyword-strategy (+ remarketing-strategies), budget-optimizer (+ seasonal-planning, bid-adjustment-framework), campaign-cleanup inter-skill (+ campaign-review).
+- **`reference/platforms/google-ads/CONTEXT.md`** — Updated Used By: bid-adjustment-framework (+ budget-optimizer), remarketing-strategies (+ keyword-strategy). seasonal-planning already had budget-optimizer.
+
+---
+
+## [1.15.0] — 2026-04-08
+
+Fills two major backlog gaps: a unified post-launch playbook consolidating Day 0 through Week 8 guidance, and Shopping product performance GAQL queries + live-report integration.
+
+### Added
+- **`reference/platforms/google-ads/strategy/post-launch-playbook.md`** — Day 0 through Weeks 5-8 playbook: launch day checklist, Day 1/2/7/14/21/30 milestones, Smart Bidding upgrade decision gates (15/30/50 conversion thresholds), per-type day checks (Search/Shopping/PMax/Demand Gen/Display), MCP boundary table per task.
+- **Shopping Product Performance** section in `reference/reporting/gaql-query-templates.md` — 4 queries: top products by revenue, zombie products (spend with zero conversions), product category roll-up, high-impression low-CTR products (feed optimization candidates). All use `shopping_performance_view`.
+- **Shopping Product Performance** template in `skills/live-report/references/report-templates.md` — GAQL tool sequence, output template with zombie/top-performer tables, MCP boundary note (feed health = MC only).
+- **Shopping Product Performance** added to `skills/live-report/SKILL.md` Available Reports table.
+
+### Changed
+- **`reference/platforms/google-ads/CONTEXT.md`** — strategy files 11 → 12, total 38 → 39. `post-launch-playbook.md` added to "Which Skill Loads What" table.
+- **Root `CONTEXT.md`** — new routing row for "Post-launch monitoring" with playbook + learning-phase + mcp-capabilities Load.
+
+---
+
+## [1.14.0] — 2026-04-08
+
+Creates the MCP capability boundary document — the authoritative reference for what data is available via the custom MCP server vs. what requires manual verification. Fixes 4 wrong tool names in the settings template.
+
+### Added
+- **`reference/mcp/mcp-capabilities.md`** — 6 sections: tool inventory (25 tools by category), GAQL queryable resources (21), what MCP cannot do (12 blocked operations), data outside the API boundary (10 external systems with access paths), data flow map (ASCII diagram), per-skill MCP usage summary (17 skills/agents).
+
+### Fixed
+- **`reference/mcp/claude-settings-template.md`** — 4 wrong tool names corrected for the voxxy custom server:
+  - `run_gaql_query` → `run_gaql`
+  - `get_account_summary` → `get_account_metrics`
+  - `list_budgets` removed (tool doesn't exist)
+  - `unlock_write_session` → `unlock_writes`
+  - Added missing `get_campaign`
+
+### Changed
+- **`reference/mcp/CONTEXT.md`** — file count 3 → 4; `mcp-capabilities.md` added as the first entry with "Load first for any MCP-using skill" note; Used By expanded to all MCP-consuming skills.
+- **Root `CONTEXT.md`** — `mcp-capabilities.md` added to Load column for: Live reports, Campaign audit, PMax work, Conversion tracking, Budget / bids.
+- **`CLAUDE.md`** — new Permanent Rule: "MCP boundary awareness — load [[mcp-capabilities]] before using MCP tools to confirm API vs. manual boundary."
+
+---
+
+## [1.13.0] — 2026-04-08
+
+Resolves 3 active contradictions in Smart Bidding learning phase guidance discovered during real-world Vaxteronline client work. Creates single authoritative reference for safe vs. disruptive changes, per-type learning durations, and post-learning checklist. Wires into all relevant routing tables.
+
+### Added
+- **`reference/platforms/google-ads/learning-phase.md`** — new authoritative reference: safe vs. disruptive changes tables, per-type learning durations (Search 7–14d, PMax 14–28d, Demand Gen 14–21d, Display/Video/Shopping 7–14d), technical explanation of what "resets learning" means, how to check learning status in UI, post-learning checklist.
+
+### Fixed
+- **`bidding-strategies.md`** — Two contradictory "no changes" statements replaced with precise safe/disruptive distinction + `[[learning-phase]]` wikilinks (Learning Period section + Learning Period Tactics).
+- **`pmax/feed-only-pmax.md`** — Post-Launch section restructured: brand exclusions + negative keywords moved under "Pre-Learning Setup" heading with explicit safety note; step 14 clarified to specify disruptive changes only. Migration step 6 updated similarly. Added `[[learning-phase]]` wikilinks.
+- **`audit/common-mistakes.md`** — Mistake #20 expanded from vague "making changes resets it" to specific disruptive change list + safety note for negatives/ad copy + `[[learning-phase]]` wikilink.
+- **`demand-gen.md`** — "Judging too early" common mistake updated with disruptive/safe distinction + `[[learning-phase]]` wikilink.
+- **`audit/audit-checklist.md`** — Demand Gen learning period audit check updated with "disruptive changes" qualifier + `[[learning-phase]]` wikilink.
+
+### Changed
+- **`reference/platforms/google-ads/CONTEXT.md`** — Core file count 17 → 18, total 37 → 38. `learning-phase.md` added to "Which Skill Loads What" table.
+- **Root `CONTEXT.md`** — `learning-phase.md` added to Load column for: Campaign audit, PMax work, Feed-only PMax / Shopping restructure, Budget / bids, Full campaign audit (agent).
+
+---
+
 ## [1.12.0] — 2026-04-06
 
 All Priority 3 audit gaps from audit-gap-analysis.md implemented: Video/YouTube, Cross-Campaign Cannibalization, Attribution Depth, and Account-Level Strengthening. Adds 27 new checklist items, 4 new campaign-review areas (18-21), 3 new GAQL verification sections (Video, Attribution, Change History), a Video/YouTube triage block in campaign-cleanup, and 4 inline sections in the campaign-reviewer agent.

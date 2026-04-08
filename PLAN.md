@@ -193,17 +193,17 @@ Planned 2026-04-08. Full plan at `C:\Users\VCL1\.claude\plans\staged-tumbling-pi
 
 | Release | Name | Size | Status | Key Deliverable |
 |---------|------|------|--------|-----------------|
-| v1.13.0 | Learning Phase Authority | M | ⬜ Open | `learning-phase.md` + 3 contradiction fixes |
-| v1.14.0 | MCP Capability Map | M | ⬜ Open | `mcp-capabilities.md` + settings template fix |
-| v1.15.0 | Shopping Queries + Post-Launch Playbook | L | ⬜ Open | `post-launch-playbook.md` + Shopping GAQL |
+| v1.13.0 | Learning Phase Authority | M | ✅ Done (2026-04-08) | `learning-phase.md` + 3 contradiction fixes + 2 ambiguity fixes |
+| v1.14.0 | MCP Capability Map | M | ✅ Done (2026-04-08) | `mcp-capabilities.md` + settings template fix |
+| v1.15.0 | Shopping Queries + Post-Launch Playbook | L | ✅ Done (2026-04-08) | `post-launch-playbook.md` + Shopping GAQL |
 | v1.16.0 | GAQL Expansion + Orphaned File Wiring | M | ⬜ Open | 8 new GAQL sections + 3 orphaned files wired |
 | v1.17.0 | Consent Mode v2 | M | ⬜ Open | `consent-mode-v2.md` + conversion-tracking section |
 | v1.18.0 | Post-Launch Monitor Skill | L | ⬜ Open | New skill + live-report expansion (9 report types) |
 | v1.19.0 | Display, Brand Restrictions, NCA | M | ⬜ Open | `display-campaigns.md` + brand restrictions + NCA |
 
-**Dependency order:** v1.13 → v1.14 → v1.15 → (v1.16 + v1.18 in parallel) → v1.19. v1.17 independent.
+**Dependency order:** v1.14 → v1.15 → (v1.16 + v1.18 in parallel) → v1.19. v1.17 independent.
 
-**Start with:** worktree setup → v1.13.0 Step 1 (create learning-phase.md)
+**Next:** v1.16.0 Step 1 (add GAQL sections to gaql-query-templates.md)
 
 ### Remaining housekeeping
 1. **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01)

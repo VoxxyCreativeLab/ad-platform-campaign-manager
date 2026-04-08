@@ -17,6 +17,7 @@ If `$ARGUMENTS` provides a business description, use it as the starting point. O
 - **Negative keyword lists:** [[../../reference/platforms/google-ads/audit/negative-keyword-lists|negative-keyword-lists.md]]
 - **Account structure (for ad group theming):** [[../../reference/platforms/google-ads/account-structure|account-structure.md]]
 - **Account profiles (maturity and competition level):** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
+- **Remarketing strategies (RLSA, audience targeting):** [[../../reference/platforms/google-ads/strategy/remarketing-strategies|remarketing-strategies.md]]
 
 ## Process
 
@@ -110,7 +111,24 @@ Exact   | [free]
 | Multiple locations with different languages | Create separate ad groups (or campaigns) per language; don't mix languages in one ad group |
 | Client already has a keyword list | Audit existing list first — check for conflicts, missing negatives, and match type alignment before generating new keywords |
 
-### 7. Expansion Recommendations
+### 7. Existing Account: Search Term Analysis Workflow
+
+> [!note] Mine before brainstorm
+> For accounts with conversion history, always mine existing search terms before brainstorming new keywords. Real search queries are better signal than hypothetical lists.
+
+**When to use:** Account has ≥ 30 days of search term data.
+
+**Steps:**
+1. **Pull search term report** (MCP: `run_gaql` with `search_term_view` — see [[reference/reporting/gaql-query-templates|gaql-query-templates]] Search Terms section)
+2. **Identify winners** — high CTR + conversions → promote to exact match keywords
+3. **Identify wasted spend** — spend > $X with zero conversions → add as negatives
+4. **Identify discovery gaps** — impressions but low CTR → ad copy or landing page issue, not keyword issue
+5. **RLSA opportunities** — high-converting search terms + remarketing lists → bid up for past visitors. See [[reference/platforms/google-ads/strategy/remarketing-strategies|remarketing-strategies]] for RLSA setup.
+6. **Expand from winners** — use confirmed winners to brainstorm related terms (then apply Section 3 of this skill)
+
+**Output:** Updated negative keyword list + RLSA candidate keywords + promoted exact match additions
+
+### 8. Expansion Recommendations
 
 Suggest additional keyword opportunities:
 - Long-tail variations to explore

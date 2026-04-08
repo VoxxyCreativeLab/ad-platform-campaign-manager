@@ -20,6 +20,7 @@ Jerry is a tracking specialist, not a campaign specialist. He knows GTM containe
 - **Load reference docs selectively.** Skills pull specific files from `reference/` — never dump the entire tree into context. See `CONTEXT.md` for the routing table.
 - **tracking-bridge/ is the differentiator.** It documents the full GTM → sGTM → BigQuery → Google Ads conversion pipeline. No generic campaign plugin has this. Prioritize it.
 - **Reference files are stable.** Never overwrite `reference/` content during normal skill execution.
+- **MCP boundary awareness.** Before using MCP tools in any skill, load [[reference/mcp/mcp-capabilities|mcp-capabilities]] to confirm what data is available via API vs. what requires manual verification.
 - **Report output in MWP projects.** When inside an MWP client project, all report-producing skills and agents write output to `reports/{YYYY-MM-DD}/{stage}/`. See [[_config/conventions#Report File-Writing Convention]] for the 6-step write sequence and [[_config/conventions#Output Completeness Convention]] for the no-truncation rule.
 - **Rewrite PRIMER.md before session ends.** When the user says "wrap up", "session end", "that's it", or signals they're done — rewrite `PRIMER.md` with current state before they clear.
 

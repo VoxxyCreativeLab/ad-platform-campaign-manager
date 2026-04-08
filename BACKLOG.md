@@ -124,18 +124,14 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 
 ## Status
 
-| # | Item | Category | Priority | Status |
-|---|------|----------|----------|--------|
-| 1 | bidding-strategies.md contradiction | Contradiction | High | ⬜ Open |
-| 2 | feed-only-pmax.md steps 12-14 | Contradiction | High | ⬜ Open |
-| 3 | common-mistakes.md #20 too vague | Contradiction | Medium | ⬜ Open |
-| 4 | learning-phase.md reference | Gap | High | ⬜ Open |
-| 5 | shopping_performance_view queries | Gap | High | ⬜ Open |
-| 6 | Post-launch playbook | Gap | High | ⬜ Open |
-| 7 | Learning duration table | Gap | Medium | ⬜ Open |
-| 8 | Automated post-launch checks | New Capability | Medium | ⬜ Design needed |
-| 9 | Product-level performance skill | New Capability | High | ⬜ Design needed |
-
----
-
-%% New items are appended below this line by /plugin-backlog %%
+| # | Item | Type | Priority | Status |
+|---|------|------|----------|--------|
+| 1 | bidding-strategies.md contradiction | Fix | High | ✅ Done (v1.13.0) |
+| 2 | feed-only-pmax.md steps 12-14 | Fix | High | ✅ Done (v1.13.0) |
+| 3 | common-mistakes.md #20 too vague | Fix | Medium | ✅ Done (v1.13.0) |
+| 4 | learning-phase.md reference | New file | High | ✅ Done (v1.13.0) |
+| 5 | shopping_performance_view queries | Gap fill | High | ⬜ Open |
+| 6 | Post-launch playbook | New file | High | ⬜ Open |
+| 7 | Learning duration table | Clarity | Medium | ✅ Done (v1.13.0) |
+| 8 | Automated post-launch checks | Future | Medium | ⬜ Design needed |
+| 9 | Product-level performance skill | Future | High | ⬜ Design needed |
