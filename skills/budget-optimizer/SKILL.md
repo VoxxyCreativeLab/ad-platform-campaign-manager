@@ -26,6 +26,8 @@ Consult the maturity stage table in account-profiles.md to determine viable stra
 - **Common mistakes:** [[../../reference/platforms/google-ads/audit/common-mistakes|common-mistakes.md]]
 - **Account profiles (budget tier and maturity):** [[../../reference/platforms/google-ads/strategy/account-profiles|account-profiles.md]]
 - **Maturity roadmap (bidding progression):** [[../../reference/platforms/google-ads/strategy/account-maturity-roadmap|account-maturity-roadmap.md]]
+- **Seasonal planning (spend multipliers, peak periods):** [[../../reference/platforms/google-ads/strategy/seasonal-planning|seasonal-planning.md]]
+- **Bid adjustment framework (device, geo, schedule, audience):** [[../../reference/platforms/google-ads/strategy/bid-adjustment-framework|bid-adjustment-framework.md]]
 
 ## Common Tasks
 
@@ -90,6 +92,12 @@ Help estimate required budget:
 2. Factor in: seasonality, competition, day-of-week patterns
 3. Add 15-20% buffer for testing and learning periods
 4. Account for ramp-up period (new campaigns need 2-4 weeks to optimize)
+
+> [!tip] Seasonality
+> For seasonal budget adjustments and holiday planning, load [[reference/platforms/google-ads/strategy/seasonal-planning|seasonal-planning]]. Contains spend multipliers by month, peak period ramp-up timelines, and post-peak wind-down pacing.
+
+> [!tip] Bid Adjustments
+> For device, geo, ad schedule, and audience bid modifier guidance, load [[reference/platforms/google-ads/strategy/bid-adjustment-framework|bid-adjustment-framework]]. Contains adjustment ranges, interaction rules, and common mistakes.
 
 ### Shared Budget Strategy
 - **Use shared budgets** when campaigns have similar goals and performance

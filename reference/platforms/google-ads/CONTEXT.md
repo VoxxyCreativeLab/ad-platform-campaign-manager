@@ -43,8 +43,8 @@ tags:
 | `strategy/account-maturity-roadmap.md` | account-strategy, budget-optimizer |
 | `strategy/post-launch-playbook.md` | campaign-setup, pmax-guide, budget-optimizer, live-report |
 | `strategy/vertical-*.md` | account-strategy |
-| `strategy/bid-adjustment-framework.md` | account-strategy, campaign-review, campaign-reviewer agent |
-| `strategy/remarketing-strategies.md` | account-strategy, campaign-setup, campaign-review, campaign-reviewer agent |
+| `strategy/bid-adjustment-framework.md` | account-strategy, campaign-review, campaign-reviewer agent, budget-optimizer |
+| `strategy/remarketing-strategies.md` | account-strategy, campaign-setup, campaign-review, campaign-reviewer agent, keyword-strategy |
 | `strategy/seasonal-planning.md` | account-strategy, budget-optimizer |
 | `strategy/targeting-framework.md` | account-strategy, campaign-setup |
 | `strategy/attribution-guide.md` | account-strategy, conversion-tracking |

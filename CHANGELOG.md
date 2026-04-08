@@ -7,6 +7,27 @@ tags:
 
 # Changelog
 
+## [1.16.0] — 2026-04-08
+
+Expands GAQL query coverage from 16 to 24 queries (PMax, Display, Demand Gen, Video, Auction Insights, Conversion Actions, Asset Performance) and wires 3 orphaned strategy reference files into the skills that use them.
+
+### Added
+- **8 new GAQL query sections** in `reference/reporting/gaql-query-templates.md`:
+  - `## PMax Performance` — PMax Campaign Performance (channel breakdown), PMax Asset Group Performance (`asset_group`, `asset_group_listing_group_filter`)
+  - `## Display Performance` — Display Placement Report (`group_placement_view`) with exclusion workflow
+  - `## Demand Gen Performance` — Demand Gen Campaign Performance (DEMAND_GEN channel filter)
+  - `## Video Performance` — Video Campaign Performance (video_view_rate, cost_per_view, CPV)
+  - `## Cross-Channel Queries` — Auction Insights (with `[!warning]` MCP boundary noting UI-only limitation), Conversion Action Breakdown (`conversion_action` resource), Asset Performance (`ad_group_ad_asset_view` with performance_label)
+
+### Changed
+- **`skills/budget-optimizer/SKILL.md`** — Added `seasonal-planning.md` and `bid-adjustment-framework.md` to Reference Material. Added `[!tip] Seasonality` and `[!tip] Bid Adjustments` callouts in the Budget Forecasting section.
+- **`skills/keyword-strategy/SKILL.md`** — Added `remarketing-strategies.md` to Reference Material. Added new "### 7. Existing Account: Search Term Analysis Workflow" section (search term mining → winner promotion → negative extraction → RLSA via `remarketing-strategies`). Renumbered old section 7 → 8.
+- **`skills/campaign-cleanup/SKILL.md`** — Added `/ad-platform-campaign-manager:campaign-review` to step 9 next-skills routing (closes the cleanup → validate loop).
+- **`skills/CONTEXT.md`** — Updated dependency maps: keyword-strategy (+ remarketing-strategies), budget-optimizer (+ seasonal-planning, bid-adjustment-framework), campaign-cleanup inter-skill (+ campaign-review).
+- **`reference/platforms/google-ads/CONTEXT.md`** — Updated Used By: bid-adjustment-framework (+ budget-optimizer), remarketing-strategies (+ keyword-strategy). seasonal-planning already had budget-optimizer.
+
+---
+
 ## [1.15.0] — 2026-04-08
 
 Fills two major backlog gaps: a unified post-launch playbook consolidating Day 0 through Week 8 guidance, and Shopping product performance GAQL queries + live-report integration.
