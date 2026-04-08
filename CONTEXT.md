@@ -29,6 +29,7 @@ tags:
 | Strategy validation (agent) | `agents/strategy-advisor.md` | `reference/platforms/google-ads/strategy/*`, `campaign-types.md`, `bidding-strategies.md`, `shopping-feed-strategy.md`, `ad-testing-framework.md` | Scripts, mcp config, tracking-bridge |
 | Tracking audit (agent) | `agents/tracking-auditor.md` | `reference/tracking-bridge/*`, `reference/platforms/google-ads/conversion-actions.md`, `enhanced-conversions.md` | Reporting, scripts, mcp |
 | Report output conventions | `_config/conventions.md` | Sections: Output Completeness Convention, Report File-Writing Convention | — |
+| File a plugin issue / check backlog | `BACKLOG.md` | `/project-structure-and-scaffolding-plugin:plugin-backlog` | — |
 
 ## Shared Resources
 
