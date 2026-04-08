@@ -82,6 +82,7 @@ ad-platform-campaign-manager/
 | Build a reporting pipeline | `/ad-platform-campaign-manager:reporting-pipeline` |
 | Audit a campaign | `/ad-platform-campaign-manager:campaign-review` |
 | Work with PMax | `/ad-platform-campaign-manager:pmax-guide` |
+| Monitor a launched campaign | `/ad-platform-campaign-manager:post-launch-monitor` |
 | Optimize budget/bids | `/ad-platform-campaign-manager:budget-optimizer` |
 | Browse Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` |
 | Write ad copy in any language | `/ad-platform-campaign-manager:ad-copy` |

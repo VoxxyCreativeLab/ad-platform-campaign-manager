@@ -11,7 +11,7 @@ tags:
 
 # Skills — Context
 
-13 invocable skills, each in its own folder with a `SKILL.md` file. 11 are profile-aware (ask account profiling questions). Phase 1 (11 skills) requires no API. Phase 2 (2 skills) requires MCP connection.
+14 invocable skills, each in its own folder with a `SKILL.md` file. 11 are profile-aware (ask account profiling questions). Phase 1 (11 skills) requires no API. Phase 2 (3 skills) requires MCP connection.
 
 ## Conventions
 
@@ -50,7 +50,10 @@ connect-mcp ─────────→ mcp/*
 ad-copy ─────────────→ ad-copy-framework, ad-testing-framework, ad-extensions,
                        pmax/asset-requirements, shopping-feed-strategy,
                        strategy/account-profiles
-live-report ──────��──→ reporting/gaql-query-templates, gaql-reference
+live-report ─────────→ reporting/gaql-query-templates, gaql-reference
+post-launch-monitor ─→ learning-phase, strategy/post-launch-playbook,
+                       bidding-strategies, strategy/account-maturity-roadmap,
+                       mcp/mcp-capabilities
 ```
 
 ## Inter-Skill References
@@ -58,7 +61,7 @@ live-report ──────��──→ reporting/gaql-query-templates, ga
 Skills may recommend other skills to the user:
 
 - `account-strategy` → routes to `campaign-setup`, `keyword-strategy`, `conversion-tracking`, `campaign-cleanup`, `budget-optimizer`, `pmax-guide`, `reporting-pipeline`, `campaign-review` based on profile gaps
-- `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `ad-copy`
+- `campaign-setup` → recommends `keyword-strategy`, `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `ad-copy`, `post-launch-monitor` (monitoring after launch)
 - `campaign-review` → recommends `conversion-tracking`, `budget-optimizer`, `campaign-cleanup`, `pmax-guide`, `keyword-strategy`, `account-strategy`
 - `campaign-cleanup` → recommends `conversion-tracking`, `campaign-setup`, `keyword-strategy`, `budget-optimizer`, `campaign-review`
 - `conversion-tracking` → recommends `campaign-setup`, `campaign-review`, `budget-optimizer`, `reporting-pipeline`, `account-strategy`

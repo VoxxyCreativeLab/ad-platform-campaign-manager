@@ -7,6 +7,23 @@ tags:
 
 # Changelog
 
+## [1.18.0] — 2026-04-08
+
+Closes the biggest workflow gap: the plugin now covers strategy → plan → build → launch → **monitor**. Adds a phase-aware post-launch monitoring skill and expands live-report to 10 report types.
+
+### Added
+- **`skills/post-launch-monitor/SKILL.md`** — Phase-aware monitoring: Day 1-2 (launch verification), Days 3-7 (first search terms, learning status), Days 8-14 (mid-learning assessment), Days 15-30 (post-learning optimization), Month 2+ (expansion). Per-phase MCP tool sequences, explicit MCP-executable vs manual action split, learning phase safety gate referencing [[learning-phase]], routing table to next skills. Report Output: `05-optimize`.
+
+### Changed
+- **`skills/live-report/SKILL.md`** — 3 new report types added (10 total): Audience Performance (`ad_group_audience_view`), PMax Asset Group Performance (`asset_group`), Conversion Action Breakdown (`conversion_action`).
+- **`skills/live-report/references/report-templates.md`** — GAQL queries + output templates for all 3 new report types, each with MCP boundary notes.
+- **`skills/campaign-setup/SKILL.md`** — Added `post-launch-monitor` to "What to Do Next" routing.
+- **`skills/CONTEXT.md`** — Skill count 13 → 14. `post-launch-monitor` added to dependency map + inter-skill references.
+- **`CLAUDE.md`** — "Monitor a launched campaign" added to Quick Navigation table.
+- **Root `CONTEXT.md`** — Post-launch monitoring row updated to point to `post-launch-monitor` skill.
+
+---
+
 ## [1.17.0] — 2026-04-08
 
 Creates the authoritative Consent Mode v2 reference and adds a comprehensive Consent Mode section to the conversion-tracking skill. Critical for EU clients (NL/SE) — non-compliance silently drops conversion reporting for EEA users since March 2024.

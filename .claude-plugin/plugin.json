@@ -1,6 +1,6 @@
 {
   "name": "ad-platform-campaign-manager",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "description": "Ad platform campaign management toolkit — guided campaign setup, keyword strategy, conversion tracking, reporting pipelines, optimization, Google Ads Scripts, and strategy validation. Built for tracking specialists managing client accounts.",
   "author": {
     "name": "Voxxy Creative Lab",

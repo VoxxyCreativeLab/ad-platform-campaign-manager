@@ -34,6 +34,9 @@ If `$ARGUMENTS` specifies a report type, jump directly to it. Otherwise, ask wha
 | Ad Copy Performance | `list_ads`, `list_ad_groups` | RSA optimization |
 | Device & Geographic Breakdown | `run_gaql` (segments.device, geographic_view) | Bid adjustment decisions |
 | Shopping Product Performance | `run_gaql` (shopping_performance_view) | E-commerce: zombie products, top converters, feed issues |
+| Audience Performance | Ad group audience performance by list | audience-performance |
+| PMax Asset Group Performance | Asset group metrics + ad strength | pmax-asset-groups |
+| Conversion Action Breakdown | Per-conversion-action performance + attribution | conversion-breakdown |
 
 ### For each report:
 1. Consult [[references/report-templates|report-templates.md]] for the GAQL query and MCP tool sequence

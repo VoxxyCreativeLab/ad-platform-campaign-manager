@@ -256,3 +256,118 @@ ORDER BY metrics.conversions_value DESC LIMIT 50
 2. {{feed_action}} — review {{n}} low-CTR products in Merchant Center
 3. {{winner_action}} — consider increasing bids/budget on top converters
 ```
+
+---
+
+## Audience Performance
+
+> [!note] MCP boundary
+> Audience list definitions (membership rules, sources) are not available via the Google Ads API. Only performance data per audience. To see list composition, use Google Ads UI → Tools → Audience Manager.
+
+### MCP Tools
+1. `run_gaql` — `ad_group_audience_view`
+
+### GAQL Query
+
+```sql
+SELECT
+  ad_group.name,
+  campaign.name,
+  ad_group_criterion.user_list.user_list,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions,
+  metrics.conversion_value
+FROM ad_group_audience_view
+WHERE metrics.impressions > 0
+ORDER BY metrics.cost_micros DESC
+LIMIT 50
+```
+
+### Output Template
+
+```
+## Audience Performance — {{date_range}}
+
+| Audience List | Ad Group | Campaign | Impressions | Clicks | Cost | Conv | Conv Value |
+|---------------|----------|----------|-------------|--------|------|------|------------|
+| {{audience_list}} | {{ad_group}} | {{campaign}} | {{impressions}} | {{clicks}} | €{{cost}} | {{conversions}} | €{{conv_value}} |
+```
+
+---
+
+## PMax Asset Group Performance
+
+> [!note] MCP boundary
+> ad_strength values: EXCELLENT, GOOD, AVERAGE, POOR, PENDING, LOADING. Individual asset scores require `ad_group_ad_asset_view` on the campaign's child ad groups.
+
+### MCP Tools
+1. `run_gaql` — `asset_group`
+
+### GAQL Query
+
+```sql
+SELECT
+  asset_group.name,
+  asset_group.status,
+  asset_group.ad_strength,
+  campaign.name,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions,
+  metrics.conversion_value
+FROM asset_group
+WHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX'
+ORDER BY metrics.cost_micros DESC
+```
+
+### Output Template
+
+```
+## PMax Asset Group Performance — {{date_range}}
+
+| Asset Group | Status | Ad Strength | Campaign | Impressions | Clicks | Cost | Conv | Conv Value |
+|-------------|--------|-------------|----------|-------------|--------|------|------|------------|
+| {{asset_group}} | {{status}} | {{ad_strength}} | {{campaign}} | {{impressions}} | {{clicks}} | €{{cost}} | {{conversions}} | €{{conv_value}} |
+```
+
+---
+
+## Conversion Action Breakdown
+
+> [!note] MCP boundary
+> Modeled vs observed conversion split is NOT accessible via the Google Ads API. Check Google Ads UI → Tools → Conversions → Attribution for the breakdown.
+
+### MCP Tools
+1. `run_gaql` — `conversion_action`
+
+### GAQL Query
+
+```sql
+SELECT
+  conversion_action.name,
+  conversion_action.type,
+  conversion_action.category,
+  conversion_action.status,
+  conversion_action.attribution_model_settings.attribution_model,
+  conversion_action.value_settings.default_value,
+  conversion_action.counting_type,
+  metrics.conversions,
+  metrics.conversions_value,
+  metrics.cost_per_conversion
+FROM conversion_action
+WHERE conversion_action.status = 'ENABLED'
+ORDER BY metrics.conversions DESC
+```
+
+### Output Template
+
+```
+## Conversion Action Breakdown — {{date_range}}
+
+| Conversion Action | Type | Category | Attribution Model | Default Value | Counting | Conversions | Conv Value | Cost/Conv |
+|-------------------|------|----------|-------------------|---------------|----------|-------------|------------|-----------|
+| {{action_name}} | {{type}} | {{category}} | {{attribution_model}} | €{{default_value}} | {{counting_type}} | {{conversions}} | €{{conv_value}} | €{{cost_per_conv}} |
+```

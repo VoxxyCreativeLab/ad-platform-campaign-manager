@@ -168,6 +168,7 @@ Based on the campaign plan, route to the next skill:
 - **Budget needs detailed planning?** → `/ad-platform-campaign-manager:budget-optimizer`
 - **Inheriting a messy account?** → `/ad-platform-campaign-manager:campaign-cleanup`
 - **Need multilingual or character-counted ad copy?** → `/ad-platform-campaign-manager:ad-copy`
+- **Campaign launched** → `/ad-platform-campaign-manager:post-launch-monitor` — phase-aware Day 1 / Day 7 / Day 14 / Day 30 monitoring checks
 
 ---
 
