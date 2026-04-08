@@ -7,6 +7,28 @@ tags:
 
 # Changelog
 
+## [1.14.0] — 2026-04-08
+
+Creates the MCP capability boundary document — the authoritative reference for what data is available via the custom MCP server vs. what requires manual verification. Fixes 4 wrong tool names in the settings template.
+
+### Added
+- **`reference/mcp/mcp-capabilities.md`** — 6 sections: tool inventory (25 tools by category), GAQL queryable resources (21), what MCP cannot do (12 blocked operations), data outside the API boundary (10 external systems with access paths), data flow map (ASCII diagram), per-skill MCP usage summary (17 skills/agents).
+
+### Fixed
+- **`reference/mcp/claude-settings-template.md`** — 4 wrong tool names corrected for the voxxy custom server:
+  - `run_gaql_query` → `run_gaql`
+  - `get_account_summary` → `get_account_metrics`
+  - `list_budgets` removed (tool doesn't exist)
+  - `unlock_write_session` → `unlock_writes`
+  - Added missing `get_campaign`
+
+### Changed
+- **`reference/mcp/CONTEXT.md`** — file count 3 → 4; `mcp-capabilities.md` added as the first entry with "Load first for any MCP-using skill" note; Used By expanded to all MCP-consuming skills.
+- **Root `CONTEXT.md`** — `mcp-capabilities.md` added to Load column for: Live reports, Campaign audit, PMax work, Conversion tracking, Budget / bids.
+- **`CLAUDE.md`** — new Permanent Rule: "MCP boundary awareness — load [[mcp-capabilities]] before using MCP tools to confirm API vs. manual boundary."
+
+---
+
 ## [1.13.0] — 2026-04-08
 
 Resolves 3 active contradictions in Smart Bidding learning phase guidance discovered during real-world Vaxteronline client work. Creates single authoritative reference for safe vs. disruptive changes, per-type learning durations, and post-learning checklist. Wires into all relevant routing tables.
