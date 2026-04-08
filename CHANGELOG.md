@@ -7,6 +7,20 @@ tags:
 
 # Changelog
 
+## [1.17.0] — 2026-04-08
+
+Creates the authoritative Consent Mode v2 reference and adds a comprehensive Consent Mode section to the conversion-tracking skill. Critical for EU clients (NL/SE) — non-compliance silently drops conversion reporting for EEA users since March 2024.
+
+### Added
+- **`reference/platforms/google-ads/consent-mode-v2.md`** — 13 sections: v1 vs v2 comparison, four consent signals with denied-state behavior, Advanced vs Basic mode (cookieless pings, 5-30% behavioral modeling), CMP requirements (TCF v2.2, Google-certified CMPs), EEA enforcement timeline (March 2024), Smart Bidding impact (consent rate thresholds), GTM/sGTM implementation (default state timing, sGTM forwarding approaches, Enhanced Conversions interaction), verification steps, common mistakes table, MCP boundary warning.
+
+### Changed
+- **`skills/conversion-tracking/SKILL.md`** — New `## Consent Mode` section: 5 diagnostic questions, 7-item implementation checklist, 4-step testing protocol, MCP boundary callout (consent state not in Google Ads API).
+- **`reference/platforms/google-ads/CONTEXT.md`** — Core file count 18 → 19; `consent-mode-v2.md` added to "Which Skill Loads What" table (Used By: conversion-tracking).
+- **Root `CONTEXT.md`** — `consent-mode-v2.md` added to Load column for conversion tracking row.
+
+---
+
 ## [1.16.0] — 2026-04-08
 
 Expands GAQL query coverage from 16 to 24 queries (PMax, Display, Demand Gen, Video, Auction Insights, Conversion Actions, Asset Performance) and wires 3 orphaned strategy reference files into the skills that use them.
