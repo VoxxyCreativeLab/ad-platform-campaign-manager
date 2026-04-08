@@ -7,6 +7,18 @@ tags:
 
 # Changelog
 
+## [1.19.1] — 2026-04-08
+
+Bug fix: `post-launch-monitor` SKILL.md had broken frontmatter that prevented correct skill registration. Lesson captured.
+
+### Fixed
+- **`skills/post-launch-monitor/SKILL.md`** — Changed `skill:` to `name:` (correct field name), removed invalid `version:` and `tags:` fields (silently ignored by Claude Code), added `argument-hint: "[campaign-name or phase]"`. Skill appeared in the list via directory-name fallback but was not properly registered.
+
+### Changed
+- **`LESSONS.md`** — New entry: always copy SKILL.md frontmatter from an existing working skill in the same plugin; never generate from memory. Invalid fields (`skill:`, `version:`, `tags:`) are silently ignored, making the bug invisible until registration fails.
+
+---
+
 ## [1.19.0] — 2026-04-08
 
 Fills three content gaps: Display campaigns get a full reference doc (20 audit checks now have backing content), Brand Restrictions for Search are documented, and NCA goal coverage expanded to PMax and Search.

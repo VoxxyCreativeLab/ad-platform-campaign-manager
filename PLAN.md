@@ -8,8 +8,8 @@ tags:
 
 # Plan — Ad Platform Campaign Manager
 
-**Last updated:** 2026-04-06
-**Current milestone:** Priority 3 Audit Expansion v1.12.0 — ✅ Done
+**Last updated:** 2026-04-08
+**Current milestone:** post-launch-monitor frontmatter fix v1.19.1 — ✅ Done
 
 ---
 

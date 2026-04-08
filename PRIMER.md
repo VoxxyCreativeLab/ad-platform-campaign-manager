@@ -11,11 +11,18 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.19.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.19.1 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ---
 
 ## Last Completed
+
+### Session 2026-04-08 (v1.19.1): post-launch-monitor frontmatter fix
+
+- **`skills/post-launch-monitor/SKILL.md`** — Fixed broken frontmatter: changed `skill:` to `name:` (correct registered field), removed invalid `version:` and `tags:` fields (silently ignored by Claude Code), added `argument-hint: "[campaign-name or phase]"`. Skill was not registering correctly in prior state.
+- **`LESSONS.md`** — Added lesson: always copy frontmatter from an existing working skill; never generate from memory. Root cause: generating frontmatter from memory instead of a verified template.
+
+---
 
 ### Session 2026-04-08: Backlog Gap Fill — All 7 Releases Complete (v1.13–v1.19)
 
@@ -58,7 +65,7 @@ The full backlog gap fill plan (v1.13.0–v1.19.0) is now complete on `main`. Al
 
 ## Current State
 
-### Plugin (ad-platform-campaign-manager) — v1.19.0
+### Plugin (ad-platform-campaign-manager) — v1.19.1
 
 | Layer | Count | Notes |
 |-------|-------|-------|

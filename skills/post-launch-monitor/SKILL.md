@@ -1,13 +1,8 @@
 ---
-disable-model-invocation: false
-skill: post-launch-monitor
-version: "1.0.0"
+name: post-launch-monitor
 description: "Phase-aware post-launch campaign monitoring — Day 1 through Month 2+ MCP checks, learning phase safety, and next-action routing."
-tags:
-  - google-ads
-  - post-launch
-  - monitoring
-  - mcp
+argument-hint: "[campaign-name or phase]"
+disable-model-invocation: false
 ---
 
 # Post-Launch Monitor
