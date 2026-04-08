@@ -94,8 +94,8 @@ tags:
 **Fix:** Pass dynamic conversion values to Google Ads.
 
 ### 20. Ignoring the learning period
-**Problem:** Making changes during learning resets it, causing a cycle of poor performance.
-**Fix:** Wait for "Eligible" status before evaluating or making changes.
+**Problem:** Making disruptive changes during learning resets it, causing a cycle of poor performance. Disruptive changes include: bid strategy switches, target CPA/ROAS changes, budget changes >20%, conversion action changes, and major campaign restructuring.
+**Fix:** Wait for "Eligible" status before making structural changes. Note: adding negatives, updating ad copy, and adjusting assets are safe during learning and do not reset it. See [[learning-phase]] for the full list.
 
 ## Optimization & Monitoring
 

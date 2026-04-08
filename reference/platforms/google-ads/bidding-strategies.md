@@ -120,7 +120,7 @@ Portfolio bid strategies let you group multiple campaigns under a single shared 
 When you change a bid strategy, Google enters a "learning" period (typically 1-2 weeks):
 
 - Performance may fluctuate — this is normal
-- Don't make changes during learning (resets the clock)
+- Avoid disruptive changes during learning (resets the clock). Adding negatives, updating ad copy, and adjusting assets are safe. See [[learning-phase]] for the full safe vs. disruptive list.
 - Wait for "Eligible" status before evaluating
 - If learning period takes too long, your targets may be too aggressive
 
@@ -148,7 +148,7 @@ Which bid strategy to use depends on account maturity and conversion volume. See
 When transitioning between bid strategies:
 1. **Don't change during high-traffic periods** — avoid learning period during Black Friday, launches
 2. **Budget buffer** — increase daily budget by 20% during the 2-week learning period
-3. **No other changes** — don't adjust keywords, ads, or targeting during learning
+3. **Avoid disruptive changes** — bid strategy switches, target changes, or budget changes >20% reset the learning period. Adding negatives, updating ad copy, and adjusting assets are safe. See [[learning-phase]] for the complete list.
 4. **Watch for spend spikes** — Maximize Conversions without a target can overspend; set a max CPC bid limit as a safety net
 5. **Failed learning?** — If learning fails after 2 weeks, check: enough conversions? Too-aggressive target? Budget too low?
 

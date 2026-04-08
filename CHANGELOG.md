@@ -7,6 +7,26 @@ tags:
 
 # Changelog
 
+## [1.13.0] — 2026-04-08
+
+Resolves 3 active contradictions in Smart Bidding learning phase guidance discovered during real-world Vaxteronline client work. Creates single authoritative reference for safe vs. disruptive changes, per-type learning durations, and post-learning checklist. Wires into all relevant routing tables.
+
+### Added
+- **`reference/platforms/google-ads/learning-phase.md`** — new authoritative reference: safe vs. disruptive changes tables, per-type learning durations (Search 7–14d, PMax 14–28d, Demand Gen 14–21d, Display/Video/Shopping 7–14d), technical explanation of what "resets learning" means, how to check learning status in UI, post-learning checklist.
+
+### Fixed
+- **`bidding-strategies.md`** — Two contradictory "no changes" statements replaced with precise safe/disruptive distinction + `[[learning-phase]]` wikilinks (Learning Period section + Learning Period Tactics).
+- **`pmax/feed-only-pmax.md`** — Post-Launch section restructured: brand exclusions + negative keywords moved under "Pre-Learning Setup" heading with explicit safety note; step 14 clarified to specify disruptive changes only. Migration step 6 updated similarly. Added `[[learning-phase]]` wikilinks.
+- **`audit/common-mistakes.md`** — Mistake #20 expanded from vague "making changes resets it" to specific disruptive change list + safety note for negatives/ad copy + `[[learning-phase]]` wikilink.
+- **`demand-gen.md`** — "Judging too early" common mistake updated with disruptive/safe distinction + `[[learning-phase]]` wikilink.
+- **`audit/audit-checklist.md`** — Demand Gen learning period audit check updated with "disruptive changes" qualifier + `[[learning-phase]]` wikilink.
+
+### Changed
+- **`reference/platforms/google-ads/CONTEXT.md`** — Core file count 17 → 18, total 37 → 38. `learning-phase.md` added to "Which Skill Loads What" table.
+- **Root `CONTEXT.md`** — `learning-phase.md` added to Load column for: Campaign audit, PMax work, Feed-only PMax / Shopping restructure, Budget / bids, Full campaign audit (agent).
+
+---
+
 ## [1.12.0] — 2026-04-06
 
 All Priority 3 audit gaps from audit-gap-analysis.md implemented: Video/YouTube, Cross-Campaign Cannibalization, Attribution Depth, and Account-Level Strengthening. Adds 27 new checklist items, 4 new campaign-review areas (18-21), 3 new GAQL verification sections (Video, Attribution, Change History), a Video/YouTube triage block in campaign-cleanup, and 4 inline sections in the campaign-reviewer agent.

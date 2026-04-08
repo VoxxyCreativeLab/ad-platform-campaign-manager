@@ -8,8 +8,8 @@ tags:
 
 # Google Ads — Context
 
-37 reference files across 4 subdirectories:
-- **17 core files** — fundamentals (account-structure, bidding-strategies, campaign-types, match-types, quality-score, ad-extensions, conversion-actions, enhanced-conversions, gaql-reference, ads-scripts-api), campaign types (shopping-campaigns, video-campaigns, dsa, demand-gen), plus shopping-feed-strategy, ad-testing-framework, ad-copy-framework
+38 reference files across 4 subdirectories:
+- **18 core files** — fundamentals (account-structure, bidding-strategies, campaign-types, match-types, quality-score, ad-extensions, conversion-actions, enhanced-conversions, gaql-reference, ads-scripts-api), campaign types (shopping-campaigns, video-campaigns, dsa, demand-gen), plus shopping-feed-strategy, ad-testing-framework, ad-copy-framework, learning-phase
 - **5 PMax files** (`pmax/`) — feed-only-pmax, asset-requirements, audience-signals, feed-optimization, pmax-metrics
 - **4 audit files** (`audit/`) — audit-checklist (21-area, ~90 checks), common-mistakes, negative-keyword-lists, audit-gap-analysis
 - **11 strategy files** (`strategy/`) — account-profiles, account-maturity-roadmap, 4 vertical playbooks (ecommerce, lead-gen, b2b-saas, local-services), bid-adjustment-framework, remarketing-strategies, seasonal-planning, targeting-framework, attribution-guide
@@ -27,6 +27,7 @@ tags:
 | `conversion-actions.md` | conversion-tracking, tracking-auditor |
 | `enhanced-conversions.md` | conversion-tracking, tracking-auditor |
 | `gaql-reference.md` | reporting-pipeline, live-report |
+| `learning-phase.md` | campaign-review, campaign-cleanup, budget-optimizer, pmax-guide, campaign-setup, campaign-reviewer (agent) |
 | `ads-scripts-api.md` | ads-scripts |
 | `shopping-campaigns.md` | campaign-setup (if Shopping), campaign-review |
 | `video-campaigns.md` | campaign-setup (if Video), campaign-review |
