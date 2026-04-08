@@ -1,6 +1,6 @@
 ---
 title: Primer - Session Handoff
-date: 2026-04-06
+date: 2026-04-08
 tags:
   - mwp
 ---
@@ -11,9 +11,31 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.12.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.15.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ## Last Completed
+
+### Session 2026-04-08: Backlog Gap Fill v1.13–v1.15
+
+Three releases shipped on `feature/backlog-gap-fill`:
+
+**v1.13.0 — Learning Phase Authority**
+- Created `reference/platforms/google-ads/learning-phase.md` — authoritative safe/disruptive changes tables, per-type durations (Search 7–14d, PMax 14–28d, Demand Gen 14–21d), UI status guide, post-learning checklist
+- Fixed 3 active contradictions: `bidding-strategies.md` (2 locations), `feed-only-pmax.md` (Post-Launch restructured with Pre-Learning/Learning Period sub-headings), `common-mistakes.md` #20 expanded
+- Fixed 2 ambiguous mentions: `demand-gen.md`, `audit-checklist.md` Demand Gen check
+- Wired into root CONTEXT.md (5 Load columns) + google-ads/CONTEXT.md
+
+**v1.14.0 — MCP Capability Map**
+- Created `reference/mcp/mcp-capabilities.md` — 6 sections: 25 tools by category (verified against MCP server source), 21 GAQL resources, 12 blocked operations, 10 external data systems, data flow map, per-skill usage summary (17 skills/agents)
+- Fixed 4 wrong tool names in `claude-settings-template.md`: `run_gaql_query`→`run_gaql`, `get_account_summary`→`get_account_metrics`, `list_budgets` removed, `unlock_write_session`→`unlock_writes`, added missing `get_campaign`
+- Added MCP boundary awareness as Permanent Rule in `CLAUDE.md`
+- Wired into 5 Load columns in root CONTEXT.md
+
+**v1.15.0 — Shopping Queries + Post-Launch Playbook**
+- Created `reference/platforms/google-ads/strategy/post-launch-playbook.md` — Day 0 through Week 8: launch checklist, Smart Bidding upgrade gates (15/30/50 conv thresholds), per-type milestones, MCP boundary table
+- Added 4 Shopping GAQL queries to `gaql-query-templates.md` (top products, zombies, category, low-CTR) using `shopping_performance_view`
+- Added Shopping Product Performance as 7th report type in `live-report` (SKILL.md + report-templates.md)
+- Wired into root CONTEXT.md + google-ads/CONTEXT.md (strategy files 11→12, total 38→39)
 
 ### Session 2026-04-06: Priority 3 Audit Expansion (v1.12.0)
 
@@ -48,22 +70,27 @@ Added 4 new review areas to the audit system, completing all Priority 3 and Acco
 
 ## Current State
 
-### Plugin (ad-platform-campaign-manager) — v1.12.0
+### Plugin (ad-platform-campaign-manager) — v1.15.0
 
 | Layer | Count | Notes |
 |-------|-------|-------|
-| Reference files | 37 | 17 core + 5 PMax + 4 audit + 11 strategy |
+| Reference files | 42 | 18 core + 5 PMax + 4 audit + 12 strategy + 3 MCP (now 4 with mcp-capabilities) |
 | Script docs | 17 | under `reference/scripts/` |
 | Tracking-bridge docs | 6 | the differentiator |
-| Reporting docs | 5 | + 3 MCP docs + 1 repos catalog |
-| Skills | 13 | all with Report Output sections; 11 profile-aware |
+| Reporting docs | 5 | + 4 MCP docs + 1 repos catalog |
+| Skills | 13 | all with Report Output sections; 11 profile-aware; live-report now has 7 report types |
 | Agents | 3 | campaign-reviewer, tracking-auditor, strategy-advisor |
-| Audit areas | 21 | Areas 1-17 (original + v1.10.0/v1.11.0) + Areas 18-21 (v1.12.0) |
+| Audit areas | 21 | All Priority 1-3 complete |
 
-- All reference docs fact-checked to 2025-2026 accuracy
-- All 5 audit findings resolved
-- Report output conventions in `_config/conventions.md` (Output Completeness + Report File-Writing)
-- Audit gap analysis: Priority 1-3 complete; Priority 4 (DSA, App Campaigns) is the remaining expansion
+### New in this session
+- `learning-phase.md` — safe/disruptive changes authority doc
+- `mcp-capabilities.md` — API boundary map (25 tools, 21 GAQL resources, external systems)
+- `post-launch-playbook.md` — Day 0–Week 8 monitoring guide
+- Shopping `shopping_performance_view` GAQL queries (4 queries)
+- MCP boundary awareness in CLAUDE.md Permanent Rules
+
+### Branch
+`feature/backlog-gap-fill` — 5 commits ahead of main
 
 ### MCP Server (google-ads-mcp-server)
 
@@ -83,24 +110,41 @@ Added 4 new review areas to the audit system, completing all Priority 3 and Acco
 
 ## What Still Needs to Happen
 
+> **On "continue":** Work is on `feature/backlog-gap-fill`. Check out worktree at `.worktrees/backlog-gap-fill`. Start with v1.16.0 Step 1 — add GAQL sections to `gaql-query-templates.md`.
+
+### Backlog Gap Fill — Remaining (v1.16.0–v1.19.0)
+
+Full plan: `docs/superpowers/plans/2026-04-08-backlog-gap-fill.md`
+
+| Release | Name | Key Deliverable |
+|---------|------|-----------------|
+| v1.16.0 | GAQL Expansion + Orphaned File Wiring | 8 new GAQL sections + 3 orphaned files (seasonal-planning, bid-adjustment-framework, remarketing-strategies) wired into skills |
+| v1.17.0 | Consent Mode v2 | `consent-mode-v2.md` + conversion-tracking Consent Mode section (independent — any order) |
+| v1.18.0 | Post-Launch Monitor Skill | New `post-launch-monitor` skill + 3 more live-report types (9 total) |
+| v1.19.0 | Display, Brand Restrictions, NCA | `display-campaigns.md` + brand restrictions + NCA goal for PMax/Search |
+
+**v1.16.0 detail:**
+1. `reference/reporting/gaql-query-templates.md` — add 8 sections: PMax Campaign Performance, PMax Asset Group Performance, Display Placement Report, Demand Gen Performance, Video Campaign Performance, Auction Insights (note UI-only boundary), Conversion Action Breakdown, Asset Performance
+2. `skills/budget-optimizer/SKILL.md` — add `[[seasonal-planning]]` + `[[bid-adjustment-framework]]` references
+3. `skills/keyword-strategy/SKILL.md` — add `[[remarketing-strategies]]` + "Existing Account: Search Term Analysis Workflow" section
+4. `skills/campaign-cleanup/SKILL.md` — add `campaign-review` to next-skills routing
+5. `skills/CONTEXT.md` — update dependency maps
+6. `reference/platforms/google-ads/CONTEXT.md` — update Used By for the 3 orphaned files
+
 ### Housekeeping
-- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01). Must rotate in GCP Console before production use.
+- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01)
+- Add `docs/superpowers/CONTEXT.md`, `docs/superpowers/plans/CONTEXT.md`, `docs/superpowers/specs/CONTEXT.md` — requested but deferred due to session end
 
-### Audit Backlog (Priority 4 — low priority)
-- DSA-specific audit section (~4 checks) — low priority given AI Max migration path
-- App Campaign audit section (~4 checks) — only relevant if client base includes app advertisers
-
-### Phase 4 — Multi-Platform (not started)
-- Populate `meta-ads/`, `linkedin-ads/`, `tiktok-ads/` directories
-
-### Real Client Work
-- Use skills and agents on live Google Ads accounts
-- First real test of report output structure in an MWP client project
+### After all 7 releases
+- Merge `feature/backlog-gap-fill` → main
+- Phase 4: Multi-platform (deferred, no demand)
+- Priority 4 audit: DSA (~4 checks), App campaigns (~4 checks) — low priority
 
 ---
 
 ## Design Documents
 
+- **Backlog gap fill plan (v1.13–v1.19):** `docs/superpowers/plans/2026-04-08-backlog-gap-fill.md`
 - **Report output structure spec:** `docs/superpowers/specs/2026-04-04-report-output-structure-design.md`
 - **Phase 3 design spec:** `docs/superpowers/specs/2026-04-03-phase-3-strategy-agent-design.md`
 - **Phase 2 design spec:** `docs/superpowers/specs/2026-04-03-strategic-upgrade-design.md`
@@ -108,4 +152,5 @@ Added 4 new review areas to the audit system, completing all Priority 3 and Acco
 
 ## Open Blockers
 
-- **Credential rotation:** OAuth client secret should be rotated
+- **Credential rotation:** OAuth client secret should be rotated (exposed 2026-04-01)
+- **docs/ CONTEXT.md files:** `docs/superpowers/CONTEXT.md`, `plans/CONTEXT.md`, `specs/CONTEXT.md` not yet created — do at start of next session
