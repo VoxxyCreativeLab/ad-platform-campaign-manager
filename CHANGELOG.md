@@ -7,6 +7,22 @@ tags:
 
 # Changelog
 
+## [1.15.0] — 2026-04-08
+
+Fills two major backlog gaps: a unified post-launch playbook consolidating Day 0 through Week 8 guidance, and Shopping product performance GAQL queries + live-report integration.
+
+### Added
+- **`reference/platforms/google-ads/strategy/post-launch-playbook.md`** — Day 0 through Weeks 5-8 playbook: launch day checklist, Day 1/2/7/14/21/30 milestones, Smart Bidding upgrade decision gates (15/30/50 conversion thresholds), per-type day checks (Search/Shopping/PMax/Demand Gen/Display), MCP boundary table per task.
+- **Shopping Product Performance** section in `reference/reporting/gaql-query-templates.md` — 4 queries: top products by revenue, zombie products (spend with zero conversions), product category roll-up, high-impression low-CTR products (feed optimization candidates). All use `shopping_performance_view`.
+- **Shopping Product Performance** template in `skills/live-report/references/report-templates.md` — GAQL tool sequence, output template with zombie/top-performer tables, MCP boundary note (feed health = MC only).
+- **Shopping Product Performance** added to `skills/live-report/SKILL.md` Available Reports table.
+
+### Changed
+- **`reference/platforms/google-ads/CONTEXT.md`** — strategy files 11 → 12, total 38 → 39. `post-launch-playbook.md` added to "Which Skill Loads What" table.
+- **Root `CONTEXT.md`** — new routing row for "Post-launch monitoring" with playbook + learning-phase + mcp-capabilities Load.
+
+---
+
 ## [1.14.0] — 2026-04-08
 
 Creates the MCP capability boundary document — the authoritative reference for what data is available via the custom MCP server vs. what requires manual verification. Fixes 4 wrong tool names in the settings template.

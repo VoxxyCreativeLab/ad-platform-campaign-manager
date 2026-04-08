@@ -254,3 +254,79 @@ WHERE segments.date DURING LAST_30_DAYS
   AND metrics.clicks > 10
 ORDER BY metrics.cost_micros DESC
 ```
+
+## Shopping / Product Performance
+
+> [!note] MCP boundary
+> These queries use `shopping_performance_view`, which is accessible via `run_gaql`. Feed health data (disapprovals, GTIN coverage) is in Merchant Center — not available via the Google Ads API.
+
+### Top Products by Revenue
+```sql
+SELECT
+  segments.product_item_id,
+  segments.product_title,
+  segments.product_brand,
+  segments.product_category_level1,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions,
+  metrics.conversions_value
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+ORDER BY metrics.conversions_value DESC
+LIMIT 50
+```
+
+### Zombie Products (Spend With Zero Conversions)
+Products consuming budget with no return — candidates for bid reduction, listing group exclusion, or feed optimization.
+```sql
+SELECT
+  segments.product_item_id,
+  segments.product_title,
+  segments.product_brand,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+  AND metrics.cost_micros > 0
+  AND metrics.conversions = 0
+ORDER BY metrics.cost_micros DESC
+LIMIT 50
+```
+
+### Product Category Performance
+Roll-up view to identify strong and weak categories before drilling to individual products.
+```sql
+SELECT
+  segments.product_category_level1,
+  segments.product_category_level2,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.cost_micros,
+  metrics.conversions,
+  metrics.conversions_value
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+ORDER BY metrics.cost_micros DESC
+```
+
+### High-Impression Low-CTR Products (Feed Optimization Candidates)
+Products getting shown but not clicked — often a title, image, or price issue in the feed.
+```sql
+SELECT
+  segments.product_item_id,
+  segments.product_title,
+  metrics.impressions,
+  metrics.clicks,
+  metrics.ctr,
+  metrics.cost_micros
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+  AND metrics.impressions > 100
+  AND metrics.ctr < 0.01
+ORDER BY metrics.impressions DESC
+LIMIT 50
+```

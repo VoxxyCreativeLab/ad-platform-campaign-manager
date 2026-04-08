@@ -207,3 +207,52 @@ LIMIT 100
 |----------|-------|-------|-----|--------|
 | {{location}} | €{{cost}} | {{conv}} | €{{cpa}} | {{recommendation}} |
 ```
+
+## Shopping Product Performance
+
+> [!note] MCP boundary
+> Product performance data (`shopping_performance_view`) is available via `run_gaql`. Feed health data (disapprovals, GTIN coverage, feed errors) is in Merchant Center — not accessible via the Google Ads API. After identifying zombie products, check MC for feed issues.
+
+### MCP Tools
+1. `run_gaql` — `shopping_performance_view` (top products, zombies, CTR issues)
+
+### GAQL Queries
+See [[reference/reporting/gaql-query-templates#Shopping / Product Performance]] for the 4 query templates.
+
+Quick reference — Top products query:
+```sql
+SELECT segments.product_item_id, segments.product_title,
+  segments.product_brand, metrics.impressions, metrics.clicks,
+  metrics.cost_micros, metrics.conversions, metrics.conversions_value
+FROM shopping_performance_view
+WHERE segments.date DURING LAST_30_DAYS
+ORDER BY metrics.conversions_value DESC LIMIT 50
+```
+
+### Output Template
+
+```
+## Shopping Product Performance — {{date_range}}
+
+### Top Products by Revenue
+| Product ID | Title | Spend | Conv. | Conv. Value | ROAS | Action |
+|------------|-------|-------|-------|-------------|------|--------|
+| {{item_id}} | {{title}} | €{{cost}} | {{conv}} | €{{value}} | {{roas}}x | {{recommendation}} |
+
+### Zombie Products (Spend > €0, Conv = 0)
+| Product ID | Title | Spend | Impressions | Clicks | Action |
+|------------|-------|-------|-------------|--------|--------|
+| {{item_id}} | {{title}} | €{{cost}} | {{impressions}} | {{clicks}} | Reduce bid / exclude / fix feed |
+
+**Total zombie spend:** €{{total_zombie_cost}}
+
+### Feed Optimization Candidates (High Impressions, CTR < 1%)
+| Product ID | Title | Impressions | CTR | Issue |
+|------------|-------|-------------|-----|-------|
+| {{item_id}} | {{title}} | {{impressions}} | {{ctr}}% | Title/image/price — check MC |
+
+### Action Items
+1. {{zombie_action}} — pause or exclude top {{n}} zombie products
+2. {{feed_action}} — review {{n}} low-CTR products in Merchant Center
+3. {{winner_action}} — consider increasing bids/budget on top converters
+```
