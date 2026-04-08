@@ -7,6 +7,20 @@ tags:
 
 # Changelog
 
+## [1.19.0] — 2026-04-08
+
+Fills three content gaps: Display campaigns get a full reference doc (20 audit checks now have backing content), Brand Restrictions for Search are documented, and NCA goal coverage expanded to PMax and Search.
+
+### Added
+- **`reference/platforms/google-ads/display-campaigns.md`** — 12 sections: campaign subtypes (Standard vs Smart), RDA specs (full asset table), 4 targeting types with layering warning, exclusion management (placement + content + topic), frequency capping, benchmarks, 5 bid strategies, 8-row common mistakes table, audit cross-reference table mapping all Area 14 checks to this doc, GAQL reference, MCP boundary note. Total: 241 lines.
+
+### Changed
+- **`reference/platforms/google-ads/match-types.md`** — New `## Brand Restrictions for Search` section: how it differs from PMax Brand Exclusions, setup via Brand Lists, interaction with broad match + AI Max, common mistake (not a substitute for negative keywords).
+- **`reference/platforms/google-ads/campaign-types.md`** — NCA (New Customer Acquisition) goal added to PMax (New Customer Value mode vs New Customer Only mode, Customer Match requirements) and Search (manual audience layering approach, less native than PMax/Demand Gen).
+- **`reference/platforms/google-ads/CONTEXT.md`** — Core file count 19 → 20; total 39 → 40. `display-campaigns.md` added to "Which Skill Loads What" table (Used By: campaign-review Area 14, campaign-cleanup, campaign-setup).
+
+---
+
 ## [1.18.0] — 2026-04-08
 
 Closes the biggest workflow gap: the plugin now covers strategy → plan → build → launch → **monitor**. Adds a phase-aware post-launch monitoring skill and expands live-report to 10 report types.

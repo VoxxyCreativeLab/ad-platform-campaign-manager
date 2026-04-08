@@ -94,3 +94,36 @@ This closes one of PMax's biggest control gaps. Apply your standard negative key
 3. Common negatives: "jobs", "careers", "free", "how to", "what is"
 4. Use cross-campaign negatives to prevent ad group competition
 5. Apply shared negative keyword lists to PMax campaigns — they support them now
+
+## Brand Restrictions for Search
+
+Brand Restrictions allow advertisers to limit which queries trigger their broad match or AI Max keywords, preventing brand terms from showing for competitor searches.
+
+> [!info] Different from PMax brand exclusions
+> Brand Restrictions (Search) and Brand Exclusions (PMax) are separate features. Brand Restrictions apply to Search campaigns with broad match or AI Max — they restrict match expansion. PMax Brand Exclusions prevent your PMax assets from appearing for your own brand terms. These are configured in different places.
+
+### How Brand Restrictions Work
+
+- Available for: Search campaigns using **broad match** or **AI Max for Search**
+- Setup location: Google Ads Settings → Brand lists → Brand restrictions
+- Effect: Prevents broad match keywords from matching queries containing the restricted brand terms
+- Use case: Running broad match for non-brand keywords but want to prevent serving for competitor brand names
+
+### Brand Lists
+
+1. Go to Google Ads → Tools → Brand lists
+2. Create a brand list (e.g., "Competitor brands" or "My own brand")
+3. Apply the brand list to the campaign as a restriction
+4. The restriction applies to ALL broad match keywords in the campaign — cannot be applied per keyword
+
+### Interaction with AI Max
+
+When AI Max is enabled, Brand Restrictions also prevent AI Max from serving for the restricted brand queries. This is important for advertisers who:
+- Have a dedicated brand campaign (want brand traffic there, not in generic campaigns)
+- Are running non-brand PPC and don't want to bid on competitor brand terms
+
+### Common Mistake
+Do not confuse with negative keywords. Brand Restrictions are softer — they restrict expansion, but negative keywords are required for exact/phrase match queries you want to block entirely.
+
+> [!tip] Cross-reference
+> See [[pmax-guide]] for PMax Brand Exclusions, which serve a different purpose.

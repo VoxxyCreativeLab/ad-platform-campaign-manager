@@ -8,8 +8,8 @@ tags:
 
 # Google Ads — Context
 
-39 reference files across 4 subdirectories:
-- **19 core files** — fundamentals (account-structure, bidding-strategies, campaign-types, match-types, quality-score, ad-extensions, conversion-actions, enhanced-conversions, consent-mode-v2, gaql-reference, ads-scripts-api), campaign types (shopping-campaigns, video-campaigns, dsa, demand-gen), plus shopping-feed-strategy, ad-testing-framework, ad-copy-framework, learning-phase
+40 reference files across 4 subdirectories:
+- **20 core files** — fundamentals (account-structure, bidding-strategies, campaign-types, match-types, quality-score, ad-extensions, conversion-actions, enhanced-conversions, consent-mode-v2, gaql-reference, ads-scripts-api), campaign types (shopping-campaigns, video-campaigns, display-campaigns, dsa, demand-gen), plus shopping-feed-strategy, ad-testing-framework, ad-copy-framework, learning-phase
 - **5 PMax files** (`pmax/`) — feed-only-pmax, asset-requirements, audience-signals, feed-optimization, pmax-metrics
 - **4 audit files** (`audit/`) — audit-checklist (21-area, ~90 checks), common-mistakes, negative-keyword-lists, audit-gap-analysis
 - **12 strategy files** (`strategy/`) — account-profiles, account-maturity-roadmap, post-launch-playbook, 4 vertical playbooks (ecommerce, lead-gen, b2b-saas, local-services), bid-adjustment-framework, remarketing-strategies, seasonal-planning, targeting-framework, attribution-guide
@@ -32,6 +32,7 @@ tags:
 | `ads-scripts-api.md` | ads-scripts |
 | `shopping-campaigns.md` | campaign-setup (if Shopping), campaign-review |
 | `video-campaigns.md` | campaign-setup (if Video), campaign-review |
+| `display-campaigns.md` | campaign-review (Area 14), campaign-cleanup, campaign-setup |
 | `dsa.md` | campaign-setup (if DSA), campaign-review |
 | `demand-gen.md` | campaign-setup (if Demand Gen), campaign-review |
 | `shopping-feed-strategy.md` | campaign-setup (if Shopping/PMax), pmax-guide, ad-copy |

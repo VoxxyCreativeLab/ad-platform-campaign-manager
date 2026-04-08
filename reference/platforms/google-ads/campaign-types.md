@@ -48,6 +48,11 @@ What is your primary goal?
 > [!info] AI Max for Search
 > AI Max for Search (2025) is a campaign-level feature that expands query matching beyond your keyword list using broad match + keywordless targeting. Not a separate campaign type, but fundamentally changes Search campaign behavior. Works with Smart Bidding strategies. Enable it per campaign to let Google's AI find relevant queries you haven't explicitly targeted.
 
+### New Customer Acquisition (NCA)
+Search campaigns with Smart Bidding (tCPA, tROAS) can also use the NCA goal by applying a Customer Match "existing customers" list as an audience signal and setting a bid adjustment or using value-based bidding to favor new users.
+
+Note: NCA is more natively integrated in PMax and Demand Gen — in Search it requires manual audience layering rather than a dedicated campaign goal toggle.
+
 ## Performance Max (PMax)
 
 **Best for:** Maximizing conversions across ALL Google channels with a single campaign.
@@ -71,6 +76,15 @@ What is your primary goal?
 - Works best with a Merchant Center product feed for Shopping
 - **Feed-only PMax:** E-commerce businesses with a Merchant Center feed can run PMax WITHOUT custom creative — Google auto-generates ads from the feed. 90% of PMax spend goes to feed-based surfaces. See [[pmax/feed-only-pmax|feed-only-pmax]] for setup and listing group configuration.
 - See `/ad-platform-campaign-manager:pmax-guide` for detailed guidance
+
+### New Customer Acquisition (NCA)
+PMax supports NCA as a campaign goal. When enabled, the campaign uses Customer Match data to identify existing customers and either:
+- **New customer value mode:** Adds an incremental conversion value for new customers (e.g., bid higher for first-time buyers)
+- **New customer only mode:** Only optimizes for new customer conversions entirely
+
+Requirements: Customer Match list with recent purchasers; conversion tracking with purchase category.
+
+Note: Also available in Demand Gen (already documented). NCA in PMax requires the customer list to be uploaded and applied in the campaign's Audience settings.
 
 ## Display Campaigns
 
