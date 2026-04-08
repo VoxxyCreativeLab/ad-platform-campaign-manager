@@ -187,13 +187,29 @@ Same report output section, adapted for agent execution context.
 - Step 7 (root files) after Steps 5-6.
 - Step 8 (changelog) last.
 
-### After v1.12.0
+### After v1.12.0 — Backlog + Gap Fill (v1.13.0–v1.19.0)
 
-1. **Rotate OAuth client secret** — exposed in previous session screenshot (2026-04-01)
+Planned 2026-04-08. Full plan at `C:\Users\VCL1\.claude\plans\staged-tumbling-pie.md`. Details in PRIMER.md.
+
+| Release | Name | Size | Status | Key Deliverable |
+|---------|------|------|--------|-----------------|
+| v1.13.0 | Learning Phase Authority | M | ✅ Done (2026-04-08) | `learning-phase.md` + 3 contradiction fixes + 2 ambiguity fixes |
+| v1.14.0 | MCP Capability Map | M | ⬜ Open | `mcp-capabilities.md` + settings template fix |
+| v1.15.0 | Shopping Queries + Post-Launch Playbook | L | ⬜ Open | `post-launch-playbook.md` + Shopping GAQL |
+| v1.16.0 | GAQL Expansion + Orphaned File Wiring | M | ⬜ Open | 8 new GAQL sections + 3 orphaned files wired |
+| v1.17.0 | Consent Mode v2 | M | ⬜ Open | `consent-mode-v2.md` + conversion-tracking section |
+| v1.18.0 | Post-Launch Monitor Skill | L | ⬜ Open | New skill + live-report expansion (9 report types) |
+| v1.19.0 | Display, Brand Restrictions, NCA | M | ⬜ Open | `display-campaigns.md` + brand restrictions + NCA |
+
+**Dependency order:** v1.14 → v1.15 → (v1.16 + v1.18 in parallel) → v1.19. v1.17 independent.
+
+**Next:** v1.14.0 Step 1 (create mcp-capabilities.md)
+
+### Remaining housekeeping
+1. **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01)
 2. **Real client work** — use skills on a live Google Ads account
-3. **Phase 4 — Multi-platform** — populate meta-ads/, linkedin-ads/, tiktok-ads/
+3. **Phase 4 — Multi-platform** — populate meta-ads/, linkedin-ads/, tiktok-ads/ (deferred)
 4. **Audit backlog (Priority 4):** DSA-specific section (~4 checks), App Campaigns section (~4 checks) — low priority, niche
-5. **Future enhancements (backlog):** build agent, launch validator agent, optimization agent, finalize-report skill, cross-date comparison, multi-platform report support
 
 ---
 
