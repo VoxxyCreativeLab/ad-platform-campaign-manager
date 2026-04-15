@@ -11,41 +11,42 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.20.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.20.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists. v1.21.0 in progress (Sessions 3-5).
 
 ---
 
 ## Last Completed
 
-### Session 2026-04-14 (v1.20.0): Product Performance Skill
+### Session 2026-04-14 (Session 3): iClosed Attribution + n8n Pipeline Patterns
 
-- **Research completed:** `shopping_performance_view` fields (additional: `product_custom_attribute0-4`, `product_type_level1-5`, `product_condition`, cart data metrics), zombie thresholds (30-day standard / 90-day seasonal), feed CTR signals (title > GTINs > images > pricing), PMax vs Standard Shopping bidding differences. Saved to design spec Appendix Session 2.
-- **`skills/product-performance/SKILL.md`** — New interactive skill: 5-step flow (context → MCP data pull → analysis → recommendations → routing). Wraps 4 `shopping_performance_view` queries. Zombie triage by severity (>€10 spend = high priority). Campaign-type-aware exclusion (Standard Shopping: negative product target; PMax: listing group exclusion). Feed diagnosis table. Report output: stage `05-optimize`.
-- **`CONTEXT.md`** — Added routing entry for product performance.
-- **`CLAUDE.md`** — Added Quick Navigation: "Analyze product performance".
-- **`BACKLOG.md`** — Item #9 marked Done (v1.20.0).
+- **Research completed:** iClosed webhook events (12 from Zapier, key 5 for tracking), GTM dataLayer events (5 confirmed in iClosed docs — NOT unverified), native Meta CAPI integration (auto-captures fbc/fbp), UTM field format, n8n webhook auth methods (Basic/Header/JWT + IP whitelist), Airtable trigger (polling, execution cost implications), BigQuery node, Meta CAPI action_source values, fbc construction format. Saved to design spec Appendix Session 3.
+- **`reference/tracking-bridge/iclosed-attribution.md`** — New reference doc: 12 webhook events table, GTM Scenario A/B embedding, fbclid passthrough (tracking object caveat), callOutcome attribution gap + contactId workaround, native Meta CAPI context (when to use native vs n8n), consent gating, confirmed GTM dataLayer events.
+- **`reference/tracking-bridge/n8n-pipeline-patterns.md`** — New reference doc: 4-workflow pattern (WF1 Booking→CRM, WF2 Outcome→CRM, WF3 CRM→CAPI, WF4 Events→BQ), webhook security options (no HMAC from iClosed), Meta CAPI payload with fbc construction, n8n node reference table, pricing guide (Pro €50/mo recommended, Starter insufficient for frequent polling).
+- **`reference/tracking-bridge/CONTEXT.md`** — Updated: 6 → 8 files, new reading order scenarios, file index table added.
+- **Design spec appendix** — Session 3 research saved.
+- **PLAN.md** — Session 3 items checked off.
+- **Commit:** `5395be5` — `feat: iClosed attribution + n8n pipeline patterns`
 
 ---
 
-### Session 2026-04-14 (planning): Backlog Expansion Design + Session 1 Housekeeping
+### Session 2026-04-14 (Session 2): Product Performance Skill (v1.20.0)
 
-- **Design spec written:** `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md`
-- **Implementation plan written:** `docs/superpowers/plans/2026-04-14-backlog-expansion.md` — 25 tasks, 5-session breakdown
-- **Stale backlog fixed:** Items #5, #6, #8 marked Done (delivered in v1.15.0–v1.18.0)
+- `skills/product-performance/SKILL.md` — 5-step interactive flow, 4 GAQL queries, zombie triage, feed diagnosis, campaign-type-aware exclusions. Stage: 05-optimize.
+- `CONTEXT.md`, `CLAUDE.md`, `BACKLOG.md` updated for v1.20.0.
 
 ---
 
 ## Current State
 
-### Plugin (ad-platform-campaign-manager) — v1.20.0
+### Plugin (ad-platform-campaign-manager) — v1.20.0 (v1.21.0 in progress)
 
 | Layer | Count | Notes |
 |-------|-------|-------|
-| Reference files | 46 | 20 core + 5 PMax + 4 audit + 12 strategy + 4 MCP + 1 repos catalog |
+| Reference files | 48 | +2 from Session 3 (iclosed-attribution, n8n-pipeline-patterns) |
 | Script docs | 17 | under `reference/scripts/` |
-| Tracking-bridge docs | 6 | expanding to 8 in v1.21.0 (iClosed, n8n) |
-| Reporting docs | 5 | expanding to 6 in v1.21.0 (Meta BQ pipeline) |
-| Skills | 15 | 14 existing + product-performance (new in v1.20.0) |
+| Tracking-bridge docs | 8 | +2 new (iClosed, n8n) — was 6 |
+| Reporting docs | 5 | expanding to 6 in v1.21.0 Session 4 (Meta BQ) |
+| Skills | 15 | product-performance added in v1.20.0 |
 | Agents | 3 | campaign-reviewer, tracking-auditor, strategy-advisor |
 | Audit areas | 21 | All Priority 1-3 complete |
 
@@ -65,38 +66,46 @@ tags:
 
 ## What Still Needs to Happen
 
-### Next session (Session 3): Research iClosed (#10) + n8n (#12)
+### Next session (Session 4): Research Meta BQ (#11) + Cross-Platform (#13)
 
-1. **Online research:** iClosed developer docs (webhook schemas, API events, `tracking` object with `utmKey_N`/`utmValue_N` fbclid passthrough), n8n nodes (BigQuery, Airtable, webhook, HTTP Request), Meta CAPI server event requirements (`action_source` values, `fbc` construction), webhook security. Save findings to design spec Appendix (Session 3 section).
-2. **Write:** `reference/tracking-bridge/iclosed-attribution.md` — 7 webhook events, GTM injection (Scenario A/B), fbclid passthrough, callOutcome attribution gap, consent gating
-3. **Write:** `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern (Booking→CRM, Outcome→CRM, CRM→CAPI, Events→BQ), webhook security, Meta CAPI via n8n, scoped to tracking only
-4. **Update:** `reference/tracking-bridge/CONTEXT.md` with new file entries (if it exists)
-5. **Commit** Session 3 + PRIMER.md rewrite
-
-### Session 4: Research Meta BQ (#11) + Cross-Platform (#13)
-- Online research: BQ Data Transfer Service for Meta, OWOX Data Marts, Meta Marketing API, join patterns. Save to Appendix (Session 4 section).
-- Write: `reference/reporting/meta-ads-bigquery.md` — 3 pipeline approaches + decision matrix
-- Extend: `reference/reporting/cross-platform-data-model.md` — 5-source architecture, join keys, lifecycle stages, `fbc` formula
+1. **Online research:** BigQuery Data Transfer Service for Meta/Facebook (connector capabilities, field coverage, setup), OWOX Data Marts GitHub repo (architecture, supported metrics), Meta Marketing API (fields, rate limits), comparison of all 3 approaches (cost, latency, maintenance). Save to design spec Appendix Session 4.
+2. **Write:** `reference/reporting/meta-ads-bigquery.md` — 3 pipeline approaches (BQ Data Transfer, OWOX, n8n HTTP), decision matrix, BQ schema
+3. **Extend:** `reference/reporting/cross-platform-data-model.md` — 5-source architecture table (GA4, Meta Ads, iClosed, Airtable, sGTM), join key strategy (contactId, callPreviewId), lead lifecycle stages, fbc reconstruction formula
+4. **Commit** Session 4 + PRIMER.md rewrite
 
 ### Session 5: Integration + Release v1.21.0
-- Wire: `CONTEXT.md` (3 new routing entries), `CLAUDE.md` (relax "Google Ads only" for tracking-bridge), `_config/ecosystem.md` (n8n note)
-- Update: `BACKLOG.md` (#10–#13 → Done)
-- Release v1.21.0
+
+- **Wire:** `CONTEXT.md` (3 new routing entries: iClosed, n8n, Meta Ads BQ)
+- **Update:** `CLAUDE.md` — relax "Google Ads only" for tracking-bridge scope
+- **Update:** `_config/ecosystem.md` — add n8n-plugin note
+- **Update:** `BACKLOG.md` — mark #10–#13 Done (v1.21.0)
+- **Release:** v1.21.0 — CHANGELOG entry, commit, final PRIMER.md rewrite
 
 ### Housekeeping
-- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01). Do in GCP Console before any production use.
-- **Priority 4 audit:** DSA-specific section (~4 checks), App Campaigns section (~4 checks) — niche, defer
+
+- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01). Do in GCP Console before production use.
+- **Priority 4 audit:** DSA-specific section (~4 checks), App Campaigns (~4 checks) — niche, defer
 - **Phase 4 Multi-platform:** meta-ads/, linkedin-ads/, tiktok-ads/ platform skills — no demand, defer
+
+---
+
+## Key Research Notes for Session 4
+
+From Session 3 research — carry forward for cross-platform data model work:
+
+- **fbc format:** `fb.1.{subdomainIndex}.{creationTime_ms}.{fbclid}` — NOT `fb.1.{bookingTime}.{fbclid}`
+- **contactId:** iClosed's internal contact identifier — primary join key across iClosed, Airtable, and CAPI events
+- **callPreviewId:** unique per call — use as `event_id` for CAPI deduplication
+- **iClosed native CAPI events:** Page view, Potential, Qualified, Disqualified, Call booked (`invitee_meeting_scheduled`) — these come from native integration; custom purchase events need n8n
 
 ---
 
 ## Design Documents
 
-- **Backlog expansion design:** `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md`
+- **Backlog expansion design:** `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` (includes Session 3 research in Appendix)
 - **Backlog expansion plan (25 tasks):** `docs/superpowers/plans/2026-04-14-backlog-expansion.md`
 - **Backlog gap fill plan:** `docs/superpowers/plans/2026-04-08-backlog-gap-fill.md`
 - **Report output structure spec:** `docs/superpowers/specs/2026-04-04-report-output-structure-design.md`
-- **Phase 3 design spec:** `docs/superpowers/specs/2026-04-03-phase-3-strategy-agent-design.md`
 
 ## Open Blockers
 
