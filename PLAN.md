@@ -90,10 +90,10 @@ Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` 
 
 Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 11–16).
 
-- [ ] **Research online:** iClosed developer docs (webhook schemas, API events, tracking object), n8n nodes (BQ/Airtable/webhook), Meta CAPI server event requirements, webhook security. Save to design spec Appendix (Session 3 section).
-- [ ] **Create** `reference/tracking-bridge/iclosed-attribution.md` — 7 webhook events, fbclid passthrough, GTM injection, consent gating
-- [ ] **Create** `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern, boundary note (tracking only), Meta CAPI section
-- [ ] **Update** `reference/tracking-bridge/CONTEXT.md` with new file entries
+- [x] **Research online:** iClosed developer docs (webhook schemas, API events, tracking object), n8n nodes (BQ/Airtable/webhook), Meta CAPI server event requirements, webhook security. Save to design spec Appendix (Session 3 section).
+- [x] **Create** `reference/tracking-bridge/iclosed-attribution.md` — 12 webhook events, fbclid passthrough, GTM injection, consent gating, native CAPI context
+- [x] **Create** `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern, boundary note (tracking only), Meta CAPI section
+- [x] **Update** `reference/tracking-bridge/CONTEXT.md` with new file entries
 - [ ] **Commit** Session 3 + PRIMER.md rewrite
 
 #### Session 4 — Research + Write Meta BQ (#11) + Cross-Platform (#13)

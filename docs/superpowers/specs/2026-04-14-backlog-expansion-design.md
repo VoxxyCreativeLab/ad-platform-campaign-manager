@@ -354,7 +354,162 @@ Current templates already use: `product_item_id`, `product_title`, `product_bran
 **Key insight for skill:** The zombie exclusion recommendation must differ by campaign type. Standard Shopping: add as negative product target in the ad group. PMax: either exclude via listing group edit, or suppress in Merchant Center feed using `excluded_destination`. Feed suppression affects all campaigns — use listing group exclusion if PMax-only exclusion is intended.
 
 ### Session 3 Research: iClosed + n8n
-_To be completed in Session 3_
+
+**Date:** 2026-04-14
+**Sources:** iClosed Help Center (docs.iclosed.io), Zapier iClosed integration page, Meta CAPI developer docs, n8n documentation (docs.n8n.io), n8n pricing page
+
+---
+
+#### iClosed Webhook Events
+
+From Zapier integration page (these are all available iClosed trigger events — all are "Instant" triggers):
+
+| Zapier Trigger Name | Description | Tracking Relevance |
+|---------------------|-------------|-------------------|
+| Call Booked | Triggers when a new call is scheduled | Primary — booking confirmation |
+| Call Cancelled | Triggers when cancelled by invitee or closer | Attribution hygiene |
+| Call Rescheduled | Triggers when upcoming call rescheduled | Attribution hygiene |
+| Call Outcome | Triggers when outcome of a call is added | Offline conversion trigger |
+| Contact by Status | Triggers when contact status changes on scheduler journey | Lead stage tracking |
+| Contact Updated | Triggers when a contact is updated | CRM sync |
+| Contact Custom Field Updated | Triggers when a contact custom field is updated | CRM sync |
+| Appointment Setting Outcome | Triggers when appointment setting outcome is added | SDR workflow |
+| Setter Owner Assigned | Triggers when setter owner assigned to contact | Team attribution |
+| Note Added | Triggers when a note is added | Low value for tracking |
+| Data Intelligence | Triggers when email/phone validated or credit score calculated | Lead quality signal |
+| Transaction Synced | Triggers when a transaction is synced with a Deal | Revenue attribution |
+
+**For tracking attribution pipelines, the key events are:** Call Booked, Call Cancelled, Call Rescheduled, Call Outcome, Contact by Status.
+
+Note: The design spec mentioned 7 "API events" with names like `newContactCreated`. These appear to be the internal API event names. The Zapier trigger names above are the public-facing names — actual webhook payload field names require direct API testing or contact with iClosed.
+
+---
+
+#### iClosed GTM DataLayer Events
+
+From iClosed's own GTM documentation (docs.iclosed.io/en/articles/10420617-google-tag-manager) — these are **confirmed**, not unverified:
+
+| Event Name | Trigger Condition |
+|------------|------------------|
+| `iclosed_view` | Page view / scheduler loaded |
+| `iclosed_potential` | Visitor enters email + phone on form |
+| `iclosed_qualified` | Completes full form without booking |
+| `iclosed_disqualified` | Does not meet qualification criteria |
+| `iclosed_call_scheduled` | Call booked — primary conversion event |
+
+**Important:** If both email and phone are included on the event form, `iclosed_potential` fires **twice** (once for email, once for phone). For Meta optimization, use `iclosed_qualified` or `iclosed_call_scheduled` — do not optimize for `iclosed_potential`.
+
+---
+
+#### iClosed Native Meta CAPI Integration
+
+iClosed has a **built-in server-side Meta CAPI integration** (as of 2025). This is important context for the n8n approach:
+
+- **Sends:** contactId (sha256-hashed as `external_id`), email (sha256), phone (sha256), `client_user_agent`, `client_ip_address`, `event_id`
+- **Auto-captures:** `fbc` and `fbp` from browser cookies — no hidden fields needed
+- **Events sent:** Page view, Potential, Qualified, Disqualified, Call booked (`invitee_meeting_scheduled`)
+- **Deduplication:** Implemented per Meta best practices when both Pixel and CAPI are active
+
+**Why use n8n instead of native CAPI:** The n8n approach gives control over custom events (e.g., Purchase after outcome), allows using `callPreviewId` as `event_id` for reliable deduplication, and enables routing data to BigQuery simultaneously.
+
+---
+
+#### iClosed Embedding
+
+- Widget script: `https://app.iclosed.io/assets/widget.js`
+- Embed types: inline (loads directly on page) or popup (dialog on element click)
+- Popup data attributes: `data-iclosed-link="[SCHEDULER_URL]"`, `data-embed-type="popup"`
+- **Official warning:** Do not modify embed code — may break scheduler
+- UTM parameters: Standard UTMs (source, medium, campaign, term, content) auto-captured if present in URL
+- `utmKey_N`/`utmValue_N` tracking object format: Not publicly documented — appears to be internal webhook payload structure for custom UTM pairs (observed empirically in WinstArchitect project, treat as potentially unstable)
+
+---
+
+#### n8n Webhook Node Security
+
+Authentication methods available for n8n webhook endpoints:
+
+| Method | How it works | n8n Support |
+|--------|-------------|-------------|
+| Basic Auth | Username + password via HTTP headers | Native (built-in) |
+| Header Auth | Custom header name + secret value (e.g., `X-N8N-Auth: secret`) | Native (built-in) |
+| JWT Auth | JSON Web Token verification | Native (built-in) |
+| IP Whitelist | Restrict to specific sender IP addresses | Native (built-in) |
+| HMAC signature | Cryptographic request signing | Manual (implement in workflow code) |
+
+**iClosed webhook security limitation:** iClosed does not support HMAC signing as of 2025 (on their roadmap). URL-based secret tokens (via Header Auth) are the practical choice. Mitigation: use Header Auth + IP whitelist if iClosed publishes their outbound IPs.
+
+---
+
+#### n8n Airtable Node
+
+- Node: `n8n-nodes-base.airtabletrigger`
+- Type: **Polling** (not a native webhook from Airtable)
+- Polling interval: Configurable — every minute, hour, day, week, month, or custom cron
+- Detection: Uses created or last-modified field to determine what changed since last check
+- **Important cost implication:** 5-minute polling = ~8,640 executions/month. This exceeds the Starter plan limit of 2,500/month. For high-frequency polling, Pro plan (€50/mo) is needed or use less frequent polling (15-min = ~2,880 executions/month — still over Starter).
+
+---
+
+#### n8n Google BigQuery Node
+
+- Node: `n8n-nodes-base.googlebigquery`
+- Operations: Insert rows, Run query
+- Credentials: Google OAuth2 or Service Account
+- Use case in WF4 (Events → BigQuery): Insert rows for each webhook event received
+
+---
+
+#### n8n Pricing (2026)
+
+| Plan | Price (annual) | Executions/month | Concurrent | Notes |
+|------|---------------|-----------------|------------|-------|
+| Starter | €20/mo | 2,500 | 5 | Suitable only if workflows run infrequently |
+| Pro | €50/mo | 25,000 saved | 20 | Sufficient for most tracking pipelines |
+| Business | €667/mo | 40,000 | 30 | Includes self-hosted option |
+
+**Recommendation for client accounts:** n8n Cloud Pro at €50/mo — client-owned account, unlimited users. Starter (€20/mo) insufficient if Airtable polling runs every 5-15 minutes.
+
+---
+
+#### Meta CAPI — `action_source` Values
+
+| Value | Use Case |
+|-------|----------|
+| `website` | Conversion occurred on website (with browser context) |
+| `system_generated` | Automatic conversion — no user present (subscription renewals, outcome-triggered events) |
+| `email` | Conversion via email |
+| `app` | Conversion in mobile app |
+| `phone_call` | Conversion by phone |
+| `chat` | Conversion via messaging |
+| `physical_store` | In-person conversion |
+| `business_messaging` | Click-to-Messenger/Instagram/WhatsApp ads |
+
+**For n8n-triggered purchase events after call outcome:** Use `system_generated` — no user session present, event triggered by CRM data.
+
+---
+
+#### Meta CAPI — `fbc` Parameter Construction
+
+Format: `fb.{version}.{subdomainIndex}.{creationTime_ms}.{fbclid}`
+
+- `version` = always `1`
+- `subdomainIndex` = 1 for `example.com`, 2 for `www.example.com`, 0 for `.com`
+- `creationTime_ms` = Unix timestamp in **milliseconds** when fbclid was first captured (landing time, NOT booking time)
+- `fbclid` = raw fbclid value from URL parameter
+
+Example: `fb.1.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890`
+
+**Important:** Do NOT hash fbc — send as plain string. Store `creationTime_ms` at landing time alongside fbclid.
+
+---
+
+#### Meta CAPI — Event Deduplication
+
+- Deduplication key: `event_name` + `event_id` (case-sensitive, whitespace-sensitive)
+- Window: 48 hours
+- Priority: Browser/Pixel events take priority if they arrive ~5 minutes before server events
+- Best practice: Use `callPreviewId` as `event_id` for iClosed call booking events — unique per call
 
 ### Session 4 Research: Meta BQ + Cross-Platform
 _To be completed in Session 4_
