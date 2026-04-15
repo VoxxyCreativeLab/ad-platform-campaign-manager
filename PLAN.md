@@ -76,6 +76,45 @@ Planned 2026-04-14. Design spec at `docs/superpowers/specs/2026-04-14-backlog-ex
 | v1.20.0 | Housekeeping + Product Performance | M | ⬜ Not started | `product-performance` skill + stale status fixes |
 | v1.21.0 | Cross-Platform Tracking Expansion | L | ⬜ Not started | iClosed, n8n, Meta BQ pipeline, data model expansion |
 
+#### Session 2 — Research + Build #9 Product Performance (v1.20.0)
+
+Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 5–10).
+
+- [ ] **Research online:** `shopping_performance_view` fields, zombie product thresholds, feed optimization signals, PMax vs Standard Shopping product-level bidding. Save findings to design spec Appendix (Session 2 section).
+- [ ] **Create** `skills/product-performance/SKILL.md` — interactive flow, wraps 4 existing GAQL queries, report output section (stage: `05-optimize`)
+- [ ] **Wire** `CONTEXT.md` routing entry: "Product performance" → `skills/product-performance/SKILL.md`
+- [ ] **Add** Quick Navigation entry to `CLAUDE.md` for `/ad-platform-campaign-manager:product-performance`
+- [ ] **Release v1.20.0** — CHANGELOG entry, commit, update PLAN.md + PRIMER.md
+
+#### Session 3 — Research + Write iClosed (#10) + n8n (#12)
+
+Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 11–16).
+
+- [ ] **Research online:** iClosed developer docs (webhook schemas, API events, tracking object), n8n nodes (BQ/Airtable/webhook), Meta CAPI server event requirements, webhook security. Save to design spec Appendix (Session 3 section).
+- [ ] **Create** `reference/tracking-bridge/iclosed-attribution.md` — 7 webhook events, fbclid passthrough, GTM injection, consent gating
+- [ ] **Create** `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern, boundary note (tracking only), Meta CAPI section
+- [ ] **Update** `reference/tracking-bridge/CONTEXT.md` with new file entries
+- [ ] **Commit** Session 3 + PRIMER.md rewrite
+
+#### Session 4 — Research + Write Meta BQ (#11) + Cross-Platform (#13)
+
+Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 17–20).
+
+- [ ] **Research online:** BQ Data Transfer Service for Meta, OWOX Data Marts, Meta Marketing API, join patterns. Save to design spec Appendix (Session 4 section).
+- [ ] **Create** `reference/reporting/meta-ads-bigquery.md` — 3 pipeline approaches, decision matrix, schema
+- [ ] **Extend** `reference/reporting/cross-platform-data-model.md` — 5-source architecture, join keys, lifecycle stages, `fbc` formula
+- [ ] **Commit** Session 4 + PRIMER.md rewrite
+
+#### Session 5 — Integration + Release v1.21.0
+
+Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 21–25).
+
+- [ ] **Update** `CONTEXT.md` — add routing for iClosed, n8n, Meta Ads (3 new entries)
+- [ ] **Update** `CLAUDE.md` — relax "Google Ads only" permanent rule for tracking-bridge scope
+- [ ] **Update** `_config/ecosystem.md` — add note to n8n-plugin entry
+- [ ] **Update** `BACKLOG.md` — mark #10–#13 Done (v1.21.0)
+- [ ] **Release v1.21.0** — CHANGELOG entry, commit, PRIMER.md final rewrite
+
 ---
 
 ## Decisions Made
