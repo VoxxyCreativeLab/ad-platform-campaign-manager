@@ -290,7 +290,68 @@ This section grows across sessions. Each research session appends its findings h
 %%
 
 ### Session 2 Research: Product Performance
-_To be completed in Session 2_
+
+**Date:** 2026-04-14
+**Sources:** Google Ads API v20 docs, industry PPC publications (JumpFly, BigFlare, PPC Panos, FeedOps)
+
+#### shopping_performance_view — Additional Fields (beyond current GAQL templates)
+
+Current templates already use: `product_item_id`, `product_title`, `product_brand`, `product_category_level1/2`, `impressions`, `clicks`, `cost_micros`, `conversions`, `conversions_value`, `ctr`.
+
+**Additional segments not yet in templates (useful for advanced analysis):**
+- `segments.product_custom_attribute0` through `segments.product_custom_attribute4` — Merchant Center custom labels (margin tier, season, promo status)
+- `segments.product_type_level1` through `segments.product_type_level5` — seller-defined product type hierarchy (more granular than Google categories)
+- `segments.product_condition` — new / used / refurbished
+
+**Additional metrics not yet in templates:**
+- `metrics.gross_profit_micros` — available for retailers with cart data / Merchant Center cart integration
+- `metrics.units_sold` — units sold per product
+- `metrics.average_cart_size` — average number of items per order
+- `metrics.search_budget_lost_impression_share` / `metrics.search_rank_lost_impression_share` — competitive/budget health signals
+
+**Critical restriction:** `segments.date` CANNOT appear in SELECT (causes `UNSUPPORTED_DATE_SEGMENTATION` error). Use only in WHERE clause (`WHERE segments.date DURING LAST_30_DAYS`). Current templates are correct.
+
+**shopping_product vs shopping_performance_view distinction:** `shopping_product` shows current state of products (including disapprovals, issues, feed errors) and is recommended for diagnosing why a product isn't serving. `shopping_performance_view` shows historical performance data for products that have served ads. Both are complementary.
+
+#### Zombie Product Thresholds
+
+**Industry consensus (no official Google mandated threshold):**
+- **30 days** — standard window for active accounts with consistent traffic
+- **90 days** — for seasonal products or low-volume accounts (avoids false positives)
+- **Zero conversions + non-zero spend** = conversion zombie (product gets traffic but doesn't convert)
+- **Zero impressions + zero clicks** = invisible zombie (product not surfacing at all — feed issue more likely than bidding)
+
+**Recommended thresholds for the skill:**
+- Primary zombie filter: `cost_micros > 0 AND conversions = 0` over LAST_30_DAYS
+- Severity tiering: `cost_micros > 10,000,000` (> ~$10 spend) = high-priority zombie; lower spend = monitor
+- Before excluding: check if product is seasonal (extend window to 90 days) or new (within 14-day data lag)
+- PMax context: zombies in PMax are expected — PMax allocates ~80% of budget to "hero" products; low-visibility products may simply not have received budget, not necessarily feed issues
+
+#### Feed Optimization Signals (CTR Impact)
+
+**Ranked by impact on CTR:**
+1. **Product title** — highest impact. 20-40% CTR uplift from optimization. Rules:
+   - Front-load most important term (first 70 chars shown in ad)
+   - Structure: Brand + Product Type + Key Attributes (color, size, material)
+   - Include primary search terms; avoid keyword stuffing
+2. **GTINs** — 20% average click increase when correct GTINs provided. Unlocks price comparison eligibility and additional Shopping features
+3. **Images** — white/light background, high resolution, product fills 75-90% of frame. No watermarks, text, or promotional overlays
+4. **Pricing competitiveness** — affects both CTR and conversion rate; high impression/low CTR often signals pricing is uncompetitive vs. listed alternatives
+5. **Product type specificity** — more specific product type → better query matching → higher relevance → higher CTR
+6. **Custom labels** — enable smart bidding and analysis segmentation (e.g., label by margin tier to catch low-margin zombie spend)
+
+#### PMax vs Standard Shopping — Product-Level Control
+
+| Aspect | Standard Shopping | Performance Max |
+|--------|------------------|-----------------|
+| Bidding options | Manual CPC, Max Clicks, Target ROAS | Smart Bidding only (Max Conv / Max Conv Value + optional tCPA/tROAS) |
+| Per-product bids | Yes — product groups with manual CPC targets | No — AI controls all bids; no per-product levers |
+| Product group structure | Up to 20,000 ad groups, 5-level product group hierarchy | Asset group listing groups (same hierarchy concept, different UI) |
+| Budget allocation by product | Indirect via campaign/ad group structure | No — Google AI decides allocation; hero products absorb most budget |
+| Zombie exclusion method | Negative product target (direct exclusion) | Listing group exclusion or remove from feed entirely |
+| Impression share visibility | Yes — full search IS data | Limited — no direct IS reporting per product |
+
+**Key insight for skill:** The zombie exclusion recommendation must differ by campaign type. Standard Shopping: add as negative product target in the ad group. PMax: either exclude via listing group edit, or suppress in Merchant Center feed using `excluded_destination`. Feed suppression affects all campaigns — use listing group exclusion if PMax-only exclusion is intended.
 
 ### Session 3 Research: iClosed + n8n
 _To be completed in Session 3_

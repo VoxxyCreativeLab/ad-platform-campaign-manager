@@ -7,6 +7,23 @@ tags:
 
 # Changelog
 
+## [1.20.0] — 2026-04-14
+
+New product-level performance skill for e-commerce accounts. Stale backlog statuses corrected.
+
+### Added
+- **`skills/product-performance/SKILL.md`** — Interactive product-level analysis for Shopping and Performance Max campaigns. Wraps 4 `shopping_performance_view` GAQL queries with guided interpretation: zombie product identification (spend + zero conversions), top converter analysis, category performance breakdown, and feed optimization candidates (high impressions, low CTR). Includes campaign-type-aware exclusion recommendations (Standard Shopping negative product targets vs PMax listing group exclusions), MCP boundary note for Merchant Center feed data, and inter-skill routing. Report output: stage `05-optimize`, SUMMARY.md: Optimization & Reporting.
+
+### Fixed
+- **`BACKLOG.md`** — Item #9 (`Product-level performance skill`) updated from `⬜ Open` to `✅ Done (v1.20.0)`.
+
+### Changed
+- **`CONTEXT.md`** — Added routing entry: "Product performance" → `skills/product-performance/SKILL.md` with 6 reference files.
+- **`CLAUDE.md`** — Added Quick Navigation entry: "Analyze product performance" → `/ad-platform-campaign-manager:product-performance`.
+- **`docs/superpowers/specs/2026-04-14-backlog-expansion-design.md`** — Appendix Session 2 research section completed: `shopping_performance_view` fields, zombie thresholds, feed optimization signals, PMax vs Standard Shopping product bidding.
+
+---
+
 ## [1.19.1] — 2026-04-08
 
 Bug fix: `post-launch-monitor` SKILL.md had broken frontmatter that prevented correct skill registration. Lesson captured.

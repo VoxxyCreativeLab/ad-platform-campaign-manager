@@ -64,7 +64,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
 - ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
 - ✅ Priority 3 Audit Expansion (v1.12.0) — Video/YouTube (12), Cross-Campaign Cannibalization (5), Attribution Depth (5), Account-Level Strengthening (5) added; Areas 18-21 in campaign-review with GAQL queries; Video triage in campaign-cleanup; campaign-reviewer agent updated with 4 new sections
-**Current milestone:** Backlog Expansion v1.20.0–v1.21.0 — planning complete, Session 2 next
+**Current milestone:** Backlog Expansion v1.20.0 ✅ Done — Session 3 next (iClosed + n8n)
 **Blockers:** OAuth client secret should be rotated.
 
 ### After v1.19.1 — Backlog Expansion (v1.20.0–v1.21.0)
@@ -73,18 +73,18 @@ Planned 2026-04-14. Design spec at `docs/superpowers/specs/2026-04-14-backlog-ex
 
 | Release | Name | Size | Status | Key Deliverable |
 |---------|------|------|--------|-----------------|
-| v1.20.0 | Housekeeping + Product Performance | M | ⬜ Not started | `product-performance` skill + stale status fixes |
+| v1.20.0 | Housekeeping + Product Performance | M | ✅ Done (2026-04-14) | `product-performance` skill + stale status fixes |
 | v1.21.0 | Cross-Platform Tracking Expansion | L | ⬜ Not started | iClosed, n8n, Meta BQ pipeline, data model expansion |
 
 #### Session 2 — Research + Build #9 Product Performance (v1.20.0)
 
 Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 5–10).
 
-- [ ] **Research online:** `shopping_performance_view` fields, zombie product thresholds, feed optimization signals, PMax vs Standard Shopping product-level bidding. Save findings to design spec Appendix (Session 2 section).
-- [ ] **Create** `skills/product-performance/SKILL.md` — interactive flow, wraps 4 existing GAQL queries, report output section (stage: `05-optimize`)
-- [ ] **Wire** `CONTEXT.md` routing entry: "Product performance" → `skills/product-performance/SKILL.md`
-- [ ] **Add** Quick Navigation entry to `CLAUDE.md` for `/ad-platform-campaign-manager:product-performance`
-- [ ] **Release v1.20.0** — CHANGELOG entry, commit, update PLAN.md + PRIMER.md
+- [x] **Research online:** `shopping_performance_view` fields, zombie product thresholds, feed optimization signals, PMax vs Standard Shopping product-level bidding. Save findings to design spec Appendix (Session 2 section).
+- [x] **Create** `skills/product-performance/SKILL.md` — interactive flow, wraps 4 existing GAQL queries, report output section (stage: `05-optimize`)
+- [x] **Wire** `CONTEXT.md` routing entry: "Product performance" → `skills/product-performance/SKILL.md`
+- [x] **Add** Quick Navigation entry to `CLAUDE.md` for `/ad-platform-campaign-manager:product-performance`
+- [x] **Release v1.20.0** — CHANGELOG entry, commit, update PLAN.md + PRIMER.md
 
 #### Session 3 — Research + Write iClosed (#10) + n8n (#12)
 

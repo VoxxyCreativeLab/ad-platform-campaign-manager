@@ -174,7 +174,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 6 | Post-launch playbook | New file | High | ✅ Done (v1.15.0) |
 | 7 | Learning duration table | Clarity | Medium | ✅ Done (v1.13.0) |
 | 8 | Automated post-launch checks | Future | Medium | ✅ Done (v1.18.0) |
-| 9 | Product-level performance skill | Future | High | ⬜ Open |
+| 9 | Product-level performance skill | Future | High | ✅ Done (v1.20.0) |
 | 10 | iClosed tracking patterns | New Capability | Medium | ⬜ Open |
 | 11 | Meta Ads to BigQuery pipeline | Gap | Medium | ⬜ Open |
 | 12 | n8n as automation layer in tracking stacks | New Capability | Medium | ⬜ Open |

@@ -11,36 +11,33 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.19.1 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
+**ad-platform-campaign-manager** v1.20.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists.
 
 ---
 
 ## Last Completed
 
-### Session 2026-04-14 (planning): Backlog Expansion Design + Session 1 Housekeeping
+### Session 2026-04-14 (v1.20.0): Product Performance Skill
 
-- **Design spec written:** `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` — covers all 5 open backlog items (#9, #10, #11, #12, #13) across 2 releases (v1.20.0, v1.21.0)
-- **Implementation plan written:** `docs/superpowers/plans/2026-04-14-backlog-expansion.md` — 25 tasks, 5-session breakdown with research phases per subject
-- **Stale backlog fixed:** Items #5 (shopping queries), #6 (post-launch playbook), #8 (automated post-launch checks) marked Done — all delivered in v1.15.0–v1.18.0 but never updated in status table
-- **PLAN.md updated:** v1.20.0 and v1.21.0 sections added
-- **Architectural decisions locked:**
-  - iClosed + n8n → `reference/tracking-bridge/` (tracking-bridge scope expansion, not new platform dirs)
-  - Meta BQ pipeline → `reference/reporting/`
-  - n8n stays as separate future plugin for full workflow automation; tracking pipeline patterns only here
-  - CLAUDE.md "Google Ads only" rule relaxed for tracking-bridge in Session 5
+- **Research completed:** `shopping_performance_view` fields (additional: `product_custom_attribute0-4`, `product_type_level1-5`, `product_condition`, cart data metrics), zombie thresholds (30-day standard / 90-day seasonal), feed CTR signals (title > GTINs > images > pricing), PMax vs Standard Shopping bidding differences. Saved to design spec Appendix Session 2.
+- **`skills/product-performance/SKILL.md`** — New interactive skill: 5-step flow (context → MCP data pull → analysis → recommendations → routing). Wraps 4 `shopping_performance_view` queries. Zombie triage by severity (>€10 spend = high priority). Campaign-type-aware exclusion (Standard Shopping: negative product target; PMax: listing group exclusion). Feed diagnosis table. Report output: stage `05-optimize`.
+- **`CONTEXT.md`** — Added routing entry for product performance.
+- **`CLAUDE.md`** — Added Quick Navigation: "Analyze product performance".
+- **`BACKLOG.md`** — Item #9 marked Done (v1.20.0).
 
 ---
 
-### Session 2026-04-08 (v1.19.1): post-launch-monitor frontmatter fix
+### Session 2026-04-14 (planning): Backlog Expansion Design + Session 1 Housekeeping
 
-- **`skills/post-launch-monitor/SKILL.md`** — Fixed broken frontmatter: changed `skill:` to `name:` (correct registered field), removed invalid `version:` and `tags:` fields (silently ignored by Claude Code), added `argument-hint: "[campaign-name or phase]"`. Skill was not registering correctly in prior state.
-- **`LESSONS.md`** — Added lesson: always copy frontmatter from an existing working skill; never generate from memory.
+- **Design spec written:** `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md`
+- **Implementation plan written:** `docs/superpowers/plans/2026-04-14-backlog-expansion.md` — 25 tasks, 5-session breakdown
+- **Stale backlog fixed:** Items #5, #6, #8 marked Done (delivered in v1.15.0–v1.18.0)
 
 ---
 
 ## Current State
 
-### Plugin (ad-platform-campaign-manager) — v1.19.1
+### Plugin (ad-platform-campaign-manager) — v1.20.0
 
 | Layer | Count | Notes |
 |-------|-------|-------|
@@ -48,7 +45,7 @@ tags:
 | Script docs | 17 | under `reference/scripts/` |
 | Tracking-bridge docs | 6 | expanding to 8 in v1.21.0 (iClosed, n8n) |
 | Reporting docs | 5 | expanding to 6 in v1.21.0 (Meta BQ pipeline) |
-| Skills | 14 | expanding to 15 in v1.20.0 (product-performance) |
+| Skills | 15 | 14 existing + product-performance (new in v1.20.0) |
 | Agents | 3 | campaign-reviewer, tracking-auditor, strategy-advisor |
 | Audit areas | 21 | All Priority 1-3 complete |
 
@@ -68,25 +65,21 @@ tags:
 
 ## What Still Needs to Happen
 
-### Next session (Session 2): Research + Build #9 Product Performance Skill
+### Next session (Session 3): Research iClosed (#10) + n8n (#12)
 
-1. **Online research:** `shopping_performance_view` fields, zombie product thresholds, feed optimization signals, product-level bidding in PMax vs Standard Shopping. Save findings to design spec Appendix (Session 2 section).
-2. **Build:** `skills/product-performance/SKILL.md` — wraps 4 existing GAQL queries, interactive analysis flow, report output section
-3. **Wire:** `CONTEXT.md` routing entry + `CLAUDE.md` Quick Navigation
-4. **Release:** v1.20.0 — commit + CHANGELOG entry
-
-### Session 3: Research iClosed (#10) + n8n (#12)
-- Online research: iClosed developer docs (webhooks, API events, tracking object), n8n nodes (BQ/Airtable/webhook), Meta CAPI server event requirements, webhook security
-- Write: `reference/tracking-bridge/iclosed-attribution.md`, `reference/tracking-bridge/n8n-pipeline-patterns.md`
-- Save research findings to design spec Appendix (Session 3 section)
+1. **Online research:** iClosed developer docs (webhook schemas, API events, `tracking` object with `utmKey_N`/`utmValue_N` fbclid passthrough), n8n nodes (BigQuery, Airtable, webhook, HTTP Request), Meta CAPI server event requirements (`action_source` values, `fbc` construction), webhook security. Save findings to design spec Appendix (Session 3 section).
+2. **Write:** `reference/tracking-bridge/iclosed-attribution.md` — 7 webhook events, GTM injection (Scenario A/B), fbclid passthrough, callOutcome attribution gap, consent gating
+3. **Write:** `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern (Booking→CRM, Outcome→CRM, CRM→CAPI, Events→BQ), webhook security, Meta CAPI via n8n, scoped to tracking only
+4. **Update:** `reference/tracking-bridge/CONTEXT.md` with new file entries (if it exists)
+5. **Commit** Session 3 + PRIMER.md rewrite
 
 ### Session 4: Research Meta BQ (#11) + Cross-Platform (#13)
-- Online research: BQ Data Transfer Service for Meta, OWOX Data Marts, Meta Marketing API, join patterns
-- Write: `reference/reporting/meta-ads-bigquery.md`, extend `reference/reporting/cross-platform-data-model.md`
-- Save research findings to design spec Appendix (Session 4 section)
+- Online research: BQ Data Transfer Service for Meta, OWOX Data Marts, Meta Marketing API, join patterns. Save to Appendix (Session 4 section).
+- Write: `reference/reporting/meta-ads-bigquery.md` — 3 pipeline approaches + decision matrix
+- Extend: `reference/reporting/cross-platform-data-model.md` — 5-source architecture, join keys, lifecycle stages, `fbc` formula
 
 ### Session 5: Integration + Release v1.21.0
-- Wire: `CONTEXT.md` (3 new routing entries), `CLAUDE.md` (tracking-bridge rule), `ecosystem.md` (n8n note)
+- Wire: `CONTEXT.md` (3 new routing entries), `CLAUDE.md` (relax "Google Ads only" for tracking-bridge), `_config/ecosystem.md` (n8n note)
 - Update: `BACKLOG.md` (#10–#13 → Done)
 - Release v1.21.0
 
