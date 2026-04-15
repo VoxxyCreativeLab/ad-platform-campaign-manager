@@ -64,7 +64,17 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
 - ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
 - ✅ Priority 3 Audit Expansion (v1.12.0) — Video/YouTube (12), Cross-Campaign Cannibalization (5), Attribution Depth (5), Account-Level Strengthening (5) added; Areas 18-21 in campaign-review with GAQL queries; Video triage in campaign-cleanup; campaign-reviewer agent updated with 4 new sections
+**Current milestone:** Backlog Expansion v1.20.0–v1.21.0 — planning complete, Session 2 next
 **Blockers:** OAuth client secret should be rotated.
+
+### After v1.19.1 — Backlog Expansion (v1.20.0–v1.21.0)
+
+Planned 2026-04-14. Design spec at `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md`. Implementation plan at `docs/superpowers/plans/2026-04-14-backlog-expansion.md`.
+
+| Release | Name | Size | Status | Key Deliverable |
+|---------|------|------|--------|-----------------|
+| v1.20.0 | Housekeeping + Product Performance | M | ⬜ Not started | `product-performance` skill + stale status fixes |
+| v1.21.0 | Cross-Platform Tracking Expansion | L | ⬜ Not started | iClosed, n8n, Meta BQ pipeline, data model expansion |
 
 ---
 

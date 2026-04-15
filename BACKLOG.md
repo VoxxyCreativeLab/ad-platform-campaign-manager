@@ -98,6 +98,26 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Problem:** Different files cite different durations (1-2 weeks, 2-3 weeks, 2-4 weeks, 7-14 days) without explaining why.
 - **Fix:** Add a table to the new `learning-phase.md` explaining per-type/per-strategy durations. Then reference it from all other files instead of each stating its own number.
 
+### 11. [AUTO] Meta Ads to BigQuery Pipeline
+
+- **Source project:** 0014 - Client WinstArchitect - subclient Next Chapter
+- **Date found:** 2026-04-13
+- **Affected file:** `reference/reporting/` (BigQuery reporting referenced conceptually but no Meta Ads-specific pipeline guidance)
+- **Category:** Gap
+- **Description:** BigQuery Data Transfer Service for Meta Ads data: native Google connector, 24h refresh, zero maintenance, free. OWOX Data Marts (`OWOX/owox-data-marts`, MIT license, open source) as upgrade path for more granular/frequent data. n8n HTTP Request to Meta Marketing API as alternative for real-time data. Schema design for `meta_ads_performance` table. When to use each approach: start with Data Transfer Service, upgrade to OWOX if sub-daily granularity needed.
+- **Proposed fix:** Add a `reference/reporting/meta-ads-bigquery.md` file covering all three pipeline approaches with decision guidance.
+- **Status:** Open
+
+### 13. [AUTO] Cross-Platform Data Model for BigQuery
+
+- **Source project:** 0014 - Client WinstArchitect - subclient Next Chapter
+- **Date found:** 2026-04-13
+- **Affected file:** `reference/reporting/` (BigQuery architecture referenced but no cross-platform normalization guidance)
+- **Category:** Gap
+- **Description:** Meta + GA4 + iClosed + Airtable normalization in BigQuery. 5-source architecture: GA4 (native BQ export, daily), Meta Ads (BigQuery Data Transfer Service, 24h), iClosed (n8n webhook -> BQ node, real-time), Airtable (n8n Airtable Trigger -> BQ node, polling 5-15min), sGTM (sGTM BQ tag, streaming). Key join fields: `contactId` as cross-system key linking iClosed records to Airtable to CAPI events. `callPreviewId` as CAPI `event_id` for deduplication. Lead lifecycle stages (Lead/MQL/Booked/SQL/Closed) mapped across tools and tables. `fbc` reconstruction from stored fbclid: `fb.1.{bookingTime_unix}.{fbclid}`.
+- **Proposed fix:** Add a `reference/reporting/cross-platform-data-model.md` file covering join key strategy, table schemas, and lifecycle stage mapping for high-ticket funnel stacks.
+- **Status:** Open
+
 ---
 
 ## Future Capabilities
@@ -120,6 +140,26 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Depends on:** Gap #5 (GAQL queries must exist first)
 - **Priority:** High for e-commerce accounts
 
+### 10. [AUTO] iClosed Tracking Patterns
+
+- **Source project:** 0014 - Client WinstArchitect - subclient Next Chapter
+- **Date found:** 2026-04-13
+- **Affected file:** Unknown (new platform domain — no iClosed coverage exists)
+- **Category:** New Capability
+- **Description:** GTM URL param injection for iClosed 2-Step Scheduler: iClosed URL param injector GTM Custom HTML tag on Thank You page, Scenario A (single container, events on parent dataLayer) vs Scenario B (dedicated iClosed container). Webhook-to-n8n pipeline using real iClosed API event names: `newContactCreated`, `contactDetailChanged`, `contactByStatus`, `newCallScheduled`, `callCancelled`, `callRescheduled`, `callOutcome`. fbclid passthrough via webhook `tracking` object: `utmKey_N`/`utmValue_N` key-value pairs (confirmed in iClosed developer docs). callOutcome attribution gap: `callOutcome` webhook has no `tracking` data — fbclid must be retrieved from CRM via `contactId` correlation. Consent gating for iClosed GTM events: `cookie_consent_marketing` trigger, Consent Mode v2 defaults denied. GTM dataLayer events (`iclosed_view`, `iclosed_qualified`, etc.) are UNVERIFIED (not in developer docs).
+- **Proposed fix:** TBD
+- **Status:** Open
+
+### 12. [AUTO] n8n as Automation Layer in Tracking Stacks
+
+- **Source project:** 0014 - Client WinstArchitect - subclient Next Chapter
+- **Date found:** 2026-04-13
+- **Affected file:** Unknown (new platform domain — no n8n coverage exists)
+- **Category:** New Capability
+- **Description:** n8n replaces Zapier/Make in tracking stacks. n8n Cloud Starter: EUR 24/mo, unlimited users, client-owned account. Webhook security: URL-based secret token only (no HMAC available from iClosed, on their roadmap). 4-workflow pattern for high-ticket coaching funnels: WF1 booking-to-CRM (`newCallScheduled` -> Airtable), WF2 outcome-to-CRM (`callOutcome` -> Airtable update), WF3 CRM-to-CAPI (Airtable fbclid -> Meta CAPI Purchase, `action_source: system_generated`), WF4 events-to-BigQuery (all webhooks -> BigQuery raw log). n8n nodes used: `n8n-nodes-base.webhook`, `n8n-nodes-base.airtable`, `n8n-nodes-base.httpRequest`, `n8n-nodes-base.googlebigquery`.
+- **Proposed fix:** TBD
+- **Status:** Open
+
 ---
 
 ## Status
@@ -130,8 +170,12 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 2 | feed-only-pmax.md steps 12-14 | Fix | High | ✅ Done (v1.13.0) |
 | 3 | common-mistakes.md #20 too vague | Fix | Medium | ✅ Done (v1.13.0) |
 | 4 | learning-phase.md reference | New file | High | ✅ Done (v1.13.0) |
-| 5 | shopping_performance_view queries | Gap fill | High | ⬜ Open |
-| 6 | Post-launch playbook | New file | High | ⬜ Open |
+| 5 | shopping_performance_view queries | Gap fill | High | ✅ Done (v1.15.0) |
+| 6 | Post-launch playbook | New file | High | ✅ Done (v1.15.0) |
 | 7 | Learning duration table | Clarity | Medium | ✅ Done (v1.13.0) |
-| 8 | Automated post-launch checks | Future | Medium | ⬜ Design needed |
-| 9 | Product-level performance skill | Future | High | ⬜ Design needed |
+| 8 | Automated post-launch checks | Future | Medium | ✅ Done (v1.18.0) |
+| 9 | Product-level performance skill | Future | High | ⬜ Open |
+| 10 | iClosed tracking patterns | New Capability | Medium | ⬜ Open |
+| 11 | Meta Ads to BigQuery pipeline | Gap | Medium | ⬜ Open |
+| 12 | n8n as automation layer in tracking stacks | New Capability | Medium | ⬜ Open |
+| 13 | Cross-platform data model for BigQuery | Gap | Low | ⬜ Open |
