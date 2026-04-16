@@ -221,6 +221,41 @@ No additional setup required — if your Merchant Center feed is active and prod
 - **Product ID split:** if you sell products both online and in local inventory, ensure your tracking matches the new per-channel product IDs — mismatched IDs break conversion attribution
 - **Merchant Center Next:** the new interface reorganizes reporting; update any documentation or SOPs that reference classic MC navigation
 
+## Troubleshooting
+
+### Shopping ROAS Collapsed After Restructure / Campaign Relaunch
+
+If Shopping ROAS dropped significantly after a restructure, budget change, or product group rebuild, follow the structured diagnosis protocol:
+
+**→ See [[shopping-performance-regression-diagnosis]] for the full investigation workflow.**
+
+Quick triage:
+1. Check `all_conversions` vs `conversions` by product — if `all_conversions` >> `conversions`, attribution shift (H1) is the likely cause
+2. Check impression share metrics — if IS Lost to Budget > 60%, the bids are fine but the budget is the constraint
+3. Verify no unauthorized changes in change_event history
+4. Check if the regression predates any structural change (rules out bid disruption)
+
+> [!info] Post-launch-monitor routing
+> When `/ad-platform-campaign-manager:post-launch-monitor` detects Shopping ROAS dropping >30% vs baseline, it routes to the diagnosis protocol. This is the correct entry point for systematic investigation.
+
+### Shopping Getting Clicks but 0 Conversions on All Products
+
+Possible causes (in order):
+1. **Attribution shift** — check `all_conversions` at product level (see diagnosis protocol H1)
+2. **Landing page / checkout issue** — confirm orders are completing in the backend
+3. **Conversion tracking failure** — invoke `/ad-platform-campaign-manager:conversion-tracking`
+4. **Product feed issue** — verify price and availability match landing page
+
+### IS Lost to Budget Is Very High Despite Adequate Budget
+
+The campaign may have more eligible inventory than expected. Check:
+- Run the IS metrics GAQL for the Shopping campaign specifically
+- Budget-limited IS (>70%) means the campaign is winning auctions but can't serve all eligible impressions
+- This is a healthy signal for bid structure — the bids are competitive
+- Resolution: increase budget or accept the current reach ceiling
+
+---
+
 ## Related
 
 - [[campaign-types]] — campaign type comparison and decision tree
@@ -228,3 +263,4 @@ No additional setup required — if your Merchant Center feed is active and prod
 - [[gtm-to-gads]] — client-side tracking implementation
 - [[bidding-strategies]] — bid strategy selection guide
 - [[negative-keyword-lists]] — pre-built negative keyword lists
+- [[shopping-performance-regression-diagnosis]] — structured ROAS regression investigation protocol

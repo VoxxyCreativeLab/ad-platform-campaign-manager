@@ -7,6 +7,18 @@ tags:
 
 # Changelog
 
+## [1.21.0] — 2026-04-16
+
+Shopping ROAS regression diagnostic protocol added. Closes BACKLOG item #1 (filed Session 26). Built from real investigation on Vaxteronline account (Day 9, session 27).
+
+### Added
+- **`reference/platforms/google-ads/shopping-performance-regression-diagnosis.md`** — Structured investigation protocol for Shopping ROAS collapses. Covers: 30-day window contamination warning, 7-hypothesis checklist (attribution shift, bid disruption, product disapprovals, budget change side effects, seasonality, conversion tracking gap, feed issues), GAQL query for each hypothesis, interpretation guides, action routing per confirmed hypothesis, multi-cause scenarios, attribution model context, and tROAS transition gate guidance. Built from the Vaxteronline Day 9 investigation where attribution shift (H1) was confirmed as primary cause.
+
+### Changed
+- **`reference/platforms/google-ads/shopping-campaigns.md`** — Added `## Troubleshooting` section: Shopping ROAS collapse routing, zero-conversion diagnosis checklist, IS budget constraint guidance. Cross-references new regression diagnosis doc.
+
+---
+
 ## [1.20.0] — 2026-04-14
 
 New product-level performance skill for e-commerce accounts. Stale backlog statuses corrected.
