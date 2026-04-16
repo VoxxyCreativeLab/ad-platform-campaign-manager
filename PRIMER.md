@@ -11,33 +11,40 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.20.0 — Claude Code plugin for Google Ads campaign management, built for tracking specialists. v1.21.0 in progress (Session 4 next). v1.22.0 BigQuery Baseline planned.
+**ad-platform-campaign-manager** v1.20.0 (v1.21.0 in progress). Claude Code plugin for Google Ads campaign management, built for tracking specialists. Phase 1 restructure complete. Session 4 is next.
 
 ---
 
 ## Last Completed
 
-### Session 2026-04-16 (planning): Backlog Expansion + BigQuery Baseline Plan
+### Session 2026-04-16 (this session): Tracking-Bridge Restructure (Phase 1)
 
-- **`BACKLOG.md`** — Added items #14–#18:
-  - #14: BigQuery pipeline expansion — GA4/GAds native connectors + n8n BQ→Meta CAPI reverse flow
-  - #15: Klaviyo email marketing knowledge base (client: Vaxteronline)
-  - #16: Looker Studio dashboards from BigQuery
-  - #17: GTM scripts review — cookie collection cHTML (Watermelon plan)
-  - #18: Watermelon plan knowledge extraction (100-page doc, strip client-specifics)
-- **BigQuery baseline cluster (#14, #17, #18) planned:** design + skill sequencing locked:
-  - Skip `/review-skill` (wrong tool). Use `/superpowers:brainstorming` → `/superpowers:writing-plans` → `/superpowers:executing-plans`
-  - v1.21.0 finishes first (Sessions 4–5), then v1.22.0 starts
-  - Design spec target: `docs/superpowers/specs/2026-04-16-bigquery-baseline-design.md`
-  - Plan target: `docs/superpowers/plans/2026-04-16-bigquery-baseline.md`
-  - Planning meta-plan saved at `C:\Users\VCL1\.claude\plans\wise-scribbling-cat.md`
+Executed `docs/superpowers/specs/2026-04-14-tracking-bridge-restructure-design.md` before Session 4 to prevent double cross-reference work.
+
+**Files changed:**
+
+| File | Change |
+|------|--------|
+| `reference/tracking-bridge/iclosed-attribution.md` | Full rewrite: Scenario A only (postMessage bridge), WF1-WF4 pipeline flows moved here (incl. BQ schema), Scenario B + native CAPI moved to "Platform Defaults to Override" warnings |
+| `reference/tracking-bridge/n8n-pipeline-patterns.md` | Full rewrite: generic patterns only — webhook security, BigQuery streaming conventions, n8n node reference, client account pattern. iClosed WF1-WF4 + Meta CAPI payload + pricing removed |
+| `reference/platforms/meta-ads/capi-server-events.md` | **New file** — Meta CAPI payload structure, `action_source` values, `fbc` construction formula, user data hashing (SHA256), event deduplication |
+| `reference/tracking-bridge/CONTEXT.md` | Updated: new file descriptions, updated reading order (iClosed → capi-server-events), companion resource note |
+| `reference/CONTEXT.md` (root) | Added: tracking-bridge files + new Meta Ads section |
+| `CLAUDE.md` | "Google Ads only" permanent rule replaced with "Multi-platform tracking" — campaign management stays Google Ads only; tracking-bridge + `reference/platforms/` may reference any attribution pipeline platform |
+| `CONTEXT.md` (plugin root) | Added 3 routing entries: iClosed attribution, n8n pipeline setup, Meta CAPI server events |
+| `PLAN.md` | Session 3 commit checked off; Phase 1 restructure section added; Session 4-5 tasks updated |
+| `docs/superpowers/specs/2026-04-14-tracking-bridge-restructure-design.md` | Committed (was previously untracked) |
+
+### Session 2026-04-16 (earlier): Backlog Expansion + BigQuery Baseline Plan
+
+- **`BACKLOG.md`** — Added items #14-#18 (BigQuery pipeline expansion, Klaviyo, Looker Studio, GTM scripts review, Watermelon plan extraction)
+- **BigQuery baseline cluster planned:** design + skill sequencing in `C:\Users\VCL1\.claude\plans\wise-scribbling-cat.md`
 
 ### Session 2026-04-14 (Session 3): iClosed Attribution + n8n Pipeline Patterns
 
-- `reference/tracking-bridge/iclosed-attribution.md` — 12 webhook events, GTM Scenario A/B, fbclid passthrough, callOutcome gap, native Meta CAPI context, consent gating.
-- `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern (WF1–WF4), webhook security, Meta CAPI + fbc construction, n8n node reference, pricing (Pro €50/mo recommended).
-- `reference/tracking-bridge/CONTEXT.md` — 6 → 8 files, updated routing scenarios.
-- **Commit:** `5395be5` — `feat: iClosed attribution + n8n pipeline patterns`
+- `reference/tracking-bridge/iclosed-attribution.md` — 12 webhook events, GTM Scenario A/B, fbclid passthrough, callOutcome gap, native Meta CAPI context (commits `5395be5`, `bfcf12f`)
+- `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern (WF1-WF4), webhook security, Meta CAPI + fbc, n8n node reference, pricing
+- Note: These were subsequently restructured in this session (2026-04-16 Phase 1)
 
 ---
 
@@ -47,10 +54,11 @@ tags:
 
 | Layer | Count | Notes |
 |-------|-------|-------|
-| Reference files | 48 | +2 from Session 3 (iclosed-attribution, n8n-pipeline-patterns) |
+| Reference files | 49 | +1 new this session (capi-server-events.md) |
 | Script docs | 17 | under `reference/scripts/` |
-| Tracking-bridge docs | 8 | +2 new in Session 3 |
-| Reporting docs | 5 | expanding to 6 in v1.21.0 Session 4 (Meta BQ) |
+| Tracking-bridge docs | 8 | iclosed-attribution + n8n-pipeline-patterns (both rewritten this session) |
+| Meta Ads docs | 1 | capi-server-events.md (new this session) |
+| Reporting docs | 5 | expanding to 6 in v1.21.0 Session 4 (meta-ads-bigquery.md) |
 | Skills | 15 | product-performance added in v1.20.0 |
 | Agents | 3 | campaign-reviewer, tracking-auditor, strategy-advisor |
 | Audit areas | 21 | All Priority 1-3 complete |
@@ -73,65 +81,130 @@ tags:
 
 ### IMMEDIATE: Session 4 — Research Meta BQ (#11) + Cross-Platform (#13)
 
-Full task list in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 17–20).
+**Skills to invoke:** `superpowers:executing-plans` (already in context, or re-invoke at session start)
 
-1. **Online research:** BigQuery Data Transfer Service for Meta (capabilities, field coverage, setup), OWOX Data Marts (`OWOX/owox-data-marts` GitHub), Meta Marketing API (fields, rate limits, pagination), comparison (cost/latency/maintenance). Save to design spec Appendix Session 4.
-2. **Create** `reference/reporting/meta-ads-bigquery.md` — 3 pipeline approaches (BQ Data Transfer, OWOX, n8n HTTP), decision matrix, `meta_ads_performance` schema
-3. **Extend** `reference/reporting/cross-platform-data-model.md` — 5-source architecture (GA4/Meta/iClosed/Airtable/sGTM), join keys (contactId, callPreviewId), lifecycle stages, fbc formula
-4. **Commit** Session 4 + PRIMER.md rewrite
+Full task list: `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 17-20).
 
-### Session 5: Integration + Release v1.21.0
+**Step 1 — Online research** (use WebSearch):
 
-Full task list in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 21–25).
+| Topic | Research | Save to |
+|-------|----------|---------|
+| BigQuery Data Transfer Service for Meta | Current status, supported reports, field coverage, 24h refresh, historical backfill, known limitations, cost (free) | Design spec Appendix `### Session 4 Research: Meta BQ + Cross-Platform` |
+| OWOX Data Marts | `OWOX/owox-data-marts` GitHub — architecture, setup steps, Meta metric coverage vs BDTS, maintenance overhead | Same |
+| Meta Marketing API Insights | Available fields + breakdowns, rate limits (per-account vs per-app), pagination pattern, n8n HTTP Request node auth config | Same |
 
-- **Wire** `CONTEXT.md` — 3 new routing entries (iClosed, n8n, Meta Ads BQ)
-- **Update** `CLAUDE.md` — relax "Google Ads only" for tracking-bridge scope
-- **Update** `_config/ecosystem.md` — add n8n-plugin note
-- **Update** `BACKLOG.md` — mark #10–#13 Done (v1.21.0)
-- **Release** v1.21.0 — CHANGELOG, commit, final PRIMER.md rewrite
+**Step 2 — Create** `reference/reporting/meta-ads-bigquery.md`
 
-### AFTER v1.21.0: v1.22.0 BigQuery Baseline (#14, #17, #18)
+New file, Obsidian frontmatter (`title`, `date: 2026-04-1X`, `tags: [reference, reporting]`). Sections:
+1. Overview — why Meta data in BQ (cross-platform reporting, attribution, ROAS comparison across channels)
+2. Approach 1: BigQuery Data Transfer Service — setup steps, field coverage, 24h latency, backfill, cost (free), when to use
+3. Approach 2: OWOX Data Marts — architecture overview, setup, what it adds vs BDTS, maintenance, when to upgrade
+4. Approach 3: n8n HTTP Request to Meta Marketing API — n8n workflow design, auth (long-lived token), pagination, rate limits, when to use (real-time needs, custom fields)
+5. Decision Matrix — comparison table: cost / latency / field coverage / maintenance burden / complexity
+6. Schema: `meta_ads_performance` — BigQuery table schema for normalized Meta Ads data
+7. Cross-References: `[[capi-server-events]]`, `[[n8n-pipeline-patterns]]`, `[[cross-platform-data-model]]`
 
-Session 1:
-- Ask Jerry for Watermelon plan document path and GTM scripts inventory
-- Invoke `/superpowers:brainstorming` → produces `docs/superpowers/specs/2026-04-16-bigquery-baseline-design.md`
-- Invoke `/superpowers:writing-plans` → produces `docs/superpowers/plans/2026-04-16-bigquery-baseline.md`
-- Update `PLAN.md` with v1.22.0 section
+**Step 3 — Extend** `reference/reporting/cross-platform-data-model.md`
 
-Sessions 2–5: Execute per plan (see spec + plan files once written).
+Read the full file first. Then add:
 
-> [!info] Overlap note
-> #14 delta (after v1.21.0 ships): GA4→BQ native export, GAds→BQ via BDTS, **BQ→Meta CAPI reverse offline flow (n8n)**, unified decision matrix. Meta→BQ already covered by #11 (v1.21.0).
+| Section | Content |
+|---------|---------|
+| `## Multi-Source Architecture` | 5-source table: GA4 (BQ native export, daily, ~24h), Meta Ads (BDTS, daily, ~24h), iClosed (n8n webhook, real-time), Airtable (n8n polling, 5-15 min), sGTM (BQ tag, streaming) — columns: source, connector, refresh, latency, key tables |
+| `## Join Key Strategy` | `contactId` as cross-system key (iClosed records ↔ Airtable ↔ CAPI events); `callPreviewId` as CAPI `event_id` for dedup; `fbc` reconstruction formula cross-ref to `capi-server-events.md`; join diagram |
+| `## Lead Lifecycle Stages` | Table: Lead / MQL / Booked / SQL / Closed mapped across iClosed events / Airtable status / Meta CAPI event / GA4 event |
 
-### Housekeeping
+**Step 4 — Commit + PRIMER.md rewrite**
 
-- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01). Do in GCP Console before production use.
-- **Priority 4 audit:** DSA-specific, App Campaigns — niche, defer
-- **Phase 4 Multi-platform:** meta-ads/, linkedin-ads/, tiktok-ads/ platform skills — no demand, defer
+```
+feat: Meta Ads BQ pipeline + cross-platform data model expansion
+```
+
+Files: `reference/reporting/meta-ads-bigquery.md`, `reference/reporting/cross-platform-data-model.md`, `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md`.
+
+Then rewrite PRIMER.md and commit: `docs: PRIMER.md session 4 handoff`
+
+---
+
+### Session 5 — Integration + Release v1.21.0
+
+Full task list: `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 21-25).
+
+**Skills to invoke:** `superpowers:executing-plans` or `superpowers:subagent-driven-development`
+
+| Step | File | Change |
+|------|------|--------|
+| 5.1 | `CONTEXT.md` (plugin root) | Add routing for Meta Ads BQ pipeline — `reference/reporting/meta-ads-bigquery.md` routing entry |
+| 5.2 | `_config/ecosystem.md` | n8n-plugin entry: add note that iClosed-specific tracking patterns live in `tracking-bridge/n8n-pipeline-patterns.md` |
+| 5.3 | `BACKLOG.md` | Mark #10-#13 Done (v1.21.0) |
+| 5.4 | `CHANGELOG.md` | Add v1.21.0 entry (iClosed attribution, n8n pipeline patterns, Meta Ads BQ, cross-platform data model, CLAUDE.md rule, CONTEXT.md routing) |
+| 5.5 | `PLAN.md` | v1.21.0 row: `⬜ Not started` → `✅ Done (2026-04-XX)` |
+| 5.6 | `PRIMER.md` | Final rewrite — advance to v1.22.0 |
+| 5.7 | Commit | `feat: cross-platform tracking expansion — iClosed, n8n, Meta BQ, data model (v1.21.0)` |
+
+> [!note] CLAUDE.md already updated
+> The "Google Ads only" → "Multi-platform tracking" rule change was done in Phase 1 restructure (2026-04-16). Session 5 Step 5.1 from the original plan (Task 22) is already complete.
+
+---
+
+### After v1.21.0: v1.22.0 BigQuery Baseline (#14, #17, #18)
+
+**Skills to invoke (in this order):**
+
+1. `/superpowers:brainstorming` → produces `docs/superpowers/specs/2026-04-16-bigquery-baseline-design.md`
+2. `/superpowers:writing-plans` → produces `docs/superpowers/plans/2026-04-16-bigquery-baseline.md`
+3. Update `PLAN.md` with v1.22.0 section pointing to spec + plan
+4. Execute via `/superpowers:executing-plans` or `/superpowers:subagent-driven-development` across sessions
+
+**Needs from Jerry before starting:**
+- Path to Watermelon plan document (100-page strategic tracking doc)
+- GTM scripts inventory (for #17 — GTM scripts review)
+
+**Meta-plan:** `C:\Users\VCL1\.claude\plans\wise-scribbling-cat.md` (outside codebase — full skill-sequencing decisions)
+
+**Scope delta (#14 after v1.21.0 ships):**
+- Meta→BQ (BDTS, OWOX, n8n HTTP): already covered by #11 in v1.21.0 — cross-link only
+- n8n→CAPI event-driven: already covered by #12 — cross-link only
+- **New in #14:** GA4→BQ native export documentation, Google Ads→BQ via BDTS, BQ→Meta CAPI reverse offline conversion flow (n8n), unified decision matrix across all connector options
 
 ---
 
 ## Key Research Notes for Session 4
 
-From Session 3 research — carry forward for cross-platform data model work:
+From Session 3 research — carry forward:
 
-- **fbc format:** `fb.1.{subdomainIndex}.{creationTime_ms}.{fbclid}` — NOT booking time, it is LANDING time in ms
-- **contactId:** iClosed's internal contact identifier — primary join key across iClosed, Airtable, CAPI events
+- **fbc format:** `fb.1.{subdomainIndex}.{creationTime_ms}.{fbclid}` — creationTime_ms is LANDING time in ms, NOT booking time. Do NOT hash fbc — send as plain string.
+- **subdomainIndex:** 1 for root domain (`example.com`), 2 for www subdomain (`www.example.com`)
+- **contactId:** iClosed's internal contact identifier — primary join key across iClosed records, Airtable, and CAPI events
 - **callPreviewId:** unique per call — use as `event_id` for CAPI deduplication
-- **iClosed native CAPI events:** Page view, Potential, Qualified, Disqualified, Call booked (`invitee_meeting_scheduled`) — from native integration; custom purchase events need n8n
-- **n8n Airtable trigger:** polling only — 5-min polling = ~8,640 executions/month, exceeds Starter (2,500). Use Pro (€50/mo) or poll at 15-min intervals.
+- **iClosed native CAPI events:** Page view, Potential, Qualified, Disqualified, Call booked — from native integration. Must be disabled when using n8n WF3 (or ensure matching event_id)
+- **n8n Airtable trigger:** polling only — 5-min polling = ~8,640 executions/month, exceeds Starter (2,500). Use webhook-based triggers wherever possible; poll at 15-min intervals if polling is required
+- **action_source for offline conversions:** `system_generated` — automated system event with no browser session present
 
 ---
 
 ## Design Documents
 
-- **Backlog expansion design:** `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` (Session 3 research in Appendix; Session 4 to be added)
-- **Backlog expansion plan (25 tasks):** `docs/superpowers/plans/2026-04-14-backlog-expansion.md`
-- **BigQuery baseline meta-plan:** `C:\Users\VCL1\.claude\plans\wise-scribbling-cat.md` (outside codebase — decisions + skill sequencing)
-- **Report output structure spec:** `docs/superpowers/specs/2026-04-04-report-output-structure-design.md`
+| File | Purpose |
+|------|---------|
+| `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` | Backlog expansion design (Sessions 2-5) — Session 4 Appendix to be added |
+| `docs/superpowers/plans/2026-04-14-backlog-expansion.md` | Implementation plan (Tasks 1-25) — Tasks 17-20 = Session 4, Tasks 21-25 = Session 5 |
+| `docs/superpowers/specs/2026-04-14-tracking-bridge-restructure-design.md` | Restructure spec (Phase 1) — fully executed 2026-04-16 |
+| `docs/superpowers/specs/2026-04-04-report-output-structure-design.md` | Report output structure spec (v1.8.0) |
+| `C:\Users\VCL1\.claude\plans\wise-scribbling-cat.md` | v1.22.0 BigQuery Baseline meta-plan (outside codebase) |
+
+---
+
+## Housekeeping
+
+- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01). Do in GCP Console before production use. Do NOT use live client account until rotated.
+- **Priority 4 audit:** DSA-specific, App Campaigns — niche, low demand, defer indefinitely
+- **Phase 4 Multi-platform:** `meta-ads/`, `linkedin-ads/`, `tiktok-ads/` platform skills — no demand, defer (linkedin-ads and tiktok-ads are placeholders only)
+
+---
 
 ## Open Blockers
 
-- **Credential rotation:** OAuth client secret exposed (2026-04-01) — rotate before production
-- **Watermelon plan path:** Jerry to provide when v1.22.0 Session 1 begins
-- **GTM scripts inventory:** Jerry to provide when v1.22.0 Session 1 begins
+- **OAuth client secret rotation:** GCP Console — must do before production MCP write use
+- **Watermelon plan path:** Jerry to provide at v1.22.0 Session 1 start
+- **GTM scripts inventory:** Jerry to provide at v1.22.0 Session 1 start

@@ -11,7 +11,7 @@ tags:
 
 # Reference — Context
 
-Stable domain knowledge loaded by skills and agents on demand. **Never overwrite** during normal skill execution. Only `google-ads/` is populated; `meta-ads/`, `linkedin-ads/`, `tiktok-ads/` are Phase 3 placeholders.
+Stable domain knowledge loaded by skills and agents on demand. **Never overwrite** during normal skill execution. Google Ads campaign management content lives in `google-ads/`. Cross-platform tracking content (Meta CAPI, cross-platform BQ schemas) lives in `tracking-bridge/` and `platforms/meta-ads/`. `linkedin-ads/` and `tiktok-ads/` remain Phase 4 placeholders.
 
 To add a new platform: populate `platforms/[platform-name]/`, update `reporting/cross-platform-data-model.md`, add or extend skills.
 
@@ -47,6 +47,13 @@ To add a new platform: populate `platforms/[platform-name]/`, update `reporting/
 | `tracking-bridge/data-flow-diagrams.md` | Full-stack architecture diagrams (text-based) |
 | `tracking-bridge/profit-based-bidding.md` | sGTM + Firestore margin lookup (gps_soteria) |
 | `tracking-bridge/value-based-bidding.md` | Vertex AI pLTV predictions (gps-phoebe) |
+| `tracking-bridge/iclosed-attribution.md` | iClosed GTM integration, 5 dataLayer events, 12 webhook events, WF1–WF4 n8n pipeline flows, fbclid passthrough, consent gating, platform defaults to override |
+| `tracking-bridge/n8n-pipeline-patterns.md` | Generic n8n tracking patterns — webhook security, BigQuery streaming, node reference, client account setup |
+
+### Meta Ads (Cross-Platform Tracking)
+| File | Content |
+|------|---------|
+| `platforms/meta-ads/capi-server-events.md` | Meta CAPI server-side events — payload structure, `action_source` values, `fbc` construction, user data hashing, event deduplication |
 
 ### PMax
 | File | Content |

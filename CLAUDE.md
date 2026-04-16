@@ -15,7 +15,7 @@ Jerry is a tracking specialist, not a campaign specialist. He knows GTM containe
 
 ## Permanent Rules
 
-- **Google Ads only.** Architecture supports multi-platform (Meta, LinkedIn, TikTok) via `reference/platforms/` but only `google-ads/` is populated. Do not reference other platforms as if they are available.
+- **Multi-platform tracking.** Campaign management advice is Google Ads only until other platform skills are built. The tracking-bridge and `reference/platforms/` may reference any platform that appears in the conversion attribution pipeline (Meta CAPI, cross-platform BQ schemas, etc.). `linkedin-ads/` and `tiktok-ads/` remain Phase 4 placeholders — do not reference them as if they are available.
 - **Phase 1 = knowledge & guidance.** No API access. Phase 2 (MCP integration) is blocked until Google Ads API credentials are obtained.
 - **Load reference docs selectively.** Skills pull specific files from `reference/` — never dump the entire tree into context. See `CONTEXT.md` for the routing table.
 - **tracking-bridge/ is the differentiator.** It documents the full GTM → sGTM → BigQuery → Google Ads conversion pipeline. No generic campaign plugin has this. Prioritize it.

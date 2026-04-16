@@ -207,6 +207,27 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** Structured extraction session — read doc, produce extraction map, then add content to relevant `reference/` files in targeted commits.
 - **Status:** Open
 
+### 19. Shopping performance regression diagnostic protocol
+
+- **Source project:** 0013 - Client Plantentotaal (Vaxteronline)
+- **Date found:** 2026-04-16 (Session 26)
+- **Affected file:** `reference/platforms/google-ads/shopping-campaigns.md` (lacks troubleshooting section), `skills/post-launch-monitor/SKILL.md` (no root-cause routing for ROAS drops)
+- **Category:** Gap
+- **Priority:** HIGH
+- **Description:** After the Day 7 restructure (product group subdivision, budget increase, individual bids), the Shopping campaign dropped from 7.49 ROAS (30-day pre-restructure) to 0.41 ROAS (last 7 days). There is no structured protocol in the plugin for diagnosing *why* a Shopping campaign that was performing well suddenly stopped converting. The `shopping-campaigns.md` reference covers setup and best practices but not regression investigation. The `post-launch-monitor` skill covers phase-based monitoring but not root-cause diagnosis of a ROAS collapse.
+- **Proposed fix:** New file `reference/platforms/google-ads/shopping-performance-regression-diagnosis.md` with:
+  1. **Symptoms taxonomy** — map observable patterns to hypothesis categories
+  2. **Hypothesis checklist** (in investigation order): attribution shift, bid structure disruption, product disapprovals, budget change side effects, seasonal demand shift, conversion tracking gap, feed issues
+  3. **GAQL queries for each hypothesis** — ready to copy-paste via MCP
+  4. **Interpretation guides** — what to look for in each query result
+  5. **Action routing** — based on confirmed hypothesis (e.g., H1 confirmed → attribution model shift, not structural fix)
+  6. **30-day vs 7-day window warning** — contaminated windows after restructures
+  
+  Additional changes:
+  - Add "Troubleshooting" section to `shopping-campaigns.md` linking to the new file
+  - Update `post-launch-monitor` skill to route to this file when Shopping ROAS drops >30% vs baseline
+- **Status:** Open
+
 ---
 
 ## Status
@@ -231,3 +252,4 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ⬜ Open |
 | 17 | GTM scripts review — cookie collection cHTML (Watermelon) | New Capability | Medium | ⬜ Open |
 | 18 | Watermelon plan knowledge extraction | New Capability | High | ⬜ Open |
+| 19 | Shopping performance regression diagnostic protocol | Gap | High | ⬜ Open |

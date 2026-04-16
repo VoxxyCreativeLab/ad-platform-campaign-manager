@@ -64,7 +64,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
 - ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
 - ✅ Priority 3 Audit Expansion (v1.12.0) — Video/YouTube (12), Cross-Campaign Cannibalization (5), Attribution Depth (5), Account-Level Strengthening (5) added; Areas 18-21 in campaign-review with GAQL queries; Video triage in campaign-cleanup; campaign-reviewer agent updated with 4 new sections
-**Current milestone:** Backlog Expansion v1.20.0 ✅ Done — Session 3 next (iClosed + n8n)
+**Current milestone:** Tracking-bridge restructure ✅ Done (2026-04-16) — Session 4 next (Meta BQ + cross-platform)
 **Blockers:** OAuth client secret should be rotated.
 
 ### After v1.19.1 — Backlog Expansion (v1.20.0–v1.21.0)
@@ -94,23 +94,35 @@ Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` 
 - [x] **Create** `reference/tracking-bridge/iclosed-attribution.md` — 12 webhook events, fbclid passthrough, GTM injection, consent gating, native CAPI context
 - [x] **Create** `reference/tracking-bridge/n8n-pipeline-patterns.md` — 4-workflow pattern, boundary note (tracking only), Meta CAPI section
 - [x] **Update** `reference/tracking-bridge/CONTEXT.md` with new file entries
-- [ ] **Commit** Session 3 + PRIMER.md rewrite
+- [x] **Commit** Session 3 + PRIMER.md rewrite (commit `5395be5`, `bfcf12f`)
+
+#### Phase 1 Restructure — Tracking-bridge cleanup (2026-04-16)
+
+Executed `docs/superpowers/specs/2026-04-14-tracking-bridge-restructure-design.md` before Session 4 to avoid double cross-reference work.
+
+- [x] **Rewrite** `reference/tracking-bridge/iclosed-attribution.md` — Scenario A only, WF1–WF4 moved here with BQ schema, Scenario B + native CAPI demoted to "Platform Defaults to Override" warnings
+- [x] **Rewrite** `reference/tracking-bridge/n8n-pipeline-patterns.md` — generic patterns only (webhook security, BQ streaming, node ref); iClosed flows + Meta CAPI payload + pricing removed
+- [x] **Create** `reference/platforms/meta-ads/capi-server-events.md` — Meta CAPI payload, `action_source`, `fbc` formula, hashing, deduplication
+- [x] **Update** `reference/tracking-bridge/CONTEXT.md` — new file descriptions, updated reading order, capi-server-events companion note
+- [x] **Update** `reference/CONTEXT.md` — tracking-bridge files + Meta Ads section added
+- [x] **Update** `CLAUDE.md` — "Google Ads only" → "Multi-platform tracking" rule
+- [x] **Update** `CONTEXT.md` (plugin root) — 3 new routing entries: iClosed attribution, n8n pipeline setup, Meta CAPI events
 
 #### Session 4 — Research + Write Meta BQ (#11) + Cross-Platform (#13)
 
 Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 17–20).
 
-- [ ] **Research online:** BQ Data Transfer Service for Meta, OWOX Data Marts, Meta Marketing API, join patterns. Save to design spec Appendix (Session 4 section).
-- [ ] **Create** `reference/reporting/meta-ads-bigquery.md` — 3 pipeline approaches, decision matrix, schema
-- [ ] **Extend** `reference/reporting/cross-platform-data-model.md` — 5-source architecture, join keys, lifecycle stages, `fbc` formula
+- [ ] **Research online:** BigQuery Data Transfer Service for Meta (field coverage, 24h refresh, backfill, limitations, free), OWOX Data Marts (`OWOX/owox-data-marts` GitHub: architecture, Meta coverage vs BDTS, maintenance), Meta Marketing API Insights endpoint (fields, rate limits, pagination, n8n HTTP Request config). Save findings to `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` Appendix `### Session 4 Research`.
+- [ ] **Create** `reference/reporting/meta-ads-bigquery.md` — 3 approaches (BDTS, OWOX, n8n HTTP Request), decision matrix (cost/latency/coverage/maintenance), `meta_ads_performance` BQ schema, cross-refs to `[[capi-server-events]]`
+- [ ] **Extend** `reference/reporting/cross-platform-data-model.md` — read full first; add 5-source architecture table, join key strategy (`contactId` + `callPreviewId`), lead lifecycle stages, `fbc` reconstruction cross-ref
 - [ ] **Commit** Session 4 + PRIMER.md rewrite
 
 #### Session 5 — Integration + Release v1.21.0
 
 Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 21–25).
 
-- [ ] **Update** `CONTEXT.md` — add routing for iClosed, n8n, Meta Ads (3 new entries)
-- [ ] **Update** `CLAUDE.md` — relax "Google Ads only" permanent rule for tracking-bridge scope
+- [ ] **Update** `CONTEXT.md` — add routing for Meta Ads BQ pipeline (iClosed/n8n/Meta CAPI routing already done in Phase 1 restructure)
+- [x] **Update** `CLAUDE.md` — "Google Ads only" rule updated (done in Phase 1 restructure, 2026-04-16)
 - [ ] **Update** `_config/ecosystem.md` — add note to n8n-plugin entry
 - [ ] **Update** `BACKLOG.md` — mark #10–#13 Done (v1.21.0)
 - [ ] **Release v1.21.0** — CHANGELOG entry, commit, PRIMER.md final rewrite
