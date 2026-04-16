@@ -243,10 +243,11 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 7 | Learning duration table | Clarity | Medium | ✅ Done (v1.13.0) |
 | 8 | Automated post-launch checks | Future | Medium | ✅ Done (v1.18.0) |
 | 9 | Product-level performance skill | Future | High | ✅ Done (v1.20.0) |
-| 10 | iClosed tracking patterns | New Capability | Medium | ⬜ Open |
-| 11 | Meta Ads to BigQuery pipeline | Gap | Medium | ⬜ Open |
-| 12 | n8n as automation layer in tracking stacks | New Capability | Medium | ⬜ Open |
-| 13 | Cross-platform data model for BigQuery | Gap | Low | ⬜ Open |
+| 10 | iClosed tracking patterns | New Capability | Medium | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
+| 11 | Meta Ads to BigQuery pipeline | Gap | Medium | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
+| 12 | n8n as automation layer in tracking stacks | New Capability | Medium | 🚧 Paused — n8n-plugin must be built first |
+| 13 | Cross-platform data model for BigQuery | Gap | Low | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
+| 20 | n8n-plugin prerequisite for v1.21.0 | Prerequisite | Critical | 🚧 In progress — build n8n-plugin, then resume Session 4 |
 | 14 | BigQuery pipeline expansion — native connections + BQ→Meta n8n | Gap | High | ⬜ Open |
 | 15 | Email marketing knowledge — Klaviyo | Gap | Medium | ⬜ Open |
 | 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ⬜ Open |

@@ -64,7 +64,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
 - ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
 - ✅ Priority 3 Audit Expansion (v1.12.0) — Video/YouTube (12), Cross-Campaign Cannibalization (5), Attribution Depth (5), Account-Level Strengthening (5) added; Areas 18-21 in campaign-review with GAQL queries; Video triage in campaign-cleanup; campaign-reviewer agent updated with 4 new sections
-**Current milestone:** Tracking-bridge restructure ✅ Done (2026-04-16) — Session 4 next (Meta BQ + cross-platform)
+**Current milestone:** v1.21.0 Session 4 🚧 Paused (2026-04-16) — n8n-plugin must be built first. See `docs/superpowers/plans/2026-04-16-session-4-paused.md`.
 **Blockers:** OAuth client secret should be rotated.
 
 ### After v1.19.1 — Backlog Expansion (v1.20.0–v1.21.0)
@@ -108,13 +108,23 @@ Executed `docs/superpowers/specs/2026-04-14-tracking-bridge-restructure-design.m
 - [x] **Update** `CLAUDE.md` — "Google Ads only" → "Multi-platform tracking" rule
 - [x] **Update** `CONTEXT.md` (plugin root) — 3 new routing entries: iClosed attribution, n8n pipeline setup, Meta CAPI events
 
-#### Session 4 — Research + Write Meta BQ (#11) + Cross-Platform (#13)
+#### Session 4 — PAUSED (2026-04-16) — pending n8n-plugin
 
-Full task breakdown in `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 17–20).
+**Pause reason:** Meta → BQ pipeline and cross-platform data model both depend on n8n as the transport layer. `n8n-plugin` must be built first so those patterns live in the right plugin and cross-link cleanly.
 
-- [ ] **Research online:** BigQuery Data Transfer Service for Meta (field coverage, 24h refresh, backfill, limitations, free), OWOX Data Marts (`OWOX/owox-data-marts` GitHub: architecture, Meta coverage vs BDTS, maintenance), Meta Marketing API Insights endpoint (fields, rate limits, pagination, n8n HTTP Request config). Save findings to `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` Appendix `### Session 4 Research`.
-- [ ] **Create** `reference/reporting/meta-ads-bigquery.md` — 3 approaches (BDTS, OWOX, n8n HTTP Request), decision matrix (cost/latency/coverage/maintenance), `meta_ads_performance` BQ schema, cross-refs to `[[capi-server-events]]`
-- [ ] **Extend** `reference/reporting/cross-platform-data-model.md` — read full first; add 5-source architecture table, join key strategy (`contactId` + `callPreviewId`), lead lifecycle stages, `fbc` reconstruction cross-ref
+**Known errors in original plan (must fix before executing):**
+- "BDTS for Meta" does not exist — BDTS has no Meta connector
+- WF3 (CRM → Meta CAPI) was not authorized
+- WF4 (iClosed → BigQuery) is not in use
+- sGTM BQ tag is Voxxy custom (defer JSON import to separate session)
+
+**Full pause memo:** `docs/superpowers/plans/2026-04-16-session-4-paused.md`
+
+**Restart checklist:** n8n-plugin built → re-read pause memo → answer Q1/Q2/Q3 → correct 5 errors → then execute Tasks 17–20.
+
+- [ ] **Research online:** Real Meta → BQ approaches (no BDTS — see pause memo Q1). OWOX Data Marts, Meta Marketing API via n8n HTTP Request, commercial ETL survey. Save findings to `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` Appendix `### Session 4 Research`.
+- [ ] **Create** `reference/reporting/meta-ads-bigquery.md` — revised 3 approaches (no BDTS), decision matrix, `meta_ads_performance` BQ schema, cross-refs to `[[capi-server-events]]`
+- [ ] **Extend** `reference/reporting/cross-platform-data-model.md` — read full first; add revised source architecture (answer Q3 first), join key strategy (`contactId` + `callPreviewId`), lead lifecycle stages, `fbc` cross-ref to `[[capi-server-events]]` (no duplicate)
 - [ ] **Commit** Session 4 + PRIMER.md rewrite
 
 #### Session 5 — Integration + Release v1.21.0

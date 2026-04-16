@@ -11,7 +11,7 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.20.0 (v1.21.0 in progress). Claude Code plugin for Google Ads campaign management, built for tracking specialists. Phase 1 restructure complete. Session 4 is next.
+**ad-platform-campaign-manager** v1.20.0 (v1.21.0 **paused**). v1.21.0 Session 4/5 are blocked pending creation of the `n8n-plugin`. See pause memo: `docs/superpowers/plans/2026-04-16-session-4-paused.md`.
 
 ---
 
@@ -79,9 +79,13 @@ Executed `docs/superpowers/specs/2026-04-14-tracking-bridge-restructure-design.m
 
 ## What Still Needs to Happen
 
-### IMMEDIATE: Session 4 — Research Meta BQ (#11) + Cross-Platform (#13)
+### IMMEDIATE: Build n8n-plugin (prerequisite for v1.21.0)
 
-**Skills to invoke:** `superpowers:executing-plans` (already in context, or re-invoke at session start)
+v1.21.0 Sessions 4 and 5 are **paused**. The Meta → BQ pipeline and cross-platform data model both depend on n8n as the transport layer. The `n8n-plugin` must exist first.
+
+**Full pause memo (read before resuming v1.21.0):** `docs/superpowers/plans/2026-04-16-session-4-paused.md`
+
+**After n8n-plugin ships** — return here and resume: Session 4 — Research Meta BQ (#11) + Cross-Platform (#13)
 
 Full task list: `docs/superpowers/plans/2026-04-14-backlog-expansion.md` (Tasks 17-20).
 
