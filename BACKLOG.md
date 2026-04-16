@@ -118,6 +118,35 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** Add a `reference/reporting/cross-platform-data-model.md` file covering join key strategy, table schemas, and lifecycle stage mapping for high-ticket funnel stacks.
 - **Status:** Open
 
+### 14. BigQuery pipeline expansion — native connections + n8n BQ→Meta offline conversions
+
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/reporting/` (sGTM → BQ documented, but native platform connections and reverse BQ → CAPI flow missing)
+- **Category:** Gap
+- **Description:** Two related needs: (1) Native BigQuery connector strategies for GA4 (BQ export), Google Ads (Data Transfer Service), and Meta Ads (Data Transfer Service) — these are the simplest "plug in and forget" pipelines. (2) n8n reverse pipeline: read offline conversion data from BigQuery, batch and send to Meta CAPI as offline events. Decision guidance for when to use native vs. n8n for each source.
+- **Related to:** #11 (Meta Ads to BigQuery), #13 (Cross-platform data model)
+- **Proposed fix:** Expand or add to `reference/reporting/bigquery-connections.md` covering native connectors per platform and the BQ → Meta CAPI n8n workflow pattern.
+- **Status:** Open
+
+### 15. Email marketing knowledge — Klaviyo
+
+- **Date found:** 2026-04-16
+- **Affected file:** None (new platform domain — no email marketing coverage exists)
+- **Category:** Gap
+- **Description:** Email marketing fundamentals specific to Klaviyo: lists, segments, flows, campaigns. Klaviyo ↔ Meta integration (Custom Audiences sync, suppression lists). Klaviyo ↔ BigQuery export options. Klaviyo tracking: web pixel, event tracking, Identify API. E-commerce flows: abandoned cart, post-purchase, browse abandonment. Attribution: Klaviyo last-touch vs. Meta attribution window conflicts.
+- **Client context:** Vaxteronline (vaxteronline.se) uses Klaviyo — this will surface in campaign management sessions.
+- **Proposed fix:** Add `reference/platforms/klaviyo/klaviyo-fundamentals.md` as a new platform domain. Scope to what a tracking specialist needs to know when advising on a Klaviyo-integrated account.
+- **Status:** Open
+
+### 16. Looker Studio dashboards from BigQuery
+
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/reporting/` (BigQuery pipelines documented but no visualization layer)
+- **Category:** Gap
+- **Description:** End-to-end guidance for building Looker Studio dashboards from BigQuery data: connector setup, standard report templates for ad performance (GAds + Meta + GA4 blended), performance optimization (query caching, aggregation tables), calculated fields for common ad metrics (ROAS, CPA, CR), cross-source blending strategies.
+- **Proposed fix:** Add `reference/reporting/looker-studio.md` covering setup, templates, blending patterns, and performance best practices.
+- **Status:** Open
+
 ---
 
 ## Future Capabilities
@@ -160,6 +189,24 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** TBD
 - **Status:** Open
 
+### 17. GTM scripts review — cookie collection cHTML tag (Watermelon plan)
+
+- **Date found:** 2026-04-16
+- **Affected file:** Unknown (scripts not yet reviewed — assessment needed before target file is known)
+- **Category:** New Capability
+- **Description:** Jerry has several custom GTM scripts to review for plugin incorporation. Priority: a client-side Custom HTML tag that collects cookies — used in the Watermelon plan stack. Need to assess each script: what it does, whether it's generic enough to include as a plugin reference or template, and where it belongs (tracking-bridge, reference/platforms/google-ads/scripts, or a new scripts reference).
+- **Proposed fix:** Review scripts, extract generic/reusable patterns, determine target files. Likely adds content to `tracking-bridge/` or a new `reference/scripts/` section.
+- **Status:** Open
+
+### 18. Watermelon plan knowledge extraction
+
+- **Date found:** 2026-04-16
+- **Affected file:** Multiple — target files TBD after extraction
+- **Category:** New Capability
+- **Description:** ~100-page strategic document containing tracking strategy, campaign patterns, and pipeline architecture. Must be read and mined for generic, reusable knowledge that is not client-specific. Extracted knowledge will populate multiple reference files. Process: (1) read document, (2) identify reusable patterns vs. client-specific content, (3) map each pattern to existing or new reference files, (4) write additions without client identifiers.
+- **Proposed fix:** Structured extraction session — read doc, produce extraction map, then add content to relevant `reference/` files in targeted commits.
+- **Status:** Open
+
 ---
 
 ## Status
@@ -179,3 +226,8 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 11 | Meta Ads to BigQuery pipeline | Gap | Medium | ⬜ Open |
 | 12 | n8n as automation layer in tracking stacks | New Capability | Medium | ⬜ Open |
 | 13 | Cross-platform data model for BigQuery | Gap | Low | ⬜ Open |
+| 14 | BigQuery pipeline expansion — native connections + BQ→Meta n8n | Gap | High | ⬜ Open |
+| 15 | Email marketing knowledge — Klaviyo | Gap | Medium | ⬜ Open |
+| 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ⬜ Open |
+| 17 | GTM scripts review — cookie collection cHTML (Watermelon) | New Capability | Medium | ⬜ Open |
+| 18 | Watermelon plan knowledge extraction | New Capability | High | ⬜ Open |
