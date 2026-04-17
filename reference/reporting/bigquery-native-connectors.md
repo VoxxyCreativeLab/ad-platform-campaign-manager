@@ -27,6 +27,7 @@ Zero-maintenance, Google-hosted pipelines that sync platform data into BigQuery 
 | Google Ads BQ Data Transfer Service | Google Ads API | Daily (configurable) | ~24h | Free | Campaign/ad group/keyword/day | ROAS, bid monitoring, keyword performance, cross-account |
 | Meta Ads BQ Data Transfer Service | Meta Ads API | Daily | ~24h | Free (as of 2026 — billed by slot-hours at scale) | Campaign/ad set/ad/day | Meta spend, CPL, ROAS blended with GA4 and Google Ads |
 | OWOX Data Marts | Meta Ads API (direct) | Sub-daily (configurable) | 1-3h | Self-hosted or OWOX managed | Session-level cost attribution | When 24h latency is insufficient; LinkedIn, TikTok, Reddit also supported |
+| LinkedIn Ads, TikTok Ads, Reddit Ads | No native BQ DTS connector | Third-party required | Varies | Fivetran (managed) / OWOX Data Marts (OSS) / Airbyte (OSS) | Campaign/ad group/day | No native BQ Data Transfer Service support — OWOX Data Marts (MIT, OSS) is the recommended open-source path; Fivetran/Airbyte for managed |
 
 **Rule of thumb:** Start with all three native connectors. Upgrade to OWOX only if you need sub-daily refresh or session-level cost attribution for Meta.
 
@@ -54,6 +55,9 @@ GA4's built-in export sends raw event data to BigQuery. Enabled per property. No
 2. Select GCP project and dataset region
 3. Choose: **streaming** (recommended) + **daily export**
 4. Link — export starts within ~24h
+
+> [!warning] Free-tier export cap
+> The GA4 BQ export caps at **~1M events per day** per property on the free tier. Exceeding the cap **pauses the export entirely** — no backfill occurs while paused. Resume by reducing event volume or upgrading to GA4 360 (removes the cap). Monitor daily event counts in GA4 Admin → BigQuery links. [Source](https://support.google.com/analytics/answer/9823238)
 
 ### Key tables
 
@@ -104,6 +108,9 @@ Google's official connector in BigQuery Data Transfer Service. Syncs Google Ads 
 
 > [!tip] Partitioned by date
 > All tables are date-partitioned (`_PARTITIONTIME`). Always filter on `_PARTITIONTIME` or `date` in queries to avoid full scans.
+
+> [!note] API v22 — March 2, 2026
+> Google Ads API v22 (released 2026-03-02) added newly populated columns across several standard DTS tables. Check the [BQ DTS change log](https://docs.cloud.google.com/bigquery/docs/transfer-changes) after major API version upgrades to catch new fields landing in existing tables.
 
 ### 2026 upgrade: custom GAQL reports in transfer config
 
@@ -168,6 +175,7 @@ Official data model reference: [Meta Ads BQ data model](https://cloud.google.com
 | Session-level cost attribution (Meta spend → GA4 session) | Same — OWOX includes the cost attribution SQL patterns |
 | Real-time offline conversion events (BQ → Meta CAPI) | n8n reverse pipeline — documented separately when n8n-plugin is complete |
 | Multi-attribution modeling (first-click, linear, time-decay) | `RuslanFatkhutdinov/sql-for-attribution-models` (41 stars) — SQL models for all major attribution types from GA4 BQ export |
+| Email marketing data → BQ (Klaviyo, HubSpot, Mailchimp) | No native BQ DTS connector for any email platform — Fivetran (managed) or Airbyte (OSS) are canonical; see [[klaviyo-fundamentals]] for Klaviyo-specific pipeline guidance |
 
 ---
 
@@ -182,7 +190,7 @@ Once native connectors are running, Looker Studio connects directly to BigQuery 
 - Enable BI Engine on the BigQuery dataset for in-memory acceleration
 - Use data extracts for dashboards queried repeatedly at fixed intervals
 
-Cross-reference: `reference/reporting/looker-studio-templates.md`
+Cross-references: [[looker-studio]] (dashboard how-to, cost/performance, calculated-field formulas, 4-page lead-gen pattern) · [[looker-studio-templates]] (template catalog, dashboard structure, color conventions)
 
 ---
 
