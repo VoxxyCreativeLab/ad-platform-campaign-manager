@@ -124,6 +124,7 @@ tags:
 ### 26. Not providing custom video assets
 **Problem:** Google auto-generates videos from images and text — quality is poor and conversion rates suffer.
 **Fix:** Upload at least one custom video per asset group in landscape, square, and vertical orientations.
+**Exception: feed-only PMax** — campaigns created via Merchant Center (no creative assets) always auto-generate from the feed. AD STRENGTH = POOR is expected and intentional. Do not flag the absence of video as a mistake for feed-only PMax. Applies only to full PMax campaigns with creative asset groups.
 
 ### 27. Not using campaign-level negative keywords
 **Problem:** PMax serves ads on irrelevant queries, wasting budget on non-converting traffic.

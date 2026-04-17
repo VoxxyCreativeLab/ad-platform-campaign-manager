@@ -7,6 +7,23 @@ tags:
 
 # Changelog
 
+## [1.21.1] — 2026-04-16
+
+Feed-only PMax contradiction fix (BACKLOG #22) and Shopping regression routing wire-up (BACKLOG #19).
+
+### Fixed
+
+- **`reference/platforms/google-ads/pmax/feed-only-pmax.md`** — Added prominent `[!important]` callout: feed-only PMax always shows AD STRENGTH = POOR — this is expected and intentional, not a defect to fix.
+- **`skills/pmax-guide/SKILL.md`** — PMax type selection table now shows "Always POOR — expected, not a defect" in the Ad Strength column for feed-only PMax. Added `[!warning]` callout explaining the consequence of adding assets to a feed-only campaign.
+- **`skills/post-launch-monitor/SKILL.md`** — Two fixes: (1) AD STRENGTH check (line ~90) now has a feed-only exception note. (2) Step 7 routing table now includes "Shopping ROAS dropped >30% vs. baseline → load shopping-performance-regression-diagnosis.md". Step 4 baseline comparison now has a `[!danger]` callout triggering the diagnosis protocol for Shopping ROAS drops. Closes BACKLOG #19.
+- **`reference/platforms/google-ads/audit/audit-checklist.md`** — PMax Specific section now has a `[!warning]` callout: feed-only = POOR expected. Items for custom video, image assets, and "Low" performing assets now marked `(full PMax only)`.
+- **`agents/campaign-reviewer.md`** — PMax section now requires determining PMax type first; feed-only exception documented before asset quality check.
+- **`agents/strategy-advisor.md`** — Category 6 (Ad Testing Discipline) now has feed-only POOR exception for scoring; score guidance says mark as N/A (not 1/10) for feed-only PMax. Report template Ad Strength field also notes the exception.
+- **`reference/platforms/google-ads/audit/common-mistakes.md`** — Mistake #26 (no custom video) now has a feed-only exception paragraph.
+- **`skills/live-report/references/report-templates.md`** — PMax Asset Group Performance MCP boundary note now includes feed-only POOR interpretation guidance.
+
+---
+
 ## [1.21.0] — 2026-04-16
 
 Shopping ROAS regression diagnostic protocol added. Closes BACKLOG item #1 (filed Session 26). Built from real investigation on Vaxteronline account (Day 9, session 27).

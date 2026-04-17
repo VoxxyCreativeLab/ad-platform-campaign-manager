@@ -1,8 +1,14 @@
 ---
 name: tracking-auditor
+title: Tracking Auditor Agent
 description: Audits the conversion tracking pipeline — Google Ads conversion actions vs GTM/sGTM implementation vs BigQuery data flow. Use when verifying tracking setup or troubleshooting conversion data.
 tools: "Read, Grep, Glob, Bash"
 model: sonnet
+tags:
+  - agent
+  - tracking
+  - gtm
+  - bigquery
 ---
 
 # Tracking Auditor Agent

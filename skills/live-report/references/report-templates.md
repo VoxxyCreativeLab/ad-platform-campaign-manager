@@ -301,6 +301,8 @@ LIMIT 50
 
 > [!note] MCP boundary
 > ad_strength values: EXCELLENT, GOOD, AVERAGE, POOR, PENDING, LOADING. Individual asset scores require `ad_group_ad_asset_view` on the campaign's child ad groups.
+>
+> **Feed-only PMax exception:** Feed-only PMax campaigns (created via Merchant Center, no text/image assets) always show AD STRENGTH = POOR. This is expected behavior — do not flag as an issue or recommend adding assets when interpreting this report.
 
 ### MCP Tools
 1. `run_gaql` — `asset_group`

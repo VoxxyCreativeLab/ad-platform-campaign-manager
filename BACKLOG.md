@@ -120,12 +120,21 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 
 ### 14. BigQuery pipeline expansion — native connections + n8n BQ→Meta offline conversions
 
-- **Date found:** 2026-04-16
+- **Date found:** 2026-04-16 (updated 2026-04-16 session 7 with reference repos)
 - **Affected file:** `reference/reporting/` (sGTM → BQ documented, but native platform connections and reverse BQ → CAPI flow missing)
 - **Category:** Gap
 - **Description:** Two related needs: (1) Native BigQuery connector strategies for GA4 (BQ export), Google Ads (Data Transfer Service), and Meta Ads (Data Transfer Service) — these are the simplest "plug in and forget" pipelines. (2) n8n reverse pipeline: read offline conversion data from BigQuery, batch and send to Meta CAPI as offline events. Decision guidance for when to use native vs. n8n for each source.
 - **Related to:** #11 (Meta Ads to BigQuery), #13 (Cross-platform data model)
 - **Proposed fix:** Expand or add to `reference/reporting/bigquery-connections.md` covering native connectors per platform and the BQ → Meta CAPI n8n workflow pattern.
+- **Reference repos (researched 2026-04-16):**
+  - `OWOX/owox-data-marts` (219 stars, active, MIT) — open-source Meta Ads→BigQuery connector + session-level cost attribution SQL. Also supports LinkedIn, TikTok, Reddit. Preferred over BigQuery Data Transfer Service for sub-daily granularity.
+  - `google-marketing-solutions/ga4_dataform` (155 stars, active) — official Google Dataform project: transforms raw GA4 BQ exports into sessions, users, transactions + last-click attribution. Foundation layer for GA4 data.
+  - `fivetran/dbt_facebook_ads` (49 stars, active) — gold-standard Meta Ads schema design (staging→intermediate→mart). Schema patterns reusable even without Fivetran.
+  - `aliasoblomov/Bigquery-GA4-Queries` (128 stars, active) — 65+ ready SQL queries for GA4 BQ data: funnel analysis, conversion paths, user journeys.
+  - `RuslanFatkhutdinov/sql-for-attribution-models` (41 stars) — SQL for first-click, last-click, linear, time-decay attribution from GA4 BQ export.
+  - `GoogleCloudPlatform/bigquery-utils` (1,290 stars, active) — official Google UDFs and utilities for BigQuery.
+  - `kobzevvv/marketing-attribution-data-model` (23 stars) — multi-touch attribution schema patterns.
+  - ga4bigquery.com — end-to-end BQ→Looker attribution tutorial with 5 attribution models side-by-side.
 - **Status:** Open
 
 ### 15. Email marketing knowledge — Klaviyo
@@ -140,11 +149,21 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 
 ### 16. Looker Studio dashboards from BigQuery
 
-- **Date found:** 2026-04-16
+- **Date found:** 2026-04-16 (updated 2026-04-16 session 7 with lead gen patterns + reference repos)
 - **Affected file:** `reference/reporting/` (BigQuery pipelines documented but no visualization layer)
 - **Category:** Gap
 - **Description:** End-to-end guidance for building Looker Studio dashboards from BigQuery data: connector setup, standard report templates for ad performance (GAds + Meta + GA4 blended), performance optimization (query caching, aggregation tables), calculated fields for common ad metrics (ROAS, CPA, CR), cross-source blending strategies.
-- **Proposed fix:** Add `reference/reporting/looker-studio.md` covering setup, templates, blending patterns, and performance best practices.
+- **Lead gen dashboard pattern (Next Chapter session 7):** 4-page structure proven for high-ticket coaching funnels with multi-source data (Meta Ads + GA4 + CRM + BigQuery views):
+  1. **Overzicht** — 5 KPIs (CPL, leads/week, belconversie/call conversion, LTV, ROAS) + funnel summary (LEAD→MQL→SQL counts). Executive health check.
+  2. **Funnel & Leads** — LEAD→MQL→SQL trend, drop-off rates, lead quality, source breakdown. Grows to: second funnels, lead scoring.
+  3. **Campagnes** — Paid media spend/CPL/CTR/ROAS per campaign/ad set. Designed as "Paid media" not "Meta Ads" so additional platforms (Google Ads, LinkedIn, TikTok) slot in as filter toggles.
+  4. **Omzet & Retentie** — Deal value, LTV, revenue cohort, retention metrics (Pillar 2, month 2+). Grows to: upsell tracking, churn, subscription metrics.
+- **Design principle:** Structure pages by data domain, not by current platform. Enables adding platforms/services without restructuring the dashboard.
+- **Reference repos/resources (researched 2026-04-16):**
+  - `google/looker-studio-dashboard-cloner` (38 stars, active) — clone dashboards via Linking API. Useful for deploying custom templates to clients.
+  - Porter Metrics free templates — free Looker Studio templates including Meta Ads and multi-channel marketing. Structural reference.
+  - Catchr funnel template guide — practical walkthrough of custom funnel pages in Looker Studio (better than native funnel chart).
+- **Proposed fix:** Add `reference/reporting/looker-studio.md` covering setup, templates, blending patterns, performance best practices, and the 4-page lead gen structure.
 - **Status:** Open
 
 ---
@@ -207,6 +226,17 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** Structured extraction session — read doc, produce extraction map, then add content to relevant `reference/` files in targeted commits.
 - **Status:** Open
 
+### 21. [AUTO] ClickFunnels 2.0 tracking patterns
+
+- **Source project:** 0014 - Client WinstArchitect - subclient Next Chapter
+- **Date found:** 2026-04-16
+- **Affected file:** Unknown (new platform domain — zero ClickFunnels coverage exists in the plugin)
+- **Category:** Gap
+- **Priority:** Medium
+- **Description:** ClickFunnels 2.0 (CF2.0) is a funnel builder used by high-ticket coaching clients. Key tracking patterns needed: (1) GTM installation via CF2.0 head/footer code injection (Settings → Tracking Codes). (2) Native dataLayer events: `cfPageView` (page load) and `cfLead` (form submit) — CF2.0 pushes these automatically; field names: `contactFirstName`, `contactEmailAddress`, `contactPhoneNumber`, `contactId`. (3) Multi-page funnel tracking: each CF2.0 page is a separate URL, so GTM fires per page using page path triggers. (4) Thank You page pattern: a separate CF page (not a redirect) where post-conversion tags fire. (5) fbclid capture on landing: GTM Custom HTML tag reads `?fbclid=` from URL → sets first-party `_fbclid` cookie (7-day, SameSite=Lax, Secure). (6) PII rule: `contactEmailAddress`, `contactPhoneNumber` from `cfLead` must never flow into GA4 or any analytics tool — only into server-side CRM pipelines. (7) Consent Mode v2 integration: consent defaults fire on all CF2.0 pages via GTM. (8) CF2.0 has a second GTM container slot (for iClosed or other embeds) — distinct from the main container.
+- **Proposed fix:** Add `reference/platforms/clickfunnels/clickfunnels-tracking.md` covering GTM installation, native dataLayer events, multi-page patterns, fbclid capture, PII rules, and consent integration.
+- **Status:** Open
+
 ### 19. Shopping performance regression diagnostic protocol
 
 - **Source project:** 0013 - Client Plantentotaal (Vaxteronline)
@@ -226,6 +256,17 @@ Improvement items discovered during real-world usage of this plugin. Each item i
   Additional changes:
   - Add "Troubleshooting" section to `shopping-campaigns.md` linking to the new file
   - Update `post-launch-monitor` skill to route to this file when Shopping ROAS drops >30% vs baseline
+- **Status:** Open
+
+### 22. [AUTO] Feed-only PMax AD STRENGTH = POOR incorrectly flagged across 7 files
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** Multiple — see description
+- **Category:** Contradiction
+- **Priority:** High
+- **Description:** Feed-only PMax (created via Merchant Center) has AD STRENGTH = POOR by design — no text/image assets, serves Shopping surfaces only via the product feed. This is correct and intentional behavior. However, 7 files in the plugin treat AD STRENGTH = POOR as a problem to fix for ALL PMax campaigns without distinguishing feed-only from regular PMax. This caused an incorrect "add PMax assets" recommendation in a live client session (Vaxteronline), which would have broken the feed-only approach by turning it into a full PMax with additional ad surfaces. Affected files: (1) `skills/post-launch-monitor/SKILL.md` line 90 — flags POOR asset groups for all PMax; (2) `reference/platforms/google-ads/audit/audit-checklist.md` lines 112-119 — requires images + video for all PMax; (3) `agents/campaign-reviewer.md` lines 70, 74-78 — requires "Good+" ad strength; (4) `agents/strategy-advisor.md` lines 115-118, 173 — scores Poor strength as 1/10 dragging down account score; (5) `reference/platforms/google-ads/audit/audit-gap-analysis.md` line 84 — requires "Good or Excellent" for PMax; (6) `reference/platforms/google-ads/audit/common-mistakes.md` lines 124-126 — flags "no custom video" as a PMax mistake without feed-only context; (7) `skills/live-report/references/report-templates.md` lines 300-333 — reports ad_strength=POOR with no feed-only context note.
+- **Proposed fix:** Add a "feed-only exception" clause to each of the 7 files: "Feed-only PMax campaigns (created via Merchant Center, no text/image assets) always show AD STRENGTH = POOR. This is expected behavior — do not flag as an issue or recommend adding assets." The `pmax-guide` SKILL.md and `feed-only-pmax.md` already correctly document this; the audit/review/monitoring tools must align.
 - **Status:** Open
 
 ---
@@ -253,4 +294,8 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ⬜ Open |
 | 17 | GTM scripts review — cookie collection cHTML (Watermelon) | New Capability | Medium | ⬜ Open |
 | 18 | Watermelon plan knowledge extraction | New Capability | High | ⬜ Open |
-| 19 | Shopping performance regression diagnostic protocol | Gap | High | ⬜ Open |
+| 19 | Shopping performance regression diagnostic protocol | Gap | High | ✅ Done (v1.21.1) — doc shipped v1.21.0; post-launch-monitor routing wired v1.21.1 |
+| 21 | ClickFunnels 2.0 tracking patterns | Gap | Medium | ⬜ Open — deferred: CF2.0 event names unverified |
+| 14 | BigQuery pipeline expansion (updated: +8 reference repos) | Gap | High | 🚧 In progress — native connectors doc drafted (v1.22.0 seed); n8n reverse path deferred |
+| 16 | Looker Studio dashboards (updated: +lead gen pattern + repos) | Gap | Medium | ⬜ Open |
+| 22 | Feed-only PMax AD STRENGTH = POOR incorrectly flagged (7 files) | Contradiction | High | ✅ Done (v1.21.1) — exception clause added to 8 files |

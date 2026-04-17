@@ -11,7 +11,7 @@ tags:
 
 # Skills — Context
 
-14 invocable skills, each in its own folder with a `SKILL.md` file. 11 are profile-aware (ask account profiling questions). Phase 1 (11 skills) requires no API. Phase 2 (3 skills) requires MCP connection.
+15 invocable skills, each in its own folder with a `SKILL.md` file. 11 are profile-aware (ask account profiling questions). Phase 1 (11 skills) requires no API. Phase 2 (4 skills) requires MCP connection.
 
 ## Conventions
 
@@ -54,6 +54,9 @@ live-report ─────────→ reporting/gaql-query-templates, gaql-
 post-launch-monitor ─→ learning-phase, strategy/post-launch-playbook,
                        bidding-strategies, strategy/account-maturity-roadmap,
                        mcp/mcp-capabilities
+product-performance ─→ shopping-campaigns, pmax/feed-only-pmax,
+                       pmax/feed-optimization, shopping-feed-strategy,
+                       reporting/gaql-query-templates, mcp/mcp-capabilities
 ```
 
 ## Inter-Skill References

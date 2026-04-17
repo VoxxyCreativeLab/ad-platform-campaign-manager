@@ -11,6 +11,9 @@ tags:
 
 PMax campaign linked to a Merchant Center product feed with **no custom creative assets** in the asset groups. Google auto-generates all ad creatives from the product feed data (titles, images, prices, descriptions). Sometimes called "PMax for retail" or "PMax without assets." This is the spiritual successor to Smart Shopping campaigns.
 
+> [!important] AD STRENGTH = POOR Is Expected and Correct
+> Feed-only PMax campaigns always show **AD STRENGTH = POOR** in Google Ads. This is intentional — there are no creative assets for Google to evaluate. Do not flag this as a problem, do not recommend adding assets to fix it, and do not let audit tools penalize this score. Audits, reports, and agents should identify this as feed-only first (by checking the creation path — MC-created = feed-only) before interpreting ad strength values.
+
 > [!abstract] Industry Data (SMEC, 4,000+ campaigns, 500+ accounts, 2025)
 > **90% of PMax spend goes to feed-based ads** (range: 74-97%). Feed quality is the single biggest lever for PMax retail performance. Campaigns need 30+ conversions/month minimum, 60+ ideal. ROAS targets: median rose from 4.7 to 6.0. Campaigns typically achieve 95-116% of stated targets.
 >

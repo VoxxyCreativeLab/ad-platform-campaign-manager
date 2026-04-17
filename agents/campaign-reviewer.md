@@ -1,8 +1,13 @@
 ---
 name: campaign-reviewer
+title: Campaign Reviewer Agent
 description: Full campaign audit — structure, keywords, ads, bids, conversions, budget. Produces scored report with prioritized recommendations. Use proactively when the user asks to review, audit, or analyze a campaign.
 tools: "Read, Grep, Glob, Bash"
 model: sonnet
+tags:
+  - agent
+  - google-ads
+  - audit
 ---
 
 # Campaign Reviewer Agent
@@ -72,7 +77,8 @@ Work through every section of the audit checklist at `reference/platforms/google
 - [ ] Extensions configured (sitelinks, callouts, snippets)
 
 #### PMax (if applicable)
-- [ ] Asset quality and diversity
+- [ ] **Determine PMax type first** — if created via Merchant Center (feed-only): AD STRENGTH = POOR is expected, no creative assets by design. Do not flag POOR strength or missing video for feed-only PMax.
+- [ ] Asset quality and diversity (full PMax only — skip for feed-only)
 - [ ] Audience signals configured
 - [ ] Brand exclusions applied
 

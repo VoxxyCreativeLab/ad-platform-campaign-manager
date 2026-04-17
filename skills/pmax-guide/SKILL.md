@@ -53,11 +53,14 @@ Now determine which PMax configuration to use. Ask:
    - No → **Feed-only PMax** — Google auto-generates from feed data
    - Some (e.g., logo + text, no video) → **Feed-only PMax with optional text assets** — start feed-only, add assets incrementally
 
-| Type | Feed | Creative | Guide |
-|------|------|----------|-------|
-| Feed-only PMax | Required | None or optional text/logo | Use "Setting Up Feed-Only PMax" below |
-| Full PMax | Optional but recommended for e-commerce | Required (images + video + text) | Use "Setting Up Full PMax" below |
-| Non-feed PMax | None | Required (images + video + text) | Use "Setting Up Full PMax" below |
+| Type | Feed | Creative | Ad Strength | Guide |
+|------|------|----------|-------------|-------|
+| Feed-only PMax | Required | None or optional text/logo | **Always POOR — expected, not a defect** | Use "Setting Up Feed-Only PMax" below |
+| Full PMax | Optional but recommended for e-commerce | Required (images + video + text) | GOOD or EXCELLENT target | Use "Setting Up Full PMax" below |
+| Non-feed PMax | None | Required (images + video + text) | GOOD or EXCELLENT target | Use "Setting Up Full PMax" below |
+
+> [!warning] Feed-Only PMax and AD STRENGTH = POOR
+> Feed-only PMax campaigns created via Merchant Center always display AD STRENGTH = POOR because Google has no creative assets to evaluate — only the product feed. This is correct and expected. Never recommend adding creative assets to "fix" the ad strength score on a feed-only PMax — doing so converts it into a full PMax campaign and enables additional ad surfaces (Display, YouTube, Gmail) that may not be intended.
 
 ## Common Tasks
 

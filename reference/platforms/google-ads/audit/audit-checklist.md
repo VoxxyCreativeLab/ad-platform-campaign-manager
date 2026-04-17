@@ -110,10 +110,14 @@ tags:
 - [ ] Assets reviewed for performance quarterly
 
 ## PMax Specific (if applicable)
+
+> [!warning] Feed-Only PMax Exception
+> If this PMax campaign was created via Merchant Center (no creative assets — only product feed), AD STRENGTH = POOR is **expected behavior**, not a defect. Do not flag POOR ad strength or missing video/image assets for feed-only PMax. Confirm the creation path before running these checks. Items marked *(full PMax only)* do not apply.
+
 - [ ] Each asset group has theme-appropriate audience signals
-- [ ] Asset groups have diverse, high-quality images
-- [ ] At least one custom video provided (not relying on auto-generated)
-- [ ] "Low" performing assets identified and scheduled for replacement
+- [ ] Asset groups have diverse, high-quality images *(full PMax only)*
+- [ ] At least one custom video provided (not relying on auto-generated) *(full PMax only — feed-only always auto-generates from product feed)*
+- [ ] "Low" performing assets identified and scheduled for replacement *(full PMax only — feed-only AD STRENGTH = POOR is expected)*
 - [ ] Brand exclusion list applied (to protect brand Search campaigns)
 - [ ] Brand exclusion scope understood (applies to Search and Shopping channels only)
 - [ ] Product feed optimized (titles, images, GTINs)

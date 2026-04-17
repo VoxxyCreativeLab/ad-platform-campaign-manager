@@ -24,6 +24,8 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` | Google Ads Scripts library |
 | Ad Copy | `/ad-platform-campaign-manager:ad-copy` | Multilingual ad copy — RSA, extensions, PMax, Shopping titles |
 | Campaign Cleanup | `/ad-platform-campaign-manager:campaign-cleanup` | Account triage for messy/neglected accounts |
+| Post-Launch Monitor | `/ad-platform-campaign-manager:post-launch-monitor` | Phase-aware post-launch monitoring — learning, post-learning, Month 2+ |
+| Product Performance | `/ad-platform-campaign-manager:product-performance` | Product-level Shopping and PMax analysis — zombie products, top converters, feed optimization candidates |
 
 ## Phase 2 — API Integration (MCP connected — skills hidden until unhidden)
 

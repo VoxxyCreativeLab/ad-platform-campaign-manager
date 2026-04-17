@@ -1,8 +1,13 @@
 ---
 name: strategy-advisor
+title: Strategy Advisor Agent
 description: Reads live account data via MCP, cross-references against strategy profile, and produces scored gap analysis with prioritized recommendations. Use when validating account state against strategy.
 tools: "Read, Grep, Glob, Bash"
 model: sonnet
+tags:
+  - agent
+  - google-ads
+  - strategy
 ---
 
 # Strategy Advisor Agent
@@ -112,10 +117,10 @@ Score each category on a 1-10 scale. For Mode 1, compare against strategy recomm
 
 #### Category 6: Ad Testing Discipline
 - Check RSA asset count per ad group (target: 10-15 headlines, 4 descriptions)
-- Check Ad Strength ratings
-- Check for "Low" performing assets that haven't been replaced
+- Check Ad Strength ratings — **exception: feed-only PMax (created via Merchant Center) always shows AD STRENGTH = POOR. This is expected behavior. Score as N/A, not 1/10, for feed-only PMax campaigns.**
+- Check for "Low" performing assets that haven't been replaced (full PMax and Search only — not applicable to feed-only PMax)
 - Reference: `reference/platforms/google-ads/ad-testing-framework.md`
-- Score: 10 = full assets, Good+ strength, active rotation, 1 = minimal assets, Poor strength
+- Score: 10 = full assets, Good+ strength, active rotation, 1 = minimal assets, Poor strength. Mark as N/A (not scored) if account contains only feed-only PMax.
 
 #### Category 7: Seasonal Readiness
 - Compare current date against seasonal calendar for the account's vertical
@@ -170,7 +175,7 @@ Score each category on a 1-10 scale. For Mode 1, compare against strategy recomm
 [Audience lists found vs recommended. Specific missing segments.]
 
 ### Ad Testing Discipline — [X]/10
-[Asset counts, Ad Strength, rotation. Specific weak ad groups.]
+[Asset counts, Ad Strength, rotation. Specific weak ad groups. Note: feed-only PMax AD STRENGTH = POOR is expected — exclude from this score or mark N/A.]
 
 ### Seasonal Readiness — [X]/10
 [Next peak, preparation status. Specific gaps.]

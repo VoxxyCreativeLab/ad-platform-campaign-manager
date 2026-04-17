@@ -87,7 +87,7 @@ LIMIT 100
 **MCP checks:**
 - `get_campaign_metrics` — impressions, clicks, cost, conversions. Compare to baseline if available.
 - `run_gaql` on `keyword_view` — quality scores. Flag: QS ≤ 4 → investigate ad relevance and landing page alignment.
-- For PMax: `run_gaql` on `asset_group` — check `ad_strength`. Flag POOR asset groups.
+- For PMax: `run_gaql` on `asset_group` — check `ad_strength`. Flag POOR asset groups. **Exception: feed-only PMax created via Merchant Center always shows AD STRENGTH = POOR — this is expected, not a defect. Confirm creation path (MC-created = feed-only) before flagging.**
 
 **Example GAQL for keyword quality scores:**
 ```gaql
@@ -161,6 +161,9 @@ At this stage, the campaign has exited learning and has sufficient data for perf
 
 Flag deviations > 20% from baseline as a warning. Deviations > 50% as critical.
 
+> [!danger] Shopping Campaign ROAS Drop — Special Routing
+> If a **Shopping or feed-only PMax campaign** shows ROAS dropped **>30% vs. baseline**, do NOT immediately recommend structural changes. Before any action, load [[../../reference/platforms/google-ads/shopping-performance-regression-diagnosis|shopping-performance-regression-diagnosis.md]] and run the 7-hypothesis diagnosis protocol. Common causes (attribution shift, bid disruption, tracking gap) require investigation before intervention.
+
 **If no baseline exists:**
 
 Note current performance as the Day 30 baseline for Month 2 comparison. Record: impressions, clicks, CTR, cost, conversions, CPA or ROAS.
@@ -233,6 +236,7 @@ Based on what the monitoring session reveals:
 | Bid strategy or budget decision | `/ad-platform-campaign-manager:budget-optimizer` |
 | PMax-specific issues (feed, asset groups) | `/ad-platform-campaign-manager:pmax-guide` |
 | Tracking gaps (tags not firing, consent issues) | `/ad-platform-campaign-manager:conversion-tracking` |
+| **Shopping ROAS dropped >30% vs. baseline** | **Load [[../../reference/platforms/google-ads/shopping-performance-regression-diagnosis\|shopping-performance-regression-diagnosis.md]] — follow the 7-hypothesis protocol before recommending any structural change** |
 
 ---
 
