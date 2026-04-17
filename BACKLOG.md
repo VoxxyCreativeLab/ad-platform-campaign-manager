@@ -335,6 +335,30 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** (1) Add a "Client communication projection rule" to `_config/conventions.md`: "Never state a future ROAS target in client communication that does not appear in a dated strategy document (spec, report, or approved plan). If no documented target exists, describe the data gate that determines the next step — not the expected outcome." (2) Add a "Before sending" checklist to any email-drafting workflow: every performance projection must be traceable to a specific file and line. (3) Consider adding a communication review step to the `post-launch-monitor` skill output: "Draft email section: [generated]. Strategy reference check: [list of files cited]."
 - **Status:** Open
 
+### 30. [AUTO] MCP server read capability expansion — compatibility validation needed
+
+- **Source project:** ad-platform-campaign-manager v1.23.0 design session
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/mcp/mcp-capabilities.md`, any skill referencing specific GAQL resources or tool responses
+- **Category:** Dependency / Validation
+- **Priority:** Medium
+- **Description:** The `google-ads-mcp-server` is being updated with additional read capabilities and bug fixes (work in progress 2026-04-16, during the v1.23.0 design session). When the update ships, the following validation is needed: (1) compare new tool set against `mcp-capabilities.md` Section 1-3 — update the capability matrix for any added or changed tools; (2) check `mcp-capabilities.md` Section 4 ("Not Available via MCP") — any manual-only items now covered by new read tools should be moved to Section 2; (3) validate that existing GAQL patterns in `post-launch-monitor`, `live-report`, `campaign-review`, and the new `/account-scaling` skill are still compatible with any changed tool signatures or response formats.
+- **Proposed fix:** Validation session after MCP server update ships. Re-run the mcp-capabilities accuracy check, update all affected sections, and confirm no skill breakage from changed tool interfaces.
+- **Status:** Open — pending MCP server update completion
+
+### 31. [AUTO] Pending n8n cross-plugin routing edges — commit with next release
+
+- **Source project:** n8n-workflow-builder-plugin v0.1.0 build (2026-04-17)
+- **Date found:** 2026-04-17
+- **Affected file:** `skills/CONTEXT.md`, `skills/ads-scripts/SKILL.md`, `skills/conversion-tracking/SKILL.md`, `skills/live-report/SKILL.md`, `skills/reporting-pipeline/SKILL.md`
+- **Category:** Ecosystem / Cross-ref
+- **Priority:** Low
+- **Description:** During the n8n-workflow-builder-plugin v0.1.0 build, editorial cross-plugin routing edges were added to 5 ad-platform skill files so this plugin recommends n8n when a user's workflow shifts from Google Ads data work into delivery automation. These are additive rows in existing "What to Do Next" tables plus a new "Cross-Plugin Routing" section in `skills/CONTEXT.md`. They are currently uncommitted because the v1.23.0 design session is active in parallel. Zero file overlap with v1.23.0 work (BACKLOG / PLAN / PRIMER) — no merge conflicts. Commit alongside v1.23.0 or as a standalone follow-up.
+- **Proposed fix:** On the next release commit (v1.23.0 or later), include the 5 cross-ref files in the staged set. Suggested commit message: `feat: add cross-plugin routing edges to n8n-workflow-builder-plugin`. Verify via `git log --follow skills/CONTEXT.md` that the "Cross-Plugin Routing → n8n-workflow-builder-plugin" section appears in history.
+- **Status:** Open — awaiting next release commit
+
+---
+
 ### 29. [AUTO] MCP documentation error — user_list sizes are API-accessible
 
 - **Source project:** campaign-vaxteronline-project-files
@@ -383,3 +407,5 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 27 | Ad copy and asset mutation not possible via MCP | Gap | Medium | ⬜ Open |
 | 28 | No guard rail against aspirational projections in client communication | Gap | Medium | ⬜ Open |
 | 29 | MCP docs error — user_list sizes are API-accessible, not manual-only | Contradiction | Medium | ⬜ Open |
+| 30 | MCP server read capability expansion — compatibility validation needed | Dependency | Medium | ⬜ Open — pending MCP server update |
+| 31 | Pending n8n cross-plugin routing edges — commit with next release | Ecosystem | Low | ⬜ Open — awaiting next release commit |

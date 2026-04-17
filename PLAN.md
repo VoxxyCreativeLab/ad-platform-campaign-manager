@@ -64,8 +64,43 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
 - ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
 - ✅ Priority 3 Audit Expansion (v1.12.0) — Video/YouTube (12), Cross-Campaign Cannibalization (5), Attribution Depth (5), Account-Level Strengthening (5) added; Areas 18-21 in campaign-review with GAQL queries; Video triage in campaign-cleanup; campaign-reviewer agent updated with 4 new sections
-**Current milestone:** v1.21.0 Session 4 🚧 Paused (2026-04-16) — n8n-plugin must be built first. See `docs/superpowers/plans/2026-04-16-session-4-paused.md`.
+**Current milestone:** v1.23.0 🔄 In progress (2026-04-17) — Account Scaling Skill + Projection Guardrail. Design complete. Ready to execute implementation plan via `superpowers:subagent-driven-development`. Full state in PRIMER.md.
+
+**Previous milestone:** v1.21.0 Session 4 🚧 Paused — n8n-plugin must be built first. See `docs/superpowers/plans/2026-04-16-session-4-paused.md`.
 **Blockers:** OAuth client secret should be rotated.
+
+### v1.23.0 — Account Scaling Skill + Projection Guardrail (2026-04-17)
+
+**Backlog items:** #23 (new skill) + #28 (bundled — conventions guardrail)
+**Design spec:** `docs/superpowers/specs/2026-04-17-account-scaling-design.md` ✅ committed `0ac05d8`
+**Implementation plan:** `docs/superpowers/plans/2026-04-17-account-scaling.md` ✅ written
+
+#### Design ✅ Complete
+
+- [x] **Section 1:** Architecture — skill positioning, MCP + always-report + projection gate, entry criteria Stage 3/4
+- [x] **Section 2:** Skill logic — 4 phases: MCP data pull → 8-gate evaluation (with delegation links) → conditional trajectories T1-T6 → report write. CoV computed from daily data. Stage: 05-optimize. Strategy-advisor boundary confirmed.
+- [x] **Section 3:** Projection gate + conventions.md bundle (#28) — 3-layer design (global + master + ad-platform), FTC + UK CAP + DMCC, scope all 15 skills + 3 agents
+- [x] **Section 4:** scaling-playbook.md structure — 11 sections, honest gap statement, curated external playbooks, T1-T6 backbone
+- [x] Confirm CONTEXT.md routing row phrasing: "Account scaling / ready to scale / grow this account / scale up budget"
+- [x] User approves all 4 sections
+- [x] Write + commit `docs/superpowers/specs/2026-04-17-account-scaling-design.md`
+- [x] Invoke `superpowers:writing-plans` → `docs/superpowers/plans/2026-04-17-account-scaling.md`
+
+#### Implementation (execute via `superpowers:subagent-driven-development`)
+
+> Pre-flight: resolve uncommitted n8n routing changes in skills/ before any commit. Ask Jerry: (a) revert, (b) separate commit, (c) bundle. See PRIMER.md §Pre-flight.
+
+- [ ] **Task 1:** Update `~/.claude/CLAUDE.md` — Layer 1 one-line guardrail
+- [ ] **Task 2:** Update `project-structure-and-scaffolding-plugin/_config/conventions.md` — Layer 2 generic rule
+- [ ] **Task 3:** Update `_config/conventions.md` — Layer 3 domain-specific rule with ROAS/CPA examples
+- [ ] **Task 4:** Update `reference/platforms/google-ads/strategy/account-maturity-roadmap.md` — tROAS discrepancy footnote + scaling-playbook links (Stage 3 + Stage 4)
+- [ ] **Task 5:** Update `reference/platforms/google-ads/bidding-strategies.md` — PMax/Shopping Ad Rank callout (Oct 2024)
+- [ ] **Task 6:** Create `reference/platforms/google-ads/strategy/scaling-playbook.md`
+- [ ] **Task 7:** Create `skills/account-scaling/SKILL.md`
+- [ ] **Task 8:** Update `CONTEXT.md` (routing) + `CLAUDE.md` (Quick Navigation)
+- [ ] **Task 9:** BACKLOG + CHANGELOG + tag v1.23.0 + plugin reinstall + rewrite PRIMER.md
+
+---
 
 ### After v1.19.1 — Backlog Expansion (v1.20.0–v1.21.0)
 

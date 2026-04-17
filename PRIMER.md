@@ -1,6 +1,6 @@
 ---
 title: Primer - Session Handoff
-date: 2026-04-16
+date: 2026-04-17
 tags:
   - mwp
 ---
@@ -8,167 +8,196 @@ tags:
 # Primer - Session Handoff
 
 > This file rewrites itself at the end of every session. Read it first.
+> **To resume:** say "continue" — the system will read this file and PLAN.md and pick up from the first unchecked item in "What Still Needs to Happen."
+
+---
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.21.1. v1.21.0 Sessions 4/5 are **paused** pending `n8n-plugin` creation. See pause memo: `docs/superpowers/plans/2026-04-16-session-4-paused.md`.
+**ad-platform-campaign-manager** v1.23.0 — Account Scaling Skill + Projection Guardrail (BACKLOG #23 + #28).
+
+**Phase:** Implementation. Design complete. Plan written. Ready to execute via subagent-driven-development.
 
 ---
 
 ## Last Completed
 
-### v1.21.1 — 2026-04-16 (backlog fix patch)
+### v1.23.0 Design + Planning Phase (2026-04-17)
 
-Two fixes shipped:
+All brainstorming sections approved and committed:
 
-| Fix | Files | BACKLOG |
-|-----|-------|---------|
-| Feed-only PMax AD STRENGTH = POOR exception — added to 8 files | `pmax/feed-only-pmax.md`, `skills/pmax-guide/SKILL.md`, `skills/post-launch-monitor/SKILL.md`, `audit-checklist.md`, `agents/campaign-reviewer.md`, `agents/strategy-advisor.md`, `audit/common-mistakes.md`, `skills/live-report/references/report-templates.md` | #22 ✅ Closed |
-| post-launch-monitor → Shopping regression routing | `skills/post-launch-monitor/SKILL.md` Step 4 + Step 7 routing table | #19 ✅ Closed |
+- **Section 1:** Architecture — skill positioning ladder, MCP + always-report + projection gate, Stage 3/4 entry criteria, strategy-advisor boundary ✅
+- **Section 2:** Skill logic — 4 phases (MCP pull → 8 gates → T1-T6 trajectories → report write), CoV computation from daily data, gate delegation map ✅
+- **Section 3:** Projection guardrail — 3-layer design (global + master plugin + ad-platform), full rule text, FTC + UK CAP §§3.1/3.7/3.34 + DMCC Act 2024, scope all 15 skills + 3 agents, ships in v1.23.0 ✅
+- **Section 4:** `scaling-playbook.md` structure — 11 sections, honest gap statement, 10 curated external playbooks, 10 Google URLs, T1-T6 backbone ✅
+- **CONTEXT.md routing row phrasing:** confirmed "Account scaling / ready to scale / grow this account / scale up budget" ✅
+- **T1-T6 trajectories:** frozen ✅
 
-Also fixed in this session (housekeeping, part of cut-release checklist):
-- `README.md` — added `post-launch-monitor` and `product-performance` rows (were missing)
-- `skills/CONTEXT.md` — count updated 14 → 15; `product-performance` added to dependency map
-- `agents/campaign-reviewer.md`, `agents/strategy-advisor.md`, `agents/tracking-auditor.md` — added `title` and `tags` frontmatter (were missing)
+Design artifacts:
+- Spec: `docs/superpowers/specs/2026-04-17-account-scaling-design.md` (committed `0ac05d8`)
+- Plan: `docs/superpowers/plans/2026-04-17-account-scaling.md` (written, not yet committed)
 
-### v1.21.0 — 2026-04-16 (same day, earlier)
+### Previous Milestones
 
-- Shopping ROAS regression diagnostic protocol — `shopping-performance-regression-diagnosis.md` + `shopping-campaigns.md` Troubleshooting section
-- Tracking-bridge Phase 1 restructure: `iclosed-attribution.md`, `n8n-pipeline-patterns.md`, `capi-server-events.md` (new)
-
-### #14 BigQuery Native Connectors — Drafted (v1.22.0 seed)
-
-`reference/reporting/bigquery-native-connectors.md` written this session. Committed separately from v1.21.1 — this is v1.22.0 material. Covers:
-- GA4 native BQ export (streaming + daily, `ga4_dataform` transformation layer)
-- Google Ads BQ Data Transfer Service (standard + custom GAQL reports — 2026 feature)
-- Meta Ads BQ Data Transfer Service (Facebook Ads connector — now GA; corrects prior error)
-- When to upgrade to OWOX / n8n
-- 6 reference repos with star counts and licenses
-
-**Key research finding (2026-04-16):** Meta Ads / Facebook Ads BigQuery Data Transfer Service is now generally available (official Google Cloud). Previous PRIMER error ("BDTS for Meta doesn't exist") is **corrected** — native connector exists, zero-cost for first-party use, daily 24h refresh.
-
----
-
-## Current State
-
-### Plugin — v1.21.1
-
-| Layer | Count | Notes |
-|-------|-------|-------|
-| Reference files | 50 | +1 (`shopping-performance-regression-diagnosis.md`) vs v1.20.0 |
-| Script docs | 17 | `reference/scripts/` |
-| Tracking-bridge docs | 8 | iClosed, n8n pipeline, Meta CAPI (all rewritten/added v1.21.0) |
-| Meta Ads docs | 1 | `capi-server-events.md` |
-| Reporting docs | 5 | expanding to 6 in v1.22.0 (`bigquery-native-connectors.md` drafted this session) |
-| Skills | 15 | `product-performance` added v1.20.0 |
-| Agents | 3 | campaign-reviewer, tracking-auditor, strategy-advisor |
-| Audit areas | 21 | All Priority 1-3 complete |
-
-### Branch
-
-`main` — all releases committed directly on main.
-
-### MCP Server (google-ads-mcp-server)
-
-- 25 tools: 3 session + 9 read + 11 write + 2 confirm
-- Connected to MCC 7244069584 via Explorer Access (2,880 ops/day)
-- Write passphrase: `voxxy-writes`
-- Credentials at `C:\Users\VCL1\google-ads.yaml`
-- Wrapper at `C:\mcp\google-ads.cmd`
+- v1.22.0 — BigQuery native connectors, Klaviyo fundamentals, Looker Studio dashboard
+- v1.21.1 — Feed-only PMax AD STRENGTH = POOR exception + Shopping regression routing
+- v1.21.0 Session 4 — PAUSED (n8n-plugin must be built first)
 
 ---
 
 ## What Still Needs to Happen
 
-### IMMEDIATE: Build n8n-plugin (prerequisite for v1.21.0 Sessions 4-5)
+### v1.23.0 Implementation
 
-v1.21.0 Sessions 4 and 5 are **paused**. The Meta → BQ pipeline and cross-platform data model both depend on n8n as the transport layer. The `n8n-plugin` must exist first.
+> [!warning] Pre-flight first — do not skip
+> Before executing ANY task in the plan, resolve the uncommitted n8n routing changes (see "Pre-flight" below). Ask Jerry which option (a/b/c) before touching any skills/ files.
 
-**Full pause memo:** `docs/superpowers/plans/2026-04-16-session-4-paused.md`
+> [!info] Execution approach
+> Use `superpowers:subagent-driven-development` to execute the plan task by task.
 
-**After n8n-plugin ships** — return here and resume: Session 4 — Research Meta BQ (#11) + Cross-Platform (#13)
+**Implementation plan:** `docs/superpowers/plans/2026-04-17-account-scaling.md`
 
----
+#### Mandatory first step
 
-### Session 4 (after n8n-plugin) — Meta BQ + Cross-Platform Data Model
+- [ ] **Pre-flight:** Resolve uncommitted n8n routing changes (see Pre-flight section below). Ask Jerry: revert (a), separate commit (b), or bundle (c)?
 
-**Step 1 — Online research:** Meta BQ BDTS (now GA — confirm field coverage, historical backfill, 24h latency), OWOX Data Marts, Meta Marketing API for sub-daily needs.
+#### Guardrail (3 layers)
 
-**Step 2 — Create** `reference/reporting/meta-ads-bigquery.md`
+- [ ] **Task 1:** Update `~/.claude/CLAUDE.md` — add one-line projection guardrail under new `## Client Communication` heading
+- [ ] **Task 2:** Update `project-structure-and-scaffolding-plugin/_config/conventions.md` — add generic `## Client Communication Guardrails` section
+- [ ] **Task 3:** Update `_config/conventions.md` — add domain-specific `## Client Communication Guardrails` section
 
-Sections: Overview, BDTS (GA — free, daily 24h), OWOX Data Marts (sub-daily, MIT), n8n HTTP Request (real-time, custom fields), Decision Matrix, Schema (`meta_ads_performance`), Cross-References.
+#### Reference updates
 
-**Step 3 — Extend** `reference/reporting/cross-platform-data-model.md`
+- [ ] **Task 4:** Update `reference/platforms/google-ads/strategy/account-maturity-roadmap.md` — tROAS discrepancy footnote + scaling-playbook links at Stage 3/4
+- [ ] **Task 5:** Update `reference/platforms/google-ads/bidding-strategies.md` — PMax/Shopping Ad Rank callout (Oct 2024)
 
-Add: 5-source architecture table, join key strategy (contactId, callPreviewId, fbc), lead lifecycle stages.
+#### New files
 
----
+- [ ] **Task 6:** Create `reference/platforms/google-ads/strategy/scaling-playbook.md` (11 sections)
+- [ ] **Task 7:** Create `skills/account-scaling/SKILL.md` (4-phase flow, 7 GAQL queries, 8 gates, T1-T6 routing, report template)
 
-### Session 5 (after Session 4) — Integration + Release v1.21.0 (retag)
+#### Wiring
 
-> [!note] Version note
-> v1.21.0 tag was consumed by the Shopping regression diagnostic. The cross-platform tracking expansion may need a new version number (v1.22.0 if we merge it with BigQuery Baseline). Decide at Session 5 start.
+- [ ] **Task 8:** Update `CONTEXT.md` (routing row) + `CLAUDE.md` (Quick Navigation)
 
-| Step | File | Change |
-|------|------|--------|
-| 5.1 | `CONTEXT.md` | Add routing: Meta Ads BQ pipeline → `reference/reporting/meta-ads-bigquery.md` |
-| 5.2 | `BACKLOG.md` | Mark #10-#13 Done |
-| 5.3 | `CHANGELOG.md` | Add release entry |
-| 5.4 | `PRIMER.md` | Final rewrite |
+#### Release
 
----
-
-### After Sessions 4-5: v1.22.0 BigQuery Baseline (#14, #16, #17, #18)
-
-**v1.22.0 seed content drafted this session (2026-04-16):**
-- `reference/reporting/bigquery-native-connectors.md` — native BQ connectors for GA4, Google Ads DTS, Meta Ads DTS (all three native paths; n8n reverse pipeline deferred)
-
-**Still blocked on Jerry's inputs:**
-- **Watermelon plan path** — Jerry to provide at v1.22.0 Session 1 start (for #18)
-- **GTM scripts inventory** — Jerry to provide at v1.22.0 Session 1 start (for #17)
-
-**Meta-plan:** `C:\Users\VCL1\.claude\plans\wise-scribbling-cat.md`
+- [ ] **Task 9:** Update `BACKLOG.md` (#23+#28 done) + `CHANGELOG.md` (v1.23.0 entry) + commit + tag `v1.23.0` + plugin reinstall + rewrite this PRIMER.md
 
 ---
 
-## Key Research Notes for Session 4
+## Pre-flight: Uncommitted n8n Routing Changes
 
-From Session 3 research — carry forward:
+Git status shows 5 modified files with n8n routing entries that were added before v1.23.0 brainstorming:
 
-- **fbc format:** `fb.1.{subdomainIndex}.{creationTime_ms}.{fbclid}` — creationTime_ms is LANDING time in ms, NOT booking time. Do NOT hash fbc — send as plain string.
-- **subdomainIndex:** 1 for root domain (`example.com`), 2 for www subdomain (`www.example.com`)
-- **contactId:** iClosed's internal contact identifier — primary join key across iClosed records, Airtable, and CAPI events
-- **callPreviewId:** unique per call — use as `event_id` for CAPI deduplication
-- **iClosed native CAPI events:** Page view, Potential, Qualified, Disqualified, Call booked — from native integration. Must be disabled when using n8n WF3 (or ensure matching event_id)
-- **n8n Airtable trigger:** polling only — 5-min polling = ~8,640 executions/month, exceeds Starter (2,500). Use webhook-based triggers wherever possible; poll at 15-min intervals if polling is required
-- **action_source for offline conversions:** `system_generated` — automated system event with no browser session present
-- **Meta Ads BQ DTS (2026-04-16 research):** Facebook Ads connector is generally available on BQ DTS. Free for first-party (Google-owned) connectors. Daily refresh, ~24h latency. This corrects the Session 3 paused-state error ("BDTS for Meta doesn't exist").
+| File | Change |
+|---|---|
+| `skills/CONTEXT.md` | Cross-plugin routing table pointing to `n8n-workflow-builder-plugin:*` |
+| `skills/ads-scripts/SKILL.md` | +1 row: "Migrate scripts to n8n workflows" → `n8n-workflow-builder-plugin:workflow-architect` |
+| `skills/conversion-tracking/SKILL.md` | +1 row: similar n8n routing |
+| `skills/live-report/SKILL.md` | +1 row: similar n8n routing |
+| `skills/reporting-pipeline/SKILL.md` | +1 row: similar n8n routing |
 
----
+The `n8n-workflow-builder-plugin` does not exist yet — it is listed as a prerequisite for v1.21.0 Sessions 4-5 (currently blocked). Options:
 
-## Design Documents
+- **(a) Revert** — the plugin doesn't exist; these rows are premature
+  ```bash
+  git checkout skills/CONTEXT.md skills/ads-scripts/SKILL.md skills/conversion-tracking/SKILL.md skills/live-report/SKILL.md skills/reporting-pipeline/SKILL.md
+  ```
+- **(b) Commit separately** before v1.23.0 work (e.g., `chore: add n8n routing stubs (pre-v1.23.0)`)
+- **(c) Bundle** with v1.23.0 only if n8n plugin is imminent
 
-| File | Purpose |
-|------|---------|
-| `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md` | Backlog expansion design (Sessions 2-5) |
-| `docs/superpowers/plans/2026-04-14-backlog-expansion.md` | Implementation plan (Tasks 1-25) — Tasks 17-20 = Session 4, Tasks 21-25 = Session 5 |
-| `docs/superpowers/specs/2026-04-14-tracking-bridge-restructure-design.md` | Restructure spec (Phase 1) — fully executed 2026-04-16 |
-| `docs/superpowers/specs/2026-04-04-report-output-structure-design.md` | Report output structure spec (v1.8.0) |
-| `C:\Users\VCL1\.claude\plans\wise-scribbling-cat.md` | v1.22.0 BigQuery Baseline meta-plan (outside codebase) |
+**Do not decide unilaterally. Ask Jerry at the start of the next session.**
 
 ---
 
-## Housekeeping
+## Key Decisions Made (v1.23.0)
 
-- **Rotate OAuth client secret** — exposed in session screenshot (2026-04-01). Do in GCP Console before production use.
-- **#21 ClickFunnels 2.0 deferred** — CF2.0 event names (`cfPageView`, `cfLead`) unverifiable in public docs. Resume when Hyros doc index is accessible or Jerry confirms from a live container.
-- **Phase 4 Multi-platform:** `linkedin-ads/` and `tiktok-ads/` are placeholders only — no demand, defer.
+| Decision | Detail |
+|---|---|
+| Skill name | `account-scaling` |
+| Entry criteria | Stage 3+ (30+ conv/mo); Stage 1/2 → exit message, no report |
+| MCP mode | Read-only; `unlock_writes` never called |
+| Always-report stage | `05-optimize/account-scaling.md` |
+| Gate count | 8 gates; all must pass for scaling trajectory |
+| Gate 3 (CoV) computation | Daily data from MCP; ±20% CoV = PASS; skill is the only place this is computed |
+| tROAS threshold | Both 50 (roadmap) and 15 (Google portfolio docs) cited; neither hardcoded; user confirms |
+| T1-T6 trajectories | 6 trajectories, priority T5→T2→T1→T3/T4/T6; multiple can be active simultaneously |
+| T1+T2 conflict | Graduate bid strategy (T2) first; budget step (T1) waits until learning exits |
+| +20% budget rule | Search-specific (IS-led); Display has separate rule; NOT universal |
+| Projection guardrail scope | All 15 skills + 3 agents; all client-facing output surfaces |
+| Guardrail layers | 3: global ~/.claude/CLAUDE.md + master plugin + ad-platform _config/conventions.md |
+| Guardrail ships in | v1.23.0 (all 3 layers together) |
+| CONTEXT.md routing trigger | "Account scaling / ready to scale / grow this account / scale up budget" |
+| Dynamic scaling limitation | Reproduced verbatim in spec, SKILL.md, and scaling-playbook.md |
+
+---
+
+## Implementation Plan Quick Reference
+
+Full plan at `docs/superpowers/plans/2026-04-17-account-scaling.md`.
+
+**New files:**
+1. `skills/account-scaling/SKILL.md` — skill
+2. `reference/platforms/google-ads/strategy/scaling-playbook.md` — reference
+
+**Modified files (ad-platform):**
+- `_config/conventions.md` — Client Communication Guardrails (Layer 3)
+- `CONTEXT.md` — routing row
+- `CLAUDE.md` — Quick Navigation
+- `reference/platforms/google-ads/strategy/account-maturity-roadmap.md` — tROAS footnote + links
+- `reference/platforms/google-ads/bidding-strategies.md` — Ad Rank callout
+- `BACKLOG.md` — #23 + #28 done
+- `CHANGELOG.md` — v1.23.0 entry
+- `PRIMER.md` — this file (rewrite at end)
+
+**Modified files (other repos):**
+- `project-structure-and-scaffolding-plugin/_config/conventions.md` — Layer 2 generic rule
+- `~/.claude/CLAUDE.md` — Layer 1 one-liner
+
+---
+
+## Deferred Backlog Items (after v1.23.0)
+
+| # | Item | Size |
+|---|---|---|
+| 24 | tROAS/tCPA transition gates in post-launch-monitor | S |
+| 26 | `all_conversions` in live-report + attribution interpretation | S-M |
+| 29 | MCP docs fix — user_list sizes are API-accessible | S |
+| 30 | MCP server capability expansion validation (after MCP update ships) | After update |
 
 ---
 
 ## Open Blockers
 
-- **OAuth client secret rotation:** GCP Console — must do before production MCP write use
-- **n8n-plugin build:** hard prerequisite for Sessions 4-5 (cross-platform tracking expansion)
-- **Watermelon plan path:** Jerry to provide at v1.22.0 Session 1 start
-- **GTM scripts inventory:** Jerry to provide at v1.22.0 Session 1 start
+| Blocker | Notes |
+|---|---|
+| **OAuth client secret rotation** | Exposed in session screenshot 2026-04-01. Rotate in GCP Console before production use |
+| **MCP server update in progress** | Jerry adding read capabilities + bug fixes. After update: run BACKLOG #30 validation |
+| **n8n-plugin build** | Prerequisite for v1.21.0 Sessions 4-5 |
+| **Watermelon plan path** | Jerry to provide (for #18 extraction) |
+| **GTM scripts inventory** | Jerry to provide (for #17 cookie cHTML review) |
+| **ClickFunnels 2.0 (#21)** | Deferred; CF2.0 event names unverifiable; re-scope when CF2.0 is live |
+
+---
+
+## MCP Server Reference
+
+| Item | Value |
+|---|---|
+| Connected to | MCC 7244069584 (Voxxy Creative Lab) via Explorer Access (2,880 ops/day) |
+| Write passphrase | `voxxy-writes` |
+| Credentials | `C:\Users\VCL1\google-ads.yaml` |
+| Wrapper | `C:\mcp\google-ads.cmd` |
+| Status | Update in progress (Jerry adding read capabilities) |
+
+---
+
+## N8n Items — Still Blocked
+
+Sessions 4 and 5 of v1.21.0 paused. The n8n-plugin must be built first.
+
+**Blocked:** #10 iClosed tracking, #11 Meta BQ pipeline, #12 n8n automation layer, #13 cross-platform data model, and n8n reverse path of #14.
+
+**Pause memo:** `docs/superpowers/plans/2026-04-16-session-4-paused.md`

@@ -90,6 +90,12 @@ _(No entries yet)_
 
 _(No entries yet)_
 
+## Account Scaling & Growth Management
+
+- **2026-04-16 — A skill cannot fully replace dynamic account scaling.** The `/account-scaling` skill (v1.23.0) was designed with 6 conditional trajectories (T1-T6) that cover the most common scaling situations. But true dynamic scaling — real-time multi-variable interactions, PMax/Shopping cannibalization in motion, predictive signal reading across changing account states — is beyond what a skill can achieve. The skill's value is MCP-powered gate evaluation + trajectory routing + evidence-gated recommendations + projection guardrail. It is a rigorous starting point, not a complete substitute for experienced campaign management judgment. Always present the skill's output as: "here is what the data says and here are the data-supported next steps" — not "here is what will happen."
+- **2026-04-16 — "No canonical docs" claims need web verification before writing.** Before stating that "no published playbook exists" for a topic, run a web search. The initial claim for the account scaling skill was wrong — a dense body of agency and Google playbooks already covered the numbers (±10-20% budget steps, 14-day wait periods, PMax 50+ conv/mo thresholds). The actual gap was a *tooling gap* (nothing couples existing playbooks to live MCP reads + evidence gates), not an information gap. Getting this wrong in a spec leads to scope creep and missed citations.
+- **2026-04-16 — Projection guardrail requires a documented strategy gate.** The root cause of the "5x ROAS in June/July" fabrication (Vaxteronline April 16 session) was simple: no skill enforced a check asking "where is this number documented?" before it went into client communication. The rule — "never state a future target that does not appear in a dated strategy document" — belongs in `_config/conventions.md` so it applies to every skill and agent, not just post-launch-monitor.
+
 ## Client Management
 
 _(No entries yet)_
