@@ -7,6 +7,25 @@ tags:
 
 # Changelog
 
+## [1.22.0] — 2026-04-16
+
+BigQuery Baseline — Session 1 seed + Session 2 additions. Closes BACKLOG #15, #16. Partially closes #14 (n8n reverse path still deferred to n8n-plugin).
+
+### Added — Session 1 (seed, commit 2cd2c6c)
+
+- **`reference/reporting/bigquery-native-connectors.md`** — Native connector reference for GA4 BQ export, Google Ads BQ DTS, and Meta Ads BQ DTS. Decision matrix, setup steps, standard tables (Google Ads v22), 2026 GAQL custom-report support. Reference repo table (6 repos). n8n reverse pipeline explicitly deferred.
+
+### Added — Session 2
+
+- **`reference/platforms/klaviyo/klaviyo-fundamentals.md`** — Klaviyo fundamentals for a tracking specialist. GTM client-side install (consent gating, `_learnq` API, 6-char site ID), sGTM integration via `stape-io/klaviyo-tag` (Apache-2.0, 11★), attribution-relevant events (`Placed Order`, `Started Checkout`, `Viewed Product`, `Active on Site`), Klaviyo ↔ Meta Custom Audience sync (hourly export, 24–48h Meta processing, attribution window conflict), Klaviyo → BigQuery (no native connector — Fivetran/Airbyte canonical), PII/consent rules (`$consent` property, `_kx` token, Meta Jan-2025 upload consent requirement). Closes BACKLOG #15.
+- **`reference/reporting/looker-studio.md`** — Looker Studio how-to and conventions. Tool selection (vs. Looker full, Power BI, Metabase). BQ↔LS cost and performance: BI Engine (1 GB free per user, $30.36/GB/month paid), materialized views, partition pruning. Blend-in-BQ mantra with native blend limits. Calculated-field formulas (`SUM(x)/SUM(y)` rule — never `AVG(ratio)`). Voxxy 4-page lead-gen dashboard pattern (Overzicht / Funnel & Leads / Campagnes / Omzet & Retentie) — documented as Voxxy convention, not industry standard. External template resources (Windsor.ai, Porter Metrics, Coupler.io, Funnel.io). Closes BACKLOG #16.
+
+### Changed — Session 2
+
+- **`reference/reporting/bigquery-native-connectors.md`** — (1) Added LinkedIn Ads, TikTok Ads, Reddit Ads as explicit non-native rows in decision matrix with OWOX Data Marts (MIT, OSS) as recommended path. (2) Added GA4 free-tier 1M events/day cap warning: exceeding pauses export entirely with no backfill. (3) Added Google Ads API v22 (2026-03-02) note — new populated columns in DTS exports, link to BQ DTS change log. (4) Added email marketing (Klaviyo) row to the upgrade table with cross-link to new `klaviyo-fundamentals.md`. (5) Updated Section 5 Looker Studio cross-reference to include new `looker-studio.md`.
+
+---
+
 ## [1.21.1] — 2026-04-16
 
 Feed-only PMax contradiction fix (BACKLOG #22) and Shopping regression routing wire-up (BACKLOG #19).

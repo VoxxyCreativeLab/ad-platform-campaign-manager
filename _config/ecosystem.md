@@ -136,6 +136,7 @@ tags:
 | WordPress Admin | WordPress | Content, plugins, theme management |
 | Vercel Dashboard | Next.js | Deployment monitoring |
 | N8N Cloud / Self-hosted | N8N | Workflow execution and management |
+| Klaviyo | Email marketing | Email + SMS, audience sync to Meta Custom Audiences, attribution-relevant events; fundamentals in `reference/platforms/klaviyo/klaviyo-fundamentals.md` |
 | Mailchimp / ActiveCampaign | Email marketing | Campaign deployment and analytics |
 
 ---

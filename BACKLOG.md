@@ -269,6 +269,83 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** Add a "feed-only exception" clause to each of the 7 files: "Feed-only PMax campaigns (created via Merchant Center, no text/image assets) always show AD STRENGTH = POOR. This is expected behavior — do not flag as an issue or recommend adding assets." The `pmax-guide` SKILL.md and `feed-only-pmax.md` already correctly document this; the audit/review/monitoring tools must align.
 - **Status:** Open
 
+### 23. [AUTO] No structured growth/scaling management skill
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/platforms/google-ads/strategy/account-maturity-roadmap.md` (describes stages but doesn't guide transitions)
+- **Category:** Gap
+- **Priority:** High
+- **Description:** The plugin covers build → audit → optimize but has no skill for "what comes after optimization starts working." The maturity roadmap describes four stages but provides no interactive skill or workflow for managing the transition between them. Missing elements: (1) expansion trigger framework — when to add campaigns, increase budget, expand geo; (2) diminishing returns analysis — when a campaign is at optimal spend vs. has room to grow; (3) portfolio management for interdependent multi-campaign stacks with cannibalization risks; (4) structured bid strategy graduation workflow with live data gates (not just thresholds described in prose). This gap was the direct root cause of a fabricated 5x ROAS growth projection in a live client email (Vaxteronline, April 16 session) — there was no skill to reference for grounded growth projections, so claims were invented. Note: the maturity roadmap says tROAS requires 50+ conversions/month; the post-launch playbook says the same; but no skill actively surfaces this check at the right moment.
+- **Proposed fix:** New skill `/ad-platform-campaign-manager:account-scaling` that: (1) reads current account metrics and maturity stage; (2) runs against documented transition criteria; (3) produces a phase-specific action list — what to do now, what gate must pass before the next action; (4) explicitly blocks forward-looking ROAS projections that aren't grounded in real data gates. Alternatively: add a "Scaling phase" section to `account-strategy` skill.
+- **Status:** Open
+
+### 24. [AUTO] tROAS/tCPA transition gates not surfaced in post-launch-monitor skill
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `skills/post-launch-monitor/SKILL.md`
+- **Category:** Gap
+- **Priority:** High
+- **Description:** The `post-launch-monitor` skill runs phase-appropriate checks and generates reports, but it does not explicitly evaluate whether a bid strategy transition is appropriate at the current phase. Google's documented tROAS minimum is 50 conversions/month; tCPA is 30/month. The skill should query the account's conversion volume at Day 14 and Day 21 checkpoints, compare to these thresholds, and explicitly state "tROAS not yet eligible — current rate: X/month, threshold: 50/month." Without this check, sessions default to narrative-based projections. The omission also means `post-launch-monitor` reports can be written that imply bid strategy changes are imminent without any data gate being evaluated.
+- **Proposed fix:** Add a "Bid Strategy Readiness" section to the Day 14 and Day 21 outputs of `post-launch-monitor`. Pull `metrics.conversions` for LAST_30_DAYS, compare to 30 (tCPA) and 50 (tROAS) thresholds, and output one of: ELIGIBLE / APPROACHING (>70%) / NOT YET. Reference `bidding-strategies.md` for threshold values so the check stays in sync if thresholds are updated.
+- **Status:** Open
+
+### 25. [AUTO] Negative keyword write tools missing from MCP server
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/mcp/mcp-capabilities.md` (documented as a known gap; operational impact confirmed as High)
+- **Category:** Gap
+- **Priority:** High
+- **Description:** Every search term review (keyword-strategy, campaign-review, post-launch-monitor, campaign-cleanup) results in "add these as negative keywords" recommendations, but the MCP server has no negative keyword write tools. This is the single most frequent optimization action in active campaign management, and it must be executed manually by the user in the Google Ads UI every time. The gap is documented but the operational burden is significant: in the Vaxteronline account, negative keyword additions are recommended at every monitoring session with no automation possible. The MCP server currently supports: pause/enable/update for campaigns, ad groups, keywords, and ads. Negative keyword management is absent.
+- **Proposed fix:** Add MCP tools: `add_negative_keyword` (campaign-level and ad-group-level), `remove_negative_keyword`, `list_negative_keywords`. These map to `CampaignCriterion` and `AdGroupCriterion` with `negative: true` in the Google Ads API. Scope: text match types (exact, phrase, broad). Add the three-gate safety protocol (same as existing write tools). Document in `mcp-capabilities.md` Section 3 once shipped.
+- **Status:** Open
+
+### 26. [AUTO] Attribution-aware reporting missing from live-report skill
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `skills/live-report/SKILL.md`, `reference/reporting/gaql-query-templates.md`
+- **Category:** Gap
+- **Priority:** Medium
+- **Description:** The `live-report` skill reports `metrics.conversions` (primary, last-click) only. When Shopping + PMax + Remarketing coexist, the `metrics.all_conversions` field is critical for understanding the true multi-touch contribution of each campaign. The attribution shift between Shopping (discovery) and PMax/remarketing (close) is invisible in primary conversion reporting alone. In the Vaxteronline account, Shopping showed 0.41x ROAS on primary conversions but 23.7x on all_conversions — a 58x difference. Without the all_conversions dimension, the report is misleading for any account running a multi-campaign funnel. Confirmed via live GAQL: `metrics.all_conversions` and `metrics.all_conversions_value` are accessible at campaign level AND at `shopping_performance_view` product level.
+- **Proposed fix:** (1) Add `all_conversions` and `all_conversions_value` to the default campaign performance report template in `live-report`. (2) Add an "Attribution health check" section: when Shopping + PMax coexist, compare primary vs. all_conversions across campaigns and flag if Shopping's all_conversions/primary ratio exceeds 5:1 (strong attribution shift signal). (3) Add the attribution shift interpretation to `reference/platforms/google-ads/strategy/attribution-guide.md`. Update the relevant GAQL templates.
+- **Status:** Open
+
+### 27. [AUTO] Ad copy and asset mutation not possible via MCP
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/mcp/mcp-capabilities.md` (Section 3 — write tool gaps)
+- **Category:** Gap
+- **Priority:** Medium
+- **Description:** The `ad-copy` skill generates high-quality multilingual ad copy, but there is no mechanism to push it into Google Ads via MCP. Every copy output requires manual implementation by the user in the Google Ads UI. The same applies to ad extensions (sitelinks, callouts, structured snippets) and PMax asset groups. This gap means the full round-trip (generate → review → implement → verify) requires two distinct tools and a manual step in the middle. Not a blocker, but a persistent operational friction for every ad copy update cycle.
+- **Proposed fix:** Add MCP tools for RSA headline/description mutation: `update_ad_headline`, `update_ad_description` targeting `AdGroupAd.ad.responsive_search_ad`. For extensions: `add_sitelink`, `add_callout`. These are lower-priority than negative keywords (item #25) but address the same "output only, no write path" limitation. Minimum viable: even a `create_rsa_ad` that takes headline/description arrays and creates a new RSA in a given ad group would close 80% of the friction.
+- **Status:** Open
+
+### 28. [AUTO] No guard rail against aspirational projections in client communication
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `skills/post-launch-monitor/SKILL.md`, `_config/conventions.md`
+- **Category:** Gap
+- **Priority:** Medium
+- **Description:** The plugin has no mechanism to prevent forward-looking ROAS projections in client-facing communication that are not grounded in documented strategy gates. In the Vaxteronline April 16 session, an email was written with a "5x ROAS in June/July" projection that had no basis in any strategy document, optimization spec, or research source. The actual documented strategy specified tROAS at 3.0 after 30 conversions (April 8 spec); the April 16 regression report had already invalidated that gate entirely. The email invented numbers to reassure the client. No skill or convention file prevented this. Root issue: when writing client emails, the skill/session does not cross-reference documented strategy gates before asserting what performance will look like in the future.
+- **Proposed fix:** (1) Add a "Client communication projection rule" to `_config/conventions.md`: "Never state a future ROAS target in client communication that does not appear in a dated strategy document (spec, report, or approved plan). If no documented target exists, describe the data gate that determines the next step — not the expected outcome." (2) Add a "Before sending" checklist to any email-drafting workflow: every performance projection must be traceable to a specific file and line. (3) Consider adding a communication review step to the `post-launch-monitor` skill output: "Draft email section: [generated]. Strategy reference check: [list of files cited]."
+- **Status:** Open
+
+### 29. [AUTO] MCP documentation error — user_list sizes are API-accessible
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/mcp/mcp-capabilities.md` (Section 4 — "Not Available via MCP")
+- **Category:** Contradiction
+- **Priority:** Medium
+- **Description:** `mcp-capabilities.md` Section 4 lists "Audience list definitions (membership rules, sources, composition)" as manual-only: "Cannot verify audience list health programmatically." However, live GAQL testing confirms that `user_list.name`, `user_list.size_for_display`, `user_list.size_for_search`, `user_list.membership_status`, and `user_list.type` ARE accessible via `run_gaql` against the `user_list` resource. Confirmed working query: `SELECT user_list.name, user_list.size_for_display, user_list.size_for_search, user_list.membership_status, user_list.type FROM user_list`. The Vaxteronline account returned 16 audience lists with sizes (e.g., All visitors: 1,600 display / 760 search; Cart abandoners: 16 display / 24 search). What IS manual-only: audience membership rules, CMP/consent state, and GA4-sourced audience definitions. The documentation overstates the limitation.
+- **Proposed fix:** Update `mcp-capabilities.md` Section 4: move `user_list` from the "Not Available" list to Section 2 (GAQL-accessible). Add a query template to `gaql-query-templates.md`. Update audit checklist Area 10 (audience strategy) to include the user_list size check as an MCP-automated step. Keep the note that membership rules and consent state remain manual.
+- **Status:** Open
+
 ---
 
 ## Status
@@ -289,13 +366,20 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 12 | n8n as automation layer in tracking stacks | New Capability | Medium | 🚧 Paused — n8n-plugin must be built first |
 | 13 | Cross-platform data model for BigQuery | Gap | Low | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
 | 20 | n8n-plugin prerequisite for v1.21.0 | Prerequisite | Critical | 🚧 In progress — build n8n-plugin, then resume Session 4 |
-| 14 | BigQuery pipeline expansion — native connections + BQ→Meta n8n | Gap | High | ⬜ Open |
-| 15 | Email marketing knowledge — Klaviyo | Gap | Medium | ⬜ Open |
-| 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ⬜ Open |
+| 14 | BigQuery pipeline expansion — native connections + BQ→Meta n8n | Gap | High | 🚧 Partial — native connectors validated + additions shipped (v1.22.0); n8n reverse path deferred to n8n-plugin |
+| 15 | Email marketing knowledge — Klaviyo | Gap | Medium | ✅ Done (v1.22.0) |
+| 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ✅ Done (v1.22.0) |
 | 17 | GTM scripts review — cookie collection cHTML (Watermelon) | New Capability | Medium | ⬜ Open |
 | 18 | Watermelon plan knowledge extraction | New Capability | High | ⬜ Open |
 | 19 | Shopping performance regression diagnostic protocol | Gap | High | ✅ Done (v1.21.1) — doc shipped v1.21.0; post-launch-monitor routing wired v1.21.1 |
 | 21 | ClickFunnels 2.0 tracking patterns | Gap | Medium | ⬜ Open — deferred: CF2.0 event names unverified |
-| 14 | BigQuery pipeline expansion (updated: +8 reference repos) | Gap | High | 🚧 In progress — native connectors doc drafted (v1.22.0 seed); n8n reverse path deferred |
-| 16 | Looker Studio dashboards (updated: +lead gen pattern + repos) | Gap | Medium | ⬜ Open |
+| 14 | BigQuery pipeline expansion (updated: +8 reference repos) | Gap | High | 🚧 Partial — native connectors shipped (v1.22.0); n8n reverse path deferred to n8n-plugin |
+| 16 | Looker Studio dashboards (updated: +lead gen pattern + repos) | Gap | Medium | ✅ Done (v1.22.0) |
 | 22 | Feed-only PMax AD STRENGTH = POOR incorrectly flagged (7 files) | Contradiction | High | ✅ Done (v1.21.1) — exception clause added to 8 files |
+| 23 | No structured growth/scaling management skill | Gap | High | ⬜ Open |
+| 24 | tROAS/tCPA transition gates not surfaced in post-launch-monitor | Gap | High | ⬜ Open |
+| 25 | Negative keyword write tools missing from MCP server | Gap | High | ⬜ Open |
+| 26 | Attribution-aware reporting missing from live-report (all_conversions) | Gap | Medium | ⬜ Open |
+| 27 | Ad copy and asset mutation not possible via MCP | Gap | Medium | ⬜ Open |
+| 28 | No guard rail against aspirational projections in client communication | Gap | Medium | ⬜ Open |
+| 29 | MCP docs error — user_list sizes are API-accessible, not manual-only | Contradiction | Medium | ⬜ Open |
