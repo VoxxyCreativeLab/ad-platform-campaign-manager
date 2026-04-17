@@ -100,6 +100,9 @@ Bids to show your ad a certain percentage of the time.
 | Remarketing | Target CPA | Good conversion rates expected |
 | PMax | Max Conv Value + tROAS | PMax works best with value-based |
 
+> [!warning] PMax vs Shopping — Ad Rank decides (Oct 2024)
+> Since October 2024, Performance Max and Shopping campaigns compete through Ad Rank rather than PMax automatically winning. PMax no longer receives budget priority over Shopping campaigns by default. When an account runs both PMax and Standard Shopping, do not assume PMax dominates — check impression share per campaign type and verify budget allocation is intentional. The `/ad-platform-campaign-manager:account-scaling` skill branches on this when evaluating T3 (Channel Expansion — Feed-Only PMax).
+
 ## Additional Strategies
 
 ### Demand Gen Target CPC
