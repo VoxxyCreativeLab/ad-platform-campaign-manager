@@ -33,6 +33,9 @@ Smart Bidding is a machine learning system. It needs data to function. The minim
 
 %%fact-check: Smart Bidding minimum conversion thresholds (30 for tCPA, 50 for tROAS) — verified against Google Ads Help documentation — verified 2026-04-03%%
 
+> [!warning] tROAS threshold discrepancy
+> The 50-conversion threshold above reflects campaign-level tROAS. Google's Portfolio Bid Strategy documentation (`support.google.com/google-ads/answer/6268637`) cites **15 conversions in the past 30 days** for Search/Display tROAS at the portfolio level. The gap may reflect portfolio-level vs campaign-level requirements, or an update since this doc was written. When advising on tROAS eligibility, cite the live URL and recommend the user confirm the current threshold in their account — do not hardcode either number. See [[strategy/scaling-playbook|scaling-playbook.md]] §Gate 4 for the skill's handling of this discrepancy.
+
 Below those thresholds, the algorithm is essentially guessing. It will oscillate between under-spending and over-spending as it tries to learn from too little signal. Starting with tCPA on a campaign generating 8 conversions/month is not Smart Bidding — it is random bidding with an expensive label on it.
 
 The maturity stages are built around this data reality:
@@ -337,6 +340,9 @@ Move to Stage 3 when **all** of the following are true for **4+ consecutive week
 
 Reliable conversion data. A proven keyword portfolio. A known CPA range. An account structure that is clean enough to reason about. You understand what this market responds to. Now you can begin scaling — but scaling requires expanding into new campaign types with discipline, not excitement.
 
+> [!info] Account Scaling Skill
+> Use `/ad-platform-campaign-manager:account-scaling` to run a structured 8-gate evaluation before any scaling action. See [[strategy/scaling-playbook|scaling-playbook.md]] for the full channel ladder, trajectory routing, and scaling mechanics reference.
+
 ### Campaign Expansion
 
 **Add Performance Max (feed-only for e-commerce).**
@@ -477,6 +483,9 @@ Move to Stage 4 when **all** of the following are true:
 ### What You Have
 
 Rich historical data. Proven campaign structure. Known seasonal patterns. A functioning Smart Bidding setup with real conversion signals. The algorithm is well-fed and performing predictably. Now the leverage shifts: marginal improvements come from advanced optimization techniques, not structural fixes.
+
+> [!info] Account Scaling at Stage 4
+> Stage 4 accounts are candidates for T6 (Portfolio Consolidation) and T4 (Demand Gen expansion). Use `/ad-platform-campaign-manager:account-scaling` to evaluate all 8 gates before acting. See [[strategy/scaling-playbook|scaling-playbook.md]] for T6 trigger conditions and portfolio bid strategy mechanics.
 
 > [!note] Stage 4 is Not "Done"
 > Mature accounts still need active management. Markets change, competitors change, Quality Scores drift, conversion tracking breaks. The difference at Stage 4 is that you are optimizing a working system rather than building one from scratch.
