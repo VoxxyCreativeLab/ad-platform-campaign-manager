@@ -237,6 +237,16 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** Add `reference/platforms/clickfunnels/clickfunnels-tracking.md` covering GTM installation, native dataLayer events, multi-page patterns, fbclid capture, PII rules, and consent integration.
 - **Status:** Open
 
+### 20. n8n-plugin prerequisite for v1.21.0
+
+- **Source project:** ad-platform-campaign-manager Session 4 planning
+- **Date found:** 2026-04-13 (approx)
+- **Affected file:** `n8n-workflow-builder-plugin` (external — built in sibling plugin)
+- **Category:** Prerequisite
+- **Priority:** Critical
+- **Description:** Tracked the external dependency on n8n-workflow-builder-plugin being built before items #10, #11, #12, #13, #14 could resume. Satisfied by n8n-workflow-builder-plugin v0.1.0 shipping (see #31).
+- **Status:** ✅ Done (v1.23.0) — n8n-workflow-builder-plugin v0.1.0 shipped
+
 ### 19. Shopping performance regression diagnostic protocol
 
 - **Source project:** 0013 - Client Plantentotaal (Vaxteronline)
@@ -335,6 +345,17 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** (1) Add a "Client communication projection rule" to `_config/conventions.md`: "Never state a future ROAS target in client communication that does not appear in a dated strategy document (spec, report, or approved plan). If no documented target exists, describe the data gate that determines the next step — not the expected outcome." (2) Add a "Before sending" checklist to any email-drafting workflow: every performance projection must be traceable to a specific file and line. (3) Consider adding a communication review step to the `post-launch-monitor` skill output: "Draft email section: [generated]. Strategy reference check: [list of files cited]."
 - **Status:** ✅ Done (v1.23.0) — 3-layer guardrail added: global `~/.claude/CLAUDE.md` one-liner + `project-structure-and-scaffolding-plugin/_config/conventions.md` generic rule + ad-platform `_config/conventions.md` domain-specific rule with ROAS/CPA examples. FTC + UK CAP + DMCC cited. Scope: all 15 skills + 3 agents.
 
+### 29. [AUTO] MCP documentation error — user_list sizes are API-accessible
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-16
+- **Affected file:** `reference/mcp/mcp-capabilities.md` (Section 4 — "Not Available via MCP")
+- **Category:** Contradiction
+- **Priority:** Medium
+- **Description:** `mcp-capabilities.md` Section 4 lists "Audience list definitions (membership rules, sources, composition)" as manual-only: "Cannot verify audience list health programmatically." However, live GAQL testing confirms that `user_list.name`, `user_list.size_for_display`, `user_list.size_for_search`, `user_list.membership_status`, and `user_list.type` ARE accessible via `run_gaql` against the `user_list` resource. Confirmed working query: `SELECT user_list.name, user_list.size_for_display, user_list.size_for_search, user_list.membership_status, user_list.type FROM user_list`. The Vaxteronline account returned 16 audience lists with sizes (e.g., All visitors: 1,600 display / 760 search; Cart abandoners: 16 display / 24 search). What IS manual-only: audience membership rules, CMP/consent state, and GA4-sourced audience definitions. The documentation overstates the limitation.
+- **Proposed fix:** Update `mcp-capabilities.md` Section 4: move `user_list` from the "Not Available" list to Section 2 (GAQL-accessible). Add a query template to `gaql-query-templates.md`. Update audit checklist Area 10 (audience strategy) to include the user_list size check as an MCP-automated step. Keep the note that membership rules and consent state remain manual.
+- **Status:** Open
+
 ### 30. [AUTO] MCP server read capability expansion — compatibility validation needed
 
 - **Source project:** ad-platform-campaign-manager v1.23.0 design session
@@ -357,18 +378,8 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** On the next release commit (v1.23.0 or later), include the 5 cross-ref files in the staged set. Suggested commit message: `feat: add cross-plugin routing edges to n8n-workflow-builder-plugin`. Verify via `git log --follow skills/CONTEXT.md` that the "Cross-Plugin Routing → n8n-workflow-builder-plugin" section appears in history.
 - **Status:** ✅ Done (v1.23.0) — committed as standalone pre-flight commit `46e22ee` before v1.23.0 work began.
 
----
 
-### 29. [AUTO] MCP documentation error — user_list sizes are API-accessible
-
-- **Source project:** campaign-vaxteronline-project-files
-- **Date found:** 2026-04-16
-- **Affected file:** `reference/mcp/mcp-capabilities.md` (Section 4 — "Not Available via MCP")
-- **Category:** Contradiction
-- **Priority:** Medium
-- **Description:** `mcp-capabilities.md` Section 4 lists "Audience list definitions (membership rules, sources, composition)" as manual-only: "Cannot verify audience list health programmatically." However, live GAQL testing confirms that `user_list.name`, `user_list.size_for_display`, `user_list.size_for_search`, `user_list.membership_status`, and `user_list.type` ARE accessible via `run_gaql` against the `user_list` resource. Confirmed working query: `SELECT user_list.name, user_list.size_for_display, user_list.size_for_search, user_list.membership_status, user_list.type FROM user_list`. The Vaxteronline account returned 16 audience lists with sizes (e.g., All visitors: 1,600 display / 760 search; Cart abandoners: 16 display / 24 search). What IS manual-only: audience membership rules, CMP/consent state, and GA4-sourced audience definitions. The documentation overstates the limitation.
-- **Proposed fix:** Update `mcp-capabilities.md` Section 4: move `user_list` from the "Not Available" list to Section 2 (GAQL-accessible). Add a query template to `gaql-query-templates.md`. Update audit checklist Area 10 (audience strategy) to include the user_list size check as an MCP-automated step. Keep the note that membership rules and consent state remain manual.
-- **Status:** Open
+%% New items are appended below this line by /plugin-backlog %%
 
 ---
 
@@ -389,7 +400,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 11 | Meta Ads to BigQuery pipeline | Gap | Medium | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
 | 12 | n8n as automation layer in tracking stacks | New Capability | Medium | 🚧 Paused — n8n-plugin must be built first |
 | 13 | Cross-platform data model for BigQuery | Gap | Low | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
-| 20 | n8n-plugin prerequisite for v1.21.0 | Prerequisite | Critical | 🚧 In progress — build n8n-plugin, then resume Session 4 |
+| 20 | n8n-plugin prerequisite for v1.21.0 | Prerequisite | Critical | ✅ Done (v1.23.0) — n8n-workflow-builder-plugin v0.1.0 shipped |
 | 14 | BigQuery pipeline expansion — native connections + BQ→Meta n8n | Gap | High | 🚧 Partial — native connectors validated + additions shipped (v1.22.0); n8n reverse path deferred to n8n-plugin |
 | 15 | Email marketing knowledge — Klaviyo | Gap | Medium | ✅ Done (v1.22.0) |
 | 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ✅ Done (v1.22.0) |
