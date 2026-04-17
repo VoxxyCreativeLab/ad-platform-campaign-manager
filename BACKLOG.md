@@ -278,7 +278,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Priority:** High
 - **Description:** The plugin covers build → audit → optimize but has no skill for "what comes after optimization starts working." The maturity roadmap describes four stages but provides no interactive skill or workflow for managing the transition between them. Missing elements: (1) expansion trigger framework — when to add campaigns, increase budget, expand geo; (2) diminishing returns analysis — when a campaign is at optimal spend vs. has room to grow; (3) portfolio management for interdependent multi-campaign stacks with cannibalization risks; (4) structured bid strategy graduation workflow with live data gates (not just thresholds described in prose). This gap was the direct root cause of a fabricated 5x ROAS growth projection in a live client email (Vaxteronline, April 16 session) — there was no skill to reference for grounded growth projections, so claims were invented. Note: the maturity roadmap says tROAS requires 50+ conversions/month; the post-launch playbook says the same; but no skill actively surfaces this check at the right moment.
 - **Proposed fix:** New skill `/ad-platform-campaign-manager:account-scaling` that: (1) reads current account metrics and maturity stage; (2) runs against documented transition criteria; (3) produces a phase-specific action list — what to do now, what gate must pass before the next action; (4) explicitly blocks forward-looking ROAS projections that aren't grounded in real data gates. Alternatively: add a "Scaling phase" section to `account-strategy` skill.
-- **Status:** Open
+- **Status:** ✅ Done (v1.23.0) — `/account-scaling` skill ships with 8-gate MCP evaluation, T1-T6 trajectory routing, CoV computation, and always-report to `05-optimize/`. `scaling-playbook.md` reference added.
 
 ### 24. [AUTO] tROAS/tCPA transition gates not surfaced in post-launch-monitor skill
 
@@ -333,7 +333,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Priority:** Medium
 - **Description:** The plugin has no mechanism to prevent forward-looking ROAS projections in client-facing communication that are not grounded in documented strategy gates. In the Vaxteronline April 16 session, an email was written with a "5x ROAS in June/July" projection that had no basis in any strategy document, optimization spec, or research source. The actual documented strategy specified tROAS at 3.0 after 30 conversions (April 8 spec); the April 16 regression report had already invalidated that gate entirely. The email invented numbers to reassure the client. No skill or convention file prevented this. Root issue: when writing client emails, the skill/session does not cross-reference documented strategy gates before asserting what performance will look like in the future.
 - **Proposed fix:** (1) Add a "Client communication projection rule" to `_config/conventions.md`: "Never state a future ROAS target in client communication that does not appear in a dated strategy document (spec, report, or approved plan). If no documented target exists, describe the data gate that determines the next step — not the expected outcome." (2) Add a "Before sending" checklist to any email-drafting workflow: every performance projection must be traceable to a specific file and line. (3) Consider adding a communication review step to the `post-launch-monitor` skill output: "Draft email section: [generated]. Strategy reference check: [list of files cited]."
-- **Status:** Open
+- **Status:** ✅ Done (v1.23.0) — 3-layer guardrail added: global `~/.claude/CLAUDE.md` one-liner + `project-structure-and-scaffolding-plugin/_config/conventions.md` generic rule + ad-platform `_config/conventions.md` domain-specific rule with ROAS/CPA examples. FTC + UK CAP + DMCC cited. Scope: all 15 skills + 3 agents.
 
 ### 30. [AUTO] MCP server read capability expansion — compatibility validation needed
 
@@ -355,7 +355,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Priority:** Low
 - **Description:** During the n8n-workflow-builder-plugin v0.1.0 build, editorial cross-plugin routing edges were added to 5 ad-platform skill files so this plugin recommends n8n when a user's workflow shifts from Google Ads data work into delivery automation. These are additive rows in existing "What to Do Next" tables plus a new "Cross-Plugin Routing" section in `skills/CONTEXT.md`. They are currently uncommitted because the v1.23.0 design session is active in parallel. Zero file overlap with v1.23.0 work (BACKLOG / PLAN / PRIMER) — no merge conflicts. Commit alongside v1.23.0 or as a standalone follow-up.
 - **Proposed fix:** On the next release commit (v1.23.0 or later), include the 5 cross-ref files in the staged set. Suggested commit message: `feat: add cross-plugin routing edges to n8n-workflow-builder-plugin`. Verify via `git log --follow skills/CONTEXT.md` that the "Cross-Plugin Routing → n8n-workflow-builder-plugin" section appears in history.
-- **Status:** Open — awaiting next release commit
+- **Status:** ✅ Done (v1.23.0) — committed as standalone pre-flight commit `46e22ee` before v1.23.0 work began.
 
 ---
 
@@ -400,12 +400,12 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 14 | BigQuery pipeline expansion (updated: +8 reference repos) | Gap | High | 🚧 Partial — native connectors shipped (v1.22.0); n8n reverse path deferred to n8n-plugin |
 | 16 | Looker Studio dashboards (updated: +lead gen pattern + repos) | Gap | Medium | ✅ Done (v1.22.0) |
 | 22 | Feed-only PMax AD STRENGTH = POOR incorrectly flagged (7 files) | Contradiction | High | ✅ Done (v1.21.1) — exception clause added to 8 files |
-| 23 | No structured growth/scaling management skill | Gap | High | ⬜ Open |
+| 23 | No structured growth/scaling management skill | Gap | High | ✅ Done (v1.23.0) |
 | 24 | tROAS/tCPA transition gates not surfaced in post-launch-monitor | Gap | High | ⬜ Open |
 | 25 | Negative keyword write tools missing from MCP server | Gap | High | ⬜ Open |
 | 26 | Attribution-aware reporting missing from live-report (all_conversions) | Gap | Medium | ⬜ Open |
 | 27 | Ad copy and asset mutation not possible via MCP | Gap | Medium | ⬜ Open |
-| 28 | No guard rail against aspirational projections in client communication | Gap | Medium | ⬜ Open |
+| 28 | No guard rail against aspirational projections in client communication | Gap | Medium | ✅ Done (v1.23.0) |
 | 29 | MCP docs error — user_list sizes are API-accessible, not manual-only | Contradiction | Medium | ⬜ Open |
 | 30 | MCP server read capability expansion — compatibility validation needed | Dependency | Medium | ⬜ Open — pending MCP server update |
-| 31 | Pending n8n cross-plugin routing edges — commit with next release | Ecosystem | Low | ⬜ Open — awaiting next release commit |
+| 31 | Pending n8n cross-plugin routing edges — commit with next release | Ecosystem | Low | ✅ Done (v1.23.0) — `46e22ee` |

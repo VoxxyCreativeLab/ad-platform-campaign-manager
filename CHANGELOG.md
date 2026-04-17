@@ -7,6 +7,37 @@ tags:
 
 # Changelog
 
+## v1.23.0 — 2026-04-17
+
+### New Skills
+- `account-scaling` — 8-gate MCP-powered scaling health check for Stage 3/4 accounts. Evaluates maturity stage, conversion volume, CPA/ROAS stability (CoV computation from daily data), bid strategy fit, IS headroom, learning phase, neg-kw hygiene, and tracking infrastructure. Routes to conditional trajectories T1-T6. Always writes a diffable report to `05-optimize/`.
+
+### New Reference Files
+- `reference/platforms/google-ads/strategy/scaling-playbook.md` — companion reference: 11 sections covering gate rationale, channel ladder, budget step mechanics, T1-T6 full tables, honest gap statement, major 2024-2026 platform changes, 10 curated external playbooks, 6 reference repos, 10 authoritative Google URLs.
+
+### Conventions Update
+- `_config/conventions.md` — added `## Client Communication Guardrails` section: Substantiation Before Projection rule (FTC + UK CAP §§ 3.1/3.7/3.34 + DMCC Act 2024). Scope: all 15 skills + 3 agents. Three-layer enforcement: global `~/.claude/CLAUDE.md` + master plugin + ad-platform.
+- `project-structure-and-scaffolding-plugin/_config/conventions.md` — added generic Client Communication Guardrails section (commit `856304d` in master plugin repo).
+- `~/.claude/CLAUDE.md` — added one-line projection guardrail pointer (not version-controlled; file updated on disk).
+
+### Reference Updates
+- `account-maturity-roadmap.md` — tROAS threshold discrepancy footnote (50 vs 15 conv/mo), links to `scaling-playbook.md` from Stage 3 and Stage 4 sections.
+- `bidding-strategies.md` — added PMax vs Shopping Ad Rank callout (Oct 2024: PMax no longer auto-dominates Shopping).
+
+### Wiring
+- `CONTEXT.md` — routing row: "Account scaling / ready to scale / grow this account / scale up budget" → `account-scaling`
+- `CLAUDE.md` — Quick Navigation: `/ad-platform-campaign-manager:account-scaling`
+
+### Ecosystem
+- Cross-plugin routing edges to `n8n-workflow-builder-plugin` wired into 5 skill files (pre-flight commit `46e22ee`).
+
+### Backlog
+- #23 Account Scaling Skill ✅ Done
+- #28 Projection Guardrail ✅ Done
+- #31 n8n routing edges ✅ Done
+
+---
+
 ## [1.22.0] — 2026-04-16
 
 BigQuery Baseline — Session 1 seed + Session 2 additions. Closes BACKLOG #15, #16. Partially closes #14 (n8n reverse path still deferred to n8n-plugin).

@@ -14,28 +14,33 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** v1.23.0 — Account Scaling Skill + Projection Guardrail (BACKLOG #23 + #28).
-
-**Phase:** Implementation. Design complete. Plan written. Ready to execute via subagent-driven-development.
+**ad-platform-campaign-manager** — currently at v1.23.0 (shipped 2026-04-17). No active development task. Next session picks from Deferred Backlog below.
 
 ---
 
 ## Last Completed
 
-### v1.23.0 Design + Planning Phase (2026-04-17)
+### v1.23.0 — Account Scaling Skill + Projection Guardrail (2026-04-17)
 
-All brainstorming sections approved and committed:
+All tasks completed and committed:
 
-- **Section 1:** Architecture — skill positioning ladder, MCP + always-report + projection gate, Stage 3/4 entry criteria, strategy-advisor boundary ✅
-- **Section 2:** Skill logic — 4 phases (MCP pull → 8 gates → T1-T6 trajectories → report write), CoV computation from daily data, gate delegation map ✅
-- **Section 3:** Projection guardrail — 3-layer design (global + master plugin + ad-platform), full rule text, FTC + UK CAP §§3.1/3.7/3.34 + DMCC Act 2024, scope all 15 skills + 3 agents, ships in v1.23.0 ✅
-- **Section 4:** `scaling-playbook.md` structure — 11 sections, honest gap statement, 10 curated external playbooks, 10 Google URLs, T1-T6 backbone ✅
-- **CONTEXT.md routing row phrasing:** confirmed "Account scaling / ready to scale / grow this account / scale up budget" ✅
-- **T1-T6 trajectories:** frozen ✅
+| Task | Description | Commit |
+|---|---|---|
+| Pre-flight | n8n routing edges (5 files) as standalone prep commit | `46e22ee` |
+| Layer 1 guardrail | One-liner in `~/.claude/CLAUDE.md` (no git — outside all repos) | — |
+| Layer 2 guardrail | Generic rule in `project-structure-and-scaffolding-plugin/_config/conventions.md` | `856304d` (PSP repo) |
+| Layer 3 guardrail | Domain-specific rule in `_config/conventions.md` (FTC + UK CAP + DMCC) | `9ce1c9f` |
+| account-maturity-roadmap | tROAS discrepancy footnote + Stage 3/4 scaling-playbook links | `904f146` |
+| bidding-strategies | PMax/Shopping Ad Rank callout (Oct 2024) | `21d67e2` |
+| scaling-playbook.md | New reference file (11 sections, 245 lines) | `969aafa` |
+| account-scaling SKILL.md | New skill (4-phase flow, 7 GAQL queries, 8 gates, T1-T6 routing, report template) | `dd3dddc` |
+| CONTEXT.md + CLAUDE.md | Routing row + Quick Navigation wired | `4f1209d` |
+| BACKLOG + CHANGELOG | #23 + #28 + #31 closed, v1.23.0 entry added | (release commit) |
 
-Design artifacts:
-- Spec: `docs/superpowers/specs/2026-04-17-account-scaling-design.md` (committed `0ac05d8`)
-- Plan: `docs/superpowers/plans/2026-04-17-account-scaling.md` (written, not yet committed)
+**Deliverables:**
+- `/ad-platform-campaign-manager:account-scaling` — live, installable after plugin reinstall
+- `reference/platforms/google-ads/strategy/scaling-playbook.md` — live
+- 3-layer projection guardrail active across all 15 skills + 3 agents
 
 ### Previous Milestones
 
@@ -47,125 +52,25 @@ Design artifacts:
 
 ## What Still Needs to Happen
 
-### v1.23.0 Implementation
+> [!info] Plugin reinstall required
+> v1.23.0 added a new skill (`account-scaling`). Run the plugin reinstall before using it:
+> 1. `/plugins uninstall ad-platform-campaign-manager`
+> 2. `/plugins install`
+> 3. Reload VSCode window (Ctrl+Shift+P → "Developer: Reload Window")
+> 4. Confirm `/ad-platform-campaign-manager:account-scaling` appears in skill list
 
-> [!warning] Pre-flight first — do not skip
-> Before executing ANY task in the plan, resolve the uncommitted n8n routing changes (see "Pre-flight" below). Ask Jerry which option (a/b/c) before touching any skills/ files.
-
-> [!info] Execution approach
-> Use `superpowers:subagent-driven-development` to execute the plan task by task.
-
-**Implementation plan:** `docs/superpowers/plans/2026-04-17-account-scaling.md`
-
-#### Mandatory first step
-
-- [ ] **Pre-flight:** Resolve uncommitted n8n routing changes (see Pre-flight section below). Ask Jerry: revert (a), separate commit (b), or bundle (c)?
-
-#### Guardrail (3 layers)
-
-- [ ] **Task 1:** Update `~/.claude/CLAUDE.md` — add one-line projection guardrail under new `## Client Communication` heading
-- [ ] **Task 2:** Update `project-structure-and-scaffolding-plugin/_config/conventions.md` — add generic `## Client Communication Guardrails` section
-- [ ] **Task 3:** Update `_config/conventions.md` — add domain-specific `## Client Communication Guardrails` section
-
-#### Reference updates
-
-- [ ] **Task 4:** Update `reference/platforms/google-ads/strategy/account-maturity-roadmap.md` — tROAS discrepancy footnote + scaling-playbook links at Stage 3/4
-- [ ] **Task 5:** Update `reference/platforms/google-ads/bidding-strategies.md` — PMax/Shopping Ad Rank callout (Oct 2024)
-
-#### New files
-
-- [ ] **Task 6:** Create `reference/platforms/google-ads/strategy/scaling-playbook.md` (11 sections)
-- [ ] **Task 7:** Create `skills/account-scaling/SKILL.md` (4-phase flow, 7 GAQL queries, 8 gates, T1-T6 routing, report template)
-
-#### Wiring
-
-- [ ] **Task 8:** Update `CONTEXT.md` (routing row) + `CLAUDE.md` (Quick Navigation)
-
-#### Release
-
-- [ ] **Task 9:** Update `BACKLOG.md` (#23+#28 done) + `CHANGELOG.md` (v1.23.0 entry) + commit + tag `v1.23.0` + plugin reinstall + rewrite this PRIMER.md
+No active implementation plan. Deferred backlog items listed below — pick the next one to work on.
 
 ---
 
-## Pre-flight: Uncommitted n8n Routing Changes
+## Deferred Backlog Items
 
-Git status shows 5 modified files with n8n routing entries that were added before v1.23.0 brainstorming:
-
-| File | Change |
-|---|---|
-| `skills/CONTEXT.md` | Cross-plugin routing table pointing to `n8n-workflow-builder-plugin:*` |
-| `skills/ads-scripts/SKILL.md` | +1 row: "Migrate scripts to n8n workflows" → `n8n-workflow-builder-plugin:workflow-architect` |
-| `skills/conversion-tracking/SKILL.md` | +1 row: similar n8n routing |
-| `skills/live-report/SKILL.md` | +1 row: similar n8n routing |
-| `skills/reporting-pipeline/SKILL.md` | +1 row: similar n8n routing |
-
-The `n8n-workflow-builder-plugin` does not exist yet — it is listed as a prerequisite for v1.21.0 Sessions 4-5 (currently blocked). Options:
-
-- **(a) Revert** — the plugin doesn't exist; these rows are premature
-  ```bash
-  git checkout skills/CONTEXT.md skills/ads-scripts/SKILL.md skills/conversion-tracking/SKILL.md skills/live-report/SKILL.md skills/reporting-pipeline/SKILL.md
-  ```
-- **(b) Commit separately** before v1.23.0 work (e.g., `chore: add n8n routing stubs (pre-v1.23.0)`)
-- **(c) Bundle** with v1.23.0 only if n8n plugin is imminent
-
-**Do not decide unilaterally. Ask Jerry at the start of the next session.**
-
----
-
-## Key Decisions Made (v1.23.0)
-
-| Decision | Detail |
-|---|---|
-| Skill name | `account-scaling` |
-| Entry criteria | Stage 3+ (30+ conv/mo); Stage 1/2 → exit message, no report |
-| MCP mode | Read-only; `unlock_writes` never called |
-| Always-report stage | `05-optimize/account-scaling.md` |
-| Gate count | 8 gates; all must pass for scaling trajectory |
-| Gate 3 (CoV) computation | Daily data from MCP; ±20% CoV = PASS; skill is the only place this is computed |
-| tROAS threshold | Both 50 (roadmap) and 15 (Google portfolio docs) cited; neither hardcoded; user confirms |
-| T1-T6 trajectories | 6 trajectories, priority T5→T2→T1→T3/T4/T6; multiple can be active simultaneously |
-| T1+T2 conflict | Graduate bid strategy (T2) first; budget step (T1) waits until learning exits |
-| +20% budget rule | Search-specific (IS-led); Display has separate rule; NOT universal |
-| Projection guardrail scope | All 15 skills + 3 agents; all client-facing output surfaces |
-| Guardrail layers | 3: global ~/.claude/CLAUDE.md + master plugin + ad-platform _config/conventions.md |
-| Guardrail ships in | v1.23.0 (all 3 layers together) |
-| CONTEXT.md routing trigger | "Account scaling / ready to scale / grow this account / scale up budget" |
-| Dynamic scaling limitation | Reproduced verbatim in spec, SKILL.md, and scaling-playbook.md |
-
----
-
-## Implementation Plan Quick Reference
-
-Full plan at `docs/superpowers/plans/2026-04-17-account-scaling.md`.
-
-**New files:**
-1. `skills/account-scaling/SKILL.md` — skill
-2. `reference/platforms/google-ads/strategy/scaling-playbook.md` — reference
-
-**Modified files (ad-platform):**
-- `_config/conventions.md` — Client Communication Guardrails (Layer 3)
-- `CONTEXT.md` — routing row
-- `CLAUDE.md` — Quick Navigation
-- `reference/platforms/google-ads/strategy/account-maturity-roadmap.md` — tROAS footnote + links
-- `reference/platforms/google-ads/bidding-strategies.md` — Ad Rank callout
-- `BACKLOG.md` — #23 + #28 done
-- `CHANGELOG.md` — v1.23.0 entry
-- `PRIMER.md` — this file (rewrite at end)
-
-**Modified files (other repos):**
-- `project-structure-and-scaffolding-plugin/_config/conventions.md` — Layer 2 generic rule
-- `~/.claude/CLAUDE.md` — Layer 1 one-liner
-
----
-
-## Deferred Backlog Items (after v1.23.0)
-
-| # | Item | Size |
-|---|---|---|
-| 24 | tROAS/tCPA transition gates in post-launch-monitor | S |
-| 26 | `all_conversions` in live-report + attribution interpretation | S-M |
-| 29 | MCP docs fix — user_list sizes are API-accessible | S |
-| 30 | MCP server capability expansion validation (after MCP update ships) | After update |
+| # | Item | Size | Notes |
+|---|---|---|---|
+| 24 | tROAS/tCPA transition gates in post-launch-monitor | S | Add "Bid Strategy Readiness" section at Day 14/21 checkpoints |
+| 26 | `all_conversions` in live-report + attribution interpretation | S-M | Shopping + PMax multi-touch attribution; 58x delta confirmed in Vaxteronline |
+| 29 | MCP docs fix — user_list sizes are API-accessible | S | Remove from "Not Available via MCP" section; add confirmed GAQL |
+| 30 | MCP server capability expansion validation | After update | Wait for Jerry's MCP server update to ship before running |
 
 ---
 
@@ -175,7 +80,7 @@ Full plan at `docs/superpowers/plans/2026-04-17-account-scaling.md`.
 |---|---|
 | **OAuth client secret rotation** | Exposed in session screenshot 2026-04-01. Rotate in GCP Console before production use |
 | **MCP server update in progress** | Jerry adding read capabilities + bug fixes. After update: run BACKLOG #30 validation |
-| **n8n-plugin build** | Prerequisite for v1.21.0 Sessions 4-5 |
+| **n8n-plugin build** | Prerequisite for v1.21.0 Sessions 4-5 — now built (`n8n-workflow-builder-plugin` v0.1.0 operational) |
 | **Watermelon plan path** | Jerry to provide (for #18 extraction) |
 | **GTM scripts inventory** | Jerry to provide (for #17 cookie cHTML review) |
 | **ClickFunnels 2.0 (#21)** | Deferred; CF2.0 event names unverifiable; re-scope when CF2.0 is live |
@@ -194,10 +99,12 @@ Full plan at `docs/superpowers/plans/2026-04-17-account-scaling.md`.
 
 ---
 
-## N8n Items — Still Blocked
+## N8n Items — Now Unblocked
 
-Sessions 4 and 5 of v1.21.0 paused. The n8n-plugin must be built first.
+The `n8n-workflow-builder-plugin` is fully built and operational (v0.1.0). Cross-plugin routing from ad-platform → n8n-plugin is wired in 5 skill files (commit `46e22ee`).
 
-**Blocked:** #10 iClosed tracking, #11 Meta BQ pipeline, #12 n8n automation layer, #13 cross-platform data model, and n8n reverse path of #14.
+Sessions 4 and 5 of v1.21.0 remain paused — they require the plugin to be operational for workflow-building work. Now that the prerequisite is met, these can be scheduled.
+
+**Blocked items now unblocked in principle:** #10 iClosed tracking, #11 Meta BQ pipeline, #12 n8n automation layer, #13 cross-platform data model, and n8n reverse path of #14.
 
 **Pause memo:** `docs/superpowers/plans/2026-04-16-session-4-paused.md`
