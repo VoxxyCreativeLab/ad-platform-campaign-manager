@@ -158,6 +158,7 @@ Based on the scripts work completed, recommend the next skill:
 | Budget issues found, need reallocation | `/ad-platform-campaign-manager:budget-optimizer` |
 | Need live data check to verify script impact | `/ad-platform-campaign-manager:live-report` |
 | No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |
+| Migrate ad-hoc scripts to maintainable n8n automation workflows | `/n8n-workflow-builder-plugin:workflow-architect` |
 
 ## Open-Source Script Resources
 

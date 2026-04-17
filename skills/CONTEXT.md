@@ -76,3 +76,12 @@ Skills may recommend other skills to the user:
 - `budget-optimizer` → recommends `campaign-review`, `campaign-cleanup`, `conversion-tracking`
 - `live-report` → requires `connect-mcp` for MCP setup
 - `reporting-pipeline` → complements `live-report` (design vs live data)
+
+## Cross-Plugin Routing → n8n-workflow-builder-plugin
+
+| Source skill | Condition | Recommends |
+|---|---|---|
+| `reporting-pipeline` | Report delivery needs to be automated (Slack digest, email, Sheets push) | `n8n-workflow-builder-plugin:workflow-architect` |
+| `conversion-tracking` | BQ → Google Ads enrichment pipeline needs automation | `n8n-workflow-builder-plugin:workflow-from-template` |
+| `ads-scripts` | Migrate ad-hoc scripts to maintainable n8n workflows | `n8n-workflow-builder-plugin:workflow-architect` |
+| `live-report` | Persist report delivery as a scheduled n8n workflow | `n8n-workflow-builder-plugin:deploy-workflow` |

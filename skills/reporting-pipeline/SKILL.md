@@ -146,6 +146,7 @@ Based on the pipeline work completed, recommend the next skill:
 | Tracking gaps found during pipeline design | `/ad-platform-campaign-manager:conversion-tracking` |
 | Budget allocation needs rethinking based on data | `/ad-platform-campaign-manager:budget-optimizer` |
 | No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |
+| Need to deliver reports as automated scheduled workflows (Slack digest, email, Sheets push) | `/n8n-workflow-builder-plugin:workflow-architect` |
 
 ---
 
