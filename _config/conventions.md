@@ -269,3 +269,36 @@ Sections (map to stages):
 ### Step 6: Conversation Summary
 
 After writing files, show a 5-10 line summary in conversation with key findings plus file path. Example: "Audit complete - 3 critical issues, 5 warnings. Full report: `reports/2026-04-04/01-audit/campaign-review.md`"
+
+---
+
+## Client Communication Guardrails
+
+> [!info] Cross-plugin rule
+> This section extends the master plugin's generic Client Communication Guardrails rule (in `project-structure-and-scaffolding-plugin/_config/conventions.md`) with Google Ads-specific language and examples.
+
+**Substantiation Before Projection.** Never state a future ROAS target, conversion volume projection, budget-return forecast, or timeline commitment in any client-facing output (report, SUMMARY.md, conversation text, message) that does not appear in a dated strategy document held on file — a spec, report, or plan approved by the client on a recorded date.
+
+If no documented target exists, describe the **data gate** that determines the next decision rather than the expected outcome.
+
+**Prohibited:** "Scaling to 2x budget should produce a 1.4x ROAS."
+**Required:** "Budget-lost-IS is 22% on the top five campaigns. If tCPA holds within 15% of target for 30 days after a +20% budget step, the next +20% step is data-supported."
+
+Additional prohibited forms:
+- "This account should hit [X] conversions by [month]."
+- "At this trajectory, ROAS will reach [X] in Q[Y]."
+- "Expect CPA to drop to [X] once Smart Bidding matures."
+
+### Regulatory Basis
+
+- **FTC Advertising Substantiation doctrine** — reasonable basis required before dissemination. `ftc.gov/legal-library/browse/ftc-policy-statement-regarding-advertising-substantiation`
+- **UK CAP Code §§ 3.1 / 3.7 / 3.34** — documentary evidence held BEFORE the claim is made. `asa.org.uk/advice-online/substantiation.html`
+- **DMCC Act 2024** — backs CAP Code enforcement with material fines.
+
+### Scope
+
+This rule applies to all 15 skills and 3 agents in this plugin. It covers every client-facing output surface: reports, SUMMARY.md, ad copy recommendations, conversation text, and any message intended for or shared with a client.
+
+### Root Cause (for context)
+
+On 2026-04-16 an email was drafted for a client projecting "5x ROAS in June/July." That figure appeared in no strategy document, no spec, and no approved plan. This convention was introduced so no skill or agent can generate that output in the future.
