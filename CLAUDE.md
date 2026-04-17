@@ -88,6 +88,7 @@ ad-platform-campaign-manager/
 | Browse Ads Scripts | `/ad-platform-campaign-manager:ads-scripts` |
 | Write ad copy in any language | `/ad-platform-campaign-manager:ad-copy` |
 | Clean up messy account | `/ad-platform-campaign-manager:campaign-cleanup` |
+| Run account scaling health check | `/ad-platform-campaign-manager:account-scaling` |
 | Validate account against strategy | `strategy-advisor` agent (via `/ad-platform-campaign-manager:campaign-review` or direct dispatch) |
 | Understand task routing | [[CONTEXT]] |
 | Adjust conventions | [[_config/conventions|_config/conventions.md]] |
