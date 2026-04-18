@@ -38,6 +38,7 @@ Campaign management and plugin development lessons captured over time. Each entr
 - **2026-04-01** — Explorer Access (2,880 ops/day) is auto-granted with no application. Sufficient for interactive Claude use. Try this before applying for Basic/Standard access.
 - **2026-04-01** — Google Ads API version must match the `google-ads` Python client library. Library v30.0.0 ships v20-v23 only. Always check available versions with `pkgutil.iter_modules(google.ads.googleads.__path__)` before hardcoding.
 - **2026-04-01** — Never share OAuth client secrets in screenshots or conversation. If exposed, rotate immediately in GCP Console → Credentials → Reset Secret.
+- **2026-04-18** — When adding a new skill in a release commit, update `skills/CONTEXT.md` skill count and the README skills table in that same commit. Two releases in a row (v1.23.0 `account-scaling`, v1.24.0 `ad-campaign-war-council`) shipped without updating either file — both were caught and fixed by `/cut-release` during v1.25.0. Fix: add README + skills/CONTEXT.md count update to the standard per-skill release checklist.
 
 ## Campaign Strategy
 
