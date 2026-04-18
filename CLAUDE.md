@@ -89,6 +89,7 @@ ad-platform-campaign-manager/
 | Write ad copy in any language | `/ad-platform-campaign-manager:ad-copy` |
 | Clean up messy account | `/ad-platform-campaign-manager:campaign-cleanup` |
 | Run account scaling health check | `/ad-platform-campaign-manager:account-scaling` |
+| Run my war-council strategic session | `/ad-platform-campaign-manager:ad-campaign-war-council` |
 | Validate account against strategy | `strategy-advisor` agent (via `/ad-platform-campaign-manager:campaign-review` or direct dispatch) |
 | Understand task routing | [[CONTEXT]] |
 | Adjust conventions | [[_config/conventions|_config/conventions.md]] |
