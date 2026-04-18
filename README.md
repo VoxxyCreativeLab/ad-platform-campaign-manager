@@ -27,18 +27,20 @@ Claude Code plugin for ad platform campaign management. Built for tracking speci
 | Post-Launch Monitor | `/ad-platform-campaign-manager:post-launch-monitor` | Phase-aware post-launch monitoring — learning, post-learning, Month 2+ |
 | Product Performance | `/ad-platform-campaign-manager:product-performance` | Product-level Shopping and PMax analysis — zombie products, top converters, feed optimization candidates |
 
-## Phase 2 — API Integration (MCP connected — skills hidden until unhidden)
+## Phase 2 — API Integration (MCP connected)
 
 | Skill | Command | Purpose |
 |-------|---------|---------|
 | Connect MCP | `/ad-platform-campaign-manager:connect-mcp` | Set up MCP connection to Google Ads API |
 | Live Report | `/ad-platform-campaign-manager:live-report` | Pull live data and generate reports |
+| Account Scaling | `/ad-platform-campaign-manager:account-scaling` | 8-gate MCP scaling health check — Stage 3/4 readiness, T1-T6 trajectory routing |
 
 ## Strategic Layer
 
 | Skill / Agent | Command / Agent | Purpose |
 |-------|---------|---------|
 | Account Strategy | `/ad-platform-campaign-manager:account-strategy` | Interactive 10-dimension account profiling → strategy document |
+| Ad Campaign War-Council | `/ad-platform-campaign-manager:ad-campaign-war-council` | Strategic orchestrator — evidence-backed option framing, parallel specialist dispatch, rule-override protocol, 30/60/90-day forward planning |
 | Strategy Advisor | `strategy-advisor` agent | Validates live account state against strategy profile — scored gap analysis |
 
 ## Agents

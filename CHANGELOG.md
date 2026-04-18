@@ -7,6 +7,18 @@ tags:
 
 # Changelog
 
+## v1.25.0 — 2026-04-18
+
+### Enhanced Skills
+- `post-launch-monitor` — Added **Bid Strategy Readiness** gate at Day 14 and Day 15–30 checkpoints. GAQL query pulls `metrics.conversions` for `LAST_30_DAYS`; evaluates against tCPA (30/mo) and tROAS (50/mo) thresholds; outputs ELIGIBLE / APPROACHING / NOT YET verdict with explicit current rate. Day 14 gate: if NOT YET, the skill states the shortfall and does not recommend a strategy change. Day 15–30 gate: readiness verdict is required before listing any manual bid-strategy action — NOT YET removes the upgrade from the action list entirely. Backlog #24.
+- `ad-campaign-war-council` — Added Step 0e plan-mode hard stop: when invoked inside plan-mode, skill emits a `> [!warning]` callout and halts. Degraded partial dispatch (plan-mode limits Agent tool to 3 Explore subagents) is no longer silently accepted. Added Step 3 must-dispatch rule: question types "Full account brief" and "Forward planning" require ALL 6 parallel helpers — partial dispatch is never acceptable for these types. Updated `skills/ad-campaign-war-council/CONTEXT.md` Dispatch Pattern section with 6-helper full-account worked example (all 6 specialists in a single parallel message, serial evidence-arbiter if rule-override surfaces). Backlog #33.
+
+### Backlog
+- #24 tROAS/tCPA transition gates in post-launch-monitor ✅ Done
+- #33 War-council plan-mode guard + full-dispatch enforcement ✅ Done
+
+---
+
 ## v1.24.0 — 2026-04-18
 
 ### Added

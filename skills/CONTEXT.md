@@ -11,7 +11,7 @@ tags:
 
 # Skills — Context
 
-15 invocable skills, each in its own folder with a `SKILL.md` file. 11 are profile-aware (ask account profiling questions). Phase 1 (11 skills) requires no API. Phase 2 (4 skills) requires MCP connection.
+17 invocable skills, each in its own folder with a `SKILL.md` file. 11 are profile-aware (ask account profiling questions). Phase 1 (12 skills) requires no API. Phase 2 (3 skills) requires MCP connection. Strategic Layer (2 skills): account-strategy, ad-campaign-war-council.
 
 ## Conventions
 
@@ -57,6 +57,11 @@ post-launch-monitor ─→ learning-phase, strategy/post-launch-playbook,
 product-performance ─→ shopping-campaigns, pmax/feed-only-pmax,
                        pmax/feed-optimization, shopping-feed-strategy,
                        reporting/gaql-query-templates, mcp/mcp-capabilities
+account-scaling ─────→ strategy/scaling-playbook, strategy/account-maturity-roadmap,
+                       bidding-strategies, learning-phase, mcp/mcp-capabilities
+ad-campaign-war-council→ references/evidence-standards, references/rule-override-protocol,
+                       references/option-framing
+                       (all other refs loaded on-demand via SKILL.md boot sequence)
 ```
 
 ## Inter-Skill References
