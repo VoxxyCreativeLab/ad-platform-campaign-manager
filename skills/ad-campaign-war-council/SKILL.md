@@ -75,6 +75,15 @@ Greet with a short (4-6 bullet) state-of-the-account summary:
 
 Then ask: "What do you want to work on today?"
 
+### Step 0e: Detect plan mode
+
+> [!warning] Plan-Mode Detected — Hard Stop
+> If the session is running inside plan mode, **do not proceed**. The war-council requires the full Agent tool to dispatch 6 parallel specialist helpers. Plan mode restricts Agent dispatch to ≤3 Explore subagents, which silently degrades the war-council pattern and will omit critical helpers (growth-architect, research-analyst, evidence-arbiter) with no warning to Jerry.
+>
+> Instruct Jerry: "The war-council cannot run inside plan mode. Exit plan mode first (`ExitPlanMode`), then reinvoke `/ad-campaign-war-council`. Running at partial capacity produces an incomplete brief and unverifiable forward planning."
+>
+> Do not attempt a degraded run. Do not proceed past Step 0e while plan mode is active.
+
 ---
 
 ## Step 1: Understand the Question
@@ -118,7 +127,12 @@ Based on the question type:
 
 ## Step 3: Dispatch Helpers in Parallel
 
-Determine the minimum set of helpers needed for the question. Consult [[CONTEXT|CONTEXT.md]] for the dispatch pattern. Dispatch all non-`evidence-arbiter` helpers in a **single message** (parallel dispatch). Only dispatch helpers that are actually needed — do not dispatch all seven for every question.
+Determine the set of helpers needed for the question. Consult [[CONTEXT|CONTEXT.md]] for the dispatch pattern. Dispatch all non-`evidence-arbiter` helpers in a **single message** (parallel dispatch).
+
+> [!warning] Full-dispatch requirement — Full account brief and Forward planning
+> For question types **"Full account brief"** and **"Forward planning"**, dispatch **ALL 6 parallel helpers** (account-archivist, trend-analyst, communications-analyst, budget-advisor, research-analyst, growth-architect) in a single message. These question types require the complete picture by definition — reducing the helper set produces an incomplete brief or a blueprint missing critical forward-planning data. No judgment-based reduction is acceptable for these two types. See [[CONTEXT|CONTEXT.md]] for the worked dispatch example.
+>
+> All other question types may dispatch a minimum set per the conditional table below.
 
 > [!info] Dispatch mechanism
 > Each helper is defined as an agent in `agents/{helper-name}.md` (in this plugin). Dispatch using the Agent tool with `subagent_type: 'ad-platform-campaign-manager:{helper-name}'`. Example: to dispatch `account-archivist`, call `Agent({ subagent_type: 'ad-platform-campaign-manager:account-archivist', prompt: '...' })`. Construct each prompt with: the client project path, the question being investigated, and any relevant data already gathered. Helper agent files live in `agents/` — see `agents/CONTEXT.md` for the full list.

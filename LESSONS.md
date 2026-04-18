@@ -99,3 +99,7 @@ _(No entries yet)_
 ## Client Management
 
 _(No entries yet)_
+
+## Workflow & Skill Execution
+
+- **2026-04-18 — Skill staged-interaction gates override plan-mode "single approval" pattern.** When a skill prescribes multi-step user-input gates (parse → surface blocked → propose groups → stale-check → research → execute → batch diff approval), the staged interaction *is* the deliverable. Do not collapse those gates into a single plan-mode "write plan, ExitPlanMode, approve all" cycle. Plan mode constrains tool use to read-only — it should sit *inside* the skill's gates (Steps 1–7 of `plugin-backlog-execute` are all read-only-compatible), not replace them. Symptom of the failure: the user loses per-step decision points (which blocked items to unblock, which groups to execute, which stale items to confirm) and is forced into one big yes/no on a pre-baked plan they cannot see yet. **Rule: when a skill explicitly says "wait for response" between steps, follow that gate even in plan mode.** The plan file becomes a running record updated between gates, not a single-shot approval artifact. If genuinely unsure how the two systems interact, ask the user up front before doing either. Source: `/plugin-backlog-execute` session 2026-04-18.

@@ -299,7 +299,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Priority:** High
 - **Description:** The `post-launch-monitor` skill runs phase-appropriate checks and generates reports, but it does not explicitly evaluate whether a bid strategy transition is appropriate at the current phase. Google's documented tROAS minimum is 50 conversions/month; tCPA is 30/month. The skill should query the account's conversion volume at Day 14 and Day 21 checkpoints, compare to these thresholds, and explicitly state "tROAS not yet eligible — current rate: X/month, threshold: 50/month." Without this check, sessions default to narrative-based projections. The omission also means `post-launch-monitor` reports can be written that imply bid strategy changes are imminent without any data gate being evaluated.
 - **Proposed fix:** Add a "Bid Strategy Readiness" section to the Day 14 and Day 21 outputs of `post-launch-monitor`. Pull `metrics.conversions` for LAST_30_DAYS, compare to 30 (tCPA) and 50 (tROAS) thresholds, and output one of: ELIGIBLE / APPROACHING (>70%) / NOT YET. Reference `bidding-strategies.md` for threshold values so the check stays in sync if thresholds are updated.
-- **Status:** Open
+- **Status:** ✅ Done — v1.25.0 (pending release)
 
 ### 25. [AUTO] Negative keyword write tools missing from MCP server
 
@@ -391,6 +391,17 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Proposed fix:** New file `reference/platforms/google-ads/strategy/lift-budget-freeze.md` covering early-lift criteria, step-sizing rules, official Google guidance citations, and decision flowchart.
 - **Status:** Open
 
+### 33. [AUTO] War-council: plan-mode guard + full-dispatch enforcement
+
+- **Source project:** campaign-vaxteronline-project-files
+- **Date found:** 2026-04-18
+- **Affected file:** `skills/ad-campaign-war-council/SKILL.md` (primary — Step 3, line 121); `skills/ad-campaign-war-council/CONTEXT.md` (secondary — Dispatch Pattern section, lines 52–74)
+- **Category:** Contradiction
+- **Priority:** High
+- **Description:** Two related issues discovered in a live war-council session (Vaxteronline, Day 12): (1) **Plan-mode conflict:** The war-council skill has no plan-mode detection mechanism. When invoked inside plan-mode, the system constrains all agent dispatch to "max 3 Explore subagents only," silently collapsing the war-council's 6-parallel-specialist + 1-serial-arbiter pattern into a 3-Explore-agent research sweep. The user receives a degraded output with no warning that the war-council ran at partial capacity. The affected session was missing: `growth-architect` (forward 30/60/90 blueprint), `research-analyst` (no Tier-1 external benchmarks), and `evidence-arbiter` (no rule-override verdict on T5 freeze) — exactly the three helpers most critical for the "scale spend" question asked. (2) **Under-dispatch on full-account questions:** `SKILL.md` Step 3 line 121 states "Only dispatch helpers that are actually needed — do not dispatch all seven for every question." For question types classified as "Full account brief" or "Forward planning," ALL 6 parallel helpers are required by definition. The current guidance leaves room for judgment that incorrectly reduces the helper set, and the worked example in `CONTEXT.md` shows only 3 helpers for a budget-override dispatch, which reinforces under-dispatch as the default.
+- **Proposed fix:** (1) Add a `> [!warning] Plan-Mode Detected` callout to Step 0 of `SKILL.md`: if the session is running inside plan-mode, emit a hard stop instructing the user to exit plan-mode before the war-council can proceed — the specialist dispatch pattern requires the full Agent tool, which plan-mode restricts. Do not attempt a degraded run. (2) Update `SKILL.md` Step 3: add an explicit rule — "For question types 'Full account brief' and 'Forward planning,' dispatch ALL 6 parallel helpers. These are the only two question types where partial dispatch is never acceptable." (3) Update `CONTEXT.md` Dispatch Pattern section: add a "Full account check / Forward planning" worked dispatch example showing all 6 helpers (account-archivist, trend-analyst, communications-analyst, budget-advisor, research-analyst, growth-architect) in a single parallel message, followed by serial evidence-arbiter if a rule-override surfaces.
+- **Status:** ✅ Done — v1.25.0 (pending release)
+
 ---
 
 ## Status
@@ -422,7 +433,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 16 | Looker Studio dashboards (updated: +lead gen pattern + repos) | Gap | Medium | ✅ Done (v1.22.0) |
 | 22 | Feed-only PMax AD STRENGTH = POOR incorrectly flagged (7 files) | Contradiction | High | ✅ Done (v1.21.1) — exception clause added to 8 files |
 | 23 | No structured growth/scaling management skill | Gap | High | ✅ Done (v1.23.0) |
-| 24 | tROAS/tCPA transition gates not surfaced in post-launch-monitor | Gap | High | ⬜ Open |
+| 24 | tROAS/tCPA transition gates not surfaced in post-launch-monitor | Gap | High | ✅ Done (v1.25.0 pending) |
 | 25 | Negative keyword write tools missing from MCP server | Gap | High | ⬜ Open |
 | 26 | Attribution-aware reporting missing from live-report (all_conversions) | Gap | Medium | ⬜ Open |
 | 27 | Ad copy and asset mutation not possible via MCP | Gap | Medium | ⬜ Open |
@@ -431,3 +442,4 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 30 | MCP server read capability expansion — compatibility validation needed | Dependency | Medium | ⬜ Open — pending MCP server update |
 | 31 | Pending n8n cross-plugin routing edges — commit with next release | Ecosystem | Low | ✅ Done (v1.23.0) — `46e22ee` |
 | 32 | Reference doc: lift-budget-freeze.md | New file | High | Open |
+| 33 | War-council: plan-mode guard + full-dispatch enforcement | Contradiction | High | ✅ Done (v1.25.0 pending) |

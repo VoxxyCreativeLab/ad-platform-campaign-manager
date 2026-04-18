@@ -106,6 +106,29 @@ ORDER BY metrics.impressions DESC
 - Learning exit status → Google Ads UI → Status column (displays "Learning" explicitly)
 - If still in learning at Day 14: common causes are budget too low, too few conversions, or account-level changes made during learning.
 
+#### Bid Strategy Readiness (Day 14 gate)
+
+Pull `metrics.conversions` for `LAST_30_DAYS` before any bid strategy recommendation:
+
+```gaql
+SELECT metrics.conversions
+FROM campaign
+WHERE campaign.resource_name = 'customers/{customer_id}/campaigns/{campaign_id}'
+  AND segments.date DURING LAST_30_DAYS
+```
+
+Evaluate against the thresholds in [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]] (lines 38, 46):
+
+| Conversions / 30d | Readiness |
+|---|---|
+| ≥ 50 | **ELIGIBLE** — tROAS and tCPA both available |
+| 30–49 | **APPROACHING** — tCPA eligible; tROAS gate opens at 50/mo |
+| 15–29 | **NOT YET** — neither eligible; stay on Max Conversions |
+| < 15 | **NOT YET** — conversion volume too low; address volume before any Smart Bidding transition |
+
+> [!info] Day 14 — if NOT YET
+> Do not recommend a bid strategy change. If conversion volume is below 15/month and the campaign is still in learning, the most likely root cause is conversion volume starvation — not campaign structure. State: "tCPA not yet eligible — current rate: X/month, threshold: 30/month."
+
 ### Phase: Post-Learning (Days 15–30)
 
 **MCP checks:**
@@ -118,8 +141,29 @@ ORDER BY metrics.impressions DESC
 - `update_keyword_bid` — if specific keywords are over- or under-performing
 - `update_ad_group_bid` — if ad group-level bid adjustment is needed
 
+#### Bid Strategy Readiness (Day 15–30 gate)
+
+Before listing any bid strategy upgrade as a manual action, run the readiness check. Pull `metrics.conversions` for `LAST_30_DAYS`:
+
+```gaql
+SELECT metrics.conversions
+FROM campaign
+WHERE campaign.resource_name = 'customers/{customer_id}/campaigns/{campaign_id}'
+  AND segments.date DURING LAST_30_DAYS
+```
+
+Evaluate against the thresholds in [[../../reference/platforms/google-ads/bidding-strategies|bidding-strategies.md]] (lines 38, 46):
+
+| Conversions / 30d | Verdict | Next action |
+|---|---|---|
+| ≥ 50 | **ELIGIBLE — tROAS** | Proceed to tROAS transition in Google Ads UI |
+| 30–49 | **ELIGIBLE — tCPA only** | Proceed to tCPA; tROAS gate opens at 50/mo |
+| < 30 | **NOT YET** — current: X/mo, threshold: 30 (tCPA) / 50 (tROAS) | Stay on Max Conversions; re-evaluate at Day 21 and Day 30 |
+
+State the readiness verdict before listing any manual actions. If **NOT YET**: remove the bid strategy upgrade from the manual action list — it is premature.
+
 **Manual only:**
-- Bid strategy upgrade (e.g., Max Conversions → tCPA) → Google Ads UI
+- Bid strategy upgrade (e.g., Max Conversions → tCPA) → Google Ads UI — **only if readiness gate above is ELIGIBLE**
 - Adding new keywords or negative keywords → Google Ads UI
 
 ### Phase: Month 2 (Days 31–60)

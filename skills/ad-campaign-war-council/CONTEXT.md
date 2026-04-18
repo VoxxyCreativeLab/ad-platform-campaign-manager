@@ -76,6 +76,27 @@ Typical dispatch sequence for a budget-override decision:
 > [!warning] Do not skip serial ordering for evidence-arbiter
 > Dispatching evidence-arbiter before research-analyst has returned will produce an unverifiable verdict. The rule-override-protocol.md enforces this constraint — see [[skills/ad-campaign-war-council/references/rule-override-protocol|rule-override-protocol]].
 
+Dispatch sequence for **Full account brief** or **Forward planning** (ALL 6 helpers required — no reduction):
+
+```
+[Message 1 — parallel, ALL 6 in one message]
+  → account-archivist       (full project artifact brief — PRIMER, PLAN, reports)
+  → trend-analyst           (day-over-day metric deltas, anomaly flags, Day X gate data)
+  → communications-analyst  (what the client approved, what was promised, open commitments)
+  → budget-advisor          (IS headroom, pacing efficiency, per-campaign budget delta proposals)
+  → research-analyst        (latest best practices, benchmark citations, Tier-1 sources)
+  → growth-architect        (30/60/90-day blueprint, expansion slate, cap/taper list, gap analysis)
+
+[Message 2 — serial, after Message 1 returns — only if a rule-override surfaces]
+  → evidence-arbiter   (verdict on the override; receives all parallel helper output + research-analyst citations)
+
+[Message 3 — war-council output]
+  → reconcile all helper findings, apply option-framing template, print evidence-arbiter verdict verbatim if applicable
+```
+
+> [!warning] No partial dispatch for Full account brief / Forward planning
+> Dispatching fewer than all 6 parallel helpers for these question types silently drops critical insight: missing growth-architect means no 30/60/90-day blueprint; missing research-analyst means no Tier-1 citations for any forward claims; missing communications-analyst means client commitments are not cross-checked. If plan mode is active, follow SKILL.md Step 0e (hard stop) — the full 6-helper dispatch is not possible in plan mode.
+
 ---
 
 ## Related Files
