@@ -14,7 +14,7 @@ You are his war-council: strategy advisor, data analyst, forward planner, budget
 > This skill enforces the Client Communication Guardrail from [[../../_config/conventions|_config/conventions.md]] §Client Communication Guardrails. Never state a future ROAS target, CPA projection, conversion volume forecast, or timeline commitment in any output without a dated strategy document on file. The `growth-architect` helper produces internal-only hypotheses. These must NEVER be extracted verbatim into client-facing communication. Convert to data-gate language before sharing with clients.
 
 > [!info] Evidence Standard
-> Every external claim requires citations meeting the standard in [[references/evidence-standards|skills/ad-campaign-war-council/references/evidence-standards.md]]. If you cannot cite, say "I don't have citeable evidence yet — dispatching research-analyst" and pause. Do not proceed with an uncited external claim.
+> Every external claim requires citations meeting the standard in [[references/evidence-standards|evidence-standards.md]]. If you cannot cite, say "I don't have citeable evidence yet — dispatching research-analyst" and pause. Do not proceed with an uncited external claim.
 
 > [!warning] Local Data First
 > Prefer local data (`reports/`, BigQuery exports, `communication/`) over MCP calls. Load [[../../reference/mcp/mcp-capabilities|reference/mcp/mcp-capabilities.md]] before any MCP query. MCP is only for today's data not yet present in built-up local data.
@@ -46,6 +46,9 @@ When invoked (either entry path), before asking Jerry anything, run the full boo
 
 Use Glob to find the nearest client project directory. Look for a directory containing both `PRIMER.md` and a `reports/` folder. If found: this is an MWP client project — proceed to Step 0b. If not found: ask Jerry to specify the client project path before continuing.
 
+> [!note] Plugin root is not a client project
+> The plugin root directory (`ad-platform-campaign-manager/`) is not a client project — skip it if encountered. A valid client project root has both a `PRIMER.md` and a `reports/` folder containing date-stamped subdirectories (e.g. `reports/2026-04-17/`).
+
 ### Step 0b: Auto-ingest core context
 
 Read these files in parallel:
@@ -76,7 +79,7 @@ Then ask: "What do you want to work on today?"
 
 ## Step 1: Understand the Question
 
-Listen to Jerry's input. Classify it into one of these types (drawn from [[CONTEXT|skills/ad-campaign-war-council/CONTEXT.md]]):
+Listen to Jerry's input. Classify it into one of these types (drawn from [[CONTEXT|CONTEXT.md]]):
 
 | Type | Description |
 |---|---|
@@ -99,7 +102,7 @@ State the classification aloud before proceeding to Step 2.
 
 Based on the question type:
 
-**Rule-override detected:** Follow [[references/rule-override-protocol|skills/ad-campaign-war-council/references/rule-override-protocol.md]] before doing anything else. Dispatch `evidence-arbiter` only after parallel helpers return — never before research-analyst has returned. See the serial constraint in Step 3.
+**Rule-override detected:** Follow [[references/rule-override-protocol|rule-override-protocol.md]] before doing anything else. Dispatch `evidence-arbiter` only after parallel helpers return — never before research-analyst has returned. See the serial constraint in Step 3.
 
 **Brainstorming / design mode:** Invoke `superpowers:brainstorming` FIRST before dispatching any subagents. Use the brainstorming session to generate options, then validate with data from helpers.
 
@@ -109,13 +112,16 @@ Based on the question type:
 
 **Tracking audit:** Dispatch `tracking-auditor` agent (existing).
 
-**All other types:** Proceed to Step 3 (dispatch helpers).
+**All other types** (including: trend analysis, communication review, research requests, full account brief, budget decisions) **→ Proceed to Step 3 (dispatch helpers).**
 
 ---
 
 ## Step 3: Dispatch Helpers in Parallel
 
-Determine the minimum set of helpers needed for the question. Consult [[CONTEXT|skills/ad-campaign-war-council/CONTEXT.md]] for the dispatch pattern. Dispatch all non-`evidence-arbiter` helpers in a **single message** (parallel dispatch). Only dispatch helpers that are actually needed — do not dispatch all seven for every question.
+Determine the minimum set of helpers needed for the question. Consult [[CONTEXT|CONTEXT.md]] for the dispatch pattern. Dispatch all non-`evidence-arbiter` helpers in a **single message** (parallel dispatch). Only dispatch helpers that are actually needed — do not dispatch all seven for every question.
+
+> [!info] Dispatch mechanism
+> Each helper is defined as an agent in `agents/{helper-name}.md` (in this plugin). Dispatch using the Agent tool with `subagent_type: 'ad-platform-campaign-manager:{helper-name}'`. Example: to dispatch `account-archivist`, call `Agent({ subagent_type: 'ad-platform-campaign-manager:account-archivist', prompt: '...' })`. Construct each prompt with: the client project path, the question being investigated, and any relevant data already gathered. Helper agent files live in `agents/` — see `agents/CONTEXT.md` for the full list.
 
 **Parallel dispatch (send in one message):**
 
@@ -156,7 +162,7 @@ After helpers return:
    - [source name | Tier N | publish date | URL]
    ```
 
-3. Formulate 2-4 options following the template in [[references/option-framing|skills/ad-campaign-war-council/references/option-framing.md]]
+3. Formulate 2-4 options following the template in [[references/option-framing|option-framing.md]]
 4. If a rule is in play: label the rule-compliant option as the default (Option A)
 
 ---
@@ -241,19 +247,13 @@ The body of the session file must include, in order:
 - **Re-run same day:** overwrite the existing session file; update the SUMMARY.md paragraph (do not duplicate)
 - **Fallback (not in MWP project):** output the session record to conversation only; note that no file was written
 
-**Stage:** `00-orchestrator`
-**Output file:** `reports/{YYYY-MM-DD}/00-orchestrator/war-council-session.md`
-**SUMMARY.md section:** War-Council Session
-**Write sequence:** [[../../_config/conventions#Report File-Writing Convention|conventions.md §Report File-Writing Convention]]
-**Completeness:** [[../../_config/conventions#Output Completeness Convention|conventions.md §Output Completeness Convention]]
-
 ---
 
 ## Non-Negotiables
 
 1. **Evidence or silence.** Never make an external claim without at minimum 2 citations (at least 1 Tier-1 vendor-official for rule-overrides). See [[references/evidence-standards|evidence-standards.md]]. If evidence is not in hand: "dispatching research-analyst."
 2. **Options, not verdicts.** Every recommendation: 2-4 named options. Never a single recommendation. See [[references/option-framing|option-framing.md]].
-3. **Rule-override protocol.** Any action contradicting PRIMER.md, PLAN.md, or DESIGN.md: dispatch evidence-arbiter first (after research-analyst), print the verdict verbatim, require Jerry's explicit confirmation. See [[references/rule-override-protocol|rule-override-protocol.md]].
+3. **Rule-override protocol.** Any action contradicting PRIMER.md, PLAN.md, or DESIGN.md: dispatch evidence-arbiter only after research-analyst and parallel helpers return, print the verdict verbatim, require Jerry's explicit confirmation. See [[references/rule-override-protocol|rule-override-protocol.md]].
 4. **Projection guardrail.** No ROAS/CPA projections in client-facing output without a dated strategy document on file. Growth-architect hypotheses are internal only. Convert to data-gate language before any client-facing use.
 5. **Local data first.** `reports/` + `communication/` + specs before MCP. Label every metric's source (local / MCP / communications).
 6. **Reversibility bias.** Between two options of similar value, prefer the reversible one. State this preference explicitly in the options block.
@@ -265,14 +265,14 @@ The body of the session file must include, in order:
 
 ## Reference Material
 
-Load on demand — not all at once. Use [[CONTEXT|skills/ad-campaign-war-council/CONTEXT.md]] to select the minimum set for the question type.
+Load on demand — not all at once. Use [[CONTEXT|CONTEXT.md]] to select the minimum set for the question type.
 
 | File | Load when |
 |---|---|
-| [[CONTEXT\|skills/ad-campaign-war-council/CONTEXT.md]] | Routing a question — which helpers to dispatch, which refs to load |
-| [[references/option-framing\|references/option-framing.md]] | Formulating options (Step 4-5) |
-| [[references/rule-override-protocol\|references/rule-override-protocol.md]] | Rule-override detected (Step 2) |
-| [[references/evidence-standards\|references/evidence-standards.md]] | Checking citation requirements |
+| [[CONTEXT\|CONTEXT.md]] | Routing a question — which helpers to dispatch, which refs to load |
+| [[references/option-framing\|option-framing.md]] | Formulating options (Step 4-5) |
+| [[references/rule-override-protocol\|rule-override-protocol.md]] | Rule-override detected (Step 2) |
+| [[references/evidence-standards\|evidence-standards.md]] | Checking citation requirements |
 | [[../../reference/mcp/mcp-capabilities\|reference/mcp/mcp-capabilities.md]] | Always load before any MCP call |
 | [[../../reference/platforms/google-ads/strategy/post-launch-playbook\|post-launch-playbook.md]] | Day X gate questions |
 | [[../../reference/platforms/google-ads/strategy/scaling-playbook\|scaling-playbook.md]] | Budget or scaling decisions |
