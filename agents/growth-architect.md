@@ -76,7 +76,7 @@ For each proposed new campaign or expansion, define:
   - **High** — well-evidenced, low uncertainty, account-specific signal confirms it
   - **Medium** — evidenced but situation-dependent
   - **Exploratory** — research-backed theory, no account-specific signal yet
-- Expected contribution to ROAS trajectory — describe as a conditional statement: "If [condition A] AND [condition B], adding [campaign type] is likely to [effect]." Never state this as a certainty.
+- Expected contribution to ROAS trajectory — describe as a conditional statement: "If [condition A] AND [condition B], the next decision is to [action]." Remove soft prediction language; use strict data-gate framing.
 - Dependency: what must be true before this campaign is added?
 
 ### Step 5: Build Asset-Gap and Data-Gap Ledgers
