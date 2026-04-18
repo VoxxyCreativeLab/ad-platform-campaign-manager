@@ -15,6 +15,8 @@ tags:
 
 ## Reference Routing
 
+_File paths in the Reference docs and Skip columns are load-time references for Claude — backtick-formatted strings, not navigation links._
+
 | Question type | Reference docs to load | Skip |
 |---|---|---|
 | Day X gate / budget freeze override decision | `reference/platforms/google-ads/strategy/post-launch-playbook.md`, `reference/platforms/google-ads/learning-phase.md`, `reference/platforms/google-ads/bidding-strategies.md`, `skills/ad-campaign-war-council/references/rule-override-protocol.md`, `skills/ad-campaign-war-council/references/evidence-standards.md`, `skills/ad-campaign-war-council/references/option-framing.md` | tracking-bridge, scripts, keyword refs |

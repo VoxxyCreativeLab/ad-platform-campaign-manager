@@ -90,6 +90,8 @@ The following keywords or phrasings in Jerry's input indicate a potential rule c
 ## Example Trigger
 
 > [!example] Vaxter budget freeze — Day 14
+> _(Example from Vaxter campaign project — line numbers reference the client's PRIMER.md, not the plugin's)_
+>
 > Rule in PRIMER.md: `"Budget hold: €100/day through T5 (May 7)"` (PRIMER.md:56)
 >
 > Trigger: Jerry asks "Can we increase budgets on Day 14?"
