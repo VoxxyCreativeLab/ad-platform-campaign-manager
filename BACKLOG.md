@@ -106,7 +106,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Category:** Gap
 - **Description:** BigQuery Data Transfer Service for Meta Ads data: native Google connector, 24h refresh, zero maintenance, free. OWOX Data Marts (`OWOX/owox-data-marts`, MIT license, open source) as upgrade path for more granular/frequent data. n8n HTTP Request to Meta Marketing API as alternative for real-time data. Schema design for `meta_ads_performance` table. When to use each approach: start with Data Transfer Service, upgrade to OWOX if sub-daily granularity needed.
 - **Proposed fix:** Add a `reference/reporting/meta-ads-bigquery.md` file covering all three pipeline approaches with decision guidance.
-- **Status:** Open
+- **Status:** ✅ Done (v1.25.0 pending) — routing edge added; content lives in n8n-plugin `reference/patterns/meta-ads-cost-to-bq.md`
 
 ### 13. [AUTO] Cross-Platform Data Model for BigQuery
 
@@ -116,7 +116,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Category:** Gap
 - **Description:** Meta + GA4 + iClosed + Airtable normalization in BigQuery. 5-source architecture: GA4 (native BQ export, daily), Meta Ads (BigQuery Data Transfer Service, 24h), iClosed (n8n webhook -> BQ node, real-time), Airtable (n8n Airtable Trigger -> BQ node, polling 5-15min), sGTM (sGTM BQ tag, streaming). Key join fields: `contactId` as cross-system key linking iClosed records to Airtable to CAPI events. `callPreviewId` as CAPI `event_id` for deduplication. Lead lifecycle stages (Lead/MQL/Booked/SQL/Closed) mapped across tools and tables. `fbc` reconstruction from stored fbclid: `fb.1.{bookingTime_unix}.{fbclid}`.
 - **Proposed fix:** Add a `reference/reporting/cross-platform-data-model.md` file covering join key strategy, table schemas, and lifecycle stage mapping for high-ticket funnel stacks.
-- **Status:** Open
+- **Status:** ✅ Done (v1.25.0 pending) — routing edge added; cross-platform BQ model covered by n8n-plugin Airtable + BigQuery + 4-workflow recipes
 
 ### 14. BigQuery pipeline expansion — native connections + n8n BQ→Meta offline conversions
 
@@ -135,7 +135,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
   - `GoogleCloudPlatform/bigquery-utils` (1,290 stars, active) — official Google UDFs and utilities for BigQuery.
   - `kobzevvv/marketing-attribution-data-model` (23 stars) — multi-touch attribution schema patterns.
   - ga4bigquery.com — end-to-end BQ→Looker attribution tutorial with 5 attribution models side-by-side.
-- **Status:** Open
+- **Status:** ✅ Done (v1.25.0 pending) — BQ→Meta CAPI reverse path lives in n8n-plugin `reference/patterns/bq-to-capi-offline.md`; routing edge added to reporting-pipeline skill
 
 ### 15. Email marketing knowledge — Klaviyo
 
@@ -196,7 +196,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Category:** New Capability
 - **Description:** GTM URL param injection for iClosed 2-Step Scheduler: iClosed URL param injector GTM Custom HTML tag on Thank You page, Scenario A (single container, events on parent dataLayer) vs Scenario B (dedicated iClosed container). Webhook-to-n8n pipeline using real iClosed API event names: `newContactCreated`, `contactDetailChanged`, `contactByStatus`, `newCallScheduled`, `callCancelled`, `callRescheduled`, `callOutcome`. fbclid passthrough via webhook `tracking` object: `utmKey_N`/`utmValue_N` key-value pairs (confirmed in iClosed developer docs). callOutcome attribution gap: `callOutcome` webhook has no `tracking` data — fbclid must be retrieved from CRM via `contactId` correlation. Consent gating for iClosed GTM events: `cookie_consent_marketing` trigger, Consent Mode v2 defaults denied. GTM dataLayer events (`iclosed_view`, `iclosed_qualified`, etc.) are UNVERIFIED (not in developer docs).
 - **Proposed fix:** TBD
-- **Status:** Open
+- **Status:** ✅ Done (v1.25.0 pending) — routing edge added; iClosed knowledge lives in n8n-plugin `reference/nodes/recipes/iclosed.md`
 
 ### 12. [AUTO] n8n as Automation Layer in Tracking Stacks
 
@@ -206,7 +206,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Category:** New Capability
 - **Description:** n8n replaces Zapier/Make in tracking stacks. n8n Cloud Starter: EUR 24/mo, unlimited users, client-owned account. Webhook security: URL-based secret token only (no HMAC available from iClosed, on their roadmap). 4-workflow pattern for high-ticket coaching funnels: WF1 booking-to-CRM (`newCallScheduled` -> Airtable), WF2 outcome-to-CRM (`callOutcome` -> Airtable update), WF3 CRM-to-CAPI (Airtable fbclid -> Meta CAPI Purchase, `action_source: system_generated`), WF4 events-to-BigQuery (all webhooks -> BigQuery raw log). n8n nodes used: `n8n-nodes-base.webhook`, `n8n-nodes-base.airtable`, `n8n-nodes-base.httpRequest`, `n8n-nodes-base.googlebigquery`.
 - **Proposed fix:** TBD
-- **Status:** Open
+- **Status:** ✅ Done (v1.25.0 pending) — routing edge added; content lives in n8n-plugin `reference/patterns/4-workflow-tracking-stack.md`
 
 ### 17. GTM scripts review — cookie collection cHTML tag (Watermelon plan)
 
@@ -389,7 +389,7 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 - **Priority:** High
 - **Description:** No single reference doc in the plugin covers the specific scenario of lifting a budget freeze (like a T5 freeze) before its scheduled end date. Relevant guidance is currently scattered across `scaling-playbook.md` (IS-headroom gates), `post-launch-playbook.md` (budget re-entry after learning), and `learning-phase.md` (what resets learning — >20% budget changes). The `evidence-arbiter` and `budget-advisor` agents would benefit from a dedicated doc that covers: (1) when lifting a freeze early is justified by data, (2) safe step sizing to avoid learning reset, (3) conditions that must be met (ROAS stability, IS-lost-budget threshold, conversion volume), (4) what official Google guidance says about budget freeze management.
 - **Proposed fix:** New file `reference/platforms/google-ads/strategy/lift-budget-freeze.md` covering early-lift criteria, step-sizing rules, official Google guidance citations, and decision flowchart.
-- **Status:** Open
+- **Status:** ✅ Done (v1.25.0 pending) — `lift-budget-freeze.md` created; cross-links added to scaling-playbook, post-launch-playbook, learning-phase
 
 ### 33. [AUTO] War-council: plan-mode guard + full-dispatch enforcement
 
@@ -417,19 +417,18 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 7 | Learning duration table | Clarity | Medium | ✅ Done (v1.13.0) |
 | 8 | Automated post-launch checks | Future | Medium | ✅ Done (v1.18.0) |
 | 9 | Product-level performance skill | Future | High | ✅ Done (v1.20.0) |
-| 10 | iClosed tracking patterns | New Capability | Medium | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
-| 11 | Meta Ads to BigQuery pipeline | Gap | Medium | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
-| 12 | n8n as automation layer in tracking stacks | New Capability | Medium | 🚧 Paused — n8n-plugin must be built first |
-| 13 | Cross-platform data model for BigQuery | Gap | Low | 🚧 Paused — v1.21.0 blocked on n8n-plugin |
+| 10 | iClosed tracking patterns | New Capability | Medium | ✅ Done (v1.25.0 pending) — routing edge added; content lives in n8n-plugin |
+| 11 | Meta Ads to BigQuery pipeline | Gap | Medium | ✅ Done (v1.25.0 pending) — routing edge added; content lives in n8n-plugin |
+| 12 | n8n as automation layer in tracking stacks | New Capability | Medium | ✅ Done (v1.25.0 pending) — routing edge added; content lives in n8n-plugin |
+| 13 | Cross-platform data model for BigQuery | Gap | Low | ✅ Done (v1.25.0 pending) — routing edge added; content lives in n8n-plugin |
 | 20 | n8n-plugin prerequisite for v1.21.0 | Prerequisite | Critical | ✅ Done (v1.23.0) — n8n-workflow-builder-plugin v0.1.0 shipped |
-| 14 | BigQuery pipeline expansion — native connections + BQ→Meta n8n | Gap | High | 🚧 Partial — native connectors validated + additions shipped (v1.22.0); n8n reverse path deferred to n8n-plugin |
+| 14 | BigQuery pipeline expansion — native connections + n8n reverse path | Gap | High | ✅ Done (v1.25.0 pending) — reverse path in n8n-plugin bq-to-capi-offline.md; routing edge added |
 | 15 | Email marketing knowledge — Klaviyo | Gap | Medium | ✅ Done (v1.22.0) |
 | 16 | Looker Studio dashboards from BigQuery | Gap | Medium | ✅ Done (v1.22.0) |
 | 17 | GTM scripts review — cookie collection cHTML (Watermelon) | New Capability | Medium | ⬜ Open |
 | 18 | Watermelon plan knowledge extraction | New Capability | High | ⬜ Open |
 | 19 | Shopping performance regression diagnostic protocol | Gap | High | ✅ Done (v1.21.1) — doc shipped v1.21.0; post-launch-monitor routing wired v1.21.1 |
 | 21 | ClickFunnels 2.0 tracking patterns | Gap | Medium | ⬜ Open — deferred: CF2.0 event names unverified |
-| 14 | BigQuery pipeline expansion (updated: +8 reference repos) | Gap | High | 🚧 Partial — native connectors shipped (v1.22.0); n8n reverse path deferred to n8n-plugin |
 | 16 | Looker Studio dashboards (updated: +lead gen pattern + repos) | Gap | Medium | ✅ Done (v1.22.0) |
 | 22 | Feed-only PMax AD STRENGTH = POOR incorrectly flagged (7 files) | Contradiction | High | ✅ Done (v1.21.1) — exception clause added to 8 files |
 | 23 | No structured growth/scaling management skill | Gap | High | ✅ Done (v1.23.0) |
@@ -441,5 +440,5 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 29 | MCP docs error — user_list sizes are API-accessible, not manual-only | Contradiction | Medium | ⬜ Open |
 | 30 | MCP server read capability expansion — compatibility validation needed | Dependency | Medium | ⬜ Open — pending MCP server update |
 | 31 | Pending n8n cross-plugin routing edges — commit with next release | Ecosystem | Low | ✅ Done (v1.23.0) — `46e22ee` |
-| 32 | Reference doc: lift-budget-freeze.md | New file | High | Open |
+| 32 | Reference doc: lift-budget-freeze.md | New file | High | ✅ Done (v1.25.0 pending) — lift-budget-freeze.md created + 3 cross-links |
 | 33 | War-council: plan-mode guard + full-dispatch enforcement | Contradiction | High | ✅ Done (v1.25.0 pending) |

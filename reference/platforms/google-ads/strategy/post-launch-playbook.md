@@ -193,3 +193,4 @@ See [[account-maturity-roadmap]] for the full optimization cadence by account ag
 - [[account-maturity-roadmap]] — long-term optimization cadence, account maturity stages
 - [[mcp-capabilities]] — full MCP boundary reference
 - [[feed-only-pmax]] — PMax-specific post-launch steps
+- [[lift-budget-freeze]] — when and how to lift a budget freeze before its scheduled end date

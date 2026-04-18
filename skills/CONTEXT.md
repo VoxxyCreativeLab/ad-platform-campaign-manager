@@ -87,6 +87,10 @@ Skills may recommend other skills to the user:
 | Source skill | Condition | Recommends |
 |---|---|---|
 | `reporting-pipeline` | Report delivery needs to be automated (Slack digest, email, Sheets push) | `n8n-workflow-builder-plugin:workflow-architect` |
+| `reporting-pipeline` | Meta Ads cost data needs to land in BigQuery (incremental daily pipeline) | `n8n-workflow-builder-plugin:workflow-architect` — see `reference/patterns/meta-ads-cost-to-bq.md` |
+| `reporting-pipeline` | BigQuery offline conversions need to flow back to Meta CAPI | `n8n-workflow-builder-plugin:workflow-architect` — see `reference/patterns/bq-to-capi-offline.md` |
 | `conversion-tracking` | BQ → Google Ads enrichment pipeline needs automation | `n8n-workflow-builder-plugin:workflow-from-template` |
+| `conversion-tracking` | iClosed CRM webhooks need to be wired into a tracking stack (callOutcome → CAPI, fbclid passthrough, BQ logging) | `n8n-workflow-builder-plugin:workflow-architect` — see `reference/nodes/recipes/iclosed.md` and `reference/patterns/4-workflow-tracking-stack.md` |
 | `ads-scripts` | Migrate ad-hoc scripts to maintainable n8n workflows | `n8n-workflow-builder-plugin:workflow-architect` |
 | `live-report` | Persist report delivery as a scheduled n8n workflow | `n8n-workflow-builder-plugin:deploy-workflow` |
+| `live-report` | Entire tracking stack needs wiring (iClosed + Airtable + Meta CAPI + BigQuery) | `n8n-workflow-builder-plugin:workflow-architect` — see `reference/patterns/4-workflow-tracking-stack.md` |

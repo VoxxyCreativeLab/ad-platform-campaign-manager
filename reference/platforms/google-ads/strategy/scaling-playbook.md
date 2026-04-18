@@ -243,3 +243,4 @@ This file is linked from:
 - [[account-maturity-roadmap]] Stage 3 scaling section + Stage 4 scaling section + tROAS discrepancy footnote
 - [[../bidding-strategies|bidding-strategies.md]] PMax/Shopping Ad Rank callout
 - [[../../skills/post-launch-monitor/SKILL.md|post-launch-monitor]] bid strategy readiness section
+- [[lift-budget-freeze]] — uses T1/T5 gate logic; this playbook is the source of truth for those gates

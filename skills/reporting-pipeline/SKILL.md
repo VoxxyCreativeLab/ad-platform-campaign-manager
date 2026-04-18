@@ -147,6 +147,8 @@ Based on the pipeline work completed, recommend the next skill:
 | Budget allocation needs rethinking based on data | `/ad-platform-campaign-manager:budget-optimizer` |
 | No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |
 | Need to deliver reports as automated scheduled workflows (Slack digest, email, Sheets push) | `/n8n-workflow-builder-plugin:workflow-architect` |
+| Meta Ads cost data needs to land in BigQuery (incremental daily pipeline, cross-platform BQ model) | `/n8n-workflow-builder-plugin:workflow-architect` — pattern: `reference/patterns/meta-ads-cost-to-bq.md` |
+| BigQuery offline conversion data needs to flow back to Meta CAPI (reverse pipeline) | `/n8n-workflow-builder-plugin:workflow-architect` — pattern: `reference/patterns/bq-to-capi-offline.md` |
 
 ---
 

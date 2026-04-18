@@ -137,3 +137,4 @@ Once the campaign reaches **Eligible** status:
 - [[common-mistakes]] — Mistake #20: disrupting the learning period
 - [[feed-only-pmax]] — PMax-specific post-launch safe steps (negatives, brand exclusions)
 - [[account-maturity-roadmap]] — Week-by-week optimization cadence after learning
+- [[strategy/lift-budget-freeze|lift-budget-freeze.md]] — early-lift criteria for T5/learning-phase budget freezes; safe step sizing

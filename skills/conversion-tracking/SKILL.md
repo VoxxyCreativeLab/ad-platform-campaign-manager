@@ -231,6 +231,7 @@ Based on the tracking work completed, recommend the next skill:
 | BQ pipeline built, need reporting dashboards | `/ad-platform-campaign-manager:reporting-pipeline` |
 | No strategy profile established yet | `/ad-platform-campaign-manager:account-strategy` |
 | BQ → Google Ads enrichment workflow needs automation (scheduled imports, API enrichment) | `/n8n-workflow-builder-plugin:workflow-from-template` |
+| iClosed CRM webhooks need tracking (callOutcome → Meta CAPI, fbclid passthrough, BQ logging, 4-workflow pattern) | `/n8n-workflow-builder-plugin:workflow-architect` — recipe: `reference/nodes/recipes/iclosed.md` |
 
 ---
 

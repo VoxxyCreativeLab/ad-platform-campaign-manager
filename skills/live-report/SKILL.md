@@ -76,6 +76,7 @@ For recurring reports, suggest the user set up automated reporting:
 - **Daily budget pacing** — daily, current month-to-date
 - For automated pipelines (not ad-hoc), use `/ad-platform-campaign-manager:reporting-pipeline`
 - For deploying reports as n8n scheduled workflows (push to Slack, Sheets, email) → `/n8n-workflow-builder-plugin:deploy-workflow`
+- For wiring the full tracking stack (iClosed + Airtable + Meta CAPI + BigQuery) → `/n8n-workflow-builder-plugin:workflow-architect` — see `reference/patterns/4-workflow-tracking-stack.md`
 
 ---
 

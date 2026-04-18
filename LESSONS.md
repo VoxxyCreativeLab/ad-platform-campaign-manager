@@ -11,6 +11,7 @@ Campaign management and plugin development lessons captured over time. Each entr
 
 ## Plugin Development
 
+- **2026-04-18** — When a sibling plugin becomes the authoritative source for knowledge a consuming plugin was planning to document, add cross-plugin routing edges instead of duplicating content. When n8n-workflow-builder-plugin v0.2.0 shipped 14 tracking-stack recipes covering exactly what ad-platform backlog items #10–#14 needed, adding 4 routing edges across 4 skill files closed 5 items as Done with no content duplication. Keeps the ecosystem DRY; sibling plugin owners are the right maintainers for their domain.
 - **2026-03-31** — Marketplace clone sync is the #1 recurring failure mode. After pushing new skills to GitHub, you must manually update the local marketplace clone: `cd ~/.claude/plugins/marketplaces/{plugin-name}/` → `git pull` → `claude plugin uninstall` → `claude plugin install` → VSCode `Ctrl+Shift+P` → Reload Window. Skipping any step means Claude won't see your changes.
 - **2026-03-31** — `marketplace.json` must use the `plugins[]` array with `source` field. Custom `skills[]` arrays are silently ignored.
 - **2026-03-31** — `disable-model-invocation: true` in skill frontmatter hides the skill from model discovery entirely. Use for Phase 2+ skills that aren't ready yet. Set to `false` to make them visible.
@@ -42,6 +43,7 @@ Campaign management and plugin development lessons captured over time. Each entr
 
 ## Campaign Strategy
 
+- **2026-04-18** — The "20% budget change resets learning" rule is industry consensus, not an official Google rule. Google's official docs (`answer/13020501`) list learning triggers as: new strategy, setting change (bid strategy settings), composition change (campaigns/ad groups). Budget changes are absent. The 20% step rule comes from WordStream, KlientBoost, Dilate. Practically, large increases can cause pacing re-adjustment, but no formal "Learning" status is triggered. Reference docs should say "may cause algorithm re-adjustment" rather than "resets learning."
 - **2026-04-01** — Feed-only PMax is a distinct configuration from full PMax. When a client has a Merchant Center feed but no creative assets, the answer is NOT "you can't launch PMax" — it's feed-only PMax with auto-generated creative from the feed. The campaign-setup skill previously blocked this path entirely with a factually wrong blocker.
 - **2026-04-01** — Account restructuring (messy Shopping+PMax → clean feed-based PMax) must be stepwise: create new PMax paused → pause overlapping Shopping → enable new PMax → monitor 2-4 weeks. Never cold-turkey. Keep old campaigns paused (not deleted) for 30 days as rollback.
 - **2026-04-01** — Since late 2024, PMax is no longer auto-prioritized over Standard Shopping in auctions. Both compete on Ad Rank. Running both (70/30 or 80/20 split favoring PMax) is a viable strategy — restructuring to PMax-only is a choice, not a necessity.
