@@ -1,6 +1,6 @@
 ---
 title: Primer - Session Handoff
-date: 2026-04-17
+date: 2026-04-18
 tags:
   - mwp
 ---
@@ -14,52 +14,64 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** — currently at v1.24.0 (in development, feature/ad-campaign-war-council branch). Active skill: `/ad-campaign-war-council` — Strategic orchestrator — evidence-based options, rule-override adjudication, growth blueprinting, forward planning.
+**ad-platform-campaign-manager** — v1.24.0 released and merged to `main` (2026-04-18). No active implementation plan. Next: plugin reinstall required to activate new skill + agents.
 
 ---
 
 ## Last Completed
 
+### v1.24.0 — Ad Campaign War-Council (2026-04-18)
+
+Full implementation merged to `main` in commit `4d735a4`.
+
+| Deliverable | Type | Status |
+|---|---|---|
+| `skills/ad-campaign-war-council/SKILL.md` | Orchestrator skill | ✅ |
+| `skills/ad-campaign-war-council/CONTEXT.md` | Skill routing index | ✅ |
+| `skills/ad-campaign-war-council/references/evidence-standards.md` | Citation standard (4-tier) | ✅ |
+| `skills/ad-campaign-war-council/references/rule-override-protocol.md` | Rule-override 8-step protocol | ✅ |
+| `skills/ad-campaign-war-council/references/option-framing.md` | A/B/C template + Vaxter Day-14 example | ✅ |
+| `agents/account-archivist.md` | Full-project brief | ✅ |
+| `agents/trend-analyst.md` | Multi-day delta tables + anomaly flags | ✅ |
+| `agents/communications-analyst.md` | Stakeholder intent + approval chain | ✅ |
+| `agents/research-analyst.md` | External research (WebSearch/WebFetch) | ✅ |
+| `agents/evidence-arbiter.md` | Rule-override adjudicator (WebSearch/WebFetch) | ✅ |
+| `agents/budget-advisor.md` | Marginal return + IS-headroom reallocation (WebSearch/WebFetch) | ✅ |
+| `agents/growth-architect.md` | Forward blueprint, parabolic-ROAS trajectory (WebSearch/WebFetch) | ✅ |
+| `CLAUDE.md` (Quick Navigation) | `/ad-campaign-war-council` row added | ✅ |
+| `CONTEXT.md` | 9 routing rows + Escalation Handshake section | ✅ |
+| `agents/CONTEXT.md` | 7 new agent entries registered | ✅ |
+| `BACKLOG.md` | Item #32: lift-budget-freeze-early.md reference doc | ✅ |
+| `.claude-plugin/plugin.json` | Version bumped `1.23.0` → `1.24.0` | ✅ |
+| `CHANGELOG.md` | v1.24.0 entry added | ✅ |
+
+**Key design decisions:**
+- Orchestrator is a **skill** (not a subagent) — must run in primary conversation for full tool access
+- 4-tier tiered evidence standard; Tier-1 vendor-official required for any rule-override
+- Dual entry path: direct `/ad-campaign-war-council` invocation + escalation from other skills
+- `growth-architect` is internal-only; Client Communication Guardrail enforced at SKILL.md level
+- `budget-advisor` is distinct from `/budget-optimizer` skill (autonomous reallocation analysis vs. interactive math workshop)
+- 4 agents with WebSearch/WebFetch: research-analyst, evidence-arbiter, budget-advisor, growth-architect
+
 ### v1.23.0 — Account Scaling Skill + Projection Guardrail (2026-04-17)
 
-All tasks completed and committed:
-
-| Task | Description | Commit |
-|---|---|---|
-| Pre-flight | n8n routing edges (5 files) as standalone prep commit | `46e22ee` |
-| Layer 1 guardrail | One-liner in `~/.claude/CLAUDE.md` (no git — outside all repos) | — |
-| Layer 2 guardrail | Generic rule in `project-structure-and-scaffolding-plugin/_config/conventions.md` | `856304d` (PSP repo) |
-| Layer 3 guardrail | Domain-specific rule in `_config/conventions.md` (FTC + UK CAP + DMCC) | `9ce1c9f` |
-| account-maturity-roadmap | tROAS discrepancy footnote + Stage 3/4 scaling-playbook links | `904f146` |
-| bidding-strategies | PMax/Shopping Ad Rank callout (Oct 2024) | `21d67e2` |
-| scaling-playbook.md | New reference file (11 sections, 245 lines) | `969aafa` |
-| account-scaling SKILL.md | New skill (4-phase flow, 7 GAQL queries, 8 gates, T1-T6 routing, report template) | `dd3dddc` |
-| CONTEXT.md + CLAUDE.md | Routing row + Quick Navigation wired | `4f1209d` |
-| BACKLOG + CHANGELOG | #23 + #28 + #31 closed, v1.23.0 entry added | (release commit) |
-
-**Deliverables:**
-- `/ad-platform-campaign-manager:account-scaling` — live, installable after plugin reinstall
-- `reference/platforms/google-ads/strategy/scaling-playbook.md` — live
-- 3-layer projection guardrail active across all 15 skills + 3 agents
-
-### Previous Milestones
-
-- v1.22.0 — BigQuery native connectors, Klaviyo fundamentals, Looker Studio dashboard
-- v1.21.1 — Feed-only PMax AD STRENGTH = POOR exception + Shopping regression routing
-- v1.21.0 Session 4 — PAUSED (n8n-plugin must be built first)
+All tasks completed and committed. See previous PRIMER for detail.
 
 ---
 
 ## What Still Needs to Happen
 
-> [!info] Plugin reinstall required
-> v1.24.0 adds a new skill (`ad-campaign-war-council`) and 7 new agents. Run the plugin reinstall before using them:
-> 1. `/plugins uninstall ad-platform-campaign-manager`
-> 2. `/plugins install`
-> 3. Reload VSCode window (Ctrl+Shift+P → "Developer: Reload Window")
+> [!warning] Plugin reinstall required — do this first
+> v1.24.0 adds `/ad-campaign-war-council` (new skill) + 7 new agents. Run the plugin reinstall before using them:
+> 1. Uninstall `ad-platform-campaign-manager` in VS Code (Claude Code extension → Plugins)
+> 2. Reinstall via `/plugins install`
+> 3. Reload VSCode window: `Ctrl+Shift+P` → "Developer: Reload Window"
 > 4. Confirm `/ad-platform-campaign-manager:ad-campaign-war-council` appears in skill list
 
-No active implementation plan. Deferred backlog items listed below — pick the next one to work on.
+**Pending validation (after plugin reinstall):**
+
+- [ ] Invoke `/ad-campaign-war-council` on the Vaxter project for Day 14 evaluation (2026-04-21) — "Can we lift the May 7 budget freeze early? Per-campaign options?"
+- [ ] BACKLOG #32: Write `reference/platforms/google-ads/strategy/lift-budget-freeze.md` — reference doc for early-lift criteria, step-sizing, official Google guidance
 
 ---
 
@@ -71,6 +83,7 @@ No active implementation plan. Deferred backlog items listed below — pick the 
 | 26 | `all_conversions` in live-report + attribution interpretation | S-M | Shopping + PMax multi-touch attribution; 58x delta confirmed in Vaxteronline |
 | 29 | MCP docs fix — user_list sizes are API-accessible | S | Remove from "Not Available via MCP" section; add confirmed GAQL |
 | 30 | MCP server capability expansion validation | After update | Wait for Jerry's MCP server update to ship before running |
+| 32 | Reference doc: lift-budget-freeze-early.md | M | Covers early-lift criteria, step-sizing, official Google guidance; scattered content in scaling-playbook + post-launch-playbook + learning-phase |
 
 ---
 
@@ -84,6 +97,12 @@ No active implementation plan. Deferred backlog items listed below — pick the 
 | **Watermelon plan path** | Jerry to provide (for #18 extraction) |
 | **GTM scripts inventory** | Jerry to provide (for #17 cookie cHTML review) |
 | **ClickFunnels 2.0 (#21)** | Deferred; CF2.0 event names unverifiable; re-scope when CF2.0 is live |
+
+---
+
+## Active Skills
+
+`/campaign-setup` · `/keyword-strategy` · `/conversion-tracking` · `/reporting-pipeline` · `/campaign-review` · `/pmax-guide` · `/post-launch-monitor` · `/product-performance` · `/budget-optimizer` · `/ads-scripts` · `/ad-copy` · `/campaign-cleanup` · `/account-scaling` · `/account-strategy` · `/live-report` · `/connect-mcp` · `/ad-campaign-war-council` (new v1.24.0)
 
 ---
 
@@ -101,10 +120,4 @@ No active implementation plan. Deferred backlog items listed below — pick the 
 
 ## N8n Items — Now Unblocked
 
-The `n8n-workflow-builder-plugin` is fully built and operational (v0.1.0). Cross-plugin routing from ad-platform → n8n-plugin is wired in 5 skill files (commit `46e22ee`).
-
-Sessions 4 and 5 of v1.21.0 remain paused — they require the plugin to be operational for workflow-building work. Now that the prerequisite is met, these can be scheduled.
-
-**Blocked items now unblocked in principle:** #10 iClosed tracking, #11 Meta BQ pipeline, #12 n8n automation layer, #13 cross-platform data model, and n8n reverse path of #14.
-
-**Pause memo:** `docs/superpowers/plans/2026-04-16-session-4-paused.md`
+The `n8n-workflow-builder-plugin` is fully built and operational (v0.1.0). Cross-plugin routing from ad-platform → n8n-plugin is wired in 5 skill files (commit `46e22ee`). Sessions 4 and 5 of v1.21.0 remain paused pending scheduling. Blocked items now unblocked in principle: #10 iClosed tracking, #11 Meta BQ pipeline, #12 n8n automation layer, #13 cross-platform data model, #14 n8n reverse path.

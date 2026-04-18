@@ -64,7 +64,7 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 - ✅ Shopping + Audience Audit Sections (v1.10.0) — 28 Shopping checks + 11 Audience checks added to audit-checklist; Area 12/13 in campaign-review; Shopping triage in campaign-cleanup; audit-gap-analysis.md as roadmap for future expansion
 - ✅ Priority 2 Audit Expansion (v1.11.0) — Display (20), Demand Gen (14), Competitive Analysis (6), Feed Health (10) added; Areas 14-17 in campaign-review with GAQL queries; Display/Demand Gen triage in campaign-cleanup; campaign-reviewer agent backfilled with 6 missing sections
 - ✅ Priority 3 Audit Expansion (v1.12.0) — Video/YouTube (12), Cross-Campaign Cannibalization (5), Attribution Depth (5), Account-Level Strengthening (5) added; Areas 18-21 in campaign-review with GAQL queries; Video triage in campaign-cleanup; campaign-reviewer agent updated with 4 new sections
-**Current milestone:** v1.23.0 🔄 In progress (2026-04-17) — Account Scaling Skill + Projection Guardrail. Design complete. Ready to execute implementation plan via `superpowers:subagent-driven-development`. Full state in PRIMER.md.
+**Current milestone:** v1.24.0 ✅ Done (2026-04-18) — Ad Campaign War-Council merged to `main`. Plugin reinstall required to activate new skill + 7 agents.
 
 **Previous milestone:** v1.21.0 Session 4 🚧 Paused — n8n-plugin must be built first. See `docs/superpowers/plans/2026-04-16-session-4-paused.md`.
 **Blockers:** OAuth client secret should be rotated.
@@ -102,9 +102,9 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ---
 
-## v1.24.0 — Ad Campaign War-Council (scoped 2026-04-18)
+## v1.24.0 — Ad Campaign War-Council (released 2026-04-18)
 
-**Status:** In development (feature/ad-campaign-war-council branch)
+**Status:** ✅ Done — merged to `main` (commit `4d735a4`)
 
 **Deliverables:**
 - `/ad-campaign-war-council` skill — strategic orchestrator (dual entry: direct + escalation from other skills)
