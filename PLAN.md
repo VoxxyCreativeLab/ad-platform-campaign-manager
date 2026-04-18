@@ -102,6 +102,24 @@ Claude Code plugin providing campaign management guidance for Google Ads. Phase 
 
 ---
 
+## v1.24.0 — Ad Campaign War-Council (scoped 2026-04-18)
+
+**Status:** In development (feature/ad-campaign-war-council branch)
+
+**Deliverables:**
+- `/ad-campaign-war-council` skill — strategic orchestrator (dual entry: direct + escalation from other skills)
+- 7 new helper agents: account-archivist, trend-analyst, communications-analyst, research-analyst, evidence-arbiter, budget-advisor, growth-architect
+- 4 support reference files: CONTEXT.md, evidence-standards.md, rule-override-protocol.md, option-framing.md
+
+**Design highlights:**
+- Evidence-based option framing (A/B/C with citations) — never single recommendations
+- Rule-override protocol with evidence-arbiter adjudication
+- Local-data-first: prefer reports/ + communication/ over MCP
+- Growth-architect blueprints are internal-only (Client Communication Guardrail enforced)
+- Parabolic-ROAS forward planning with 30/60/90-day trajectories
+
+---
+
 ### After v1.19.1 — Backlog Expansion (v1.20.0–v1.21.0)
 
 Planned 2026-04-14. Design spec at `docs/superpowers/specs/2026-04-14-backlog-expansion-design.md`. Implementation plan at `docs/superpowers/plans/2026-04-14-backlog-expansion.md`.

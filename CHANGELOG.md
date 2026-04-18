@@ -7,6 +7,24 @@ tags:
 
 # Changelog
 
+## v1.24.0 — 2026-04-18
+
+### Added
+- `/ad-campaign-war-council` skill — strategic orchestrator with dual entry path (direct invocation + escalation from other skills), boot-sequence auto-ingest, option-based decision framing (A/B/C), rule-override protocol, parabolic-ROAS growth planning
+- `account-archivist` agent — comprehensive account-state brief (reports, comms, specs, PRIMER, PLAN)
+- `trend-analyst` agent — multi-day delta tables and anomaly flags
+- `communications-analyst` agent — stakeholder intent, approvals, commitments from all client communications
+- `research-analyst` agent — tiered web research (official vendor docs, named-author secondary, GitHub) with citation block
+- `evidence-arbiter` agent — rule-override adjudicator: Support/Oppose/Conditional verdict with evidence
+- `budget-advisor` agent — marginal-return and IS-headroom budget analysis with learning-phase risk scoring
+- `growth-architect` agent — forward account blueprint: expansion slate, asset/data gaps, 30/60/90-day trajectory (internal-only)
+- `evidence-standards.md` — 4-tier citation standard (Tier 1 vendor-official required for rule-overrides)
+- `rule-override-protocol.md` — 8-step protocol for adjudicating rule violations
+- `option-framing.md` — canonical A/B/C option template with Vaxter Day-14 worked example
+- `BACKLOG.md` item #32 — reference doc needed: "how to lift a budget freeze before its date"
+
+---
+
 ## v1.23.0 — 2026-04-17
 
 ### New Skills

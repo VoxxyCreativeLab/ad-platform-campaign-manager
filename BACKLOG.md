@@ -381,6 +381,16 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 
 %% New items are appended below this line by /plugin-backlog %%
 
+### 32. Reference doc: how to lift a budget freeze before its date
+
+- **Date found:** 2026-04-18
+- **Affected file:** None (new reference doc needed)
+- **Category:** Gap
+- **Priority:** High
+- **Description:** No single reference doc in the plugin covers the specific scenario of lifting a budget freeze (like a T5 freeze) before its scheduled end date. Relevant guidance is currently scattered across `scaling-playbook.md` (IS-headroom gates), `post-launch-playbook.md` (budget re-entry after learning), and `learning-phase.md` (what resets learning — >20% budget changes). The `evidence-arbiter` and `budget-advisor` agents would benefit from a dedicated doc that covers: (1) when lifting a freeze early is justified by data, (2) safe step sizing to avoid learning reset, (3) conditions that must be met (ROAS stability, IS-lost-budget threshold, conversion volume), (4) what official Google guidance says about budget freeze management.
+- **Proposed fix:** New file `reference/platforms/google-ads/strategy/lift-budget-freeze.md` covering early-lift criteria, step-sizing rules, official Google guidance citations, and decision flowchart.
+- **Status:** Open
+
 ---
 
 ## Status
@@ -420,3 +430,4 @@ Improvement items discovered during real-world usage of this plugin. Each item i
 | 29 | MCP docs error — user_list sizes are API-accessible, not manual-only | Contradiction | Medium | ⬜ Open |
 | 30 | MCP server read capability expansion — compatibility validation needed | Dependency | Medium | ⬜ Open — pending MCP server update |
 | 31 | Pending n8n cross-plugin routing edges — commit with next release | Ecosystem | Low | ✅ Done (v1.23.0) — `46e22ee` |
+| 32 | Reference doc: lift-budget-freeze.md | New file | High | Open |

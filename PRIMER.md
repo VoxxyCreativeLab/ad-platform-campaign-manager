@@ -14,7 +14,7 @@ tags:
 
 ## Active Project
 
-**ad-platform-campaign-manager** — currently at v1.23.0 (shipped 2026-04-17). No active development task. Next session picks from Deferred Backlog below.
+**ad-platform-campaign-manager** — currently at v1.24.0 (in development, feature/ad-campaign-war-council branch). Active skill: `/ad-campaign-war-council` — Strategic orchestrator — evidence-based options, rule-override adjudication, growth blueprinting, forward planning.
 
 ---
 
@@ -53,11 +53,11 @@ All tasks completed and committed:
 ## What Still Needs to Happen
 
 > [!info] Plugin reinstall required
-> v1.23.0 added a new skill (`account-scaling`). Run the plugin reinstall before using it:
+> v1.24.0 adds a new skill (`ad-campaign-war-council`) and 7 new agents. Run the plugin reinstall before using them:
 > 1. `/plugins uninstall ad-platform-campaign-manager`
 > 2. `/plugins install`
 > 3. Reload VSCode window (Ctrl+Shift+P → "Developer: Reload Window")
-> 4. Confirm `/ad-platform-campaign-manager:account-scaling` appears in skill list
+> 4. Confirm `/ad-platform-campaign-manager:ad-campaign-war-council` appears in skill list
 
 No active implementation plan. Deferred backlog items listed below — pick the next one to work on.
 

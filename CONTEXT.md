@@ -36,8 +36,21 @@ tags:
 | Full campaign audit (agent) | `agents/campaign-reviewer.md` | `reference/platforms/google-ads/audit/*`, `common-mistakes.md`, `learning-phase.md`, `ad-testing-framework.md`, `strategy/remarketing-strategies.md`, `strategy/bid-adjustment-framework.md` | Tracking-bridge, reporting, mcp |
 | Strategy validation (agent) | `agents/strategy-advisor.md` | `reference/platforms/google-ads/strategy/*`, `campaign-types.md`, `bidding-strategies.md`, `shopping-feed-strategy.md`, `ad-testing-framework.md` | Scripts, mcp config, tracking-bridge |
 | Tracking audit (agent) | `agents/tracking-auditor.md` | `reference/tracking-bridge/*`, `reference/platforms/google-ads/conversion-actions.md`, `enhanced-conversions.md` | Reporting, scripts, mcp |
+| Strategic decision / Day X gate / rule-override / "should I" / war council | `skills/ad-campaign-war-council/SKILL.md` | `reference/platforms/google-ads/strategy/post-launch-playbook.md`, `scaling-playbook.md`, `learning-phase.md`, `reference/mcp/mcp-capabilities.md` | Load all at once — use on-demand routing in SKILL.md |
+| Forward account blueprint / what campaigns to build / parabolic ROAS | `skills/ad-campaign-war-council/SKILL.md` via `growth-architect` | `reference/platforms/google-ads/strategy/scaling-playbook.md`, `account-maturity-roadmap.md`, `vertical-ecommerce.md` (or relevant vertical) | — |
+| Full account state brief / cold start / catch-up orientation | `agents/account-archivist.md` | All project files: PRIMER, PLAN, reports/*, communication/*, docs/superpowers/specs/* | — |
+| Multi-day trend comparison / anomaly detection | `agents/trend-analyst.md` | `reports/*/SUMMARY.md`, `reports/*/05-optimize/*.md` | — |
+| Stakeholder communication review / what client approved / commitments | `agents/communications-analyst.md` | `communication/incoming/*`, `communication/outgoing/*` | — |
+| Latest best practices / official guidance / external research | `agents/research-analyst.md` | `skills/ad-campaign-war-council/references/evidence-standards.md` | — |
+| Rule-override adjudication / evidence for counter-plan action | `agents/evidence-arbiter.md` | Helper output files, `reference/platforms/google-ads/strategy/scaling-playbook.md`, `learning-phase.md` | Always serial after other helpers |
+| Budget reallocation / marginal return analysis / IS-headroom | `agents/budget-advisor.md` | `reference/platforms/google-ads/strategy/scaling-playbook.md`, `learning-phase.md`, `reference/mcp/mcp-capabilities.md` | — |
+| Forward account blueprint / expansion slate / 30-60-90 trajectory | `agents/growth-architect.md` | `reference/platforms/google-ads/strategy/account-maturity-roadmap.md`, `vertical-ecommerce.md`, `scaling-playbook.md` | — |
 | Report output conventions | `_config/conventions.md` | Sections: Output Completeness Convention, Report File-Writing Convention | — |
 | File a plugin issue / check backlog | `BACKLOG.md` | `/project-structure-and-scaffolding-plugin:plugin-backlog` | — |
+
+### Escalation Handshake
+
+When any skill detects a cross-cutting strategic question or a proposed rule-override, it should route the user to `/ad-campaign-war-council` rather than attempting to handle it inline. Triggers: proposed action contradicts PRIMER/PLAN/DESIGN, multi-campaign strategic decision, "should I override", Day X gate evaluation, 30-day forward planning.
 
 ## Shared Resources
 
